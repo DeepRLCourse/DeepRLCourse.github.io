@@ -5,24 +5,31 @@ theme:
   font:
     text: Merriweather Sans
     code: Red Hat Mono
-  icon:
-    logo: material/brain
+  logo: assets/favicon/android-chrome-512x512.png
   palette:
-    # Dark Mode
-    - scheme: slate
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
       toggle:
-        icon: material/weather-sunny
-        name: Light mode
-      primary: deep orange
-      accent: red
+        icon: material/brightness-auto
+        name: Switch to light mode
 
-    # Light Mode
-    - scheme: default
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
       toggle:
-        icon: material/weather-night
-        name: Dark mode
-      primary: deep orange
-      accent: red
+        icon: material/brightness-7
+        name: Switch to dark mode
+      primary: black
+      accent: deep orange
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+      primary: black
+      accent: deep orange
   
 markdown_extensions:
   - attr_list
