@@ -2,7 +2,7 @@ site_name: Deep RL Course | Sharif University of Technology
 site_url: https://deeprlcourse.github.io
 theme:
   name: material
-  custom_dir: overrides
+  # custom_dir: overrides
   font:
     text: Ubuntu
     code: Red Hat Mono
