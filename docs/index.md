@@ -1,6 +1,10 @@
+---
+description: Dive into the Deep Reinforcement Learning course at Sharif University of Technology! Explore comprehensive course details, learning objectives, and meet our expert instructor. Join us to master cutting-edge AI techniques and solve complex problems.
+---
+
 # Welcome
 
-Welcome to Deep Reinforcement Learning at Sharif University of Technology! We are excited to have you join us on this journey into the world of deep reinforcement learning.
+Welcome to Spring 2025 offering of Deep Reinforcement Learning course at Sharif University of Technology! We are excited to have you join us on this journey into the world of deep reinforcement learning.
 
 ## Course Description
 
@@ -29,31 +33,31 @@ This course provides an in-depth introduction to the field of deep reinforcement
 
 ### Conceptual/Practical
 
-| <div style="width:100px;">Week #</div> | <div style="width:250px;">Topic of the Week</div> | <div style="width:100px;">Lecture 1</div> | <div style="width:100px;">Lecture 2</div> | <div style="width:100px;">Homework</div> |
+| <div style="width:100px;">Week #</div> | <div style="width:250px;">Topic of the Week</div> | <div style="width:110px;">Lecture 1</div> | <div style="width:110px;">Lecture 2</div> | <div style="width:100px;">Homework</div> |
 | :-: | :- | :-: | :-: | :-: |
-| Week 1 | Introduction to RL | Bahman 14th | Bahman 16th | HW 1 | 
-| Week 2 | Value-based methods | Bahman 21st | Bahman 23rd | HW 2 | 
-| Week 3 | Policy-based methods | Bahman 28th | Bahman 30th | HW 3 |
-| Week 4 | Advanced Methods | Esfand 5th | Esfand 7th | HW 4 |
-| Week 5 | Model-Based Methods | Esfand 12th | Esfand 14th | HW 5 |
-| Week 6 | Offline Methods | Esfand 19th | Esfand 21st | HW 6 |
-| Week 7 | Multi-Agent Methods | Esfand 26th | Esfand 28th | HW 7 |
+| Week 1 | Introduction to RL | Bahman 21st | Bahman 23rd | HW 1 | 
+| Week 2 | Value-Based Methods | Bahman 28th | Bahman 30th | HW 2 | 
+| Week 3 | Policy-Based Methods | Esfand 5th | Esfand 7th | HW 3 |
+| Week 4 | Advanced Methods | Esfand 12th | Esfand 14th | HW 4 |
+| Week 5 | Model-Based Methods | Esfand 19th | Esfand 21st | HW 5 |
+| Week 6 | Multi-Armed Bandits | Esfand 26th | Esfand 28th | HW 6 |
 
 ### In Depth/Theoritical
-| <div style="width:100px;">Week #</div> | <div style="width:250px;">Topic of the Week</div> | <div style="width:100px;">Lecture 1</div> | <div style="width:100px;">Lecture 2</div> | <div style="width:100px;">Homework</div> |
+| <div style="width:100px;">Week #</div> | <div style="width:250px;">Topic of the Week</div> | <div style="width:110px;">Lecture 1</div> | <div style="width:110px;">Lecture 2</div> | <div style="width:100px;">Homework</div> |
 | :-: | :- | :-: | :-: | :-: |
-| Week 8 | Value-based theory | Farvardin 17th | Farvardin 19th | HW 8 |
-| Week 9 | Policy-based theory | Farvardin 24th | Farvardin 26th | HW 9 |
-| Week 10 | Advanced Theory | Farvardin 31st | Ordibehesh 2nd | HW 10 |
-| Week 11 | Multi-armed bandits | Ordibehesh 7th | Ordibehesh 9th | HW 11 |
-| Week 12 | Exploration methods | Ordibehesh 14th | Ordibehesh 16th | HW 12 |
-| Week 13 | Imitation & Inverse RL | Ordibehesh 21st | Ordibehesh 23rd | HW 13 |
-| Week 14 | Hierarchical & Meta RL | Ordibehesh 28th | Ordibehesh 30th | HW 14 |
+| Week 7 | Value-Based Theory | Farvardin 17th | Farvardin 19th | HW 7 |
+| Week 8 | Policy-Based Theory | Farvardin 24th | Farvardin 26th | HW 8 |
+| Week 9 | Advanced Theory | Farvardin 31st | Ordibehesh 2nd | HW 9 |
+| Week 10 | Exploration Methods | Ordibehesh 7th | Ordibehesh 9th | HW 10 |
+| Week 11 | Imitation & Inverse RL | Ordibehesh 14th | Ordibehesh 16th | HW 11 |
+| Week 12 | Offline Methods | Ordibehesh 21st | Ordibehesh 23rd | HW 12 |
+| Week 13 | Multi-Agent Methods | Ordibehesh 28th | Ordibehesh 30th | HW 13 |
+| Week 14 | Hierarchical & Meta RL | Khordad 4th | Khordad 6th | HW 14 |
 
 ### Guest Lectures
-| <div style="width:100px;">Week #</div> | <div style="width:250px;">Topic of the Week</div> | <div style="width:100px;">Lecture 1</div> | <div style="width:100px;">Lecture 2</div> | <div style="width:100px;">Homework</div> |
+| <div style="width:100px;">Week #</div> | <div style="width:250px;">Topic of the Week</div> | <div style="width:110px;">Lecture 1</div> | <div style="width:110px;">Lecture 2</div> | <div style="width:100px;">Homework</div> |
 | :-: | :- | :-: | :-: | :-: |
-| Week 15 | Guest Lectures | Khordad 4th | Khordad 6th | - |
+| Week 15 | Guest Lectures | Khordad 11th | Khordad 13th | - |
 
 ## Course Policies
 
