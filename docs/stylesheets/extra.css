@@ -39,3 +39,12 @@
     --md-primary-fg-color--light: #ECB7B7;
     --md-primary-fg-color--dark:  #790000;
 } */
+
+
+.grid.cards ul li p {
+    display: none;
+}
+
+.grid.cards ul li figure {
+    margin: 0em auto;
+}

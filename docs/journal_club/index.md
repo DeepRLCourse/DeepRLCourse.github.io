@@ -1,1 +1,5 @@
+---
+title: Journal Club
+---
+
 # Introduction

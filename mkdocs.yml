@@ -41,19 +41,28 @@ plugins:
   - search
   - blog:
       blog_toc: true
-      archive_date_format: MMMM yyyy
+      post_readtime_words_per_minute: 250
       pagination_per_page: 5
+      archive: true
+      archive_name: Archive
+      archive_date_format: MMMM yyyy
+      archive_url_date_format: yyyy/MM
       archive_pagination_per_page: 10
+      archive_toc: false
       categories_pagination_per_page: 10
+      categories_toc: false
   - tags:
       tags_file: blog/tags.md
   - social
+  # - offline
 
 extra:
   generator: false
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/DeepRLCourse
+    - icon: fontawesome/brands/youtube
+      link: https://www.youtube.com/@DeepRLCourse
     - icon: fontawesome/brands/x-twitter
       link: https://x.com/DeepRLCourse
     - icon: fontawesome/brands/telegram
@@ -64,33 +73,103 @@ copyright: Made with ❤️ in Robust and Interpretable Machine Learning Lab
 nav:
   - Home:
     - index.md
+    - home/calender.md
   - Blog:
     - blog/index.md
     - Tags: blog/tags.md
-  - Calender:
-    - calender/index.md
-  - Lectures:
-    - lectures/index.md
-  - Prerequisites:
-    - prerequisites/index.md
-    - prerequisites/linear_algebra.md  
-  - Recitations:
-    - recitations/index.md
-  - Workshops:
-    - workshops/index.md
-  - Homeworks:
-    - homeworks/index.md
   - Course Notes:
     - course_notes/index.md
+  - Lectures:
+    - lectures/index.md
+    - lectures/week1.md
+    - lectures/week2.md
+    - lectures/week3.md
+    - lectures/week4.md
+    - lectures/week5.md
+    - lectures/week6.md
+    - lectures/week7.md
+    - lectures/week8.md
+    - lectures/week9.md
+    - lectures/week10.md
+    - lectures/week11.md
+    - lectures/week12.md
+    - lectures/week13.md
+    - lectures/week14.md
+    - lectures/week15.md
+  - Prerequisites:
+    - prerequisites/index.md
+    - prerequisites/linear_algebra.md
+    - prerequisites/numerical_optimization.md
+    - prerequisites/information_theory.md
+    - prerequisites/stochastic_processes.md
+    - prerequisites/deep_learning.md
+  - Recitations:
+    - recitations/index.md
+    - recitations/week1.md
+    - recitations/week2.md
+    - recitations/week3.md
+    - recitations/week4.md
+    - recitations/week5.md
+    - recitations/week6.md
+    - recitations/week7.md
+    - recitations/week8.md
+    - recitations/week9.md
+    - recitations/week10.md
+    - recitations/week11.md
+    - recitations/week12.md
+    - recitations/week13.md
+    - recitations/week14.md
+  - Workshops:
+    - workshops/index.md
+    - workshops/week1.md
+    - workshops/week2.md
+    - workshops/week3.md
+    - workshops/week4.md
+    - workshops/week5.md
+    - workshops/week6.md
+    - workshops/week7.md
+    - workshops/week8.md
+    - workshops/week9.md
+    - workshops/week10.md
+    - workshops/week11.md
+    - workshops/week12.md
+    - workshops/week13.md
+    - workshops/week14.md
+  - Homeworks:
+    - homeworks/index.md
+    - homeworks/week1.md
+    - homeworks/week2.md
+    - homeworks/week3.md
+    - homeworks/week4.md
+    - homeworks/week5.md
+    - homeworks/week6.md
+    - homeworks/week7.md
+    - homeworks/week8.md
+    - homeworks/week9.md
+    - homeworks/week10.md
+    - homeworks/week11.md
+    - homeworks/week12.md
+    - homeworks/week13.md
+    - homeworks/week14.md
+  - Exams:
+    - exams/index.md
+    - exams/midterm.md
+    - exams/final.md
   - Journal Club:
     - journal_club/index.md
   - Poster Session:
     - poster_session/index.md
+    - poster_session/sp24.md
   - Resources:
     - resources/index.md
 
 extra_css:
   - stylesheets/extra.css
+  - stylesheets/vazirmatn.css
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
 
 markdown_extensions:
   - attr_list
@@ -103,6 +182,26 @@ markdown_extensions:
       pygments_lang_class: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.details
+  - pymdownx.arithmatex:
+      generic: true
   - md_in_html
+  - admonition
   - pymdownx.blocks.caption
+  - tables
+  - footnotes
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  - abbr
+
+  

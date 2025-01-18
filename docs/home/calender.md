@@ -1,4 +1,4 @@
-# Course Calender
+# Calender
 
 This Google Calendar outlines the schedule for the Deep Reinforcement Learning course, including weekly lecture times, assignment deadlines, and other important events.
 
