@@ -128,7 +128,7 @@ The grading for the Deep Reinforcement Learning course is structured as follows:
 
 | Component      | Points | Date       | Details |
 | -------------- | ------ | ------------------ | ---|
-| Homeworks            | 7      |  | 14 HWs $\times \approx$ 0.5 each
+| Homeworks            | 7      | - | 14 HWs $\times \approx$ 0.5 each
 | Midterm        | 5      | <div style="direction: rtl;font-family: Vazirmatn;">۲۱ فروردین<br>(April 10)</div> | @ 9:00 AM |
 | Final          | 7      | <div style="direction: rtl;font-family: Vazirmatn;">۱ تیر<br>(June 22)</div>   | @ 8:00 AM |
 | Poster Session | 1      | End of course      | TBA |
