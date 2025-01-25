@@ -79,6 +79,19 @@ nav:
     - Tags: blog/tags.md
   - Course Notes:
     - course_notes/index.md
+    - course_notes/into-to-rl.md
+    - course_notes/value-based.md
+    - course_notes/policy-based.md
+    - course_notes/advanced.md
+    - course_notes/model-based.md
+    - course_notes/bandits.md
+    - course_notes/exploration.md
+    - course_notes/imitation.md
+    - course_notes/inverse.md
+    - course_notes/offline.md
+    - course_notes/multi-agent.md
+    - course_notes/hierarchical.md
+    - course_notes/meta.md
   - Lectures:
     - lectures/index.md
     - lectures/week1.md
