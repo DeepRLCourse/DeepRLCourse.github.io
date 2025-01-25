@@ -1,0 +1,59 @@
+
+{% extends "main.html" %}
+
+<!-- Content -->
+{% block content %}
+
+<style>
+    .robot {
+      font-size: 6em;
+    }
+    .joke {
+      font-style: italic;
+      margin-top: 4em;
+      color: #555;
+    }
+    .context {
+        margin-top: -2em;
+        font-size: 0.75em;
+        color: #999;
+    }
+  </style>
+
+<div class="container">
+    <div class="robot">🤖</div>
+    <h1>404: Agent Lost in Exploration!</h1>
+    <p>
+        <strong>Oops! 😅</strong>
+        It seems our RL agent got a little too curious and wandered off into uncharted territory.
+        <br>
+        Don't worry, it's still exploring the state space, trying to maximize its reward (and failing miserably).
+    </p>
+    <h3>Here's what you can do:</h3>
+    <ul>
+        <li>
+            <a href="javascript:location.reload();" class="button">Press F5! 🔄</a>
+            <span>Give the agent another chance to find the optimal policy.</span>
+        </li>
+        <li>
+            <a href="/" class="button">Go Back to Homepage! 🏠</a>
+            <span>Maybe the agent will follow your lead and learn by imitation.</span>
+        </li>
+        <li>
+            <span class="button">Wait! ⏳</span>
+            <span>The agent is probably stuck in a local minimum. It'll figure it out… eventually.</span>
+        </li>
+    </ul>
+    <div class="joke">
+        <p>
+            <strong>RL Breakup Joke: 🤖💔</strong>
+            <br>
+            Why did the RL agent break up with the supervised learning model?
+            <br>
+            Because it said, "I need more exploration, not just exploitation!" 😁
+        </p>
+        <p class="context">(The RL agent loves trying new things, while the supervised model just sticks to the labels it knows!)</p>
+    </div>
+</div>
+
+{% endblock %}
