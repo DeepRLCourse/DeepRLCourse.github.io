@@ -98,11 +98,12 @@ nav:
     - lectures/week15.md
   - Prerequisites:
     - prerequisites/index.md
+    - prerequisites/deep_learning.md
+    - prerequisites/game_theory.md
     - prerequisites/linear_algebra.md
     - prerequisites/numerical_optimization.md
     - prerequisites/information_theory.md
     - prerequisites/stochastic_processes.md
-    - prerequisites/deep_learning.md
   - Recitations:
     - recitations/index.md
     - recitations/week1.md

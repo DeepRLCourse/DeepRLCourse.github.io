@@ -8,7 +8,7 @@ Welcome to Spring 2025 offering of Deep Reinforcement Learning course at Sharif 
 
 ## Course Description
 
-This course provides an in-depth introduction to the field of deep reinforcement learning. Initially, we will explore reinforcement learning (RL) in a conceptual and practical manner to help you understand and grasp the fundamental concepts. This phase will take place before Nowrouz. After Nowrouz, we will delve deeper into the subject, treating it more theoretically. The course will cover both classic reinforcement learning and deep reinforcement learning, including interesting topics such as multi-agent RL, offline methods, and meta RL. By the end of the course, you will have a solid understanding of how to apply deep reinforcement learning to solve complex problems in various domains.
+This course provides an in-depth introduction to the field of deep reinforcement learning. Initially, we will explore reinforcement learning conceptually and practically to help you grasp the fundamental concepts. This phase will take place before Nowrouz. After Nowrouz, we will delve deeper into the subject, focusing on advanced topics. The course will cover both classical reinforcement learning and deep reinforcement learning, including interesting topics such as multi-agent RL, offline methods, and meta RL. By the end of the course, you will have a solid understanding of how to apply deep reinforcement learning to solve complex problems in various domains.
 
 ## Learning Objectives
 
@@ -16,8 +16,8 @@ This course provides an in-depth introduction to the field of deep reinforcement
 - Apply reinforcement learning to various domains
 - Use deep learning techniques to handle large state spaces in RL
 - Master the concepts and gain practical understanding of RL
-- Acquire sufficient theoretical knowledge to conduct serious work in RL
-- Explore and understand recent research papers in RL
+- Gain hands-on experience with important RL problems
+- Equip students with enough theoretical knowledge to understand research papers
 
 ## Instructor
 
@@ -70,27 +70,50 @@ This course provides an in-depth introduction to the field of deep reinforcement
 
 ## Logistics & Policies 
 
-- **Lectures:** Held on Sundays and Tuesdays from 1:30 PM to 3:00 PM.
+- **Lectures:** Held on Sundays and Tuesdays from 1:30 PM to 3:00 PM in room 201 of the CE department.
 
-- **Recitation Classes:** Weekly sessions where TAs review the last two lectures and solve related problems.
+- **Recitation Classes:** Weekly sessions where TAs review the last two lectures and solve related problems. These sessions will be held in person on Wednesdays, except for week 15 when there will be no recitation class.
 
-- **Homework:** Released after the Tuesday lecture and due by the following Saturday at 11:59 PM. Homework assignments will be posted on Quera, and submissions must be made there.
+- **Homework:** Released after the Tuesday lecture. Due dates will be provided in the following table.
 
-- **Lecture Summaries and Quizzes:** Summaries of the previous lecture will be released at 8:00 AM on the day of the next lecture. You must participate in a quiz before the start of the lecture at 1:30 PM. Participation in quizzes will earn you 0.5 bonus points.
+| Homework | Release Date       | Due Date       | Details       |
+|:--------:|:------------------:|:--------------:|:--------------:|
+| HW1      | <div style="direction: rtl;font-family: Vazirmatn;">۲۳ بهمن<br>(February 11)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۲۷ بهمن<br>(February 15)</div> | @ 11:59 PM |
+| HW2      | <div style="direction: rtl;font-family: Vazirmatn;">۳۰ بهمن<br>(February 18)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۴ اسفند<br>(February 22)</div> | @ 11:59 PM |
+| HW3      | <div style="direction: rtl;font-family: Vazirmatn;">۷ اسفند<br>(February 25)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۱۱ اسفند<br>(March 1)</div> | @ 11:59 PM |
+| HW4      | <div style="direction: rtl;font-family: Vazirmatn;">۱۴ اسفند<br>(March 4)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۱۸ اسفند<br>(March 8)</div> | @ 11:59 PM |
+| HW5      | <div style="direction: rtl;font-family: Vazirmatn;">۲۱ اسفند<br>(March 11)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۲۵ اسفند<br>(March 15)</div> | @ 11:59 PM |
+| HW6      | <div style="direction: rtl;font-family: Vazirmatn;">۲۸ اسفند<br>(March 18)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۱۶ فروردین<br>(April 5)         | @ 11:59 PM |
+| HW7      | <div style="direction: rtl;font-family: Vazirmatn;">۱۹ فروردین<br>(April 8)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۱۳ اردیبهشت<br>(May 3)</div>         | @ 11:59 PM |
+| HW8      | <div style="direction: rtl;font-family: Vazirmatn;">۲۶ فروردین<br>(April 15)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۱۳ اردیبهشت<br>(May 3)</div>         | @ 11:59 PM |
+| HW9      | <div style="direction: rtl;font-family: Vazirmatn;">۲ اردیبهشت<br>(April 22)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۱۳ اردیبهشت<br>(May 3)</div>         | @ 11:59 PM |
+| HW10     | <div style="direction: rtl;font-family: Vazirmatn;">۹ اردیبهشت<br>(April 29)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۲۷ اردیبهشت<br>(May 17)</div>         | @ 11:59 PM |
+| HW11     | <div style="direction: rtl;font-family: Vazirmatn;">۱۶ اردیبهشت<br>(May 6)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۲۷ اردیبهشت<br>(May 17)</div>         | @ 11:59 PM |
+| HW12     | <div style="direction: rtl;font-family: Vazirmatn;">۲۳ اردیبهشت<br>(May 13)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۲۴ خرداد<br>(June 14)</div>         | @ 11:59 PM |
+| HW13     | <div style="direction: rtl;font-family: Vazirmatn;">۳۰ اردیبهشت<br>(May 20)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۲۴ خرداد<br>(June 14)</div>          | @ 11:59 PM |
+| HW14     | <div style="direction: rtl;font-family: Vazirmatn;">۶ خرداد<br>(May 27)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۲۴ خرداد<br>(June 14)</div>          | @ 11:59 PM |
+
+- **Homework Bonus:** Some homeworks may have an optional bonus part that can earn you up to 0.75 bonus points.
+
+- **Workshop Classes:** Held for all weeks except weeks 7, 8, 9, and 15. These workshops will present practical implementations of the ideas covered in the lectures of the week. These sessions will be held online on Wednesdays.
+
+- **Lecture Summaries and Quizzes:** Summaries of the previous lecture will be released at 8:00 AM on the day of the next lecture. You must participate in a quiz before the start of the lecture at 1:30 PM. Participation in quizzes will earn you 0.75 bonus points.
 
 - **Exams:** Midterm questions will focus on conceptual understanding, while the final exam will be more theoretical.
 
-- **Feedback:** Participation in all feedback sessions throughout the course will add up to 0.5 bonus points.
+- **Poster Session:** There will be a poster session at the end of the course. Presenting at the poster session can earn you 1 point of course credit.
 
-- **Additional Learning Opportunities:** Prerequisite classes, workshops, and journal clubs may be offered weekly. Participation in journal clubs can earn you 0.5 bonus points.
+- **Feedback:** Participation in all feedback sessions throughout the course will add up to 0.75 bonus points.
 
-- **Optional Activities:** There will be an optional visit to Taarlab in the middle of the course and a poster session at the end. Presenting at the poster session can earn you up to 1 bonus point.
+- **Additional Learning Opportunities:** Prerequisite classes will be held based on demand, and journal clubs will be held weekly throughout the course.
 
-- **Course Calendar:** Office hours, lecture schedules, recitations, deadlines, and all important events can be found on the course calendar.
+- **Optional Activities:** There will be an optional visit to [Taarlab](https://taarlab.com) in the middle of the course.
 
-- **Support:** You can ask questions on Quera or schedule office hours with a TA for additional guidance.
+- **Course Calendar:** Office hours, lecture schedules, recitations, workshops, deadlines, and all important events can be found on the course [calendar](/home/calender).
 
 - **Slack Days:** You have a total of 14 slack days throughout the course with no penalty for submitting your homework late. For each homework, you can use up to 7 slack days. After 7 days, the solution will be released, and no further submissions will be accepted. Any additional delays beyond the slack days will result in a 0.5% reduction in the assignment grade for every hour of delay.
+
+- **Support:** You can ask questions on Quera or schedule office hours with a TA for additional guidance.
 
 ## Grading
 
@@ -98,28 +121,30 @@ The grading for the Deep Reinforcement Learning course is structured as follows:
 
 ### Main Components
 
-- **Homework:** Gradual assessment through regular assignments
+- **Homeworks:** Gradual assessment through regular assignments
 - **Midterm:** Conceptual understanding tested mid-course
 - **Final:** Theoretical knowledge evaluated at the end of the course
+- **Poster Session:** Presentation at the end of the course
 
-| Component | Points | Date/Details       |
-| --------- | ------ | ------------------ |
-| HWs       | 7      | {++14 HWs++} x ==0.5 each== |
-| Midterm   | 6      | {++21 Farvardin++} at ==8:00 AM==      |
-| Final     | 7      | {++1 Tir++} at ==8:00 AM==         |
+| Component      | Points | Date       | Details |
+| -------------- | ------ | ------------------ | ---|
+| Homeworks            | 7      |  | 14 HWs $\times \approx$ 0.5 each
+| Midterm        | 5      | <div style="direction: rtl;font-family: Vazirmatn;">۲۱ فروردین<br>(April 10)</div> | @ 9:00 AM |
+| Final          | 7      | <div style="direction: rtl;font-family: Vazirmatn;">۱ تیر<br>(June 22)</div>   | @ 8:00 AM |
+| Poster Session | 1      | End of course      | TBA |
 
 ### Bonus Components
 
 Additional opportunities to earn bonus points:
 
-| Component       | Points |
-| --------------- | ------ |
-| Poster Session  | 1      |
-| Quizzes         | 0.5    |
-| Feedback        | 0.5    |
-| Journal Club    | 0.5    |
+| Component            | Points |
+| ------------------   | ------ |
+| Quizzes              | 0.75   |
+| Feedback             | 0.75   |
+| Homeworks Bonus | 0.75   |
+| Poster Session Bonus | 0.25   |
 
-Total possible points: {== 20 + 2.5 = 22.5 ==}
+Total possible points: 20 + 2.5 = 22.5
 
 
 ## Teaching Staff
