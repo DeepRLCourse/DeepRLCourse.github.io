@@ -86,7 +86,11 @@ This course provides an in-depth introduction to the field of deep reinforcement
 
 - **Homework Bonus:** Some homeworks may have an optional bonus part that can earn you up to 0.75 bonus points.
 
-- **Slack Days:** You have a total of 14 slack days throughout the course with no penalty for submitting your homework late. For each homework, you can use up to 7 slack days. After 7 days, the solution will be released, and no further submissions will be accepted. Any additional delays beyond the slack days will result in a 0.5% reduction in the assignment grade for every hour of delay. We have a flat reduction policy from 1 AM to 11 AM (for your convenience to rest peacefully!). The 7 days for submitting your work for each homework is a hard deadline, and after that, you will receive a 0 grade because we will release the solution to the homework. For the last homework, due to the final exam, the solution will be released on <span style="direction: rtl;font-family: Vazirmatn;">۳۰ خرداد</span> (June 20), and you have a 5-day hard deadline for that.
+- **Slack Days:** You have a total of 14 slack days throughout the course with no penalty for submitting your homework late. For each homework, you can use up to 7 slack days. After 7 days, the solution will be released, and no further submissions will be accepted. Any additional delays beyond the slack days will result in a 0.5% reduction in the assignment grade for every hour of delay. We have a flat reduction policy from 1 AM to 11 AM (for your convenience to rest peacefully!). The 7 days for submitting your work for each homework is a hard deadline, and after that, you will receive a 0 grade because we will release the solution to the homework.
+
+    !!! warning ""
+
+        For the 6th homework and the last homeworks (12th, 13th, and 14th), due to the midterm exam and final exam, the solutions will be released on 1404/01/20 [<span style="direction: rtl;font-family: Vazirmatn;">۲۰ فروردین</span>] (April 9) and 1404/03/30 [<span style="direction: rtl;font-family: Vazirmatn;">۳۰ خرداد</span>] (June 20), respectively. You have a 3-day hard deadline for the 6th homework and a 5-day hard deadline for the last homeworks.
 
 - **Workshop Classes:** Held for all weeks except weeks 7, 8, 9, and 15. These workshops will present practical implementations of the ideas covered in the lectures of the week. These sessions will be held online on Wednesdays.
 
