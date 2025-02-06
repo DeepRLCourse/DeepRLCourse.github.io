@@ -1,5 +1,5 @@
 ---
-description: Dive into the Deep Reinforcement Learning course at Sharif University of Technology! Explore comprehensive course details, learning objectives, and meet our expert instructor. Join us to master cutting-edge AI techniques and solve complex problems.
+description: Welcome to Spring 2025 offering of Deep Reinforcement Learning course at Sharif University of Technology! We are excited to have you join us on this journey into the world of deep reinforcement learning.
 ---
 
 # Welcome
