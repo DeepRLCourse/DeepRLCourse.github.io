@@ -79,7 +79,7 @@ This course provides an in-depth introduction to the field of deep reinforcement
 | Homework | Release Date       | Due Date       | Details       |
 |:--------:|:------------------:|:--------------:|:--------------:|
 | HW1-5      | Sunday<br>of the week | Sunday<br>of next week | @ 11:59 PM |
-| HW6      | <div style="direction: rtl;font-family: Vazirmatn;">۲۸ اسفند<br>(March 18)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۱۷ فروردین<br>(April 6)         | @ 11:59 PM |
+| HW6      | <div style="direction: rtl;font-family: Vazirmatn;">۲۶ اسفند<br>(March 16)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۱۷ فروردین<br>(April 6)         | @ 11:59 PM |
 | HW7-9      | Sunday<br>of the week | <div style="direction: rtl;font-family: Vazirmatn;">۲۱ اردیبهشت<br>(May 11)</div>         | @ 11:59 PM |
 | HW10-11     | Sunday<br>of the week | <div style="direction: rtl;font-family: Vazirmatn;">۴ خرداد<br>(May 25)</div>         | @ 11:59 PM |
 | HW12-14     | Sunday<br>of the week | <div style="direction: rtl;font-family: Vazirmatn;">۲۵ خرداد<br>(June 15)</div>         | @ 11:59 PM |
@@ -145,29 +145,387 @@ Additional opportunities to earn bonus points:
 Total possible points: 20 + 3 = 23
 
 
-## Teaching Staff
+## Head Assistants
 
-<!-- <div class="grid cards" markdown>
--   ![Instructor Avatar](assets/images/staff/Mohammad-Hossein-Rohban.png){align=left width="130"}
+<div class="grid cards" markdown>
+-   ![Instructor Avatar](assets/images/staff/Arash-Alikhani.jpg){align=left width="150"}
     <span class="description">
-        <p>**Dr. Mohammad Hossein Rohban**</p>
-        <p>Instructor</p>
-        <p>[rohban@sharif.edu](mailto:rohban@sharif.edu)</p>
+        <p>**Arash Alikhani**</p>
+        <p>Lead Head TA</p>
+        <p>[infinity2357@gmail.com](mailto:infinity2357@gmail.com)</p>
         <p>
-        [:material-twitter:](https://x.com/MhRohban){:target="_blank"}
-        [:material-linkedin:](https://linkedin.com/in/mohammad-hossein-rohban-75567677){:target="_blank"}
-        [:material-school:](https://scholar.google.com/citations?user=pRyJ6FkAAAAJ){:target="_blank"}
+        [:fontawesome-brands-x-twitter:](https://x.com/infinity2357_){:target="_blank"}
+        [:fontawesome-brands-linkedin-in:](https://www.linkedin.com/in/infinity2357){:target="_blank"}
         </p>
     </span>
--   ![Instructor Avatar](assets/images/staff/Mohammad-Hossein-Rohban.png){align=left width="130"}
+</div>
+
+
+<div class="grid cards" markdown>
+-   ![Instructor Avatar](assets/images/staff/Soroush-VafaieTabar.jpg){align=left width="150"}
     <span class="description">
-        <p>**Dr. Mohammad Hossein Rohban**</p>
-        <p>Instructor</p>
-        <p>[rohban@sharif.edu](mailto:rohban@sharif.edu)</p>
+        <p>**Soroush VafaieTabar**</p>
+        <p>Theory Head TA</p>
+        <p>[svafaiet@gmail.com](mailto:svafaiet@gmail.com)</p>
         <p>
-        [:material-twitter:](https://x.com/MhRohban){:target="_blank"}
-        [:material-linkedin:](https://linkedin.com/in/mohammad-hossein-rohban-75567677){:target="_blank"}
-        [:material-school:](https://scholar.google.com/citations?user=pRyJ6FkAAAAJ){:target="_blank"}
+        [:fontawesome-brands-github:](https://github.com/Svafaiet){:target="_blank"}
+        [:fontawesome-brands-linkedin-in:](https://www.linkedin.com/in/soroush-vafaie-tabar){:target="_blank"}
         </p>
     </span>
-</div> -->
+-   ![Instructor Avatar](assets/images/staff/Amir-Mohammad-Izadi.jpg){align=left width="150"}
+    <span class="description">
+        <p>**Amir Mohammad Izadi**</p>
+        <p>Practical Head TA</p>
+        <p>[amirmmdizady@gmail.com](mailto:amirmmdizady@gmail.com)</p>
+        <p>
+        [:fontawesome-brands-x-twitter:](https://x.com/izadi_mmd){:target="_blank"}
+        [:fontawesome-brands-github:](https://github.com/mmdizad){:target="_blank"}
+        </p>
+    </span>
+</div>
+
+## Teaching Assistants
+
+<div class="grid cards" markdown>
+-   ![Instructor Avatar](assets/images/staff/Abdollah-Zohrabi.jpg){align=left width="150"}
+    <span class="description">
+        <p>**Abdollah Zohrabi**</p>
+        <p>Teaching Assistant</p>
+        <p>[abdollahzz1381@gmail.com](mailto:abdollahzz1381@gmail.com)</p>
+        <p>
+        [:fontawesome-brands-github:](https://github.com/Abz81){:target="_blank"}
+        [:fontawesome-brands-linkedin-in:](https://www.linkedin.com/in/abdollah-zohrabi-i2003){:target="_blank"}
+        </p>
+    </span>
+
+-   ![Instructor Avatar](assets/images/staff/Ahmad-Karami.jpg){align=left width="150"}
+    <span class="description">
+        <p>**Ahmad Karami**</p>
+        <p>Teaching Assistant</p>
+        <p>[ahmad.karami77@yahoo.com](mailto:ahmad.karami77@yahoo.com)</p>
+        <p>
+        [:fontawesome-brands-linkedin-in:](https://www.linkedin.com/in/ahmad-karami-8a6a14255){:target="_blank"}
+        </p>
+    </span>
+
+-   ![Instructor Avatar](assets/images/staff/Ali-MirGhasemi.jpg){align=left width="150"}
+    <span class="description">
+        <p>**Ali MirGhasemi**</p>
+        <p>Teaching Assistant</p>
+        <p>[sam717269@gmail.com](mailto:sam717269@gmail.com)</p>
+        <p>
+        [:fontawesome-brands-linkedin-in:](https://www.linkedin.com/in/sayyed-ali-mirghasemi-6033661b9){:target="_blank"}
+        </p>
+    </span>
+
+-   ![Instructor Avatar](assets/images/staff/Alireza-Nobakht.jpg){align=left width="150"}
+    <span class="description">
+        <p>**Alireza Nobakht**</p>
+        <p>Teaching Assistant</p>
+        <p>[a.nobakht13@gmail.com](mailto:a.nobakht13@gmail.com)</p>
+        <p>
+        [:fontawesome-brands-github:](https://github.com/alirezanobakht13){:target="_blank"}
+        [:fontawesome-brands-linkedin-in:](https://www.linkedin.com/in/alireza-nobakht){:target="_blank"}
+        </p>
+    </span>
+
+-   ![Instructor Avatar](assets/images/staff/Amirabbas-Afzali.jpg){align=left width="150"}
+    <span class="description">
+        <p>**Amirabbas Afzali**</p>
+        <p>Teaching Assistant</p>
+        <p>[amir8afzali@gmail.com](mailto:amir8afzali@gmail.com)</p>
+        <p>
+        [:fontawesome-brands-google-scholar:](https://scholar.google.com/citations?hl=en&user=uBk9UgoAAAAJ){:target="_blank"}
+        [:fontawesome-brands-github:](https://github.com/Amirabbas-Afzali){:target="_blank"}
+        [:fontawesome-brands-linkedin-in:](https://www.linkedin.com/in/amir-a-afzali-b539b1226/){:target="_blank"}
+        </p>
+    </span>
+
+-   ![Instructor Avatar](assets/images/staff/Amirhossein-Asadi.jpg){align=left width="150"}
+    <span class="description">
+        <p>**Amirhossein Asadi**</p>
+        <p>Teaching Assistant</p>
+        <p>[amirhossein.asadi1681@gmail.com](mailto:amirhossein.asadi1681@gmail.com)</p>
+        <p>
+        [:fontawesome-brands-github:](https://github.com/amirasadi1681){:target="_blank"}
+        [:fontawesome-brands-linkedin-in:](https://www.linkedin.com/in/amirhossein-asadi-a942a0285){:target="_blank"}
+        </p>
+    </span>
+
+-   ![Instructor Avatar](assets/images/staff/Amirreza-Velaei.jpg){align=left width="150"}
+    <span class="description">
+        <p>**Amirreza Velaei**</p>
+        <p>Teaching Assistant</p>
+        <p>[amirrezavelae@gmail.com](mailto:amirrezavelae@gmail.com)</p>
+        <p>
+        [:fontawesome-brands-x-twitter:](https://x.com/hellsiceseller){:target="_blank"}
+        [:fontawesome-brands-github:](https://github.com/amirrezavelae){:target="_blank"}
+        [:fontawesome-brands-linkedin-in:](https://www.linkedin.com/in/amirreza-velae-22166321a/){:target="_blank"}
+        [:material-web:](https://amirrezavelae.github.io){:target="_blank"}
+        </p>
+    </span>
+
+-   ![Instructor Avatar](assets/images/staff/Armin-Saghafian.jpg){align=left width="150"}
+    <span class="description">
+        <p>**Armin Saghafian**</p>
+        <p>Teaching Assistant</p>
+        <p>[armin.saghafian@gmail.com](mailto:armin.saghafian@gmail.com)</p>
+        <p>
+        [:fontawesome-brands-google-scholar:](https://scholar.google.com/citations?user=EMo_aZAAAAAJ&hl=en){:target="_blank"}
+        [:fontawesome-brands-github:](https://github.com/ArminS03){:target="_blank"}
+        [:fontawesome-brands-linkedin-in:](https://www.linkedin.com/in/armin-saghafian){:target="_blank"}
+        </p>
+    </span>
+
+-   ![Instructor Avatar](assets/images/staff/Arshia-Gharooni.jpg){align=left width="150"}
+    <span class="description">
+        <p>**Arshia Gharooni**</p>
+        <p>Teaching Assistant</p>
+        <p>[arshiyagharoony@gmail.com](mailto:arshiyagharoony@gmail.com)</p>
+        <p>
+        [:fontawesome-brands-x-twitter:](https://x.com/Arshia_Gharooni){:target="_blank"}
+        [:fontawesome-brands-github:](https://github.com/SilentDrift){:target="_blank"}
+        [:material-web:](https://silentdrift.github.io/){:target="_blank"}
+        </p>
+    </span>
+
+-   ![Instructor Avatar](assets/images/staff/Behnia-Soleymani.jpg){align=left width="150"}
+    <span class="description">
+        <p>**Behnia Soleymani**</p>
+        <p>Teaching Assistant</p>
+        <p>[ibehnia.s@gmail.com](mailto:ibehnia.s@gmail.com)</p>
+        <p>
+        [:fontawesome-brands-github:](https://github.com/ibehnia){:target="_blank"}
+        </p>
+    </span>
+
+-   ![Instructor Avatar](assets/images/staff/Benyamin-Naderi.jpg){align=left width="150"}
+    <span class="description">
+        <p>**Benyamin Naderi**</p>
+        <p>Teaching Assistant</p>
+        <p>[benjaminndr79@gmail.com](mailto:benjaminndr79@gmail.com)</p>
+        <p>
+        [:fontawesome-brands-github:](https://github.com/BenjaminNdr){:target="_blank"}
+        </p>
+    </span>
+
+-   ![Instructor Avatar](assets/images/staff/Dariush-Jamshidian.jpg){align=left width="150"}
+    <span class="description">
+        <p>**Dariush Jamshidian**</p>
+        <p>Teaching Assistant</p>
+        <p>[drjm313@gmail.com](mailto:drjm313@gmail.com)</p>
+        <p>
+        [:fontawesome-brands-github:](https://github.com/TheHypnotic){:target="_blank"}
+        [:fontawesome-brands-linkedin-in:](https://www.linkedin.com/in/dariush-jamshidian-990936323/){:target="_blank"}
+        </p>
+    </span>
+
+-   ![Instructor Avatar](assets/images/staff/Faezeh-Sadeghi.jpg){align=left width="150"}
+    <span class="description">
+        <p>**Faezeh Sadeghi**</p>
+        <p>Teaching Assistant</p>
+        <p>[fz.saadeghi@gmail.com](mailto:fz.saadeghi@gmail.com)</p>
+        <p>
+        [:fontawesome-brands-github:](https://github.com/Faezehsgh){:target="_blank"}
+        </p>
+    </span>
+
+-   ![Instructor Avatar](assets/images/staff/Ghazal-Hosseini.jpg){align=left width="150"}
+    <span class="description">
+        <p>**Ghazal Hosseini**</p>
+        <p>Teaching Assistant</p>
+        <p>[ghazaldesu@gmail.com](mailto:ghazaldesu@gmail.com)</p>
+        <p>
+        [:fontawesome-brands-linkedin-in:](https://www.linkedin.com/in/ghazal-hosseini-mighan-8b911823a){:target="_blank"}
+        </p>
+    </span>
+
+-   ![Instructor Avatar](assets/images/staff/Hamed-Saadati.jpg){align=left width="150"}
+    <span class="description">
+        <p>**Hamed Saadati**</p>
+        <p>Teaching Assistant</p>
+        <p>[hamed.saadati078@gmail.com](mailto:hamed.saadati078@gmail.com)</p>
+        <p>
+        [:fontawesome-brands-github:](https://github.com/hamedsa-78){:target="_blank"}
+        </p>
+    </span>
+
+-   ![Instructor Avatar](assets/images/staff/HamidReza-Akbari.jpg){align=left width="150"}
+    <span class="description">
+        <p>**HamidReza Akbari**</p>
+        <p>Teaching Assistant</p>
+        <p>[hakbari@gmail.com](mailto:hakbari@gmail.com)</p>
+        <p>
+        [:fontawesome-brands-github:](https://github.com/hakbari14){:target="_blank"}
+        [:fontawesome-brands-linkedin-in:](https://linkedin.com/in/hamid-reza-akbari-154257104){:target="_blank"}
+        </p>
+    </span>
+
+-   ![Instructor Avatar](assets/images/staff/Hamidreza-Ebrahimpour.jpg){align=left width="150"}
+    <span class="description">
+        <p>**Hamidreza Ebrahimpour**</p>
+        <p>Teaching Assistant</p>
+        <p>[ebrahimpour.7879@gmail.com](mailto:ebrahimpour.7879@gmail.com)</p>
+        <p>
+        [:fontawesome-brands-github:](https://github.com/hamidRezA7878){:target="_blank"}
+        [:fontawesome-brands-linkedin-in:](https://linkedin.com/in/hamidreza-ebrahimpour78){:target="_blank"}
+        </p>
+    </span>
+
+-   ![Instructor Avatar](assets/images/staff/Hesam-Hosseini.jpg){align=left width="150"}
+    <span class="description">
+        <p>**Hesam Hosseini**</p>
+        <p>Teaching Assistant</p>
+        <p>[hesam138122@gmail.com](mailto:hesam138122@gmail.com)</p>
+        <p>
+        [:fontawesome-brands-google-scholar:](https://scholar.google.com/citations?user=ODTtV1gAAAAJ&hl=en){:target="_blank"}
+        [:fontawesome-brands-github:](https://github.com/Sam-the-first){:target="_blank"}
+        [:fontawesome-brands-linkedin-in:](https://www.linkedin.com/in/hesam-hosseini-b57092259){:target="_blank"}
+        </p>
+    </span>
+
+-   ![Instructor Avatar](assets/images/staff/Hesan-Nobakht.jpg){align=left width="150"}
+    <span class="description">
+        <p>**Hesan Nobakht**</p>
+        <p>Teaching Assistant</p>
+        <p>[hesan.nobakht@gmail.com](mailto:hesan.nobakht@gmail.com)</p>
+        <p>
+        [:fontawesome-brands-linkedin-in:](https://www.linkedin.com/in/h-nobakht){:target="_blank"}
+        </p>
+    </span>
+
+-   ![Instructor Avatar](assets/images/staff/Mahyar-Afshinmehr.jpg){align=left width="150"}
+    <span class="description">
+        <p>**Mahyar Afshinmehr**</p>
+        <p>Teaching Assistant</p>
+        <p>[mahyarafshinmehr@gmail.com](mailto:mahyarafshinmehr@gmail.com)</p>
+        <p>
+        [:fontawesome-brands-linkedin-in:](https://www.linkedin.com/in/mahyar-afshinmehr){:target="_blank"}
+        </p>
+    </span>
+
+-   ![Instructor Avatar](assets/images/staff/Masoud-Tahmasbi.jpg){align=left width="150"}
+    <span class="description">
+        <p>**Masoud Tahmasbi**</p>
+        <p>Teaching Assistant</p>
+        <p>[masoudtahmasbifard@gmail.com](mailto:masoudtahmasbifard@gmail.com)</p>
+        <p>
+        [:fontawesome-brands-google-scholar:](https://scholar.google.com/citations?hl=en&user=BUiXXIYAAAAJ){:target="_blank"}
+        [:fontawesome-brands-github:](https://github.com/masoudtfard){:target="_blank"}
+        [:fontawesome-brands-linkedin-in:](https://www.linkedin.com/in/masoud-tahmasbi-fard/){:target="_blank"}
+        </p>
+    </span>
+
+-   ![Instructor Avatar](assets/images/staff/Milad-Hosseini.jpg){align=left width="150"}
+    <span class="description">
+        <p>**Milad Hosseini**</p>
+        <p>Teaching Assistant</p>
+        <p>[miladhoseini532@gmail.com](mailto:miladhoseini532@gmail.com)</p>
+        <p>
+        [:fontawesome-brands-github:](https://github.com/milad532){:target="_blank"}
+        [:fontawesome-brands-linkedin-in:](https://linkedin.com/in/milad-hosseini-39626710b){:target="_blank"}
+        </p>
+    </span>
+
+-   ![Instructor Avatar](assets/images/staff/Mohammad-Mohammadi.jpg){align=left width="150"}
+    <span class="description">
+        <p>**Mohammad Mohammadi**</p>
+        <p>Teaching Assistant</p>
+        <p>[mohammadm97i@gmail.com](mailto:mohammadm97i@gmail.com)</p>
+        <p>
+        [:fontawesome-brands-x-twitter:](https://x.com/imohammad97){:target="_blank"}
+        [:fontawesome-brands-github:](https://github.com/iMohammad97){:target="_blank"}
+        [:fontawesome-brands-linkedin-in:](https://www.linkedin.com/in/mohammadmohammadi97){:target="_blank"}
+        </p>
+    </span>
+
+-   ![Instructor Avatar](assets/images/staff/Mohammad-Narimani.jpg){align=left width="150"}
+    <span class="description">
+        <p>**Mohammad Narimani**</p>
+        <p>Teaching Assistant</p>
+        <p>[mnarimani@sharif.edu](mailto:mnarimani@sharif.edu)</p>
+        <p>
+        [:fontawesome-brands-google-scholar:](https://scholar.google.com/citations?user=MbhlTDEAAAAJ){:target="_blank"}
+        [:fontawesome-brands-github:](https://github.com/mnarimani){:target="_blank"}
+        [:fontawesome-brands-linkedin-in:](https://linkedin.com/in/m-narimani){:target="_blank"}
+        </p>
+    </span>
+
+-   ![Instructor Avatar](assets/images/staff/MohammadHasan-Abbasi.jpg){align=left width="150"}
+    <span class="description">
+        <p>**MohammadHasan Abbasi**</p>
+        <p>Teaching Assistant</p>
+        <p>[mohasabbasi@gmail.com](mailto:mohasabbasi@gmail.com)</p>
+        <p>
+        [:fontawesome-brands-github:](https://github.com/mohasabbasi){:target="_blank"}
+        [:fontawesome-brands-linkedin-in:](https://www.linkedin.com/in/mohasabbasi){:target="_blank"}
+        </p>
+    </span>
+
+-   ![Instructor Avatar](assets/images/staff/Naser-Kazemi.jpg){align=left width="150"}
+    <span class="description">
+        <p>**Naser Kazemi**</p>
+        <p>Teaching Assistant</p>
+        <p>[naserkazemi2002@gmail.com](mailto:naserkazemi2002@gmail.com)</p>
+        <p>
+        [:fontawesome-brands-github:](https://github.com/naser-kazemi){:target="_blank"}
+        </p>
+    </span>
+
+-   ![Instructor Avatar](assets/images/staff/Nima-Shirzady.jpg){align=left width="150"}
+    <span class="description">
+        <p>**Nima Shirzady**</p>
+        <p>Teaching Assistant</p>
+        <p>[shirzady.1934@gmail.com](mailto:shirzady.1934@gmail.com)</p>
+        <p>
+        [:fontawesome-brands-github:](https://github.com/shirzady1934){:target="_blank"}
+        [:fontawesome-brands-linkedin-in:](https://www.linkedin.com/in/shirzady){:target="_blank"}
+        </p>
+    </span>
+
+-   ![Instructor Avatar](assets/images/staff/Ramtin-Moslemi.jpg){align=left width="150"}
+    <span class="description">
+        <p>**Ramtin Moslemi**</p>
+        <p>Teaching Assistant</p>
+        <p>[ramtin.moslemi@yahoo.com](mailto:ramtin.moslemi@yahoo.com)</p>
+        <p>
+        [:fontawesome-brands-google-scholar:](https://scholar.google.com/citations?user=KM1izs0AAAAJ){:target="_blank"}
+        [:fontawesome-brands-linkedin-in:](https://www.linkedin.com/in/ramtin-m){:target="_blank"}
+        [:material-web:](https://ramtinmoslemi.github.io){:target="_blank"}
+        </p>
+    </span>
+
+-   ![Instructor Avatar](assets/images/staff/Reza-GhaderiZadeh.jpg){align=left width="150"}
+    <span class="description">
+        <p>**Reza GhaderiZadeh**</p>
+        <p>Teaching Assistant</p>
+        <p>[r.ghaderi2001@gmail.com](mailto:r.ghaderi2001@gmail.com)</p>
+        <p>
+        [:fontawesome-brands-linkedin-in:](https://www.linkedin.com/in/reza-ghaderi-7733a5202){:target="_blank"}
+        </p>
+    </span>
+
+-   ![Instructor Avatar](assets/images/staff/Saeed-Masoudnia.jpg){align=left width="150"}
+    <span class="description">
+        <p>**Saeed Masoudnia**</p>
+        <p>Teaching Assistant</p>
+        <p>[s.masoudnia@gmail.com](mailto:s.masoudnia@gmail.com)</p>
+        <p>
+        [:fontawesome-brands-x-twitter:](https://x.com/MasoudniaSaeed){:target="_blank"}
+        [:fontawesome-brands-google-scholar:](https://scholar.google.com/citations?user=X4DHscEAAAAJ&hl=en){:target="_blank"}
+        [:fontawesome-brands-github:](https://github.com/smsnia){:target="_blank"}
+        [:fontawesome-brands-linkedin-in:](https://www.linkedin.com/in/saeed-masoudnia-45803434){:target="_blank"}
+        </p>
+    </span>
+
+-   ![Instructor Avatar](assets/images/staff/Sara-Karimi.jpg){align=left width="150"}
+    <span class="description">
+        <p>**Sara Karimi**</p>
+        <p>Teaching Assistant</p>
+        <p>[sarraah.karimi@gmail.com](mailto:sarraah.karimi@gmail.com)</p>
+        <p>
+        [:fontawesome-brands-github:](https://github.com/sarrkar){:target="_blank"}
+        [:material-web:](https://sarrkar.github.io){:target="_blank"}
+        </p>
+    </span>
+</div>
