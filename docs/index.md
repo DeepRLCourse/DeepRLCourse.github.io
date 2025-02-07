@@ -529,3 +529,44 @@ Total possible points: 20 + 3 = 23
         </p>
     </span>
 </div>
+
+## Acknowledgements
+
+We would like to express our gratitude to the following individuals for their invaluable contributions to the Spring 2024 and 2023 offerings of this course. Their efforts have been instrumental in the development and success of this course.
+
+<div style="text-align: center;">
+    <div><b>Spring 2024</b></div>
+    <span class="chip">Alireza Ghahremani</span>
+    <span class="chip">Alireza Sakhaei Rad</span>
+    <span class="chip">Amirhossein Mohammadpour Azari</span>
+    <span class="chip">Amirmohammad Izadi</span>
+    <span class="chip">Arian Ahadinia</span>
+    <span class="chip">Armin Behnamnia</span>
+    <span class="chip">Armin Saghefian</span>
+    <span class="chip">Behnia Soleimani</span>
+    <span class="chip">Hossein Jafariniya</span>
+    <span class="chip">Mehdi Ghaznavi</span>
+    <span class="chip">Mohammadhassan Alikhani</span>
+    <span class="chip">Ramtin Moslemi</span>
+</div>
+<div style="text-align: center; margin-top:.75em">
+    <div><b>Spring 2023</b></div>
+    <span class="chip">Ali Kaheh</span>
+    <span class="chip">Amirhossein Mesbah</span>
+    <span class="chip">Ayda AfsharMohammadian</span>
+    <span class="chip">Bardia Mohammadi</span>
+    <span class="chip">Hossein Hassani</span>
+    <span class="chip">Hossein Khalili</span>
+    <span class="chip">Kiana Asgari</span>
+    <span class="chip">Mohammad Mozaffari</span>
+    <span class="chip">Negin Hashemi</span>
+    <span class="chip">Parsa Haghighi</span>
+    <span class="chip">Roozbeh Razavi</span>
+    <span class="chip">Sepehr Ghabadi</span>
+    <span class="chip">Seyed Abolfazl Rahimi</span>
+    <span class="chip">Seyed Mohammad Hosseini</span>
+    <span class="chip">Seyed MohammadHossein Mousavi</span>
+    <span class="chip">Soroush VafaeeTabar</span>
+</div>
+
+This offering and all of these changes are thanks to their effort in starting this course.
