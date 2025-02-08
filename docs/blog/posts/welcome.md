@@ -12,6 +12,7 @@ tags:
   - welcome
   - introduction
 comments: True
+description: Welcome to the Spring 2025 offering of the Deep Reinforcement Learning course at Sharif University of Technology! This week, we aim to introduce you to the exciting world of Reinforcement Learning. We've planned an engaging and informative week filled with lectures, hands-on sessions, and fun activities to get you started on your RL journey!
 ---
 
 # Welcome to Deep RL Course!
