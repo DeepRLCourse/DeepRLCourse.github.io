@@ -165,7 +165,7 @@ Total possible points: 20 + 3 = 23
 -   ![Instructor Avatar](assets/images/staff/Soroush-VafaieTabar.jpg){align=left width="150"}
     <span class="description">
         <p>**Soroush VafaieTabar**</p>
-        <p>Theory Head TA</p>
+        <p>Head TA</p>
         <p>[svafaiet@gmail.com](mailto:svafaiet@gmail.com)</p>
         <p>
         [:fontawesome-brands-github:](https://github.com/Svafaiet){:target="_blank"}
@@ -175,7 +175,7 @@ Total possible points: 20 + 3 = 23
 -   ![Instructor Avatar](assets/images/staff/Amir-Mohammad-Izadi.jpg){align=left width="150"}
     <span class="description">
         <p>**Amir Mohammad Izadi**</p>
-        <p>Practical Head TA</p>
+        <p>Head TA</p>
         <p>[amirmmdizady@gmail.com](mailto:amirmmdizady@gmail.com)</p>
         <p>
         [:fontawesome-brands-x-twitter:](https://x.com/izadi_mmd){:target="_blank"}
@@ -439,7 +439,7 @@ Total possible points: 20 + 3 = 23
         </p>
     </span>
 
--   ![Instructor Avatar](assets/images/staff/Mohammad-Narimani.jpg){align=left width="150"}
+<!-- -   ![Instructor Avatar](assets/images/staff/Mohammad-Narimani.jpg){align=left width="150"}
     <span class="description">
         <p>**Mohammad Narimani**</p>
         <p>Teaching Assistant</p>
@@ -449,7 +449,7 @@ Total possible points: 20 + 3 = 23
         [:fontawesome-brands-github:](https://github.com/mnarimani){:target="_blank"}
         [:fontawesome-brands-linkedin-in:](https://linkedin.com/in/m-narimani){:target="_blank"}
         </p>
-    </span>
+    </span> -->
 
 -   ![Instructor Avatar](assets/images/staff/MohammadHasan-Abbasi.jpg){align=left width="150"}
     <span class="description">
