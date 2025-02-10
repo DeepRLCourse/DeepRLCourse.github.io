@@ -27,11 +27,11 @@ Get ready for [two exciting lectures](/lectures/week1) that will introduce you t
 
 To kick things off, we recommend watching this award-winning documentary before class:
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/WXuK6gekU1Y?si=PjbWsWcg4VGJruDK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="996" height="560" src="https://www.youtube.com/embed/WXuK6gekU1Y?si=PjbWsWcg4VGJruDK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 And don't miss this talk on the history of reinforcement learning by Professor Andrew Barto himself:
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/-gQNM7rAWP0?si=2ghMI43nUJanlTPP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="996" height="560" src="https://www.youtube.com/embed/-gQNM7rAWP0?si=2ghMI43nUJanlTPP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Recitation
 

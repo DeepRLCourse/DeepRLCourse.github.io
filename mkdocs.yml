@@ -80,7 +80,6 @@ nav:
     - blog/index.md
     - Tags: blog/tags.md
   - Course Notes:
-    - course_notes/index.md
     - course_notes/into-to-rl.md
     - course_notes/value-based.md
     - course_notes/policy-based.md
@@ -95,7 +94,6 @@ nav:
     - course_notes/hierarchical.md
     - course_notes/meta.md
   - Lectures:
-    - lectures/index.md
     - lectures/week1.md
     - lectures/week2.md
     - lectures/week3.md
@@ -112,7 +110,6 @@ nav:
     - lectures/week14.md
     - lectures/week15.md
   - Prerequisites:
-    - prerequisites/index.md
     - prerequisites/deep_learning.md
     - prerequisites/game_theory.md
     - prerequisites/linear_algebra.md
@@ -120,7 +117,6 @@ nav:
     - prerequisites/information_theory.md
     - prerequisites/stochastic_processes.md
   - Recitations:
-    - recitations/index.md
     - recitations/week1.md
     - recitations/week2.md
     - recitations/week3.md
@@ -136,7 +132,6 @@ nav:
     - recitations/week13.md
     - recitations/week14.md
   - Workshops:
-    - workshops/index.md
     - workshops/week1.md
     - workshops/week2.md
     - workshops/week3.md
@@ -152,7 +147,6 @@ nav:
     - workshops/week13.md
     - workshops/week14.md
   - Homeworks:
-    - homeworks/index.md
     - homeworks/week1.md
     - homeworks/week2.md
     - homeworks/week3.md
@@ -167,10 +161,11 @@ nav:
     - homeworks/week12.md
     - homeworks/week13.md
     - homeworks/week14.md
+    - homeworks/index.md
   - Exams:
-    - exams/index.md
     - exams/midterm.md
     - exams/final.md
+    - exams/index.md
   - Journal Club:
     - journal_club/index.md
   - Poster Session:

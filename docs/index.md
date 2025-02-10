@@ -86,7 +86,7 @@ This course provides an in-depth introduction to the field of deep reinforcement
 
 - **Homework Bonus:** Some homeworks may have an optional bonus part that can earn you up to 0.75 bonus points.
 
-- **Slack Days:** You have a total of 14 slack days throughout the course with no penalty for submitting your homework late. For each homework, you can use up to 7 slack days. After 7 days, the solution will be released, and no further submissions will be accepted. Any additional delays beyond the slack days will result in a 0.5% reduction in the assignment grade for every hour of delay. We have a flat reduction policy from 1 AM to 11 AM (for your convenience to rest peacefully!). The 7 days for submitting your work for each homework is a hard deadline, and after that, you will receive a 0 grade because we will release the solution to the homework.
+- **Slack Days:** You have a total of 14 slack days throughout the course with no penalty for submitting your homework late. For each homework, you can use up to 7 slack days. After 7 days, the solution will be released, and no further submissions will be accepted. Any additional delays beyond the slack days will result in a 0.5% reduction in the assignment grade for every hour of delay. We have a flat reduction policy from 3 AM to 11 AM (for your convenience to rest peacefully!). The 7 days for submitting your work for each homework is a hard deadline, and after that, you will receive a 0 grade because we will release the solution to the homework.
 
     !!! warning ""
 
