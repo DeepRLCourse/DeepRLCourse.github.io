@@ -59,6 +59,8 @@ plugins:
 extra:
   generator: false
   social:
+    - icon: material/email-outline
+      link: mailto:deeprlcourse@gmail.com
     - icon: fontawesome/brands/github
       link: https://github.com/DeepRLCourse
     - icon: fontawesome/brands/youtube
