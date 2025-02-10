@@ -1,2 +1,2 @@
-# Week 6: Multi-Armed Bandits
+# HW6: Multi-Armed Bandits
 

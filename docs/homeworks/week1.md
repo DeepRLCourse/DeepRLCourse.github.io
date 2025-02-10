@@ -1,4 +1,8 @@
-# Week 1: Introduction to RL
+---
+description: Welcome to the first homework assignment of the Deep Reinforcement Learning course! We are excited to see you apply the concepts learned in the lectures and workshops.
+---
+
+# HW1: Introduction to RL
 
 Welcome to the first homework assignment of the Deep Reinforcement Learning course! We are excited to see you apply the concepts learned in the lectures and workshops.
 
