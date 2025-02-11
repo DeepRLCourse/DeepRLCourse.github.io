@@ -22,3 +22,13 @@ description: This page contains the lecture materials for Week 1 of the Deep Rei
 [Download Slide](/assets/lectures/slides/Lecture_1.pdf){ .md-button .md-button--primary }
 
 ## Lecture 2
+
+### Lecture Slide
+
+<object class="pdf" 
+        data="/assets/lectures/slides/Lecture_2.pdf"
+        width="996"
+        height="560">
+</object>
+
+[Download Slide](/assets/lectures/slides/Lecture_2.pdf){ .md-button .md-button--primary }
