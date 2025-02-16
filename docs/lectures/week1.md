@@ -1,6 +1,6 @@
 ---
 comments: True
-description: This page contains the lecture materials for Week 1 of the Deep Reinforcement Learning course. You can find links to the lecture recordings and slides.
+description: This page contains the lecture materials for Week 1 of the Deep Reinforcement Learning course, including video recordings, slides, and summaries.
 ---
 
 # Week 1: Introduction to RL
@@ -54,3 +54,13 @@ description: This page contains the lecture materials for Week 1 of the Deep Rei
 </object>
 
 [Download Slides](/assets/lectures/slides/Lecture_2.pdf){:target="_blank" .md-button .md-button--primary }
+
+### Lecture Summary
+
+<object class="pdf" 
+        data="/assets/lectures/summaries/Lecture_2_Summary.pdf"
+        width="996"
+        height="560">
+</object>
+
+[Download Summary](/assets/lectures/summaries/Lecture_2_Summary.pdf){:target="_blank" .md-button .md-button--primary }
