@@ -11,8 +11,8 @@ Welcome to the first homework assignment of the Deep Reinforcement Learning cour
 
 You can download the homework questions and the notebook from the following links:
 
-[Homework 1 Questions (PDF)](https://raw.githubusercontent.com/DeepRLCourse/Homework-1-Questions/refs/heads/main/HW1_Questions.pdf){:target="_blank" .md-button }
-[Homework 1 Notebook (IPYNB)](https://raw.githubusercontent.com/DeepRLCourse/Homework-1-Questions/refs/heads/main/HW1_Notebook.ipynb){:target="_blank" .md-button }
+[HW1 Questions (PDF)](https://raw.githubusercontent.com/DeepRLCourse/Homework-1-Questions/refs/heads/main/HW1_Questions.pdf){:target="_blank" .md-button }
+[HW1 Notebook (IPYNB)](https://raw.githubusercontent.com/DeepRLCourse/Homework-1-Questions/refs/heads/main/HW1_Notebook.ipynb){:target="_blank" .md-button }
 
 You can use this [template for your answers](https://github.com/DeepRLCourse/Homework-1-Template){:target="_blank"}.
 

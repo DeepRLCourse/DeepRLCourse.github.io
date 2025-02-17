@@ -54,6 +54,7 @@ description: This page contains the lecture materials for Week 1 of the Deep Rei
 </object>
 
 [Download Slides](/assets/lectures/slides/Lecture_2.pdf){:target="_blank" .md-button .md-button--primary }
+[Download Slides (Annotated)](/assets/lectures/slides/Lecture_2_Annotated.pdf){:target="_blank" .md-button .md-button--primary }
 
 ### Lecture Summary
 
