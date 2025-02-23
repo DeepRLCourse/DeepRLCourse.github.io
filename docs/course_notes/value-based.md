@@ -627,7 +627,7 @@ The choice of method depends on the environment, the availability of a model, an
 
 
 
-## Author(s)
+<!-- ## Author(s)
 
 <div class="grid cards" markdown>
 -   ![Instructor Avatar](/assets/images/staff/Ghazal-Hosseini.jpg){align=left width="150"}
@@ -639,4 +639,4 @@ The choice of method depends on the environment, the availability of a model, an
         [:fontawesome-brands-linkedin-in:](https://www.linkedin.com/in/ghazal-hosseini-mighan-8b911823a){:target="_blank"}
         </p>
     </span>
-</div>
+</div> -->
