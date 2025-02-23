@@ -325,7 +325,12 @@ $$
 \frac{\text{Points inside the circle}}{\text{Total points}} \approx \frac{\pi}{4}.
 $$
 
-![alt text](image-2.png)
+<center> 
+<img src="\assets\images\course_notes\value-based\pi-estimation.png"
+    alt="pi estimation with monte carlo"
+    style="float: center; margin-right: 10px;" 
+    /> 
+    </center>
 
 ---
 
@@ -345,7 +350,13 @@ $$
 
 where $x_i$ are sampled uniformly from $[a, b]$. By the **LLN**, as $N \to \infty$, the estimate $\hat{I}_N$ converges to the true integral.
 
-![alt text](image-1.png)
+<center> 
+<img src="\assets\images\course_notes\value-based\integral.png"
+    alt="integration with monte carlo"
+    style="float: center; margin-right: 10px;" 
+    /> 
+    </center>
+
 [Source](https://www.scratchapixel.com/lessons/mathematics-physics-for-computer-graphics/monte-carlo-methods-in-practice/monte-carlo-integration.html)
 
 
