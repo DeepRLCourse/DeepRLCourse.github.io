@@ -1,9 +1,9 @@
 ---
 comments: True
-description: This page is dedicated to how value-based methods work in classical rl setting.
+description: This page provides detailed notes on value-based methods in reinforcement learning, including Bellman equations, dynamic programming, Monte Carlo methods, and temporal difference learning.
 ---
 
-# Week 2: Classical Value-based Methods 
+# Week 2: Value-based Methods
 ## 1. Bellman Equations and Value Functions
 
 
