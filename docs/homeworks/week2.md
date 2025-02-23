@@ -17,12 +17,16 @@ You can download the homework questions and the notebook from the following link
 
 You can use this [template for your answers](https://github.com/DeepRLCourse/Homework-2-Template){:target="_blank"}.
 
+## Explanation
+
+<iframe width="996" height="560" src="https://www.youtube.com/embed/C9zHIU8GOrc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ## Submission
 
 Please submit your completed homework on Quera by the deadline:
 
 - **Submission Link:** [Quera Course Page](https://quera.org/course/add_to_course/course/20598/){:target="_blank"}
 
-- **Deadline:** <span style="direction: rtl;font-family: Vazirmatn;">۵ اسفند (February 23)</span> at 11:59 PM
+- **Deadline:** <span style="direction: rtl;font-family: Vazirmatn;">۱۲ اسفند (March 2)</span> at 11:59 PM
 
 Good luck, and we look forward to your submissions!
