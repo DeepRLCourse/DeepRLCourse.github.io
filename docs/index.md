@@ -587,7 +587,7 @@ We would like to express our gratitude to the following individuals for their in
     <span class="chip">Armin Saghefian</span>
     <span class="chip">Behnia Soleimani</span>
     <span class="chip">Hossein Jafariniya</span>
-    <span class="chip">Mehdi Ghaznavi</span>
+    <span class="chip">Mahdi Ghaznavi</span>
     <span class="chip">Mohammadhassan Alikhani</span>
     <span class="chip">Ramtin Moslemi</span>
 </div>
@@ -608,7 +608,7 @@ We would like to express our gratitude to the following individuals for their in
     <span class="chip">Seyed Abolfazl Rahimi</span>
     <span class="chip">Seyed Mohammad Hosseini</span>
     <span class="chip">Seyed MohammadHossein Mousavi</span>
-    <span class="chip">Soroush VafaeeTabar</span>
+    <span class="chip">Soroush Vafaie Tabar</span>
 </div>
 
 This offering and all of these changes are thanks to their effort in starting this course.
