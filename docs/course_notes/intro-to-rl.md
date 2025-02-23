@@ -114,7 +114,7 @@ To understand RL, it's essential to grasp some fundamental concepts: **state**, 
 - **Example**: In the self-driving car example, a policy might dictate that the car should slow down when it detects a pedestrian crossing the street or stop when it encounters a red traffic light. The policy is what the agent learns and optimizes to maximize cumulative rewards.
 
 <center> 
-<img src="\assets\images\course_notes\into-to-rl\RL_Framework.png"
+<img src="\assets\images\course_notes\intro-to-rl\RL_Framework.png"
      alt=""
      style="float: center; margin-right: 10px;" 
      />
@@ -147,7 +147,7 @@ An RL agent's training is done through an interactive process between the agent 
 
 
 <center> 
-<img src="\assets\images\course_notes\into-to-rl\RL_Anatomy.png"
+<img src="\assets\images\course_notes\intro-to-rl\RL_Anatomy.png"
      alt=""
      style="float: center; margin-right: 10px;" 
      />
@@ -266,7 +266,7 @@ $$
 Consider a simple grid world where the agent must navigate from a start state to a goal state while avoiding obstacles. The states $S$ are the grid cells, the actions $A$ are movements (up, down, left, right), and the reward function $R(s, a, s')$ provides positive rewards for reaching the goal and negative rewards for hitting obstacles. The transition function $P(s' | s, a)$ defines the probability of actually moving to a neighboring cell when an action is taken.
 
 <center> 
-<img src="\assets\images\course_notes\into-to-rl\gridworld.png"
+<img src="\assets\images\course_notes\intro-to-rl\gridworld.png"
      alt=""
      style="float: center; margin-right: 10px;" 
      /> 
@@ -281,7 +281,7 @@ In the provided Gridworld example, the agent starts from the yellow square and h
 - **-10 penalty for stepping into the cliff** (red squares)
 
 <center> 
-<img src="\assets\images\course_notes\into-to-rl\gridworld_example.png"
+<img src="\assets\images\course_notes\intro-to-rl\gridworld_example.png"
      alt=""
      style="float: center; margin-right: 10px;" 
      /> 
@@ -327,7 +327,7 @@ MDPs can be represented graphically as a sequence of **states ($\mathbf{s}$)**, 
 - The process continues, forming a **decision-making chain** where each action influences future states and rewards.
 
 <center> 
-<img src="\assets\images\course_notes\into-to-rl\graphical_MDP.png"
+<img src="\assets\images\course_notes\intro-to-rl\graphical_MDP.png"
      alt=""
      style="float: center; margin-right: 10px;" 
      /> 
@@ -341,7 +341,7 @@ In real-world scenarios, the agent may not have full visibility of the environme
 - **Decision-making challenge:** The agent must infer the state from past observations and actions.
 
 <center> 
-<img src="\assets\images\course_notes\into-to-rl\POMDP.png"
+<img src="\assets\images\course_notes\intro-to-rl\POMDP.png"
      alt=""
      style="float: center; margin-right: 10px;" 
      /> 
@@ -357,7 +357,7 @@ In real-world scenarios, the agent may not have full visibility of the environme
 
       - **Policy**: The policy $\pi_{\theta}$ maps observations to actions. For instance, $\pi_{\theta}(\mathbf{a}_1 | \mathbf{o}_1)$ determines the action $\mathbf{a}_1$ based on the observation $\mathbf{o}_1$.
 <center> 
-<img src="\assets\images\course_notes\into-to-rl\policy_POMDP.png"
+<img src="\assets\images\course_notes\intro-to-rl\policy_POMDP.png"
      alt=""
      style="float: center; margin-right: 10px;" 
      /> 
@@ -415,7 +415,7 @@ Consider the Grid World example where the agent navigates to a goal while avoidi
 - **Action-Value Function ($Q^{\pi}(s, a)$)**: The agent evaluates the expected cumulative reward for each possible action (up, down, left, right) in each cell, helping it decide the best action to take.
 
 <center> 
-<img src="\assets\images\course_notes\into-to-rl\gridworld_V.png"
+<img src="\assets\images\course_notes\intro-to-rl\gridworld_V.png"
      alt=""
      style="float: center; margin-right: 10px;" 
      /> 
@@ -423,7 +423,7 @@ Consider the Grid World example where the agent navigates to a goal while avoidi
    Fig8. An example of estimated $V^{\pi}(s)$ values in grid world  </center>
 
    <center> 
-<img src="\assets\images\course_notes\into-to-rl\gridworld_Q.png"
+<img src="\assets\images\course_notes\intro-to-rl\gridworld_Q.png"
      alt=""
      style="float: center; margin-right: 10px;" 
      /> 
