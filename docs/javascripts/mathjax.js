@@ -17,7 +17,7 @@ window.MathJax = {
     MathJax.texReset()
     MathJax.typesetPromise().then(() => {
         document.querySelectorAll('.MathJax').forEach(el => {
-          el.style.fontSize = '1.5em';
+          el.style.fontSize = '1.30em';
           el.oncontextmenu = () => false;
         });
       });

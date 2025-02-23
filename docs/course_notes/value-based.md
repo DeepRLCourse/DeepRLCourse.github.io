@@ -1,13 +1,13 @@
 ---
 comments: True
-description: This page is dedicated to how value based methods in 
+description: This page is dedicated to how value-based methods work in classical rl setting.
 ---
 
 # Week 2: Classical Value-based Methods 
 ## 1. Bellman Equations and Value Functions
 
 
-### 1.1. **State Value Function $V(s)$**
+### 1.1. State Value Function $V(s)$
 
 #### **Definition:**
 The **state value function** $V^\pi(s)$ measures the expected return when an agent starts in state $s$ and follows a policy $\pi$. It provides a scalar value for each state that reflects the desirability of that state under the given policy. Formally, it is defined as:
@@ -46,7 +46,7 @@ This equation allows for the iterative computation of state values in a model-ba
 
 ---
 
-### 1.2. **Action Value Function $Q(s, a)$**
+### 1.2. Action Value Function $Q(s, a)$
 
 
 #### **Definition:**
@@ -58,7 +58,7 @@ $$
 
 Where $G_t$ is the return starting at time $t$.
 
-#### **Bellman Expectation Equation for $Q^\pi(s, a)$:**
+#### Bellman Expectation Equation for $Q^\pi(s, a)$:
 The Bellman Expectation Equation for the action value function is similar to the one for the state value function but includes both the action and the subsequent states and actions. It is given by:
 
 $$
@@ -76,7 +76,7 @@ Where:
 - $\pi(a'|s')$ is the probability of taking action $a'$ in state $s'$ under policy $\pi$.
 
 
-#### **Bellman Optimality Equation for $Q^*(s, a)$:**
+#### Bellman Optimality Equation for $Q^*(s, a)$:
 The **Bellman Optimality Equation** for $Q^*(s, a)$ expresses the optimal action value function. It is given by:
 
 $$
@@ -90,9 +90,9 @@ This shows that the optimal action value at each state-action pair is the immedi
 
 Dynamic Programming (DP) is a powerful technique used to solve reinforcement learning problems where the environment is fully known (i.e., the model is available). DP algorithms compute the optimal policy and value functions by iteratively updating estimates based on a model of the environment. 
 
-### 2.1. **Value Iteration**
+### 2.1. Value Iteration
 
-##### **Bellman Optimality Equation:**
+##### Bellman Optimality Equation:
 The Bellman Optimality Equation for the value function is:
 
 $$
@@ -102,21 +102,27 @@ $$
 Where:
 - $\max_a$ selects the action $a$ that maximizes the expected return from state $s$.
 
-##### **Value Iteration Algorithm:**
+##### Value Iteration Algorithm:
 1. **Initialize** the value function $V_0(s)$ arbitrarily.
 2. **Repeat** until convergence:
-   - For each state $s$, update the value function:
-     $$ V_{k+1}(s) = \max_a \left[ R(s, a) + \gamma \sum_{s'} P(s'|s, a) V_k(s') \right] $$
+    - For each state $s$, update the value function:
+
+    $$
+    V_{k+1}(s) = \max_a \left[ R(s, a) + \gamma \sum_{s'} P(s'|s, a) V_k(s') \right]
+    $$
 
 3. Once the value function converges, the optimal policy $\pi^*(s)$ can be derived by selecting the action that maximizes the expected return:
-   $$ \pi^*(s) = \arg\max_a \left[ R(s, a) + \gamma \sum_{s'} P(s'|s, a) V^*(s') \right] $$
 
-##### **Convergence:**
+$$
+\pi^*(s) = \arg\max_a \left[ R(s, a) + \gamma \sum_{s'} P(s'|s, a) V^*(s') \right]
+$$
+
+##### Convergence:
 Value Iteration is guaranteed to converge to the optimal value function and policy. The number of iterations required depends on the problem's dynamics, but it typically converges faster than Policy Iteration in terms of the number of iterations, though it may require more computation per iteration.
 
 ---
 
-### 2.2. **Policy Evaluation**
+### 2.2. Policy Evaluation
 
 Policy Evaluation calculates the state value function $V^\pi(s)$ for a given policy $\pi$ by iteratively updating the value function using the Bellman Expectation Equation:
 
@@ -128,7 +134,7 @@ This process is repeated until $V^\pi(s)$ converges to a fixed point for all s.
 
 
 ---
-### 2.3. **Policy Improvement**
+### 2.3. Policy Improvement
 
 Policy Improvement refines a policy $\pi$ by making it greedy with respect to the current value function:
 
@@ -145,49 +151,69 @@ $$
 By repeating policy evaluation and improvement, the policy converges to the optimal one.
 
 1. **Single-Step Improvement:**  
-   - Modify the policy at **only** $t = 0$, keeping the rest unchanged.  
-   - This new policy achieves a higher or equal value:  
-     $$V^{\pi_{(k+1)}^{(1)}}(s) \geq V^{\pi_k}(s), \quad \forall s.$$
+    - Modify the policy at **only** $t = 0$, keeping the rest unchanged.  
+    - This new policy achieves a higher or equal value:  
+
+    $$
+    V^{\pi_{(k+1)}^{(1)}}(s) \geq V^{\pi_k}(s), \quad \forall s.
+    $$
 
 2. **Extending to Multiple Steps:**  
-   - Modify the policy at **$t = 0$ and $t = 1$**, keeping the rest unchanged.  
-   - Again, the value function improves:  
-     $$V^{\pi_{(k+1)}^{(2)}}(s) \geq V^{\pi_{(k+1)}^{(1)}}(s) \geq V^{\pi_k}(s).$$
+    - Modify the policy at **$t = 0$ and $t = 1$**, keeping the rest unchanged.  
+    - Again, the value function improves: 
+
+    $$
+    V^{\pi_{(k+1)}^{(2)}}(s) \geq V^{\pi_{(k+1)}^{(1)}}(s) \geq V^{\pi_k}(s).
+    $$
+
 
 3. **Repeating for All Steps:**  
-   - After applying this to all time steps, the final policy matches the fully improved one:  
-     $$\pi_{(k+1)}^{(\infty)}(s) = \pi_{k+1}(s).$$  
-   - This ensures:  
-     $$V^{\pi_{k+1}}(s) \geq V^{\pi_k}(s), \quad \forall s.$$
+    - After applying this to all time steps, the final policy matches the fully improved one:  
+
+    $$
+    \pi_{(k+1)}^{(\infty)}(s) = \pi_{k+1}(s).
+    $$
+     
+    - This ensures:  
+
+    $$
+    V^{\pi_{k+1}}(s) \geq V^{\pi_k}(s), \quad \forall s.
+    $$
+
 The value function **never decreases** with each update.  
 
 
 
 ---
-### 2.4. **Policy Iteration**
+### 2.4. Policy Iteration
 
 Policy Iteration alternates between **policy evaluation** and **policy improvement** to compute the optimal policy.
 
 1. **Initialize policy $\pi_0$** randomly.
 2. **Policy Evaluation:** Compute the value function $V^{\pi_k}(s)$ for the current policy $\pi_k$ using the Bellman Expectation Equation.
 3. **Policy Improvement:** Update the policy $\pi_{k+1}(s)$ by making it greedy with respect to the current value function:
-   $$ \pi_{k+1}(s) = \arg\max_a \left[ R(s, a) + \gamma \sum_{s'} P(s'|s, a) V^{\pi_k}(s') \right] $$
+
+$$ 
+\pi_{k+1}(s) = \arg\max_a \left[ R(s, a) + \gamma \sum_{s'} P(s'|s, a) V^{\pi_k}(s') \right] 
+$$
 
 4. Repeat the above steps until the policy converges (i.e., $\pi_k = \pi_{k+1}$).
 
-##### **Convergence:**
+##### Convergence:
 Each policy update ensures that the value function **does not decrease**.
 
 Since there are only a **finite number of deterministic policies** in a finite Markov Decision Process (MDP), the sequence of improving policies must eventually reach an policy $\pi^*$, where further improvement do not change it.
 
 The value function of the fixed point $\pi^*$ satisfy the **Bellman Optimality Equation**:
-  $$
-  V^*(s) = \max_a \left[ R(s, a) + \gamma \sum_{s'} P(s'|s, a) V^*(s') \right]
-  $$
-  This confirms that the final policy $\pi^*$ is optimal.
+
+$$
+V^*(s) = \max_a \left[ R(s, a) + \gamma \sum_{s'} P(s'|s, a) V^*(s') \right]
+$$
+
+This confirms that the final policy $\pi^*$ is optimal.
 
 ---
-### 2.5. **Comparison of Policy Iteration and Value Iteration**
+### 2.5. Comparison of Policy Iteration and Value Iteration
 
 Policy Iteration and Value Iteration are two dynamic programming methods for finding the optimal policy in an MDP. Both rely on iterative updates but differ in **efficiency** and **computation**.
 
@@ -212,16 +238,16 @@ Thus, **Policy Iteration takes fewer iterations but is computationally heavy per
 ## 3. Monte Carlo Methods
 
 
-### 3.1. **Planning vs. Learning in RL**
+### 3.1. Planning vs. Learning in RL
 
 Reinforcement learning can be approached in two ways: **planning** and **learning**. The main difference is that **planning relies on a model of the environment**, while **learning uses real-world interactions** to improve decision-making.
 
-##### **Planning (Model-Based RL)**
+##### Planning (Model-Based RL)
 - Uses a model to predict state transitions and rewards.
 - The agent can simulate future actions without interacting with the environment.
 - Examples: **Dynamic Programming (DP), Monte Carlo Tree Search (MCTS).**
 
-##### **Learning (Model-Free RL)**
+##### Learning (Model-Free RL)
 - No access to a model; the agent learns by interacting with the environment.
 - The agent updates value estimates based on observed rewards.
 - Examples: **Monte Carlo, Temporal Difference (TD), Q-Learning.**
@@ -232,7 +258,7 @@ Monte Carlo methods fall under **Model-Free RL**, where the agent improves throu
 
 ---
 
-### 3.2. **Introduction to Monte Carlo**  
+### 3.2. Introduction to Monte Carlo 
 
 Monte Carlo methods use **random sampling** to estimate numerical results, especially when direct computation is infeasible or the underlying distribution is unknown. These methods are widely applied in **physics, finance, optimization, and reinforcement learning**.
 
@@ -264,45 +290,46 @@ By the **Central Limit Theorem (CLT)**, for large $N$, the Monte Carlo estimate 
 $$
 \hat{I}_N \approx \mathcal{N} \left(I, \frac{\sigma^2}{N} \right).
 $$
+
 This shows that the **variance decreases at a rate of** $O(1/N)$, meaning that as the number of independent samples increases, the estimate becomes more stable. However, this reduction is slow, requiring a large number of samples to achieve high precision.
 
 
 ---
-#### **Example: Estimating π**  
+#### Example: Estimating $\pi$
 
-Monte Carlo methods can estimate **π** by randomly sampling points and analyzing their distribution relative to a known geometric shape.
+Monte Carlo methods can estimate **$\pi$** by randomly sampling points and analyzing their distribution relative to a known geometric shape.
 
-##### **Steps:**
+##### Steps:
 1. Generate $N$ random points $(x, y)$ where $x, y \sim U(-1,1)$, meaning they are uniformly sampled in the square $[-1,1] \times [-1,1]$.
 2. Define an **indicator function** $I(x, y)$ that takes the value:
 
-   $$
-   I(x, y) =
-   \begin{cases}
-   1, & \text{if } x^2 + y^2 \leq 1 \quad \text{(inside the circle)} \\
-   0, & \text{otherwise}.
-   \end{cases}
-   $$
+$$
+I(x, y) =
+\begin{cases}
+1, & \text{if } x^2 + y^2 \leq 1 \quad \text{(inside the circle)} \\
+0, & \text{otherwise}.
+\end{cases}
+$$
 
    Since each point is either inside or outside the circle, the variable $I(x, y)$ follows a **Bernoulli distribution** with probability $p = \frac{\pi}{4}$.
 
 3. Compute the proportion of points inside the circle. The expectation of $I(x, y)$ gives:
 
-   $$
-   \mathbb{E}[I] = P(I = 1) = \frac{\pi}{4}.
-   $$
+$$
+\mathbb{E}[I] = P(I = 1) = \frac{\pi}{4}.
+$$
 
    By the **Law of Large Numbers (LLN)**, the sample mean of $I(x, y)$ over $N$ points converges to this expected value:
 
-   $$
-   \frac{\text{Points inside the circle}}{\text{Total points}} \approx \frac{\pi}{4}.
-   $$
+$$
+\frac{\text{Points inside the circle}}{\text{Total points}} \approx \frac{\pi}{4}.
+$$
 
 ![alt text](image-2.png)
 
 ---
 
-#### **Example: Integration**  
+#### Example: Integration
 
 Monte Carlo methods can also estimate definite integrals using random sampling. Given an integral:
 
@@ -325,7 +352,7 @@ where $x_i$ are sampled uniformly from $[a, b]$. By the **LLN**, as $N \to \inft
 [Watch on YouTube](https://www.youtube.com/watch?v=7TqhmX92P6U&t=173s)
 
 ---
-### 3.3. **Monte Carlo Prediction**  
+### 3.3. Monte Carlo Prediction
 
 In reinforcement learning, an **episode** is a sequence of states, actions, and rewards that starts from an **initial state** and ends in a **terminal state**. Each episode represents a **complete trajectory** of the agent’s interaction with the environment.
 
@@ -336,7 +363,7 @@ $$
 G_t = R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} + \dots
 $$
 
-#### **Estimating $V^\pi(s)$**  
+#### Estimating $V^\pi(s)$
 Monte Carlo methods estimate the **state value function** $V^\pi(s)$ by **averaging the returns** observed after visiting state $s$ in multiple episodes.
 
 The estimate of $V^\pi(s)$ is:
@@ -353,49 +380,61 @@ Since Monte Carlo methods rely entirely on **sampled episodes**, they do **not r
 
 ---
 
-### 3.4. **Monte Carlo Control**
+### 3.4. Monte Carlo Control
 
 In **Monte Carlo Control**, the goal is to improve the policy $\pi$ by optimizing it based on the action-value function $Q^\pi(s, a)$. 
 #### **Algorithm:**
 1. **Generate Episodes**: Generate episodes by interacting with the environment under the current policy $\pi$.
 2. **Compute Returns**: For each state-action pair $(s, a)$ in the episode, compute the return $G_t$ from that time step onward.
 3. **Update Action-Value Function**: For each state-action pair, update the action-value function as:
-   $$ Q^\pi(s, a) = \frac{1}{N(s, a)} \sum_{i=1}^{N(s, a)} G_i $$
+   
+$$ 
+Q^\pi(s, a) = \frac{1}{N(s, a)} \sum_{i=1}^{N(s, a)} G_i $$
+
    Where $N(s, a)$ is the number of times the state-action pair $(s, a)$ has been visited.
 4. **Policy Improvement**: After updating the action-value function, improve the policy by selecting the action that maximizes $Q^\pi(s, a)$ for each state $s$:
-   $$ \pi'(s) = \arg\max_a Q^\pi(s, a) $$
+
+$$ 
+\pi'(s) = \arg\max_a Q^\pi(s, a) 
+$$
 
 This method is used to optimize the policy iteratively, improving it by making the policy greedy with respect to the current action-value function.
 
 ---
 
-### 3.5. **First-Visit vs. Every-Visit Monte Carlo**
+### 3.5. First-Visit vs. Every-Visit Monte Carlo
 
 There are two main variations of Monte Carlo methods for estimating value functions: **First-Visit Monte Carlo** and **Every-Visit Monte Carlo**.
 
-#### **First-Visit Monte Carlo**:
+#### First-Visit Monte Carlo:
 In **First-Visit Monte Carlo**, the return for a state is only updated the first time it is visited in an episode. This approach helps avoid over-counting and ensures that the value estimate for each state is updated only once per episode.
 
-##### **Algorithm**:
+##### Algorithm:
 1. Initialize $N(s) = 0$ and $G(s) = 0$ for all states.
 2. For each episode, visit each state $s$ for the first time, and when it is first visited, add the return $G_t$ to $G(s)$ and increment $N(s)$.
-3. After the episode, update the value estimate for each state as:
-   $$ V^\pi(s) = \frac{G(s)}{N(s)} $$
+3. After the episode, update the value estimate for each state as:  
 
-#### **Every-Visit Monte Carlo**:
+$$
+V^\pi(s) = \frac{G(s)}{N(s)}
+$$
+
+#### Every-Visit Monte Carlo:
 In **Every-Visit Monte Carlo**, the return for each state is updated every time it is visited in an episode. This approach uses all occurrences of a state to update its value function, which can sometimes lead to more stable estimates.
 
-##### **Algorithm**:
+##### Algorithm:
 1. Initialize $N(s) = 0$ and $G(s) = 0$ for all states.
 2. For each episode, visit each state $s$, and every time it is visited, add the return $G_t$ to $G(s)$ and increment $N(s)$.
 3. After the episode, update the value estimate for each state as:
-   $$ V^\pi(s) = \frac{G(s)}{N(s)} $$
 
-#### **Comparison**:
+$$
+V^\pi(s) = \frac{G(s)}{N(s)}
+$$
+
+#### Comparison:
 First-Visit Monte Carlo updates the value function only the first time a state is encountered in an episode, ensuring an **unbiased** estimate but using **fewer samples**, which can result in **higher variance** and **slower** learning. In contrast, Every-Visit Monte Carlo updates the value function on all occurrences of a state within an episode, **reducing variance** and improving **sample efficiency** by utilizing more data. Although it may introduce **bias**, it often converges faster, making it more practical in many applications.
 
 ---
-### 3.6. **Incremental Monte Carlo Policy**  
+### 3.6. Incremental Monte Carlo Policy  
 
 In addition to First-Visit and Every-Visit Monte Carlo, an alternative approach is the **Incremental Monte Carlo Policy**, which updates the value function **incrementally after each visit** instead of computing an average over all episodes. This method is **more memory-efficient** and allows real-time updates without storing past returns.
 
@@ -446,7 +485,7 @@ TD methods can be used for both **on-policy** and **off-policy** learning:
 - **SARSA (On-Policy TD Control)**: Updates the action-value function based on the agent’s actual policy.
 - **Q-Learning (Off-Policy TD Control)**: Updates based on the optimal action, regardless of the agent’s current policy.
 
-#### **SARSA Algorithm (On-Policy)**
+#### SARSA Algorithm (On-Policy)
 
 In SARSA, the agent chooses the next action $a_{t+1}$ according to its current policy and updates the Q-value based on the immediate reward and the Q-value for the next state-action pair.
 
@@ -469,7 +508,7 @@ Repeat (for each episode):
 <!--  
 ![alt text](IMG_20250223_163420.png) -->
 
-#### **Q-Learning Algorithm (Off-Policy)**
+#### Q-Learning Algorithm (Off-Policy)
 Q-learning is an off-policy algorithm that learns the best action-value function, no matter what behavior policy the agent used to gather the data.
  
 
@@ -494,9 +533,9 @@ Repeat (for each episode):
 <!-- 
 ![alt text](IMG_20250223_163452-1.png) -->
 
-### 4.4. **Exploitation vs Exploration**
+### 4.4. Exploitation vs Exploration
 
-#### **Balancing Exploration and Exploitation**
+#### Balancing Exploration and Exploitation
 
 In reinforcement learning, an agent needs to balance **exploration** (trying new actions) and **exploitation** (using known actions that give good rewards). To do this, we use an **$\epsilon$-greedy policy**:
 
@@ -514,15 +553,18 @@ At the start of learning, **$\epsilon$** is high to encourage exploration. As th
 Common ways to decay **$\epsilon$** include:
 
 - **Linear Decay**: 
-  $$
-  \epsilon_t = \frac{1}{t}
-  $$
+
+$$
+\epsilon_t = \frac{1}{t}
+$$
+
   where $t$ is the time step.
 
 - **Exponential Decay**:
-  $$
-  \epsilon_t = \epsilon_0 \cdot \text{decay\_rate}^t
-  $$
+  
+$$
+\epsilon_t = \epsilon_0 \cdot \text{decay_rate}^t
+$$
 
 
 [Watch on YouTube](https://www.youtube.com/watch?v=0iqz4tcKN58)
@@ -533,24 +575,24 @@ In reinforcement learning, various methods are used to estimate value functions 
 
 ### 5.1. Model-Based vs. Model-Free Learning
 
-#### **Model-Based Learning**:
+#### Model-Based Learning:
 - **Definition**: The agent uses a model of the environment to predict future states and rewards. The model allows the agent to simulate actions and outcomes.
 - **Example**: **Dynamic Programming (DP)** relies on a complete model of the environment.
 - **Advantages**: Efficient when the model is available and provides exact solutions when the environment is known.
 
-#### **Model-Free Learning**:
+#### Model-Free Learning:
 - **Definition**: The agent learns directly from interactions with the environment by estimating value functions based on observed rewards, without needing a model.
 - **Examples**: **Monte Carlo (MC)**, **Temporal Difference (TD)**.
 - **Advantages**: More flexible, applicable when the model is unknown or too complex to compute.
 
 ### 5.2. On-Policy vs. Off-Policy Learning
 
-#### **On-Policy Learning**:
+#### On-Policy Learning:
 - **Definition**: The agent learns about and improves the policy it is currently following. The policy that generates the data is the same as the one being evaluated and improved.
 - **Example**: **SARSA** updates based on actions taken under the current policy.
 - **Advantages**: Simpler and guarantees that the agent learns from its own actions.
 
-#### **Off-Policy Learning**:
+#### Off-Policy Learning:
 - **Definition**: The agent learns about an optimal policy while following a different behavior policy. The target policy is updated while the agent explores using a behavior policy.
 - **Example**: **Q-Learning** updates based on the optimal action, independent of the behavior policy.
 - **Advantages**: More flexible, allows for learning from past experiences and using different exploration strategies.
@@ -577,7 +619,7 @@ The choice of method depends on the environment, the availability of a model, an
 ## Author(s)
 
 <div class="grid cards" markdown>
--   ![Instructor Avatar](assets/images/staff/Ghazal-Hosseini.jpg){align=left width="150"}
+-   ![Instructor Avatar](/assets/images/staff/Ghazal-Hosseini.jpg){align=left width="150"}
     <span class="description">
         <p>**Ghazal Hosseini**</p>
         <p>Teaching Assistant</p>
