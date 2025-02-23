@@ -97,7 +97,7 @@ nav:
     - blog/index.md
     - Tags: blog/tags.md
   - Course Notes:
-    - course_notes/into-to-rl.md
+    - course_notes/intro-to-rl.md
     - course_notes/value-based.md
     - course_notes/policy-based.md
     - course_notes/advanced.md
