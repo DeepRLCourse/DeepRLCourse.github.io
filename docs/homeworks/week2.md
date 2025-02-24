@@ -11,9 +11,10 @@ Welcome to the second homework assignment of the Deep Reinforcement Learning cou
 
 You can download the homework questions and the notebook from the following links:
 
-[HW2 Questions (PDF)](https://raw.githubusercontent.com/DeepRLCourse/Homework-2-Questions/refs/heads/main/HW2_Questions.pdf){:target="_blank" .md-button }
-[HW2 Notebook 1 (IPYNB)](https://raw.githubusercontent.com/DeepRLCourse/Homework-2-Questions/refs/heads/main/HW2_P1_SARSA_and_QLearning.ipynb){:target="_blank" .md-button }
-[HW2 Notebook 2 (IPYNB)](https://raw.githubusercontent.com/DeepRLCourse/Homework-2-Questions/refs/heads/main/HW2_P2_DQN_vs_DDQN.ipynb){:target="_blank" .md-button }
+[HW2 Questions](https://raw.githubusercontent.com/DeepRLCourse/Homework-2-Questions/refs/heads/main/HW2_Questions.pdf){:target="_blank" .md-button }
+
+[HW2 Notebook 1](https://raw.githubusercontent.com/DeepRLCourse/Homework-2-Questions/refs/heads/main/HW2_P1_SARSA_and_QLearning.ipynb){:target="_blank" .md-button }
+[HW2 Notebook 2](https://raw.githubusercontent.com/DeepRLCourse/Homework-2-Questions/refs/heads/main/HW2_P2_DQN_vs_DDQN.ipynb){:target="_blank" .md-button }
 
 You can use this [template for your answers](https://github.com/DeepRLCourse/Homework-2-Template){:target="_blank"}.
 
