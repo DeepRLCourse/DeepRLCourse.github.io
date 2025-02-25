@@ -1,5 +1,5 @@
 ---
-description: This page provides information about Professor Michael Littman, his contributions to machine learning and decision making, and details about his talk, including its recoding.
+description: This page provides information about Professor Michael Littman, his contributions to machine learning and decision making, and details about his talk, including its recoding and slides.
 comments: True
 ---
 
@@ -12,3 +12,13 @@ Michael L. Littman is a University Professor of Computer Science at Brown Univer
 ### Lecture
 
 <iframe width="996" height="560" src="https://www.youtube.com/embed/CFhcCxisKg8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+### Slides
+
+<object class="pdf" 
+        data="/assets/guests/michael_littman.pdf"
+        width="996"
+        height="560">
+</object>
+
+[Download Slides](/assets/guests/michael_littman.pdf){:target="_blank" .md-button .md-button--primary }
