@@ -5,6 +5,26 @@ comments: True
 
 # Week 2: Value-Based Methods
 
+### Screen Record
+
+<iframe width="996" height="560" src="https://www.youtube.com/embed/ihGqZmwKuSk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<a href="https://colab.research.google.com/github/DeepRLCourse/Workshop-2-Material/blob/main/1-solving-mdp-using-dynamic-programming.ipynb" target="_blank">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" style="height: 50px; cursor: pointer; display: inline-block;">
+</a>
+
+<iframe width="996" height="560" src="https://www.youtube.com/embed/f0fJO2qBfSI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<a href="https://colab.research.google.com/github/DeepRLCourse/Workshop-2-Material/blob/main/2-solving-mdp-using-monte-carlo-methods.ipynb" target="_blank">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" style="height: 50px; cursor: pointer; display: inline-block;">
+</a>
+
+<iframe width="996" height="560" src="https://www.youtube.com/embed/4H7nM4X3mm0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<a href="https://colab.research.google.com/github/DeepRLCourse/Workshop-2-Material/blob/main/3-solving-mdp-using-td-learning.ipynb" target="_blank">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" style="height: 50px; cursor: pointer; display: inline-block;">
+</a>
+
 ### Notebook(s)
 
 <div style="display: flex; align-items: center; flex-wrap: wrap;">
