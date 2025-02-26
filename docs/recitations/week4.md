@@ -567,3 +567,263 @@ The below figure shows
 
 ---
 
+## Soft Actor-Critic (SAC) 
+
+### Challenges and motivation of SAC
+1. Previous Off-policy methods like DDPG often struggle with exploration , leading to suboptimal policies. SAC overcomes this by introducing entropy maximization, which encourages the agent to explore more efficiently.
+2. Sample inefficiency is a major issue in on-policy algorithms like Proximal Policy Optimization (PPO), which require a large number of interactions with the environment. SAC, being an off-policy algorithm, reuses past experiences stored in a replay buffer, making it significantly more sample-efficient.
+3. Another challenge is instability in learning, as methods like DDPG and Twin Delayed Deep Deterministic Policy Gradient (TD3) can suffer from overestimation of Q-values. SAC mitigates this by employing twin Q-functions (similar to TD3) and incorporating entropy regularization, leading to more stable and robust learning.
+
+In essence, SAC seeks to maximize the entropy in policy, in addition to the expected reward from the environment. The entropy in policy can be interpreted as randomness in the policy.
+
+### what is entropy?
+We can think of entropy as how unpredictable a random variable is. If a random variable always takes a single value then it has zero entropy because it’s not unpredictable at all. If a random variable can be any Real Number with equal probability then it has very high entropy as it is very unpredictable.
+
+
+![PPO Diagram](entropy.jpg "*entropy in Categorical and Gaussian distribution*")
+
+
+*probability distributions with low entropy have a tendency to greedily sample certain values, as the probability mass is distributed relatively unevenly.*
+
+
+
+- SAC is an off-policy algorithm that incorporates **entropy maximization** for better exploration.  
+- Outperforms DDPG in sample efficiency and stability.  
+
+### Maximum Entropy Reinforcement Learning
+
+
+In Maximum Entropy RL, the agent tries to optimise the policy to choose the right action that can receive the highest sum of reward and long term sum of entropy. This enables the agent to explore more and avoid converging to local optima.
+
+**`reason`**: We want a high entropy in our policy to explicitly encourage exploration, to encourage the policy to assign equal probabilities to actions that have same or nearly equal Q-values(allow the policy to capture multiple modes of good policies), and also to ensure that it does not collapse into repeatedly selecting a particular action that could exploit some inconsistency in the approximated Q function. Therefore, SAC overcomes the  problem by encouraging the policy network to explore and not assign a very high probability to any one part of the range of actions.
+
+The objective function of the Maximum entropy RL is as shown below:
+$$
+J(\pi_{\theta}) = \mathbb{E}_{\pi_{\theta}} \left[ \sum_{t=0}^{\infty} \gamma^t R(s_t, a_t) + \alpha H(\pi(\cdot | s_t)) \right]
+$$
+and the optimal policy is:
+$$
+\pi^* = argmax_{\pi_{\theta}}\space\mathbb{E}_{\pi_{\theta}} \left[ \sum_{t=0}^{\infty} \gamma^t R(s_t, a_t) + \alpha H(\pi(\cdot | s_t)) \right]
+$$
+
+**$\alpha$** is the temperature parameter that balances between exploration and exploitation.
+ 
+
+### Soft Policy
+- Soft policy 
+$$
+J(\pi) = \sum_{t=0}^{T} \mathbb{E}_{(s_t, a_t)\sim\rho_{\pi}} \left[ r(s_t, a_t) + \alpha\mathcal{H}(\pi(\cdot | s_t)) \right]
+$$
+
+With new objective function we need to define Value funciton and Q-value funciton again. 
+
+
+
+- Soft Q-value funciton
+$$
+Q(s_t, a_t) = r(s_t, a_t) + \gamma\mathbb{E}_{s_{t+1}\sim p}\left[ V(s_{t+1}) \right]
+$$
+- Soft Value function
+$$
+V(s_t) = \mathbb{E}_{a_t\sim \pi} \left[Q(s_t, a_t) - \text{log}\space\pi(a_t|s_t)\right]
+$$
+
+### Soft policy iteration
+Soft Policy Iteration is an entropy-regularized version of classical policy iteration, which consists of:
+
+1. *Soft Policy Evaluation*: Estimating the soft Q-value function under the current policy.
+2. *Soft Policy Improvement*:  Updating the policy to maximize the soft Q-value function,incorporating entropy regularization.
+
+This process iteratively improves the policy while balancing exploration and exploitation.
+
+#### Soft Policy Evaluation (Critic Update)
+The goal of soft policy evaluation is to compute the expected return of a given policy $\pi$ under the maximum entropy objective, which modifies the standard Bellman equation by adding an entropy term. (SAC explicitly learns the Q-function for the current policy)
+
+The soft Q-value function for a policy $\pi$ is updated using a modified Bellman operator $T^{\pi}$:
+$$
+T^\pi Q(s_t, a_t) = r(s_t, a_t) + \gamma \mathbb{E}_{s_{t+1} \sim p} [V(s_{t+1})]
+$$
+with substitution of $V$ we have :
+
+$$
+T^\pi Q(s_t, a_t) = r(s_t, a_t) + \gamma \mathbb{E}_{\substack{s_{t+1} \sim p \\ a_{t+1} \sim \pi}} [Q(s_{t+1,}, a_{t+1}) - \text{log}\space\pi(a_{t+1}|s_{t+1})]
+$$
+
+**Key Result: Soft Bellman Backup Convergence**  
+
+**Theorem:** By repeatedly applying the operator $T^\pi$, the Q-value function converges to the true soft Q-value function for policy $\pi$:  
+
+$$
+Q_k \to Q^\pi \text{ as } k \to \infty
+$$
+
+Thus, we can estimate $Q^\pi$ iteratively.
+
+---
+
+#### Soft Policy Improvement (Actor Update)
+Once the Q-function is learned, we need to improve the policy using a gradient-based update. This means:
+
+- Instead of directly maximizing Q-values, the policy is updated to optimize a modified objective that balances reward maximization and exploration.
+- The update is off-policy, meaning the policy can be trained using past experiences stored in a replay buffer, rather than requiring fresh samples like on-policy methods (e.g., PPO).
+
+The update is based on an ***exponential function of the Q-values***:
+$$
+\pi^*(a | s) \propto \exp (Q^\pi(s, a))
+$$
+
+which means the optimal policy is obtained by normalizing $\exp (Q^\pi(s, a))$ over all actions:
+$$
+\pi^*(a | s) = \frac{\exp (Q^\pi(s, a))}{Z^\pi(s)}
+$$
+
+where $Z^\pi(s)$ is the partition function that ensures the distribution sums to 1.
+
+For the policy improvement step, we update the policy distribution towards the softmax distribution for the current Q function.
+
+$$
+\pi_{\text{new}} = \arg \min_{\pi' \in \Pi} D_{\text{KL}} \left( \pi'(\cdot | s) \, \bigg|\bigg| \, \frac{\exp (Q^\pi(s, \cdot))}{Z^\pi(s)} \right)
+$$
+
+
+**Key Result: Soft Policy Improvement Theorem**  
+The new policy $\pi_{\text{new}}$ obtained via this update improves the expected soft return:
+
+$$
+Q^{\pi_{\text{new}}}(s, a) \geq Q^{\pi_{\text{old}}}(s, a) \quad \forall (s, a)
+$$
+
+Thus, iterating this process leads to a better policy.
+
+---
+#### Convergence of Soft Policy Iteration
+
+By alternating between soft policy evaluation and soft policy improvement, soft policy iteration converges to an optimal maximum entropy policy within the policy class $\Pi$:
+
+$$
+\pi^* = \arg \max_{\pi \in \Pi} \sum_t \mathbb{E}[r_t + \alpha H(\pi(\cdot | s_t))]
+$$
+
+
+However, this exact method is only feasible in the ***tabular setting***. For ***continuous control***, we approximate it using function approximators.
+
+
+### Soft Actor-Critic
+
+For complex learning domains with high-dimensional and/or continuous state-action spaces, it is mostly impossible to find exact solutions for the MDP. Thus, we must leverage function approximation (i.e. neural networks) to find a practical approximation to soft policy iteration. then we use stochastic gradient descent (SGD) to update parameters of these networks.
+
+we model the value functions as expressive neural networks, and the policy as a Gaussian distribution over the action space with the mean and covariance given as neural network outputs with the current state as input.
+
+1. **Soft Value function ($V_{\psi}(s)$)**
+
+A separate soft value function which helps in stabilising the training process. The soft value function approximator minimizes the squared residual error as follows:
+
+$$
+J_V(\psi) = \mathbb{E}_{s_{t} \sim \mathcal{D}} \left[ \frac{1}{2} \left( V_{\psi}(s_t) - \mathbb{E}_{a \sim \pi_{\phi}} [Q_{\theta}(s_t, a_t) - \log \pi_{\phi}(a_t | s_t)] \right)^2 \right]
+$$
+
+It means the learning of the state-value function, V is done by minimizing the squared difference between the prediction of the value network and expected prediction of Q-function with the entropy of the policy, $\pi$.
+- $D$ is the distribution of previously sampled states and actions, or a replay buffer.
+
+**Gradient Update for $V_{\psi}(s)$**
+
+$$
+\hat{\nabla}_{\psi} J_V(\psi) = \nabla_{\psi} V_{\psi}(s_t) \left( V_{\psi}(s_t) - Q_{\theta}(s_t, a_t) + \log \pi_{\phi}(a_t | s_t) \right)
+$$
+
+where the actions are sampled according to the current policy, instead of the replay buffer.
+
+2. **Soft Q-funciton ($Q_{\theta}(s, a)$)**
+
+We minimize the soft Q-function parameters by using the soft Bellman residual provided here:
+$$
+J_Q(\theta) = \mathbb{E}_{(s_{t}, a_t) \sim \mathcal{D}} \left[ \frac{1}{2} \left( Q_{\theta}(s_t, a_t) - \hat{Q}(s_t, a_t)\right)^2 \right]
+$$
+
+with : 
+
+$$
+\hat{Q}(s_t, a_t) = r(s_t, a_t) + \gamma \space \mathbb{E}_{s_{t+1} \sim p} [V_{\bar{\psi}}(s_{t+1})]
+$$
+
+#### **Gradient Update for $Q_{\theta}$**:
+$$
+\hat{\nabla}_\theta J_Q(\theta) = \nabla_{\theta} Q_{\theta}(s_t, a_t) \left( Q_{\theta}(s_t, a_t) - r(s_t, a_t) - \gamma V_{\bar{\psi}}(s_{t+1}) \right)
+$$
+
+A **target value function** $V_{\bar{\psi}}$ (exponentially moving average of $V_{\psi}$) is used to stabilize training.
+
+---
+***more explanation about target network***:
+The use of target networks is motivated by a problem in training V network. If you go back to the objective functions in the Theory section, you will find that the target for the Q network training depends on the V Network and the target for the V Network depends on the Q network (this makes sense because we are trying to enforce Bellman Consistency between the two functions). Because of this, the V network has a target that’s indirectly dependent on itself which means that the V network’s target depends on the same parameters we are trying to train. This makes training very unstable.
+
+---
+
+The solution is to use a set of parameters which comes close to the parameters of the main V network, but with a time delay. Thus we create a second network which lags the main network called the target network. There are two ways to go about this. The first way is to have the target network copied over from the main network regularly after a set number of steps. The other way is to update the target network by Polyak averaging (a kind of moving averaging) itself and the main network.
+
+
+1. **Policy network ($\pi_{\phi}(a|s)$)**
+
+The policy $\pi_{\phi}(a | s)$ is updated using the soft policy improvement step, minimizing the KL-divergence:
+
+$$
+J_{\pi}(\phi) = \mathbb{E}_{s_t \sim \mathcal{D}} \left[ D_{\text{KL}} \left( \pi_{\phi}(\cdot | s_t) \bigg\| \frac{\exp(Q_{\theta}(s_t, \cdot))}{Z_{\theta}(s_t)} \right) \right]
+$$
+
+Instead of solving this directly, SAC reparameterizes the policy using:
+
+$$
+a_t = f_{\phi}(\epsilon_t, s_t)
+$$
+
+This trick is used to make sure that sampling from the policy is a differentiable process so that there are no problems in backpropagating the errors.  $\epsilon_t$ is random noise vector sampled from fixed distribution (e.g., Spherical Gaussian).
+
+
+
+
+if we rewrite the equation we have:
+
+$$
+J_{\pi}(\phi) = \mathbb{E}_{s_t \sim \mathcal{D}, \epsilon_t \sim \mathcal{N}} \left[ \text{log}\space\pi_{\phi} \left(f_{\phi}(\epsilon_t; s_t) | s_t \right) - Q_{\theta}(s_t,f_{\phi}(\epsilon_t; s_t) \right]
+$$
+
+where $\pi_{\phi}$ is defined implicitly in terms of $f_{\phi}$, and we have
+noted that the partition function is independent of $\phi$ and can
+thus be omitted.
+#### **Policy Gradient Update**
+$$
+\hat{\nabla}_{\phi} J_{\pi}(\phi) = \nabla_{\phi} \log \pi_{\phi}(a_t | s_t) + \left( \nabla_{a_t} \log \pi_{\phi}(a_t | s_t)- \nabla_{a_t} Q_{\theta}(s_t, a_t) \right) \nabla_{\phi} f_{\phi}(\epsilon_t; s_t)
+$$
+
+---
+
+- **Stochastic Policy**: Improves exploration.
+- **Entropy Regularization**: Prevents premature convergence.
+- **Twin Q-Networks**: Reduces overestimation bias.  
+
+
+#### SAC pseudocode 
+
+
+---
+**Algorithm 1: Soft Actor-Critic**
+---
+Initialize parameter vectors $\psi, \bar{\psi}, \theta, \phi$
+
+**for** each iteration **do**  
+&nbsp;&nbsp;&nbsp;&nbsp;**for** each environment step **do**  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$a_t \sim \pi_{\phi}(a_t | s_t)$  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$s_{t+1} \sim p(s_{t+1} | s_t, a_t)$  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$\mathcal{D} \gets \mathcal{D} \cup \{(s_t, a_t, r(s_t, a_t), s_{t+1})\}$  
+&nbsp;&nbsp;&nbsp;&nbsp;**end for**  
+
+&nbsp;&nbsp;&nbsp;&nbsp;**for** each gradient step **do**  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$\psi \gets \psi - \lambda \hat{\nabla}_{\psi} J_V(\psi)$  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$\theta_i \gets \theta_i - \lambda_Q \hat{\nabla}_{\theta_i} J_Q(\theta_i) \quad \text{for } i \in \{1,2\}$  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$\phi \gets \phi - \lambda_{\pi} \hat{\nabla}_{\phi} J_{\pi}(\phi)$  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$\bar{\psi} \gets \tau \psi + (1 - \tau) \bar{\psi}$  
+&nbsp;&nbsp;&nbsp;&nbsp;**end for**  
+**end for**
+
+---
+
