@@ -97,31 +97,31 @@ This course provides an in-depth introduction to the field of deep reinforcement
 
 | <div style="width:100px;">Week #</div> | <div style="width:250px;">Topic of the Week</div> | <div style="width:110px;">Lecture 1</div> | <div style="width:110px;">Lecture 2</div> | <div style="width:100px;">Homework</div> |
 | :-: | :- | :-: | :-: | :-: |
-| Week 1 | Introduction to RL | <div style="direction: rtl;font-family: Vazirmatn;">۲۱ بهمن<br>(February 9)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۲۳ بهمن<br>(February 11)</div> | HW 1 | 
-| Week 2 | Value-Based Methods | <div style="direction: rtl;font-family: Vazirmatn;">۲۸ بهمن<br>(February 16)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۳۰ بهمن<br>(February 18)</div> | HW 2 | 
-| Week 3 | Policy-Based Methods | <div style="direction: rtl;font-family: Vazirmatn;">۵ اسفند<br>(February 23)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۷ اسفند<br>(February 25)</div> | HW 3 |
-| Week 4 | Advanced Methods | <div style="direction: rtl;font-family: Vazirmatn;">۱۲ اسفند<br>(March 2)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۱۴ اسفند<br>(March 4)</div> | HW 4 |
-| Week 5 | Model-Based Methods | <div style="direction: rtl;font-family: Vazirmatn;">۱۹ اسفند<br>(March 9)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۲۱ اسفند<br>(March 11)</div> | HW 5 |
-| Week 6 | Multi-Armed Bandits | <div style="direction: rtl;font-family: Vazirmatn;">۲۶ اسفند<br>(March 16)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۲۸ اسفند<br>(March 18)</div> | HW 6 |
+| Week 1 | [Introduction to RL](/lectures/week1) | <div style="direction: rtl;font-family: Vazirmatn;">۲۱ بهمن<br>(February 9)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۲۳ بهمن<br>(February 11)</div> | [HW 1](/homeworks/week1) | 
+| Week 2 | [Value-Based Methods](/lectures/week2) | <div style="direction: rtl;font-family: Vazirmatn;">۲۸ بهمن<br>(February 16)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۳۰ بهمن<br>(February 18)</div> | [HW 2](/homeworks/week2) | 
+| Week 3 | [Policy-Based Methods](/lectures/week3) | <div style="direction: rtl;font-family: Vazirmatn;">۵ اسفند<br>(February 23)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۷ اسفند<br>(February 25)</div> | [HW 3](/homeworks/week3) |
+| Week 4 | [Advanced Methods](/lectures/week4) | <div style="direction: rtl;font-family: Vazirmatn;">۱۲ اسفند<br>(March 2)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۱۴ اسفند<br>(March 4)</div> | [HW 4](/homeworks/week4) |
+| Week 5 | [Model-Based Methods](/lectures/week5) | <div style="direction: rtl;font-family: Vazirmatn;">۱۹ اسفند<br>(March 9)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۲۱ اسفند<br>(March 11)</div> | [HW 5](/homeworks/week5) |
+| Week 6 | [Multi-Armed Bandits](/lectures/week6) | <div style="direction: rtl;font-family: Vazirmatn;">۲۶ اسفند<br>(March 16)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۲۸ اسفند<br>(March 18)</div> | [HW 6](/homeworks/week6) |
 
 
 ### In Depth/Theoritical
 | <div style="width:100px;">Week #</div> | <div style="width:250px;">Topic of the Week</div> | <div style="width:110px;">Lecture 1</div> | <div style="width:110px;">Lecture 2</div> | <div style="width:100px;">Homework</div> |
 | :-: | :- | :-: | :-: | :-: |
-| Week 7 | Value-Based Theory | <div style="direction: rtl;font-family: Vazirmatn;">۱۷ فروردین<br>(April 6)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۱۹ فروردین<br>(April 8)</div> | HW 7 |
-| Week 8 | Policy-Based Theory | <div style="direction: rtl;font-family: Vazirmatn;">۲۴ فروردین<br>(April 13)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۲۶ فروردین<br>(April 15)</div> | HW 8 |
-| Week 9 | Advanced Theory | <div style="direction: rtl;font-family: Vazirmatn;">۳۱ فروردین<br>(April 20)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۲ اردیبهشت<br>(April 22)</div> | HW 9 |
-| Week 10 | Exploration Methods | <div style="direction: rtl;font-family: Vazirmatn;">۷ اردیبهشت<br>(April 27)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۹ اردیبهشت<br>(April 29)</div> | HW 10 |
-| Week 11 | Imitation & Inverse RL | <div style="direction: rtl;font-family: Vazirmatn;">۱۴ اردیبهشت<br>(May 4)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۱۶ اردیبهشت<br>(May 6)</div> | HW 11 |
-| Week 12 | Offline Methods | <div style="direction: rtl;font-family: Vazirmatn;">۲۱ اردیبهشت<br>(May 11)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۲۳ اردیبهشت<br>(May 13)</div> | HW 12 |
-| Week 13 | Multi-Agent Methods | <div style="direction: rtl;font-family: Vazirmatn;">۲۸ اردیبهشت<br>(May 18)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۳۰ اردیبهشت<br>(May 20)</div> | HW 13 |
-| Week 14 | Hierarchical & Meta RL | <div style="direction: rtl;font-family: Vazirmatn;">۴ خرداد<br>(May 25)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۶ خرداد<br>(May 27)</div> | HW 14 |
+| Week 7 | [Value-Based Theory](/lectures/week17) | <div style="direction: rtl;font-family: Vazirmatn;">۱۷ فروردین<br>(April 6)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۱۹ فروردین<br>(April 8)</div> | [HW 7](/homeworks/week7) |
+| Week 8 | [Policy-Based Theory](/lectures/week8) | <div style="direction: rtl;font-family: Vazirmatn;">۲۴ فروردین<br>(April 13)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۲۶ فروردین<br>(April 15)</div> | [HW 8](/homeworks/week8) |
+| Week 9 | [Advanced Theory](/lectures/week9) | <div style="direction: rtl;font-family: Vazirmatn;">۳۱ فروردین<br>(April 20)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۲ اردیبهشت<br>(April 22)</div> | [HW 9](/homeworks/week9) |
+| Week 10 | [Exploration Methods](/lectures/week10) | <div style="direction: rtl;font-family: Vazirmatn;">۷ اردیبهشت<br>(April 27)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۹ اردیبهشت<br>(April 29)</div> | [HW 10](/homeworks/week10) |
+| Week 11 | [Imitation & Inverse RL](/lectures/week11) | <div style="direction: rtl;font-family: Vazirmatn;">۱۴ اردیبهشت<br>(May 4)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۱۶ اردیبهشت<br>(May 6)</div> | [HW 11](/homeworks/week11) |
+| Week 12 | [Offline Methods](/lectures/week12) | <div style="direction: rtl;font-family: Vazirmatn;">۲۱ اردیبهشت<br>(May 11)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۲۳ اردیبهشت<br>(May 13)</div> | [HW 12](/homeworks/week12) |
+| Week 13 | [Multi-Agent Methods](/lectures/week13) | <div style="direction: rtl;font-family: Vazirmatn;">۲۸ اردیبهشت<br>(May 18)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۳۰ اردیبهشت<br>(May 20)</div> | [HW 13](/homeworks/week13) |
+| Week 14 | [Hierarchical & Meta RL](/lectures/week14) | <div style="direction: rtl;font-family: Vazirmatn;">۴ خرداد<br>(May 25)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۶ خرداد<br>(May 27)</div> | [HW 14](/homeworks/week14) |
 
 
 ### Guest Lectures
 | <div style="width:100px;">Week #</div> | <div style="width:250px;">Topic of the Week</div> | <div style="width:110px;">Lecture 1</div> | <div style="width:110px;">Lecture 2</div> | <div style="width:100px;">Homework</div> |
 | :-: | :- | :-: | :-: | :-: |
-| Week 15 | Guest Lectures | <div style="direction: rtl;font-family: Vazirmatn;">۱۱ خرداد<br>(June 1)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۱۳ خرداد<br>(June 3)</div> | - |
+| Week 15 | [Guest Lectures](/lectures/week15) | <div style="direction: rtl;font-family: Vazirmatn;">۱۱ خرداد<br>(June 1)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۱۳ خرداد<br>(June 3)</div> | - |
 
 ## Logistics & Policies 
 
