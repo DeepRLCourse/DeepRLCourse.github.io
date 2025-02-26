@@ -388,7 +388,7 @@ In essence, SAC seeks to maximize the entropy in policy, in addition to the expe
 We can think of entropy as how unpredictable a random variable is. If a random variable always takes a single value then it has zero entropy because it’s not unpredictable at all. If a random variable can be any Real Number with equal probability then it has very high entropy as it is very unpredictable.
 
 
-![PPO Diagram](entropy.jpg "*entropy in Categorical and Gaussian distribution*")
+![Figure 7](..//assets//images//recitation//week4//PPO.jpg "entropy in Categorical and Gaussian distribution")
 
 
 *probability distributions with low entropy have a tendency to greedily sample certain values, as the probability mass is distributed relatively unevenly.*
