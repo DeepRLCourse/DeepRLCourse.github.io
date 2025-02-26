@@ -827,3 +827,23 @@ Initialize parameter vectors $\psi, \bar{\psi}, \theta, \phi$
 
 ---
 
+
+## Comparison of PPO, DDPG, and SAC 
+| Feature        | PPO | DDPG | SAC |
+|---------------|-----|------|-----|
+| Policy Type   | Stochastic | Deterministic | Stochastic |
+| Environment Type | Discrete/Continuous | Continuous | Continuous |
+| Sample Efficiency | Medium | High | High |
+| Exploration  | Implicit Clipping | Ornstein-Uhlenbeck Noise | Entropy Regularization |
+| Stability    | High | Low | High |
+| Computational Cost | Medium | Low | High |
+
+---
+
+## Conclusion
+- **PPO** is a stable, on-policy method suitable for both discrete and continuous action spaces.
+- **DDPG** is efficient in continuous control but sensitive to hyperparameters.
+- **SAC** improves upon DDPG with better exploration and stability.
+- Choosing between these methods depends on the specific RL problem and computational constraints.
+
+---
