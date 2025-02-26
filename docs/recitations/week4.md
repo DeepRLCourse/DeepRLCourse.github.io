@@ -832,7 +832,7 @@ Initialize parameter vectors $\psi, \bar{\psi}, \theta, \phi$
 | Feature        | PPO | DDPG | SAC |
 |---------------|-----|------|-----|
 | Policy Type   | Stochastic | Deterministic | Stochastic |
-| Environment Type | Discrete/Continuous | Continuous | Continuous |
+| Environment Type | Discrete/Continuous | Continuous | Discrete/Continuous |
 | Sample Efficiency | Medium | High | High |
 | Exploration  | Implicit Clipping | Ornstein-Uhlenbeck Noise | Entropy Regularization |
 | Stability    | High | Low | High |
