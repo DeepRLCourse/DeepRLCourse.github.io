@@ -540,3 +540,30 @@ The below figure shows
 
 [Proximal Policy Optimization (PPO) - How to train Large Language Models](https://www.youtube.com/watch?v=TjHH_--7l8g)
 
+
+## Deep Deterministic Policy Gradient (DDPG)  
+###  Overview
+- DDPG is an off-policy, model-free algorithm for continuous action spaces.  
+- Uses **actor-critic architecture** with deterministic policy gradients.  
+
+### DDPG Algorithm 
+- **Actor network** outputs deterministic actions.  
+- **Critic network** evaluates action-value (Q-function).  
+- **Target networks** and **soft updates** improve stability.  
+- **Exploration via Ornstein-Uhlenbeck noise**.  
+
+### Key Components
+- **Replay Buffer**: Stores experience for efficient learning.  
+- **Target Networks**: Helps reduce overestimation bias.  
+
+### Pros and Cons
+**Pros:** Works well for high-dimensional continuous control, sample efficient.  
+**Cons:** Prone to overestimation bias, sensitive to hyperparameters.  
+
+### helpful links
+
+[Reinforcement Learning - "DDPG" explained
+](https://www.youtube.com/watch?v=oydExwuuUCw)
+
+---
+
