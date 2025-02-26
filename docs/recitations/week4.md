@@ -437,3 +437,106 @@ V(s_t) = \mathbb{E}_{a_t\sim \pi} \left[Q(s_t, a_t) - \text{log}\space\pi(a_t|s_
 $$
 
 
+
+## Proximal Policy Optimization (PPO)
+
+### The intuition behind PPO
+The idea with Proximal Policy Optimization (PPO) is that we want to improve the training stability of the policy by limiting the change you make to the policy at each training epoch: **we want to avoid having too large policy updates**.  why?
+
+1. We know empirically that smaller policy updates during training are more likely to converge to an optimal solution.
+2. If we change the policy too much, we may end up with a bad policy that cannot be improved.
+
+![Figure 5](..//assets//images//recitation//week4//cliff.jpg "effect of small steps in updating")
+
+Therefore, in order not to allow the current policy to change much compared to the previous policy, we limit the ratio of these two policies to  $[1 - \epsilon, 1 + \epsilon]$.
+
+### the Clipped Surrogate Objective 
+$$
+L^{CLIP}(\theta) = \hat{\mathbb{E}}_t \left[ \min \left( r_t(\theta) \hat{A}_t, \text{clip} \left( r_t(\theta), 1 - \epsilon, 1 + \epsilon \right) \hat{A}_t \right) \right]
+$$
+
+#### The ratio Function
+$$
+r_t(\theta) = \frac{\pi_{\theta}(a_t | s_t)}{\pi_{\theta_{\text{old}}}(a_t | s_t)}
+$$
+
+$r_{\theta}$ denotes the probability ratio between the current and old policy. if $r_{\theta} > 1$, then the probability of doing action $a_t$ at $s_t$ in current policy is higher than the old policy and vice versa.
+
+So this probability ratio is an easy way to estimate the divergence between old and current policy.
+
+
+#### The clipped part
+$$
+\text{clip} \left( r_t(\theta), 1 - \epsilon, 1 + \epsilon \right) \hat{A}_t
+$$
+
+If the current policy is updated significantly, such that the new policy parameters $\theta'$  diverge greatly from the previous ones, the probability ratio between the new and old policies is clipped to the bounds 
+$1 - \epsilon$, $1 + \epsilon$. At this point, the derivative of the objective function becomes zero, effectively preventing further updates. 
+
+#### The unclipped part
+$$
+r_t(\theta) \hat{A}_t
+$$
+
+In the context of optimization, if the initial starting point is not ideal—i.e., if the probability ratio between the new and old policies is outside the range of $1 - \epsilon$ and $1 + \epsilon$—the ratio is clipped to these bounds. This clipping results in the derivative of the objective function becoming zero, meaning no gradient is available for updates. 
+
+In this formulation, the optimization is performed with respect to the new policy parameters $\theta'$, and $A$ represents the advantage function, which indicates how much better or worse the action performed is compared to the average return.
+
+- Case 1: Positive Advantage
+
+if the Advantage $A$ is positive (indicating that the action taken has a higher return than the expected return), and $\frac{\pi_{\theta}(a_t | s_t)}{\pi_{\theta_{\text{old}}}(a_t | s_t)} < 1-\epsilon$ , the unclipped part is less than the clipped part and then it is minimized, so we have gradient to update the policy. This allows the policy to increase the probability of the action, aiming for the ratio to reach $1 + \epsilon$ without violating the clipping constraint.
+
+
+- Case 2: Negative Advantage
+
+On the other hand, if the Advantage $A$ is negative (meaning the action taken is worse than the average return), and $\frac{\pi_{\theta}(a_t | s_t)}{\pi_{\theta_{\text{old}}}(a_t | s_t)} > 1+\epsilon$, the unclipped objective is again minimized and the gradient is non-zero, leading to an update. In this case, since the Advantage is negative, the policy is adjusted to reduce the probability of selecting that action, bringing the ratio closer to the boundary ($1-\epsilon$), while ensuring that the new policy does not deviate too much from the old one.
+
+The below figure shows 
+
+#### Visualize the Clipped Surrogate Objective
+
+![Figure 6](..//assets//images//recitation//week4//recap.jpg "effect of small steps in updating")
+
+### PPO pseudocode
+
+---
+**Algorithm 1** PPO-Clip  
+---
+
+1. Input: initial policy parameters $\theta_0$, initial value function parameters $\phi_0$  
+2. **for** $k = 0, 1, 2, \dots$ **do**  
+3. &emsp; Collect set of trajectories $\mathcal{D}_k = \{\tau_i\}$ by running policy $\pi_k = \pi(\theta_k)$ in the environment.  
+4. &emsp; Compute rewards-to-go $\hat{R}_t$.  
+5. &emsp; Compute advantage estimates, $\hat{A}_t$ (using any method of advantage estimation) based on the current value function $V_{\phi_k}$.  
+6. &emsp; Update the policy by maximizing the PPO-Clip objective:  
+
+   $$
+    \theta_{k+1} = \arg \max_{\theta} \frac{1}{|\mathcal{D}_k| T} \sum_{\tau \in \mathcal{D}_k} \sum_{t=0}^{T} \min \left( \frac{\pi_{\theta}(a_t | s_t)}{\pi_{\theta_k}(a_t | s_t)} A^{\pi_{\theta_k}}(s_t, a_t), \, g(\epsilon, A^{\pi_{\theta_k}}(s_t, a_t)) \right)
+   $$
+
+   typically via stochastic gradient ascent with Adam.  
+
+7. &emsp; Fit value function by regression on mean-squared error:  
+
+   $$
+   \phi_{k+1} = \arg \min_{\phi} \frac{1}{|\mathcal{D}_k| T} \sum_{\tau \in \mathcal{D}_k} \sum_{t=0}^{T} \left( V_{\phi}(s_t) - \hat{R}_t \right)^2
+   $$
+
+   typically via some gradient descent algorithm.  
+
+8. **end for**
+
+---
+
+### Cons of PPO algorithm
+ PPO requires a significant amount of interactions with the environment to converge. This can be problematic in real-world applications where data is expensive or difficult to collect. in fact it is a sample inefficient algorithm.
+
+
+### Helpful links
+
+[Unit 8, of the Deep Reinforcement Learning Class with Hugging Face](https://huggingface.co/blog/deep-rl-ppo)
+
+[Proximal Policy Optimization (PPO) Explained](https://towardsdatascience.com/proximal-policy-optimization-ppo-explained-abed1952457b)
+
+[Proximal Policy Optimization (PPO) - How to train Large Language Models](https://www.youtube.com/watch?v=TjHH_--7l8g)
+
