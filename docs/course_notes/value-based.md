@@ -44,6 +44,15 @@ Where:
 
 This equation allows for the iterative computation of state values in a model-based setting.
 
+#### Bellman Optimality Equation for $V^*(s)$:
+The **Bellman Optimality Equation** for $V^*(s)$ expresses the optimal state value function. It is given by:
+
+$$
+V^*(s) = \max_a \mathbb{E} \left[ R_{t+1} + \gamma V^\*(S_{t+1}) \mid s_t = s, a_t = a \right]
+$$
+
+This shows that the optimal value at each state is the immediate reward plus the discounted maximum expected value from the next state, where the next action is chosen optimally.
+
 ---
 
 ### 1.2. Action Value Function $Q(s, a)$
@@ -80,7 +89,7 @@ Where:
 The **Bellman Optimality Equation** for $Q^*(s, a)$ expresses the optimal action value function. It is given by:
 
 $$
-Q^*(s, a) = \mathbb{E} \left[ R_{t+1} + \gamma \max_{a'} Q^*(s_{t+1}, a') \mid s_t = s, a_t = a \right]
+Q^*(s, a) = \mathbb{E} \left[ R_{t+1} + \gamma \max_{a'} Q^\*(s_{t+1}, a') \mid s_t = s, a_t = a \right]
 $$
 
 This shows that the optimal action value at each state-action pair is the immediate reward plus the discounted maximum expected value from the next state, where the next action is chosen optimally.
