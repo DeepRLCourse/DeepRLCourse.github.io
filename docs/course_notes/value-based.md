@@ -283,7 +283,7 @@ $$
 \hat{I}_N = \frac{1}{N} \sum_{i=1}^{N} f(x_i),
 $$
 
-where $ x_i $ are **independent** samples drawn from $ p(x) $. The **Law of Large Numbers (LLN)** ensures that as $N \to \infty$:
+where $x_i$ are **independent** samples drawn from $p(x)$. The **Law of Large Numbers (LLN)** ensures that as $N \to \infty$:
 
 $$
 \hat{I}_N \to I.
