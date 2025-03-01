@@ -46,5 +46,5 @@ comments: True
 ### Notebook(s)
 
 <div style="display: flex; align-items: center; flex-wrap: wrap;">
-  <a href="https://github.com/DeepRLCourse/Workshop-2-Material" target="_blank" class="md-button" style="height: 50px; margin-bottom: 10px; margin-right: 10px;">Workshop 1 Notebook(s)</a>
+  <a href="https://github.com/DeepRLCourse/Workshop-2-Material" target="_blank" class="md-button" style="height: 50px; margin-bottom: 10px; margin-right: 10px;">Workshop 2 Notebook(s)</a>
 </div>
