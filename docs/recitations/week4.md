@@ -192,7 +192,10 @@ $$
 The first algorithm is: *Actor-Critic with Bootstrapping and Baseline Subtraction*
 In this algorithm, the simulator runs for an entire episode before updating the policy.
 
+---
 **Batch actor-critic algorithm:**
+---
+
 1. Run $\pi_{\theta}$ for an episode and Sample $\{s_i, \mathbf{a}_i\}$ from the policy.
 2. Fit $\hat{V}(s_t)$ with sampled rewards.
 3. Evaluate the advantage function: $A({s_t, a_t})$
