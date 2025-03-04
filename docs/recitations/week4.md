@@ -192,7 +192,7 @@ $$
 The first algorithm is: *Actor-Critic with Bootstrapping and Baseline Subtraction*
 In this algorithm, the simulator runs for an entire episode before updating the policy.
 
----
+
 **Batch actor-critic algorithm:**
 ---
 
@@ -206,8 +206,12 @@ In this algorithm, the simulator runs for an entire episode before updating the 
 Running full episodes for a single update is inefficient as it requires a significant amount of time. To address this issue, the o**online actor-critic algorithm** is proposed.
 
 #### Online actor-critic algorithm
+
+
 In this algorithm, we take an action in the environment and immediately apply an update using that action.
 **Online actor-critic algorithm**
+---
+
 1. Take action $a \sim \pi_{\theta}(a | s) $, get $(s,a,s',r)$.
 2. Fit $\hat{V}(s_t)$ with the sampled reward.
 3. Evaluate the advantage function: $A({s,a})$
@@ -243,6 +247,8 @@ offpolicy.png
 
 
 **Off-policy actor-critic algorithm:**
+---
+
 1. Take action $a \sim \pi_{\theta}(a | s) $, get $(s,a,s',r)$, store in $\mathcal{R}$.
 2. Sample a batch $\{s_i, a_i, r_i, s'_i \}$ for buffer $\mathcal{R}$.
 3. Fit $\hat{Q}^{\pi}(s_i, a_i)$ for each $s_i, a_i$.
