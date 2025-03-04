@@ -195,13 +195,15 @@ In this algorithm, the simulator runs for an entire episode before updating the 
 
 **Batch actor-critic algorithm:**
 ---
+1. **for** each episode **do**:
+2. &emsp;**for** each step **do**:
+3. &emsp;&emsp;Take action $a_t \sim \pi_{\theta}(a_t | s_t)$, get $(s_t,a_t,s'_t,r_t)$.
+4. &emsp;Fit $\hat{V}(s_t)$ with sampled rewards.
+5. &emsp;Evaluate the advantage function: $A({s_t, a_t})$
+6. &emsp;Compute the policy gradient: $\nabla_{\theta} J(\theta) \approx \sum_{i} \nabla_{\theta} \log \pi_{\theta}(a_i | s_i) A({s_t})$
+7. &emsp;Update the policy parameters:  $\theta \gets \theta + \alpha \nabla_{\theta} J(\theta)$
+ 
 
-1. Run $\pi_{\theta}$ for an episode and Sample $\{s_i, \mathbf{a}_i\}$ from the policy.
-2. Fit $\hat{V}(s_t)$ with sampled rewards.
-3. Evaluate the advantage function: $A({s_t, a_t})$
-4. Compute the policy gradient: $\nabla_{\theta} J(\theta) \approx \sum_{i} \nabla_{\theta} \log \pi_{\theta}(a_i | s_i) A({s_t})$
-5. Update the policy parameters:  $\theta \gets \theta + \alpha \nabla_{\theta} J(\theta)$
-6. Repeat from step **1**.
 
 Running full episodes for a single update is inefficient as it requires a significant amount of time. To address this issue, the o**online actor-critic algorithm** is proposed.
 
@@ -209,15 +211,16 @@ Running full episodes for a single update is inefficient as it requires a signif
 
 
 In this algorithm, we take an action in the environment and immediately apply an update using that action.
+
 **Online actor-critic algorithm**
 ---
-
-1. Take action $a \sim \pi_{\theta}(a | s) $, get $(s,a,s',r)$.
-2. Fit $\hat{V}(s_t)$ with the sampled reward.
-3. Evaluate the advantage function: $A({s,a})$
-4. Compute the policy gradient: $\nabla_{\theta} J(\theta) \approx  \nabla_{\theta} \log \pi_{\theta}(a | s) A({s,a})$
-5. Update the policy parameters: $\theta \gets \theta + \alpha \nabla_{\theta} J(\theta)$
-6. Repeat from step **1**.
+1. **for** each episode **do**:
+2. &emsp;**for** each step **do**:
+3. &emsp;&emsp;Take action $a_t \sim \pi_{\theta}(a_t | s_t)$, get $(s_t,a_t,s'_t,r_t)$.
+2. &emsp;&emsp;Fit $\hat{V}(s_t)$ with the sampled reward.
+3. &emsp;&emsp;Evaluate the advantage function: $A({s,a})$
+4. &emsp;&emsp;Compute the policy gradient: $\nabla_{\theta} J(\theta) \approx  \nabla_{\theta} \log \pi_{\theta}(a | s) A({s,a})$
+5. &emsp;&emsp;Update the policy parameters: $\theta \gets \theta + \alpha \nabla_{\theta} J(\theta)$
 
 Training neural networks with a batch size of 1 leads to high variance, making the training process unstable.
 
@@ -248,13 +251,13 @@ offpolicy.png
 
 **Off-policy actor-critic algorithm:**
 ---
-
-1. Take action $a \sim \pi_{\theta}(a | s) $, get $(s,a,s',r)$, store in $\mathcal{R}$.
-2. Sample a batch $\{s_i, a_i, r_i, s'_i \}$ for buffer $\mathcal{R}$.
-3. Fit $\hat{Q}^{\pi}(s_i, a_i)$ for each $s_i, a_i$.
-4. Compute the policy gradient: $\nabla_{\theta} J(\theta) \approx \frac{1}{N} \sum_{i} \nabla_{\theta} \log \pi_{\theta}(a^{\pi}_i | s_i) \hat{Q}^{\pi}(s_i, a^{\pi}_i)$
-5. Update the policy parameters: $\theta \gets \theta + \alpha \nabla_{\theta} J(\theta)$
-6. Repeat from step **1**.
+1. **for** each episode **do**:
+1. &emsp;**for** multiple steps **do**:
+1. &emsp;&emsp;Take action $a \sim \pi_{\theta}(a | s)$, get $(s,a,s',r)$, store in $\mathcal{R}$.
+2. &emsp;Sample a batch $\{s_i, a_i, r_i, s'_i \}$ for buffer $\mathcal{R}$.
+3. &emsp;Fit $\hat{Q}^{\pi}(s_i, a_i)$ for each $s_i, a_i$.
+4. &emsp;Compute the policy gradient: $\nabla_{\theta} J(\theta) \approx \frac{1}{N} \sum_{i} \nabla_{\theta} \log \pi_{\theta}(a^{\pi}_i | s_i) \hat{Q}^{\pi}(s_i, a^{\pi}_i)$
+5. &emsp;Update the policy parameters: $\theta \gets \theta + \alpha \nabla_{\theta} J(\theta)$
 
 To work with off-policy methods, we use the Q-value instead of the V-value in step 3. In step 4, rather than using the advantage function, we directly use $\hat{Q}^{\pi}(s_i, a^{\pi}_i)$, where $a^{\pi}_i$  is sampled from the policy $\pi$. By using the Q-value instead of the advantage function, we do not encounter the high-variance problem typically associated with single-step updates. This is because we sample a batch from the replay buffer, which inherently reduces variance. As a result, there is no need to compute an explicit advantage function for variance reduction.
 
