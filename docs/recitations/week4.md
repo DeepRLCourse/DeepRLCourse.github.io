@@ -139,7 +139,9 @@ Thus, we estimate the advantage function as:
 $$
 A(s_{i,t},a_{i,t}) \approx r(s_t, a_t) + V(s_{t+1}) - V(s_t).
 $$
+
 We can also, consider the advantage function with discount factor as:
+
 $$
 A(s_{i,t},a_{i,t}) \approx r(s_t, a_t) + \gamma V(s_{t+1}) - V(s_t).
 $$
