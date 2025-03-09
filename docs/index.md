@@ -585,7 +585,7 @@ Total possible points: 20 + 3 = 23
         </p>
     </span>
 
--   ![Instructor Avatar](assets/images/staff/Sara-Karimi.jpg){align=left width="150"}
+<!-- -   ![Instructor Avatar](assets/images/staff/Sara-Karimi.jpg){align=left width="150"}
     <span class="description">
         <p>**Sara Karimi**</p>
         <p>Teaching Assistant</p>
@@ -594,7 +594,7 @@ Total possible points: 20 + 3 = 23
         [:fontawesome-brands-github:](https://github.com/sarrkar){:target="_blank"}
         [:material-web:](https://sarrkar.github.io){:target="_blank"}
         </p>
-    </span>
+    </span> -->
 </div>
 
 ## Acknowledgements
