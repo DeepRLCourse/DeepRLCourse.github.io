@@ -40,17 +40,17 @@ neural networks.
 - Avoid the need for an explicit action-value function approximation,
 making them more robust in high-dimensional problems.
 
-- Are capable of optimizing \*\*parameterized policies\*\* without
+- Are capable of optimizing **parameterized policies** without
 relying on action selection heuristics.
 
 - Can incorporate entropy regularization to improve exploration and
 prevent premature convergence to suboptimal policies.
 
-- Allow for more \*\*stable convergence\*\* in some cases compared to
+- Allow for more **stable convergence** in some cases compared to
 value-based methods, which may suffer from instability due to
 bootstrapping.
 
-- Can leverage \*\*variance reduction techniques\*\* (e.g., advantage
+- Can leverage **variance reduction techniques** (e.g., advantage
 estimation, baseline subtraction) to improve learning efficiency.
 
 
@@ -847,17 +847,11 @@ gradient estimate while reducing variance.
   
 
 $$\begin{aligned}
-
 E\left[\nabla_\theta  \log p_\theta(\tau) b\right] &= \int p_\theta(\tau) \nabla_\theta  \log p_\theta(\tau) b \, d\tau \\
-
 &= \int  \nabla_\theta p_\theta(\tau) b \, d\tau \\
-
 &= b \nabla_\theta  \int p_\theta(\tau) \, d\tau \\
-
 &= b \nabla_\theta  1 \\
-
 &= 0
-
 \end{aligned}$$
 
   
@@ -1143,32 +1137,27 @@ value function parameter updates, respectively.
 
 ----------------------------------------------- --
 
-
 ### Actor-Critic Architecture: Cartpole Example
 
 
-<details>
+
+
+<details markdown="1">
 <summary>
 Actor-Critic Architecture: Cartpole Example
 </summary>
-<p>
 
 Let's illustrate the Actor-Critic architecture with an example of a
 classic reinforcement learning problem: the *Cartpole* environment.
 
-  
+<center> 
+<img src="\assets\images\course_notes\policy-based\cartpole.png"
+    alt="pi estimation with monte carlo"
+    style="float: center; margin-right: 10px;" 
+    /> 
+    </center>
 
-::: center
-
------------------------------------------------ --
-
-![image](\assets\images\course_notes\policy-based\a5.png){width="0.6\\linewidth"}
-
------------------------------------------------ --
-
-:::
-
-  
+---
 
 In the *Cartpole* environment, the agent controls a cart that can move
 horizontally on a track. A pole is attached to the cart, and the agent's
