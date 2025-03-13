@@ -266,13 +266,16 @@ functions.
 
 ### **5.4 Thompson Sampling**
 Thompson Sampling is a **Bayesian approach** that models action rewards probabilistically:
-\[
+
+$$
 A_t = \argmax_{a} Q_t(a), \quad Q_t(a) \sim p(Q | R_1, ..., R_{t-1}).
-\]
+$$
+
 Thompson Sampling balances exploration and exploitation in an elegant, probabilistic manner and achieves **logarithmic regret**:
-\[
+
+$$
 L_T = O(\log T).
-\]
+$$
 
 
 
