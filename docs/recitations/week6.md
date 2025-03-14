@@ -303,7 +303,72 @@ One notable aspect of TS is that it naturally handles the exploration–exploita
 
 **Pros and Cons:** Thompson Sampling is conceptually elegant and often empirically superior or comparable to UCB. It’s easy to implement for simple models (like Beta-Bernoulli). One potential downside is that it requires maintaining and sampling from a posterior; if the reward model is complex, this could be computationally heavy (though approximate methods exist). Another consideration is that TS is a randomized algorithm (the action selection is stochastic by design), so any single run is subject to randomness; however, in expectation it performs well. Unlike UCB, TS inherently uses prior assumptions; if the prior is poor, early behavior might be suboptimal (though the algorithm will eventually correct it as data overwhelms the prior).
 
-In summary, Thompson Sampling is a powerful method for exploration that leverages Bayesian reasoning. It achieves low regret (order $\ln n$) and is often near-optimal. Its use of randomness to balance exploration and exploitation is quite different from UCB’s deterministic optimism, yet both end up with similar guarantees in the stochastic bandit scenario.
+
+
+## 6. Contextual Bandits
+
+Many practical problems extend the basic multi-armed bandit by introducing a dependency on an observed **context** (also called state or feature) at each decision point. This leads to the **contextual bandit** model (sometimes called bandit with side information or associative bandit).
+
+**Definition and Motivation:** In a *contextual bandit problem*, each round $t$ provides the decision-maker with additional information $x_t$ (the context) before an arm is chosen. The context $x_t$ could be user features in an ad-serving scenario or the current state of a system. Formally:
+- Context space $\mathcal{X}$ and action (arm) set $\mathcal{A} = \{1,\dots,K\}$.
+- At each time $t=1,2,\dots$, a context $x_t \in \mathcal{X}$ is observed.
+- The agent chooses an arm $I_t \in \mathcal{A}$, based on the context and past observations.
+- A reward $R_t$ is then obtained, drawn from some distribution dependent on both context and chosen arm: $R_t \sim D(\cdot\mid x_t, I_t)$.
+- The goal is to maximize total reward over time, equivalently minimizing regret against the best policy mapping contexts to arms.
+
+In contextual bandits, the optimal action varies with context. For instance, in news recommendations, context is user or time information, and different articles (arms) might be optimal for different users. The bandit algorithm learns a **policy** $\pi: \mathcal{X} \to \mathcal{A}$ by trial and error, observing only rewards from chosen arms.
+
+**Mathematical Formulation:** Let $\pi^*$ be the optimal policy choosing the arm with highest expected reward per context. At time $t$, denote the expected reward for arm $a$ in context $x$ as:
+
+$$
+\mu_a(x) = \mathbb{E}[R_t \mid x_t=x, I_t=a]
+$$
+
+For each context $x$, the optimal arm is:
+
+$$
+a^*(x) = \arg\max_{a\in\mathcal{A}} \mu_a(x)
+$$
+
+The contextual regret after $n$ rounds is:
+
+$$
+R_n^{\text{ctx}} = \sum_{t=1}^n \left(\mu_{a^*(x_t)}(x_t) - \mu_{I_t}(x_t)\right)
+$$
+
+The aim is for $R_n^{\text{ctx}}$ to grow sublinearly in $n$. Contexts can be stochastic (i.i.d.) or adversarial. Often, one assumes contexts are i.i.d. or $\mu_a(x)$ has structure (like linearity) for tractability.
+
+**Comparison with Standard Multi-Armed Bandits:** The standard (context-free) MAB is a special case where the context $x_t$ is constant or irrelevant. Contextual bandits must learn a more complex mapping from contexts to actions. The challenge is to learn $\mu_a(x)$ from bandit feedback (observing rewards only for chosen arms).
+
+A contextual bandit resembles performing a new bandit problem for each context type, but generalization across contexts is crucial. Typically, a structured assumption for generalization is employed, such as parametric models $\mu_a(x) = f(x,\theta_a)$. For example, linear models:
+$$
+\mu_a(x) = x^\top \beta_a \quad\text{or}\quad \mu_a(x) = x^\top \beta
+$$
+
+Thus, the contextual bandit blends supervised learning (reward prediction) with exploration-driven bandit methods.
+
+Another difference: exploration never fully stops in contextual bandits, as each new context may be unseen. Algorithms continuously explore new contexts.
+
+**Exploration Strategies in Contextual Bandits:** Common strategies include:
+- **$\varepsilon$-greedy:** Occasionally choosing random arms to explore.
+- **Optimism (LinUCB):** Assuming linear rewards, maintaining estimates $\hat{\theta}_a$ and selecting:
+
+  $$
+  I_t = \arg\max_a \left(x_t^\top \hat{\theta}_a + \alpha\sqrt{x_t^\top A_a^{-1} x_t}\right)
+  $$
+  
+  achieving regret $\tilde{O}(d\sqrt{n})$.
+- **Thompson Sampling:** Placing a prior on parameters, sampling from the posterior, and selecting the best sampled arm per context, also achieving $\tilde{O}(d\sqrt{n})$ regret.
+- **Epoch-Greedy (Policy Learning):** Allocating periods for exploration and re-training empirical policy, achieving $O(n^{2/3})$ regret or better.
+
+**Directed exploration:** Contextual bandits require more directed exploration. Random exploration is inefficient due to context complexity. Algorithms use structured exploration based on predictive uncertainty (UCB).
+
+**Regret in Contextual Bandits:** Regret bounds typically:
+- Linear contextual bandit: $\tilde{O}(d\sqrt{n})$
+- Finite policy classes: $O(\sqrt{|\Pi|n\log(n)})$
+
+Complex policy spaces yield higher regret unless additional structural assumptions are provided.
+
 
 
 
