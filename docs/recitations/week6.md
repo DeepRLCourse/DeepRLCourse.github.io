@@ -264,6 +264,7 @@ R_1,...,R_{t-1})$ and then sample an action-value function $Q(a)$ from the
 posterior. We then simply pick the action that maximizes the action value
 functions.
 
+
 ### **5.4 Thompson Sampling**
 Thompson Sampling is a **Bayesian approach** that models action rewards probabilistically:
 
@@ -276,6 +277,34 @@ Thompson Sampling balances exploration and exploitation in an elegant, probabili
 $$
 L_T = O(\log T).
 $$
+
+The idea is to maintain a **posterior distribution** over the possible reward distributions (or parameters) of each arm and to sample an arm according to the probability it is the best arm. In essence, at each step Thompson Sampling randomizes its action in a way that is proportional to the credibility of each action being optimal given the observed data.
+
+**Bayesian Formulation:** Assume a prior distribution for the unknown parameters of each arm’s reward distribution. For example, in a Bernoulli bandit (each play is success/failure with some unknown probability $\theta_i$), one can use independent Beta priors $\theta_i \sim \mathrm{Beta}(\alpha_i, \beta_i)$ for each arm $i$. When an arm is played and a reward observed, the prior for that arm is updated via Bayes’ rule to a posterior. Thompson Sampling then selects an arm by drawing one sample from each arm’s posterior distribution for the mean and then choosing the arm with the highest sampled mean. Concretely:
+- For each arm $i$, sample $\tilde{\mu}_i$ from the posterior of $\mu_i$ (given all data observed so far for that arm).
+- Play the arm $I_t = \arg\max_i \tilde{\mu}_i$ that has the highest sampled value.
+
+After observing the reward for arm $I_t$, update that arm’s posterior. Repeat.
+
+This procedure intuitively balances exploration and exploitation: arms that are currently uncertain (with a wide posterior) have a higher chance of occasionally yielding a high sampled $\tilde{\mu}_i$, prompting exploration, whereas arms that are likely to be good (posterior concentrated at a high mean) will usually win the sampling competition and be selected.
+
+**Derivation (Probability Matching):** Thompson Sampling can be derived as attempting to minimize Bayesian regret (expected regret with respect to the prior). It can be shown that at each step, the probability that TS selects arm $i$ is equal to the probability (under the current posterior) that arm $i$ is the optimal arm (i.e., has the highest true mean). Thus TS “matches” the selection probability to the belief of optimality. This is in fact the optimal way to choose if one were to maximize the expected reward at the next play *according to the posterior*. Another way to see it: TS maximizes $\mathbb{E}[\mu_{I_t}]$ given the current posterior by averaging over the uncertainty (it is equivalent to selecting an arm with probability of being best) – this can be shown to be the same decision a Bayesian decision-maker would make for one-step lookahead optimality.
+
+**Posterior Updating:** The exact implementation of TS depends on the reward model. In the simplest case of Bernoulli rewards:
+- Prior for arm $i$: $\mathrm{Beta}(\alpha_i, \beta_i)$.
+- Each success (reward = 1) updates $\alpha_i \leftarrow \alpha_i + 1$; each failure (0) updates $\beta_i \leftarrow \beta_i + 1$.
+- Sampling: draw $\tilde{\theta}_i \sim \mathrm{Beta}(\alpha_i, \beta_i)$ for each arm, then pick arm with largest $\tilde{\theta}_i$.
+
+For Gaussian rewards with unknown mean (and known variance), one could use a normal prior on the mean and update it with observed rewards (obtaining a normal posterior). For arbitrary distributions, one may use a conjugate prior if available, or approximate posteriors (leading to variants like Bootstrapped Thompson Sampling). The Bayesian nature of TS allows incorporation of prior knowledge and naturally provides a way to handle complicated reward models.
+
+**Regret and Theoretical Results:** For a long time, Thompson Sampling was used heuristically without performance guarantees, but recent advances have provided rigorous analyses. In 2012, Agrawal and Goyal proved the first regret bound for Thompson Sampling in the stochastic multi-armed bandit, showing that TS achieves $O(\ln n)$ expected regret for certain classes of problems. For instance, in a Bernoulli bandit, TS with Beta(1,1) priors (uniform) was shown to satisfy a bound of the same order as UCB1. Further work tightened these results to show that TS can achieve the Lai-Robbins lower bound constants (it is asymptotically optimal) for Bernoulli and more general parametric reward distributions. In other words, **Thompson Sampling enjoys logarithmic regret** in the stochastic setting, putting it on par with UCB in terms of order-of-growth.
+
+One notable aspect of TS is that it naturally handles the exploration–exploitation trade-off via randomness without an explicit exploration bonus or threshold. This often makes TS very effective empirically; it tends to explore “just enough” based on the uncertainty encoded in the posterior. It is also versatile and has been extended to various settings (contextual bandits, delayed rewards, etc.). The regret analysis of TS is more involved than UCB – often combining Bayesian priors with frequentist regret arguments or appealing to martingale concentration applied to the posterior – but the end result is that TS is provably good.
+
+**Pros and Cons:** Thompson Sampling is conceptually elegant and often empirically superior or comparable to UCB. It’s easy to implement for simple models (like Beta-Bernoulli). One potential downside is that it requires maintaining and sampling from a posterior; if the reward model is complex, this could be computationally heavy (though approximate methods exist). Another consideration is that TS is a randomized algorithm (the action selection is stochastic by design), so any single run is subject to randomness; however, in expectation it performs well. Unlike UCB, TS inherently uses prior assumptions; if the prior is poor, early behavior might be suboptimal (though the algorithm will eventually correct it as data overwhelms the prior).
+
+In summary, Thompson Sampling is a powerful method for exploration that leverages Bayesian reasoning. It achieves low regret (order $\ln n$) and is often near-optimal. Its use of randomness to balance exploration and exploitation is quite different from UCB’s deterministic optimism, yet both end up with similar guarantees in the stochastic bandit scenario.
+
 
 
 
