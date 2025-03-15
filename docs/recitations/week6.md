@@ -6,8 +6,8 @@ The *Multi-Armed Bandit* (MAB) problem is a fundamental decision-making challeng
 The difficulty lies in the fact that the agent does not initially know the reward distributions of the arms. It must balance **exploration** (gathering information about unknown arms) and **exploitation** (choosing the best-known arm) to optimize long-term gains.
 
 Formally, the MAB problem consists of:
-- A **finite action set** \( \mathcal{A} \) with \( k \) possible actions.
-- A **reward distribution** \( \mathcal{R}^a \) for each action \( a \), where \( R_t \sim \mathcal{R}^{A_t} \) represents the reward obtained at time \( t \).
+- A **finite action set** $$\mathcal{A}$$ with $$k$$ possible actions.
+- A **reward distribution** $$\mathcal{R}^a$$ for each action $$a$$ where $$R_t \sim \mathcal{R}^{A_t}$$ represents the reward obtained at time $$t$$.
 - The objective is to maximize the **cumulative reward** over \( T \) steps:
   
   $$
@@ -30,45 +30,45 @@ The MAB framework is used in several fields:
 
 ## 2. Action-Value Methods and Types
 
-To solve the MAB problem, we need a way to estimate action values. The **action-value function** \( Q_t(a) \) estimates the expected reward of choosing action \( a \) at time step \( t \):
+To solve the MAB problem, we need a way to estimate action values. The **action-value function** $$Q_t(a)$$ estimates the expected reward of choosing action $$a$$ at time step $$t$$:
 
 $$
 Q_t(a) \approx q_*(a).
 $$
 
-We define **sample-average estimation** of \( Q_t(a) \) as:
+We define **sample-average estimation** of $$Q_t(a)$$ as:
 
 $$
 Q_t(a) = \frac{1}{N_t(a)} \sum_{i=1}^{N_t(a)} R_i
 $$
 
 where:
-- \( N_t(a) \) is the number of times action \( a \) has been selected.
-- \( R_i \) is the reward received when selecting \( a \).
+- $$N_t(a)$$ is the number of times action $$a$$ has been selected.
+- $$R_i$$ is the reward received when selecting $$a$$.
 
 ### **Incremental Update Rule for Efficient Computation**
-Instead of storing all past rewards, we can update \( Q_t(a) \) incrementally:
+Instead of storing all past rewards, we can update $$Q_t(a)$$ incrementally:
 
 $$
 Q_{t+1}(a) = Q_t(a) + \frac{1}{N_t(a)} (R_t - Q_t(a)).
 $$
 
 ### **Constant Step-Size Update (For Nonstationary Problems)**
-When dealing with **changing reward distributions**, we use a **constant step-size** \( \alpha \):
+When dealing with **changing reward distributions**, we use a **constant step-size** $$\alpha$$:
 
 $$
 Q_{t+1}(a) = Q_t(a) + \alpha (R_t - Q_t(a)).
 $$
 
-where \( \alpha \) determines **how much weight** is given to recent rewards.
+where $$\alpha$$ determines **how much weight** is given to recent rewards.
 
-- If \( \alpha = \frac{1}{N_t(a)} \), this becomes **sample-average estimation**.
-- If \( \alpha \) is **constant**, this results in **exponentially weighted averaging**, useful for **nonstationary problems**.
+- If $$\alpha = \frac{1}{N_t(a)}$$, this becomes **sample-average estimation**.
+- If $$\alpha$$ is **constant**, this results in **exponentially weighted averaging**, useful for **nonstationary problems**.
 
 ## **3. Regret: Measuring Suboptimality**
 Furthermore, we'll now want to investigate a novel quantity known as the
 *regret*. Regret gives us an indication of the opportunity loss for picking a
-particular action \( A_t \) compared to the optimal action \( a^\star \). In symbols:
+particular action $$A_t$$ compared to the optimal action $$a^\star$$ In symbols:
 
 $$
 I_t = \mathbb{E}[v_\star - q(A_t)].
@@ -83,16 +83,16 @@ $$
 
 The goal of the agent is then to minimize the total regret, which is equivalent
 to maximizing the cumulative (total) reward. In addition to the above
-definitions, we'll now also keep a count \( N_t(a) \) which is the *expected number
-of selections for an action \( a \)*. Moreover, we define the *gap* \( \delta_a \) as
-the difference between the *expected* value \( q(a) \) of an action \( a \) and the
+definitions, we'll now also keep a count $$N_t(a)$$ which is the *expected number
+of selections for an action a*. Moreover, we define the *gap* $$\delta_a$$ as
+the difference between the *expected* value $$q(a)$$ of an action a and the
 optimal action:
 
 $$
 \Delta_a = v_\star - q(a).
 $$
 
-As such, we can give an equivalent definition of the regret \( L_t \) in terms of
+As such, we can give an equivalent definition of the regret $$L_t$$ in terms of
 the gap:
 
 $$
@@ -104,20 +104,20 @@ $$
 $$
 
 Now, if we think of the regret as a function of iterations, we can make some
-observations. For example, we observe that the regret of a greedy algorithm \( A_t =
-\argmax_{a \in \mathcal{A}} Q_t(a) \) is a linear function, i.e. it increases
+observations. For example, we observe that the regret of a greedy algorithm $$A_t =
+\argmax_{a \in \mathcal{A}} Q_t(a)$$ is a linear function, i.e. it increases
 linearly with each iteration. The reason why is that we may "lock" onto a
 suboptimal action forever, thus adding a certain fixed amount of regret each
 time. An alteration that we can make here is to initialize the Q-value of each
 action to the maximum reward. This is called *optimistic initialization*. Note
-that updates to \( Q(a) \) are made via an averaging process:
+that updates to $$Q(a)$$ are made via an averaging process:
 
 $$
 Q(a) = \frac{1}{N_t(a)}\sum_{t=1}^T \mathbf{1}(A_t = a)R_t.
 $$
 
-Now, while \( \varepsilon \)-greedy approaches incur linear regret, certain
-strategies that decay \( \varepsilon \) can actually only incur logarithmic
+Now, while $$\varepsilon$$-greedy approaches incur linear regret, certain
+strategies that decay $$\varepsilon$$ can actually only incur logarithmic
 (asymptotic) regret. Either way, there is actually a lower bound on the regret
 that any algorithm can achieve (i.e. no algorithm can do better), which is
 logarithmic:
