@@ -91,7 +91,7 @@ $$
 Q_{t+1}(a) = Q_t(a) + \frac{1}{N_t(a)} (R_t - Q_t(a))
 $$
 
-This allows us to update \( Q_t(a) \) without storing all past rewards.
+This allows us to update $$Q_t(a)$$ without storing all past rewards.
 
 ### **Constant Step-Size Update (For Nonstationary Problems)**
 When dealing with **changing reward distributions**, we use a **constant step-size** $$\alpha$$:
@@ -104,6 +104,31 @@ where $$\alpha$$ determines **how much weight** is given to recent rewards.
 
 - If $$\alpha = \frac{1}{N_t(a)}$$, this becomes **sample-average estimation**.
 - If $$\alpha$$ is **constant**, this results in **exponentially weighted averaging**, useful for **nonstationary problems**.
+
+#### **Exponential Weighted Averaging**
+Expanding recursively:
+
+$$
+Q_{t+1}(a) = (1 - \alpha) Q_t(a) + \alpha R_t
+$$
+
+$$
+Q_{t+2}(a) = (1 - \alpha) Q_{t+1}(a) + \alpha R_{t+1}
+$$
+
+Expanding further:
+
+$$
+Q_{t+2}(a) = (1 - \alpha)^2 Q_t(a) + \alpha (1 - \alpha) R_t + \alpha R_{t+1}
+$$
+
+This pattern continues, showing that older rewards have exponentially decaying influence:
+
+$$
+Q_t(a) = (1 - \alpha)^t Q_0(a) + \sum_{i=0}^{t-1} \alpha (1 - \alpha)^i R_{t-i}
+$$
+
+which demonstrates the effect of **exponential weighting**.
 
 ## **3. Regret: Measuring Suboptimality**
 Furthermore, we'll now want to investigate a novel quantity known as the
