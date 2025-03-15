@@ -53,6 +53,46 @@ $$
 Q_{t+1}(a) = Q_t(a) + \frac{1}{N_t(a)} (R_t - Q_t(a)).
 $$
 
+
+#### **Derivation**
+The sample-average estimate at time step \( t+1 \) is:
+
+$$
+Q_{t+1}(a) = \frac{1}{N_{t+1}(a)} \sum_{i=1}^{N_{t+1}(a)} R_i
+$$
+
+Expanding this in terms of \( Q_t(a) \):
+
+$$
+Q_{t+1}(a) = \frac{1}{N_{t+1}(a)} \left( \sum_{i=1}^{N_t(a)} R_i + R_t \right)
+$$
+
+Since \( Q_t(a) \) is the average of previous rewards:
+
+$$
+Q_t(a) = \frac{1}{N_t(a)} \sum_{i=1}^{N_t(a)} R_i
+$$
+
+Multiplying by \( N_t(a) \):
+
+$$
+N_t(a) Q_t(a) = \sum_{i=1}^{N_t(a)} R_i
+$$
+
+Substituting into the equation:
+
+$$
+Q_{t+1}(a) = \frac{1}{N_{t+1}(a)} \left( N_t(a) Q_t(a) + R_t \right)
+$$
+
+Rewriting in update form:
+
+$$
+Q_{t+1}(a) = Q_t(a) + \frac{1}{N_t(a)} (R_t - Q_t(a))
+$$
+
+This allows us to update \( Q_t(a) \) without storing all past rewards.
+
 ### **Constant Step-Size Update (For Nonstationary Problems)**
 When dealing with **changing reward distributions**, we use a **constant step-size** $$\alpha$$:
 
