@@ -55,25 +55,25 @@ $$
 
 
 #### **Derivation**
-The sample-average estimate at time step \( t+1 \) is:
+The sample-average estimate at time step $$t+1$$ is:
 
 $$
 Q_{t+1}(a) = \frac{1}{N_{t+1}(a)} \sum_{i=1}^{N_{t+1}(a)} R_i
 $$
 
-Expanding this in terms of \( Q_t(a) \):
+Expanding this in terms of $$Q_t(a)$$:
 
 $$
 Q_{t+1}(a) = \frac{1}{N_{t+1}(a)} \left( \sum_{i=1}^{N_t(a)} R_i + R_t \right)
 $$
 
-Since \( Q_t(a) \) is the average of previous rewards:
+Since $$Q_t(a)$$ is the average of previous rewards:
 
 $$
 Q_t(a) = \frac{1}{N_t(a)} \sum_{i=1}^{N_t(a)} R_i
 $$
 
-Multiplying by \( N_t(a) \):
+Multiplying by $$N_t(a)$$:
 
 $$
 N_t(a) Q_t(a) = \sum_{i=1}^{N_t(a)} R_i
