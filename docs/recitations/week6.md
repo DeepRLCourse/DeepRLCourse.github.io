@@ -212,10 +212,10 @@ Since the agent lacks prior knowledge of the optimal action, exploration is nece
 ## **5. Exploration Strategies in Bandits**
 Several strategies help balance exploration and exploitation effectively:
 
-### **5.1. \(\epsilon\)-Greedy Exploration**
+### **5.1. $$\epsilon$$-Greedy Exploration**
 One of the simplest strategies for exploration is **\(\epsilon\)-greedy**, where:
-- With probability **\(1 - \epsilon\)**, we **exploit** by selecting the **best-known action**.
-- With probability **\(\epsilon\)**, we **explore** by selecting a **random action**.
+- With probability **$$1 - \epsilon$$**, we **exploit** by selecting the **best-known action**.
+- With probability **$$\epsilon$$**, we **explore** by selecting a **random action**.
 
 $$
 A_t =
@@ -225,7 +225,7 @@ A_t =
 \end{cases}
 $$
 
-A variation, **decaying \( \varepsilon \)-greedy**, reduces \( \varepsilon \) over time to favor exploitation as learning progresses.
+A variation, **decaying $$\varepsilon$$-greedy**, reduces $$\varepsilon$$ over time to favor exploitation as learning progresses.
 
 ### 5.2 Optimistic Initialization
 Optimistic initialization encourages exploration by initializing action-values with an artificially high value:
