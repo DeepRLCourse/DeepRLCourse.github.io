@@ -3,6 +3,8 @@
 ## **1. Definition of the Problem**
 The *Multi-Armed Bandit* (MAB) problem is a fundamental decision-making challenge in Reinforcement Learning (RL), where an agent must select from multiple actions ("arms") to maximize cumulative reward over time. This problem is widely applicable in domains such as online advertising, clinical trials, recommendation systems, and financial portfolio optimization. 
 
+![Figure 1](https://github.com/DeepRLCourse/DeepRLCourse.github.io/blob/Recitation06-Arshia/docs/assets/images/recitation/Week6/1.png)
+
 The difficulty lies in the fact that the agent does not initially know the reward distributions of the arms. It must balance **exploration** (gathering information about unknown arms) and **exploitation** (choosing the best-known arm) to optimize long-term gains.
 
 Formally, the MAB problem consists of:
@@ -180,6 +182,9 @@ that updates to $$Q(a)$$ are made via an averaging process:
 $$
 Q(a) = \frac{1}{N_t(a)}\sum_{t=1}^T \mathbf{1}(A_t = a)R_t.
 $$
+
+
+![Figure 1](https://github.com/DeepRLCourse/DeepRLCourse.github.io/blob/Recitation06-Arshia/docs/assets/images/recitation/Week6/2.png)
 
 Now, while $$\varepsilon$$-greedy approaches incur linear regret, certain
 strategies that decay $$\varepsilon$$ can actually only incur logarithmic
