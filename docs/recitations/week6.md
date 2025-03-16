@@ -238,12 +238,12 @@ In practice, an optimistic estimate is set as:
 \[
 Q_1(a) = R_{\max},
 \]
-where \( R_{\max} \) is an upper bound on the highest possible reward. Since the agent updates estimates based on actual experience, actions with lower rewards will eventually have their values corrected downward, while the truly optimal actions will remain highly rated.
+where $$R_{\max}$$ is an upper bound on the highest possible reward. Since the agent updates estimates based on actual experience, actions with lower rewards will eventually have their values corrected downward, while the truly optimal actions will remain highly rated.
 
 Optimistic initialization is particularly effective when:
 - The environment is stationary, meaning reward distributions do not change over time.
 - The number of actions is small, ensuring each action is explored adequately.
-- The upper bound estimate \( R_{\max} \) is not too high, as overly optimistic values can cause unnecessary exploration.
+- The upper bound estimate $$R_{\max}$$ is not too high, as overly optimistic values can cause unnecessary exploration.
 
 This method is simple yet effective for balancing exploration and exploitation, particularly when rewards are initially unknown.
 method ensures early exploration before settling on the best action.
