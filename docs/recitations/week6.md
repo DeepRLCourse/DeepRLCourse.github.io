@@ -171,8 +171,7 @@ $$
 $$
 
 Now, if we think of the regret as a function of iterations, we can make some
-observations. For example, we observe that the regret of a greedy algorithm $$A_t =
-\argmax_{a \in \mathcal{A}} Q_t(a)$$ is a linear function, i.e. it increases
+observations. For example, we observe that the regret of a greedy algorithm $$A_t = \argmax_{a \in \mathcal{A}} Q_t(a)$$ is a linear function, i.e. it increases
 linearly with each iteration. The reason why is that we may "lock" onto a
 suboptimal action forever, thus adding a certain fixed amount of regret each
 time. An alteration that we can make here is to initialize the Q-value of each
