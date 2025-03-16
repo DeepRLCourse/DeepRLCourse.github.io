@@ -229,15 +229,19 @@ A variation, **decaying \( \varepsilon \)-greedy**, reduces \( \varepsilon \) ov
 
 ### 5.2 Optimistic Initialization
 Optimistic initialization encourages exploration by initializing action-values with an artificially high value:
-\[
+
+$$
 Q_1(a) = Q_{  ext{max}}.
-\]
+$$
+
 This approach works by ensuring that initially, every action appears to be promising, forcing the agent to sample all actions before settling on an optimal choice. The key idea is to assume that each action is better than it actually is, prompting the agent to try them all.
 
 In practice, an optimistic estimate is set as:
-\[
+
+$$
 Q_1(a) = R_{\max},
-\]
+$$
+
 where $$R_{\max}$$ is an upper bound on the highest possible reward. Since the agent updates estimates based on actual experience, actions with lower rewards will eventually have their values corrected downward, while the truly optimal actions will remain highly rated.
 
 Optimistic initialization is particularly effective when:
