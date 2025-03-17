@@ -201,7 +201,7 @@ Q(a) = \frac{1}{N_t(a)}\sum_{t=1}^T \mathbf{1}(A_t = a)R_t.
 $$
 
 
-![Figure 1](https://github.com/DeepRLCourse/DeepRLCourse.github.io/blob/Recitation06-Arshia/docs/assets/images/recitation/Week6/2.png)
+![Figure 2](https://github.com/DeepRLCourse/DeepRLCourse.github.io/blob/Recitation06-Arshia/docs/assets/images/recitation/Week6/2.png)
 
 Now, while $$\varepsilon$$-greedy approaches incur linear regret, certain
 strategies that decay $$\varepsilon$$ can actually only incur logarithmic
@@ -282,6 +282,9 @@ the first action and a Gaussian for the second, then if the second Gaussian has
 a higher tail such that it *could* have its mean higher than the first Gaussian,
 even if the first Gaussian has currently a greater mean (but shorter tail), then
 we should pick the second one.
+
+![Figure 3](https://github.com/DeepRLCourse/DeepRLCourse.github.io/blob/Recitation06-Arshia/docs/assets/images/recitation/Week6/3.png)
+![Figure 4](https://github.com/DeepRLCourse/DeepRLCourse.github.io/blob/Recitation06-Arshia/docs/assets/images/recitation/Week6/4.png)
 
 To formalize this idea, we can think of *confidence bounds*. Let $U_t(a)$ be an
 upper confidence bound on the value of action $a$ at time $t$, such that with
