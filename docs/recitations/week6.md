@@ -12,9 +12,9 @@ Formally, the MAB problem consists of:
 - A **reward distribution** $$\mathcal{R}^a$$ for each action $$a$$ where $$R_t \sim \mathcal{R}^{A_t}$$ represents the reward obtained at time $$t$$.
 - The objective is to maximize the **cumulative reward** over \( T \) steps:
   
-  $$
-  G_T = \sum_{t=1}^{T} R_{t}.
-  $$
+$$
+G_T = \sum_{t=1}^{T} R_{t}.
+$$
 
 ### **Non-Associativity Property**
 - Unlike **full reinforcement learning problems**, **multi-armed bandits are non-associative**.
