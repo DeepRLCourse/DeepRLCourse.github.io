@@ -1,9 +1,27 @@
 # Week 6: Multi-Armed Bandits
 
 ## **1. Definition of the Problem**
-The *Multi-Armed Bandit* (MAB) problem is a fundamental decision-making challenge in Reinforcement Learning (RL), where an agent must select from multiple actions ("arms") to maximize cumulative reward over time. This problem is widely applicable in domains such as online advertising, clinical trials, recommendation systems, and financial portfolio optimization. 
+The *multi-armed bandit* problem is a very simple model that we can investigate
+to better understand the exploration/exploitation tradeoff. In this MDP, we have
+no state, but only actions and a reward function, i.e. $(\mathcal{A, R})$. Here,
+$\mathcal{A}$ is a finite set of actions ("bandit arms"), while $\mathcal{R}$ is
+a distribution over rewards for actions: $\mathcal{R}^a(r) = \Pr[R = r | A =
+a]$. At each step, then, the agent selects an action $A_t \in \mathcal{A}$ and
+the environment generates a reward ("payout") $R_t \sim \mathcal{R}^{A_t}$. The
+goal, as always, is to maximize the cumulative reward $\sum_{\tau=1}^t
+R_{\tau}$.
 
 ![Figure 1](https://github.com/DeepRLCourse/DeepRLCourse.github.io/blob/Recitation06-Arshia/docs/assets/images/recitation/Week6/1.png)
+
+We can define a few more functions and variables in this setup. The
+*action-value* (Q-value) of an action is the mean reward for that action:
+
+$$q(a) = \mathbb{E}[R | A = a].$$
+
+Furthermore, there exists __one__ optimal value $v_{\star}$, which is the
+Q-value of the best action $a^{\star}$:
+
+$$v_\star = q(a^\star) = \max_{a \in \mathcal{A}} q(a).$$
 
 The difficulty lies in the fact that the agent does not initially know the reward distributions of the arms. It must balance **exploration** (gathering information about unknown arms) and **exploitation** (choosing the best-known arm) to optimize long-term gains.
 
