@@ -434,7 +434,14 @@ The aim is for $R_n^{\text{ctx}}$ to grow sublinearly in $n$. Contexts can be st
 
 **Comparison with Standard Multi-Armed Bandits:** The standard (context-free) MAB is a special case where the context $x_t$ is constant or irrelevant. Contextual bandits must learn a more complex mapping from contexts to actions. The challenge is to learn $\mu_a(x)$ from bandit feedback (observing rewards only for chosen arms).
 
-A contextual bandit resembles performing a new bandit problem for each context type, but generalization across contexts is crucial. Typically, a structured assumption for generalization is employed, such as parametric models $\mu_a(x) = f(x,\theta_a)$. For example, linear models:
+A contextual bandit resembles performing a new bandit problem for each context type, but generalization across contexts is crucial. Typically, a structured assumption for generalization is employed, such as parametric models 
+
+$$
+\mu_a(x) = f(x,\theta_a)
+$$ 
+
+For example, linear models:
+
 $$
 \mu_a(x) = x^\top \beta_a \quad\text{or}\quad \mu_a(x) = x^\top \beta
 $$
@@ -447,11 +454,12 @@ Another difference: exploration never fully stops in contextual bandits, as each
 - **$\varepsilon$-greedy:** Occasionally choosing random arms to explore.
 - **Optimism (LinUCB):** Assuming linear rewards, maintaining estimates $\hat{\theta}_a$ and selecting:
 
-  $$
-  I_t = \arg\max_a \left(x_t^\top \hat{\theta}_a + \alpha\sqrt{x_t^\top A_a^{-1} x_t}\right)
-  $$
+$$
+I_t = \arg\max_a \left(x_t^\top \hat{\theta}_a + \alpha\sqrt{x_t^\top A_a^{-1} x_t}\right)
+$$
   
   achieving regret $\tilde{O}(d\sqrt{n})$.
+  
 - **Thompson Sampling:** Placing a prior on parameters, sampling from the posterior, and selecting the best sampled arm per context, also achieving $\tilde{O}(d\sqrt{n})$ regret.
 - **Epoch-Greedy (Policy Learning):** Allocating periods for exploration and re-training empirical policy, achieving $O(n^{2/3})$ regret or better.
 
