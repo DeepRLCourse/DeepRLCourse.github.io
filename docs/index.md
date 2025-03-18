@@ -137,7 +137,7 @@ This course provides an in-depth introduction to the field of deep reinforcement
 
 ## Logistics & Policies 
 
-- **Lectures:** Held on Sundays and Tuesdays from 1:30 PM to 3:00 PM in room 201 of the CE department.
+- **Lectures:** Held on Sundays and Tuesdays from 1:30 PM to 3:00 PM in room 102 of the CE department.
 
 - **Recitation Classes:** Weekly sessions where TAs review the last two lectures and solve related problems. These sessions will be held in person on Wednesdays, except for week 15 when there will be no recitation class.
 
