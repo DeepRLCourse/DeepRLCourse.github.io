@@ -557,6 +557,7 @@ Total possible points: 20 + 3 = 23
         <p>[ramtin.moslemi@yahoo.com](mailto:ramtin.moslemi@yahoo.com)</p>
         <p>
         [:fontawesome-brands-google-scholar:](https://scholar.google.com/citations?user=KM1izs0AAAAJ){:target="_blank"}
+        [:fontawesome-brands-github:](https://github.com/ramtinmoslemi){:target="_blank"}
         [:fontawesome-brands-linkedin-in:](https://www.linkedin.com/in/ramtin-m){:target="_blank"}
         [:material-web:](https://ramtinmoslemi.github.io){:target="_blank"}
         </p>
