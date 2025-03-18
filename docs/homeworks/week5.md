@@ -11,11 +11,11 @@ Welcome to the fifth homework assignment of the Deep Reinforcement Learning cour
 
 You can download the homework questions and the notebook from the following links:
 
-[HW4 Questions](https://raw.githubusercontent.com/DeepRLCourse/Homework-5-Questions/refs/heads/main/HW5_Questions.pdf){:target="_blank" .md-button }
+[HW5 Questions](https://raw.githubusercontent.com/DeepRLCourse/Homework-5-Questions/refs/heads/main/HW5_Questions.pdf){:target="_blank" .md-button }
 
-[HW4 Notebook 1](https://raw.githubusercontent.com/DeepRLCourse/Homework-5-Questions/refs/heads/main/RL_HW5_MCTS.ipynb){:target="_blank" .md-button }
-[HW4 Notebook 2](https://raw.githubusercontent.com/DeepRLCourse/Homework-5-Questions/refs/heads/main/RL_HW5_Dyna.ipynb){:target="_blank" .md-button }
-[HW4 Notebook 3](https://raw.githubusercontent.com/DeepRLCourse/Homework-5-Questions/refs/heads/main/RL_HW5_MPC.ipynb){:target="_blank" .md-button }
+[HW5 Notebook 1](https://raw.githubusercontent.com/DeepRLCourse/Homework-5-Questions/refs/heads/main/RL_HW5_MCTS.ipynb){:target="_blank" .md-button }
+[HW5 Notebook 2](https://raw.githubusercontent.com/DeepRLCourse/Homework-5-Questions/refs/heads/main/RL_HW5_Dyna.ipynb){:target="_blank" .md-button }
+[HW5 Notebook 3](https://raw.githubusercontent.com/DeepRLCourse/Homework-5-Questions/refs/heads/main/RL_HW5_MPC.ipynb){:target="_blank" .md-button }
 
 You can use this [template for your answers](https://github.com/DeepRLCourse/Homework-5-Template){:target="_blank"}.
 
