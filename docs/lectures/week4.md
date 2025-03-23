@@ -55,3 +55,13 @@ description: This page contains the lecture materials for Week 4 of the Deep Rei
 </object>
 
 [Download Slides](/assets/lectures/slides/Lecture_8.pdf){:target="_blank" .md-button .md-button--primary }
+
+### Lecture Summary
+
+<object class="pdf" 
+        data="/assets/lectures/summaries/Lecture_8_Summary.pdf"
+        width="996"
+        height="560">
+</object>
+
+[Download Summary](/assets/lectures/summaries/Lecture_8_Summary.pdf){:target="_blank" .md-button .md-button--primary }
