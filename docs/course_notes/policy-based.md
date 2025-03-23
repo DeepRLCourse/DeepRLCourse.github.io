@@ -360,9 +360,7 @@ The process is pretty straightforward:
 
   
 
-2. Generate one trajectory on policy $\pi_{\theta}$:
-
-$S_1, A_1, R_2, S_2, A_2, \dots, S_T$.
+2. Generate one trajectory on policy $\pi_{\theta}$: $S_1, A_1, R_2, S_2, A_2, \dots, S_T$.
 
   
 
@@ -863,9 +861,7 @@ state-value function $V(s)$.
 
   
 
--  **Actor**: Updates the policy parameters $\theta$ for
-
-$\pi_{\theta}(a | s)$, in the direction suggested by the critic.
+-  **Actor**: Updates the policy parameters $\theta$ for $\pi_{\theta}(a | s)$, in the direction suggested by the critic.
 
   
 
@@ -884,21 +880,15 @@ $w$ at random.
 
 3. For each time step $t$:
 
-  
-
     1. Sample reward $r_t$ and next state $s_{t+1}$.
 
   
 
-    2. Then sample the next action $a_{t+1}$ from policy:
-
-    $\pi_{\theta}(s_{t+1})$
+    2. Then sample the next action $a_{t+1}$ from policy: $\pi_{\theta}(s_{t+1})$
 
   
 
-    3. Update the policy parameters:
-
-$$\theta  \leftarrow  \theta + \alpha  \nabla_{\theta} \log  \pi_{\theta}(a_t | s_t) Q(s_t, a_t)$$
+    3. Update the policy parameters: $\theta  \leftarrow  \theta + \alpha  \nabla_{\theta} \log  \pi_{\theta}(a_t | s_t) Q(s_t, a_t)$
 
   
 
