@@ -362,7 +362,7 @@ The process is pretty straightforward:
 
 2. Generate one trajectory on policy $\pi_{\theta}$:
 
-$S_1, A_1, R_2, S_2, A_2, \dots, S_T$.
+$$S_1, A_1, R_2, S_2, A_2, \dots, S_T$$
 
   
 
