@@ -1141,7 +1141,6 @@ value function parameter updates, respectively.
 
 
 
-
 <details markdown="1">
 <summary>
 Actor-Critic Architecture: Cartpole Example
@@ -1240,7 +1239,14 @@ provides feedback on the quality of the actor's decisions. As a result,
 the agent converges to a more optimal policy, achieving longer balancing
 times and better performance in the task.
 
+$$
+E=mC^2
+$$
+
 </details>
+
+??? note "Title"
+    akbar
 
 # Summary of Variance Reduction Methods
 
