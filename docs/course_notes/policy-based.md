@@ -1,4 +1,4 @@
-# Policy-Based Methods
+# Week 3: Policy-Based Methods
 
 
   
@@ -44,7 +44,6 @@ estimation, baseline subtraction) to improve learning efficiency.
 
 
 
-# Deriving the Policy Gradient Theorem
 
 ## Policy Gradient
 
@@ -103,7 +102,7 @@ $\theta$ for $\pi_{\theta}$ that produces the highest return.
 
   
 
-## Policy Gradient Theorem
+### Policy Gradient Theorem
 
 
 
@@ -133,7 +132,7 @@ $$\propto  \sum_{s \in  \mathcal{S}} d^{\pi}(s) \sum_{a \in  \mathcal{A}} Q^{\pi
 
   
 
-## Proof of Policy Gradient Theorem
+### Proof of Policy Gradient Theorem
 
   
 
@@ -248,7 +247,7 @@ proof and figure out why the policy gradient theorem is correct.
 
   
 
-## Policy Gradient in Continuous Action Space {#policy-gradient-in-continuous-action-space .unnumbered}
+### Policy Gradient in Continuous Action Space 
 
   
 
@@ -326,7 +325,7 @@ continuous action $a$ given state $s$,
 
   
 
-## REINFORCE {#reinforce .unnumbered}
+### REINFORCE 
 
   
 
@@ -349,7 +348,7 @@ and that's why it is a Monte-Carlo method.
 
   
 
-### Algorithm {#algorithm .unnumbered}
+#### Algorithm 
 
   
 
@@ -391,7 +390,7 @@ action-value, and if applied, we would use **advantage** $A(s,a) = Q(s,a) - V(s)
 
   
 
-###  $G(s)$ in Continuous Action Space 
+####  $G(s)$ in Continuous Action Space 
 
   
 
@@ -421,7 +420,7 @@ the policy.
 
   
 
-### Monte Carlo Approximation of $Q^{\pi}(s,a)$
+#### Monte Carlo Approximation of $Q^{\pi}(s,a)$
 
   
 
@@ -442,7 +441,7 @@ $$\nabla_{\theta} J(\theta) = \mathbb{E}_{s \sim d^{\pi}, a \sim  \pi_{\theta}} 
 
   
 
-### Variance Reduction: Advantage Function
+#### Variance Reduction: Advantage Function
 
   
 
@@ -474,10 +473,10 @@ the expected policy action.
 
   
 
-# bias and variance   
+## Bias and Variance   
 In this section we delve deeper into the bias and variance problem in RL especially in policy gradient 
 
-## Monte Carlo Estimators in Reinforcement Learning
+### Monte Carlo Estimators in Reinforcement Learning
 
   
 
@@ -519,7 +518,7 @@ rewards, state-value functions, and action-value functions.
 
   
 
-## Bias in Policy Gradient Methods
+### Bias in Policy Gradient Methods
 
   
 
@@ -530,7 +529,7 @@ computation errors.
 
   
 
-### Sources of Bias
+#### Sources of Bias
 
   
 
@@ -562,7 +561,7 @@ gradient computation.
 
 
 
-### Biased vs. Unbiased Estimation
+#### Biased vs. Unbiased Estimation
 
   
 
@@ -591,7 +590,7 @@ sizes, ensuring $\mathbb{E}[S^2_{\text{unbiased}}] = \sigma^2$.
 
   
 
-## Variance in Policy Gradient Methods
+### Variance in Policy Gradient Methods
 
   
 
@@ -601,7 +600,7 @@ instability and slow convergence.
 
   
 
-### Sources of Variance
+#### Sources of Variance
 
   
 
@@ -628,7 +627,7 @@ increase variance by adding stochasticity to action selection.
     failure. These inconsistencies slow down convergence.
 
 
-## Techniques to Reduce Variance in Policy Gradient Methods
+### Techniques to Reduce Variance in Policy Gradient Methods
 
   
 
@@ -637,7 +636,7 @@ while preserving unbiased gradient estimates.
 
   
 
-### Baseline Subtraction
+#### Baseline Subtraction
 
   
 
@@ -686,7 +685,7 @@ gradient estimate while reducing variance.
 
   
 
-### Causality Trick and Reward-to-Go Estimation
+#### Causality Trick and Reward-to-Go Estimation
 
   
 
@@ -755,7 +754,7 @@ compared to the traditional Monte Carlo methods.
 
   
 
-### Discount Factor Adjustment
+#### Discount Factor Adjustment
 
   
 
@@ -786,7 +785,7 @@ increases variance. A balance is needed.
 
   
 
-### Advantage Estimation and Actor-Critic Methods
+#### Advantage Estimation and Actor-Critic Methods
 
   
 
@@ -841,7 +840,7 @@ efficiency.
     </center>
 
 
-### Actor-Critic
+#### Actor-Critic
 
   
 
@@ -933,7 +932,6 @@ value function parameter updates, respectively.
     /> 
     </center>
 
-### Actor-Critic Architecture: Cartpole Example
 
 
 
@@ -1037,7 +1035,7 @@ value function parameter updates, respectively.
 
 
 
-## Summary of Variance Reduction Methods
+### Summary of Variance Reduction Methods
 
 
   
