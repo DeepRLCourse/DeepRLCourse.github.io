@@ -937,10 +937,12 @@ value function parameter updates, respectively.
 
 
 
+
 ???+ example "Actor-Critic Architecture: Cartpole Example"
 
     Let's illustrate the Actor-Critic architecture with an example of a
     classic reinforcement learning problem: the *Cartpole* environment.
+
 
     <center> 
     <img src="\assets\images\course_notes\policy-based\cartpole.png"
@@ -1034,7 +1036,9 @@ value function parameter updates, respectively.
 
 
 
+
 ## Summary of Variance Reduction Methods
+
 
   
 
