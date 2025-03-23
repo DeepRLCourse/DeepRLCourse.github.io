@@ -238,7 +238,7 @@ markdown_extensions:
   - abbr
   - extra
   - admonition
-  - pymdownx.blocks.details
+  - pymdownx.details
 
 
   

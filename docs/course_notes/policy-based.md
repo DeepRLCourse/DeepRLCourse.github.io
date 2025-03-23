@@ -1,16 +1,5 @@
 # Policy-Based Methods
 
-author:
-
-- Lecture Notes
-
-title: Policy Gradient Methods and the REINFORCE Algorithm
-
----
-
-  
-
-# Introduction
 
   
 
@@ -54,19 +43,6 @@ bootstrapping.
 estimation, baseline subtraction) to improve learning efficiency.
 
 
-## Why Policy Gradient Methods?
-
-Unlike value-based methods (e.g., Q-learning), which rely on estimating
-value functions, policy gradient methods:
-- Can naturally handle stochastic policies, which are crucial in
-environments requiring exploration.
-
-- Work well in continuous action spaces, where discrete action methods
-become infeasible.
-
-
-- Can directly optimize differentiable policy representations, such as
-neural networks.
 
 # Deriving the Policy Gradient Theorem
 
@@ -129,7 +105,8 @@ $\theta$ for $\pi_{\theta}$ that produces the highest return.
 
 ## Policy Gradient Theorem
 
-  
+
+
 
 Computing the gradient $\nabla_{\theta}J(\theta)$ is tricky because it
 depends on both the action selection (directly determined by
@@ -141,7 +118,7 @@ estimate the effect on the state distribution by a policy update.
   
 
 Luckily, the **policy gradient theorem** comes to save the world!
-Woohoo! It provides a nice reformation of the derivative of the
+ It provides a nice reformation of the derivative of the
 objective function to not involve the derivative of the state
 distribution $d^{\pi}(\cdot)$ and simplify the gradient computation
 $\nabla_{\theta}J(\theta)$ a lot.
@@ -163,194 +140,111 @@ $$\propto  \sum_{s \in  \mathcal{S}} d^{\pi}(s) \sum_{a \in  \mathcal{A}} Q^{\pi
 This session is pretty dense, as it is the time for us to go through the
 proof and figure out why the policy gradient theorem is correct.
 
-  
-
-We first start with the derivative of the state value function:
-
-  
-
-$$\nabla_{\theta} V^{\pi}(s) = \nabla_{\theta} \left( \sum_{a \in  \mathcal{A}} \pi_{\theta}(a|s) Q^{\pi}(s,a) \right)$$
-
-$$= \sum_{a \in  \mathcal{A}} \left( \nabla_{\theta} \pi_{\theta}(a|s) Q^{\pi}(s,a) + \pi_{\theta}(a|s) \nabla_{\theta} Q^{\pi}(s,a) \right) \quad  \text{; Derivative product rule.}$$
-
-$$= \sum_{a \in  \mathcal{A}} \left( \nabla_{\theta} \pi_{\theta}(a|s) Q^{\pi}(s,a) + \pi_{\theta}(a|s) \nabla_{\theta} \sum_{s', r} P(s',r|s,a) (r + V^{\pi}(s')) \right) \quad  \text{; Extend } Q^{\pi} \text{ with future state value.}$$
-
-$$= \sum_{a \in  \mathcal{A}} \left( \nabla_{\theta} \pi_{\theta}(a|s) Q^{\pi}(s,a) + \pi_{\theta}(a|s) \sum_{s',r} P(s',r|s,a) \nabla_{\theta} V^{\pi}(s') \right)$$
-
-$$= \sum_{a \in  \mathcal{A}} \left( \nabla_{\theta} \pi_{\theta}(a|s) Q^{\pi}(s,a) + \pi_{\theta}(a|s) \sum_{s'} P(s'|s,a) \nabla_{\theta} V^{\pi}(s') \right) \quad  \text{; Because } P(s'|s,a) = \sum_{r} P(s',r|s,a)$$
-
-Now we have:
-
-$$\nabla_{\theta} V^{\pi}(s) = \sum_{a \in  \mathcal{A}} \left( \nabla_{\theta} \pi_{\theta}(a|s) Q^{\pi}(s,a) + \pi_{\theta}(a|s) \sum_{s'} P(s'|s,a) \nabla_{\theta} V^{\pi}(s') \right)$$
-
-  
-
-This equation has a nice recursive form (see the red parts!) and the
-future state value function $V^{\pi}(s')$ can be repeated unrolling by
-following the same equation.
-
-  
-
-Let's consider the following visitation sequence and label the
-probability of transitioning from state $s$ to state $x$ with policy
-$\pi_{\theta}$ after $k$ step as $\rho^{\pi}(s \to x, k)$.
-
-  
-
-$$s \xrightarrow{a \sim  \pi_{\theta}(\cdot | s)} s' \xrightarrow{a' \sim  \pi_{\theta}(\cdot | s')} s'' \xrightarrow{a'' \sim  \pi_{\theta}(\cdot | s'')} \dots$$
-
-  
-
-\- When $k = 0$: $\rho^{\pi}(s \to s, k = 0) = 1$.
-
-  
-
-\- When $k = 1$, we scan through all possible actions and sum up the
-transition probabilities to the target state:
-
-$\rho^{\pi}(s \to s', k = 1) = \sum_{a} \pi_{\theta}(a|s) P(s'|s,a)$.
-
-  
-
-\- Imagine that the goal is to go from state $s$ to $x$ after $k+1$
-steps while following policy $\pi_{\theta}$. We can first travel from
-$s$ to a middle point $s'$ (any state can be a middle point, $s' \in S$)
-after $k$ steps and then go to the final state $x$ during the last step.
-
-In this way, we are able to update the visitation probability
-recursively:
-
-$\rho^{\pi}(s \to x, k + 1) = \sum_{s'} \rho^{\pi}(s \to s', k) \rho^{\pi}(s' \to x, 1)$.
-
-  
-
-Then we go back to unroll the recursive representation of
-$\nabla_{\theta}V^{\pi}(s)$! Let
-  
-
-$$\phi(s) = \sum_{a \in  \mathcal{A}} \nabla_{\theta} \pi_{\theta}(a|s) Q^{\pi}(s,a)$$
+ 
+???+ warning 
+    This proof may be unnecessary for the first phase of the course. 
+??? note "proof"
 
 
-to simplify the maths. If we keep on extending
-$\nabla_{\theta}V^{\pi}(\cdot)$ infinitely, it is easy to find out that
-we can transition from the starting state $s$ to any state after any
-number of steps in this unrolling process and by summing up all the
-visitation probabilities, we get $\nabla_{\theta}V^{\pi}(s)$!
+    We first start with the derivative of the state value function:
 
-  
+    $$
+    \begin{aligned}
+    \nabla_{\theta} V^{\pi}(s) &= \nabla_{\theta} \left( \sum_{a \in \mathcal{A}} \pi_{\theta}(a|s) Q^{\pi}(s,a) \right) \\
+    &= \sum_{a \in \mathcal{A}} \left( \nabla_{\theta} \pi_{\theta}(a|s) Q^{\pi}(s,a) + \pi_{\theta}(a|s) \nabla_{\theta} Q^{\pi}(s,a) \right) \quad \text{; Derivative product rule.} \\
+    &= \sum_{a \in \mathcal{A}} \left( \nabla_{\theta} \pi_{\theta}(a|s) Q^{\pi}(s,a) + \pi_{\theta}(a|s) \nabla_{\theta} \sum_{s', r} P(s',r|s,a) (r + V^{\pi}(s')) \right) \quad \text{; Extend } Q^{\pi} \text{ with future state value.} \\
+    &= \sum_{a \in \mathcal{A}} \left( \nabla_{\theta} \pi_{\theta}(a|s) Q^{\pi}(s,a) + \pi_{\theta}(a|s) \sum_{s',r} P(s',r|s,a) \nabla_{\theta} V^{\pi}(s') \right) \\
+    &= \sum_{a \in \mathcal{A}} \left( \nabla_{\theta} \pi_{\theta}(a|s) Q^{\pi}(s,a) + \pi_{\theta}(a|s) \sum_{s'} P(s'|s,a) \nabla_{\theta} V^{\pi}(s') \right) \quad \text{; Because } P(s'|s,a) = \sum_{r} P(s',r|s,a)
+    \end{aligned}
+    $$
 
-$$\nabla_{\theta}V^{\pi}(s)$$
+    Now we have:
 
-  
+    $$
+    \begin{aligned}
+    \nabla_{\theta} V^{\pi}(s) &= \sum_{a \in \mathcal{A}} \left( \nabla_{\theta} \pi_{\theta}(a|s) Q^{\pi}(s,a) + \pi_{\theta}(a|s) \sum_{s'} P(s'|s,a) \nabla_{\theta} V^{\pi}(s') \right)
+    \end{aligned}
+    $$
 
-$$= \phi(s) + \sum_{a} \pi_{\theta}(a|s) \sum_{s'} P(s'|s,a) \nabla_{\theta}V^{\pi}(s')$$
+    This equation has a nice recursive form, and the future state value function $V^{\pi}(s')$ can be repeatedly unrolled by following the same equation.
 
-  
+    Let's consider the following visitation sequence and label the probability of transitioning from state $s$ to state $x$ with policy $\pi_{\theta}$ after $k$ steps as $\rho^{\pi}(s \to x, k)$.
 
-$$= \phi(s) + \sum_{s'} \sum_{a} \pi_{\theta}(a|s) P(s'|s,a) \nabla_{\theta}V^{\pi}(s')$$
+    $$
+    s \xrightarrow{a \sim \pi_{\theta}(\cdot | s)} s' \xrightarrow{a' \sim \pi_{\theta}(\cdot | s')} s'' \xrightarrow{a'' \sim \pi_{\theta}(\cdot | s'')} \dots
+    $$
 
-  
+    - When $k = 0$: $\rho^{\pi}(s \to s, k = 0) = 1$.
 
-$$= \phi(s) + \sum_{s'} \rho^{\pi}(s \to s', 1) \nabla_{\theta}V^{\pi}(s')$$
+    - When $k = 1$, we scan through all possible actions and sum up the transition probabilities to the target state:
 
-  
+    $$
+    \rho^{\pi}(s \to s', k = 1) = \sum_{a} \pi_{\theta}(a|s) P(s'|s,a).
+    $$
 
-$$= \phi(s) + \sum_{s'} \rho^{\pi}(s \to s', 1) \sum_{a \in  \mathcal{A}} \left( \nabla_{\theta} \pi_{\theta}(a|s') Q^{\pi}(s',a) + \pi_{\theta}(a|s') \sum_{s''} P(s''|s',a) \nabla_{\theta}V^{\pi}(s'') \right)$$
+    - Imagine that the goal is to go from state $s$ to $x$ after $k+1$ steps while following policy $\pi_{\theta}$. We can first travel from $s$ to a middle point $s'$ (any state can be a middle point, $s' \in S$) after $k$ steps and then go to the final state $x$ during the last step. In this way, we are able to update the visitation probability recursively:
 
-  
+    $$
+    \rho^{\pi}(s \to x, k + 1) = \sum_{s'} \rho^{\pi}(s \to s', k) \rho^{\pi}(s' \to x, 1).
+    $$
 
-$$= \phi(s) + \sum_{s'} \rho^{\pi}(s \to s', 1) \left[ \phi(s') + \sum_{s''} \rho^{\pi}(s' \to s'', 1) \nabla_{\theta}V^{\pi}(s'') \right]$$
+    Then we go back to unroll the recursive representation of $\nabla_{\theta}V^{\pi}(s)$! Let
 
-  
+    $$
+    \phi(s) = \sum_{a \in \mathcal{A}} \nabla_{\theta} \pi_{\theta}(a|s) Q^{\pi}(s,a)
+    $$
 
-$$= \phi(s) + \sum_{s'} \rho^{\pi}(s \to s', 1) \phi(s') + \sum_{s'} \rho^{\pi}(s \to s', 1) \sum_{s''} \rho^{\pi}(s' \to s'', 1) \nabla_{\theta}V^{\pi}(s'')$$
+    to simplify the maths. If we keep on extending $\nabla_{\theta}V^{\pi}(\cdot)$ infinitely, it is easy to find out that we can transition from the starting state $s$ to any state after any number of steps in this unrolling process and by summing up all the visitation probabilities, we get $\nabla_{\theta}V^{\pi}(s)$!
 
-  
+    $$
+    \begin{aligned}
+    \nabla_{\theta}V^{\pi}(s) &= \phi(s) + \sum_{a} \pi_{\theta}(a|s) \sum_{s'} P(s'|s,a) \nabla_{\theta}V^{\pi}(s') \\
+    &= \phi(s) + \sum_{s'} \sum_{a} \pi_{\theta}(a|s) P(s'|s,a) \nabla_{\theta}V^{\pi}(s') \\
+    &= \phi(s) + \sum_{s'} \rho^{\pi}(s \to s', 1) \nabla_{\theta}V^{\pi}(s') \\
+    &= \phi(s) + \sum_{s'} \rho^{\pi}(s \to s', 1) \sum_{a \in \mathcal{A}} \left( \nabla_{\theta} \pi_{\theta}(a|s') Q^{\pi}(s',a) + \pi_{\theta}(a|s') \sum_{s''} P(s''|s',a) \nabla_{\theta}V^{\pi}(s'') \right) \\
+    &= \phi(s) + \sum_{s'} \rho^{\pi}(s \to s', 1) \left[ \phi(s') + \sum_{s''} \rho^{\pi}(s' \to s'', 1) \nabla_{\theta}V^{\pi}(s'') \right] \\
+    &= \phi(s) + \sum_{s'} \rho^{\pi}(s \to s', 1) \phi(s') + \sum_{s'} \rho^{\pi}(s \to s', 1) \sum_{s''} \rho^{\pi}(s' \to s'', 1) \nabla_{\theta}V^{\pi}(s'') \\
+    &= \phi(s) + \sum_{s'} \rho^{\pi}(s \to s', 1) \phi(s') + \sum_{s''} \rho^{\pi}(s \to s'', 2) \nabla_{\theta}V^{\pi}(s'') \quad \text{; Consider } s' \text{ as the middle point for } s \to s''. \\
+    &= \phi(s) + \sum_{s'} \rho^{\pi}(s \to s', 1) \phi(s') + \sum_{s''} \rho^{\pi}(s \to s'', 2) \phi(s'') + \sum_{s'''} \rho^{\pi}(s \to s''', 3) \nabla_{\theta}V^{\pi}(s''') \\
+    &= \dots \quad \text{; Repeatedly unrolling the part of } \nabla_{\theta}V^{\pi}(\cdot) \\
+    &= \sum_{x \in \mathcal{S}} \sum_{k=0}^{\infty} \rho^{\pi}(s \to x, k) \phi(x)
+    \end{aligned}
+    $$
 
-$$= \phi(s) + \sum_{s'} \rho^{\pi}(s \to s', 1) \phi(s') + \sum_{s''} \rho^{\pi}(s \to s'', 2) \nabla_{\theta}V^{\pi}(s'') \quad  \text{; Consider } s' \text{ as the middle point for } s \to s''.$$
+    The nice rewriting above allows us to exclude the derivative of Q-value function, $\nabla_{\theta} Q^{\pi}(s,a)$. By plugging it into the objective function $J(\theta)$, we are getting the following:
+
+    $$
+    \begin{aligned}
+    \nabla_{\theta}J(\theta) &= \nabla_{\theta}V^{\pi}(s_0) \\
+    &= \sum_{s} \sum_{k=0}^{\infty} \rho^{\pi}(s_0 \to s, k) \phi(s) \quad \text{; Starting from a random state } s_0 \\
+    &= \sum_{s} \eta(s) \phi(s) \quad \text{; Let } \eta(s) = \sum_{k=0}^{\infty} \rho^{\pi}(s_0 \to s, k) \\
+    &= \left( \sum_{s} \eta(s) \right) \sum_{s} \frac{\eta(s)}{\sum_{s} \eta(s)} \phi(s) \quad \text{; Normalize } \eta(s), s \in \mathcal{S} \text{ to be a probability distribution.} \\
+    &\propto \sum_{s} \frac{\eta(s)}{\sum_{s} \eta(s)} \phi(s) \quad \text{; } \sum_{s} \eta(s) \text{ is a constant} \\
+    &= \sum_{s} d^{\pi}(s) \sum_{a} \nabla_{\theta} \pi_{\theta}(a|s) Q^{\pi}(s,a) \quad d^{\pi}(s) = \frac{\eta(s)}{\sum_{s} \eta(s)} \text{ is stationary distribution.}
+    \end{aligned}
+    $$
+
+    In the episodic case, the constant of proportionality ($\sum_{s} \eta(s)$) is the average length of an episode; in the continuing case, it is 1. The gradient can be further written as:
+
+    $$
+    \begin{aligned}
+    \nabla_{\theta}J(\theta) &\propto \sum_{s \in \mathcal{S}} d^{\pi}(s) \sum_{a \in \mathcal{A}} Q^{\pi}(s,a) \nabla_{\theta} \pi_{\theta}(a|s) \\
+    &= \sum_{s \in \mathcal{S}} d^{\pi}(s) \sum_{a \in \mathcal{A}} \pi_{\theta}(a|s) Q^{\pi}(s,a) \frac{\nabla_{\theta} \pi_{\theta}(a|s)}{\pi_{\theta}(a|s)} \quad \text{; Because } \ln(x)'=1/x \\
+    &= \mathbb{E}_{\pi} [Q^{\pi}(s,a) \nabla_{\theta} \ln \pi_{\theta}(a|s)]
+    \end{aligned}
+    $$
+
+    Where $\mathbb{E}_{\pi}$ refers to $\mathbb{E}_{s \sim d^{\pi}, a \sim \pi_{\theta}}$ when both state and action distributions follow the policy $\pi_{\theta}$ (on policy).
+
+    The policy gradient theorem lays the theoretical foundation for various policy gradient algorithms. This vanilla policy gradient update has no bias but high variance. Many following algorithms were proposed to reduce the variance while keeping the bias unchanged.
+
+    $$
+    \nabla_{\theta}J(\theta) = \mathbb{E}_{\pi} [Q^{\pi}(s,a) \nabla_{\theta} \ln \pi_{\theta}(a|s)]
+    $$
 
   
 
-$$= \phi(s) + \sum_{s'} \rho^{\pi}(s \to s', 1) \phi(s') + \sum_{s''} \rho^{\pi}(s \to s'', 2) \phi(s'') + \sum_{s'''} \rho^{\pi}(s \to s''', 3) \nabla_{\theta}V^{\pi}(s''')$$
 
-  
-
-$$= \dots  \quad  \text{; Repeatedly unrolling the part of } \nabla_{\theta}V^{\pi}(\cdot)$$
-
-  
-
-$$= \sum_{x \in  \mathcal{S}} \sum_{k=0}^{\infty} \rho^{\pi}(s \to x, k) \phi(x)$$
-
-  
-
-The nice rewriting above allows us to exclude the derivative of Q-value
-function, $\nabla_{\theta} Q^{\pi}(s,a)$. By plugging it into the
-objective function $J(\theta)$, we are getting the following:
-
-  
-
-$$\nabla_{\theta}J(\theta) = \nabla_{\theta}V^{\pi}(s_0)$$
-
-  
-
-$$= \sum_{s} \sum_{k=0}^{\infty} \rho^{\pi}(s_0  \to s, k) \phi(s) \quad  \text{; Starting from a random state } s_0$$
-
-  
-
-$$= \sum_{s} \eta(s) \phi(s) \quad  \text{; Let } \eta(s) = \sum_{k=0}^{\infty} \rho^{\pi}(s_0  \to s, k)$$
-
-  
-
-$$= \left( \sum_{s} \eta(s) \right) \sum_{s} \frac{\eta(s)}{\sum_{s} \eta(s)} \phi(s) \quad  \text{; Normalize } \eta(s), s \in  \mathcal{S} \text{ to be a probability distribution.}$$
-
-  
-
-$$\propto  \sum_{s} \frac{\eta(s)}{\sum_{s} \eta(s)} \phi(s) \quad  \text{; } \sum_{s} \eta(s) \text{ is a constant}$$
-
-  
-
-$$= \sum_{s} d^{\pi}(s) \sum_{a} \nabla_{\theta} \pi_{\theta}(a|s) Q^{\pi}(s,a) \quad d^{\pi}(s) = \frac{\eta(s)}{\sum_{s} \eta(s)} \text{ is stationary distribution.}$$
-
-  
-
-In the episodic case, the constant of proportionality
-($\sum_{s} \eta(s)$) is the average length of an episode; in the
-continuing case, it is 1. The gradient can be further written as:
-
-  
-
-$$\nabla_{\theta}J(\theta) \propto  \sum_{s \in  \mathcal{S}} d^{\pi}(s) \sum_{a \in  \mathcal{A}} Q^{\pi}(s,a) \nabla_{\theta} \pi_{\theta}(a|s)$$
-
-  
-
-$$= \sum_{s \in  \mathcal{S}} d^{\pi}(s) \sum_{a \in  \mathcal{A}} \pi_{\theta}(a|s) Q^{\pi}(s,a) \frac{\nabla_{\theta} \pi_{\theta}(a|s)}{\pi_{\theta}(a|s)} \quad  \text{; Because } \ln(x)'=1/x$$
-
-  
-
-$$= \mathbb{E}_{\pi} [Q^{\pi}(s,a) \nabla_{\theta} \ln  \pi_{\theta}(a|s)]$$
-
-  
-
-Where $\mathbb{E}_{\pi}$ refers to
-$\mathbb{E}_{s \sim d^{\pi}, a \sim  \pi_{\theta}}$ when both state and
-action distributions follow the policy $\pi_{\theta}$ (on policy).
-
-  
-
-The policy gradient theorem lays the theoretical foundation for various
-policy gradient algorithms. This vanilla policy gradient update has no
-bias but high variance. Many following algorithms were proposed to
-reduce the variance while keeping the bias unchanged.
-
-  
-
-$$\nabla_{\theta}J(\theta) = \mathbb{E}_{\pi} [Q^{\pi}(s,a) \nabla_{\theta} \ln  \pi_{\theta}(a|s)]$$
-
-  
-
-Here is a nice summary of a general form of policy gradient methods
-borrowed from the **GAE** (general advantage estimation) paper
-thoroughly discussed several components in GAE, highly recommended.
 
   
 
@@ -402,53 +296,33 @@ continuous action $a$ given state $s$,
 
   
 
-## Gaussian Policy Example {#gaussian-policy-example .unnumbered}
-
+???+ example "Gaussian Policy Example"
   
 
-A common choice for a continuous policy is a Gaussian distribution:
+    A common choice for a continuous policy is a Gaussian distribution:
 
-  
+    $$a \sim  \pi_{\theta}(a|s) = \mathcal{N}(\mu_{\theta}(s), \Sigma_{\theta}(s))$$
 
-$$a \sim  \pi_{\theta}(a|s) = \mathcal{N}(\mu_{\theta}(s), \Sigma_{\theta}(s))$$
+    where:
+    
+    - $\mu_{\theta}(s)$ is the mean of the action distribution,
+    parameterized by $\theta$,
 
-  
 
-where:
+    - $\Sigma_{\theta}(s)$ is the covariance matrix (often assumed
+    diagonal or fixed).
 
-  
+    For a Gaussian policy, the logarithm of the probability density is:
 
-- $\mu_{\theta}(s)$ is the mean of the action distribution,
-parameterized by $\theta$,
+    $$\ln  \pi_{\theta}(a|s) = -\frac{1}{2} (a - \mu_{\theta}(s))^T \Sigma_{\theta}^{-1} (a - \mu_{\theta}(s)) - \frac{1}{2} \ln |\Sigma_{\theta}|$$
 
-  
+    Taking the gradient:
 
-- $\Sigma_{\theta}(s)$ is the covariance matrix (often assumed
-diagonal or fixed).
+    $$\nabla_{\theta} \ln  \pi_{\theta}(a|s) = \Sigma_{\theta}^{-1} (a - \mu_{\theta}(s)) \nabla_{\theta} \mu_{\theta}(s)$$
 
-  
+    Thus, the policy gradient update becomes:
 
-For a Gaussian policy, the logarithm of the probability density is:
-
-  
-
-$$\ln  \pi_{\theta}(a|s) = -\frac{1}{2} (a - \mu_{\theta}(s))^T \Sigma_{\theta}^{-1} (a - \mu_{\theta}(s)) - \frac{1}{2} \ln |\Sigma_{\theta}|$$
-
-  
-
-Taking the gradient:
-
-  
-
-$$\nabla_{\theta} \ln  \pi_{\theta}(a|s) = \Sigma_{\theta}^{-1} (a - \mu_{\theta}(s)) \nabla_{\theta} \mu_{\theta}(s)$$
-
-  
-
-Thus, the policy gradient update becomes:
-
-  
-
-$$\nabla_{\theta} J(\theta) = \mathbb{E}_{s \sim d^{\pi}, a \sim  \pi_{\theta}} \left[ Q^{\pi}(s,a) \Sigma_{\theta}^{-1} (a - \mu_{\theta}(s)) \nabla_{\theta} \mu_{\theta}(s) \right]$$
+    $$\nabla_{\theta} J(\theta) = \mathbb{E}_{s \sim d^{\pi}, a \sim  \pi_{\theta}} \left[ Q^{\pi}(s,a) \Sigma_{\theta}^{-1} (a - \mu_{\theta}(s)) \nabla_{\theta} \mu_{\theta}(s) \right]$$
 
   
 
@@ -461,14 +335,12 @@ REINFORCE (Monte-Carlo policy gradient) relies on an estimated return by
 parameter $\theta$. REINFORCE works because the expectation of the
 sample gradient is equal to the actual gradient:
 
-  
-
-$$\nabla_{\theta}J(\theta) = \mathbb{E}_{\pi} [Q^{\pi}(s,a) \nabla_{\theta} \ln  \pi_{\theta}(a|s)]$$
-
-  
-
-$$= \mathbb{E}_{\pi} [G_t \nabla_{\theta} \ln  \pi_{\theta}(A_t|S_t)] \quad  \text{; Because } Q^{\pi}(S_t, A_t) = \mathbb{E}_{\pi} [G_t | S_t, A_t]$$
-
+$$
+\begin{aligned}
+\nabla_{\theta}J(\theta) &= \mathbb{E}_{\pi} \left[ Q^{\pi}(s,a) \nabla_{\theta} \ln \pi_{\theta}(a|s) \right] \\
+&= \mathbb{E}_{\pi} \left[ G_t \nabla_{\theta} \ln \pi_{\theta}(A_t|S_t) \right] \quad \text{; Because } Q^{\pi}(S_t, A_t) = \mathbb{E}_{\pi} \left[ G_t \mid S_t, A_t \right]
+\end{aligned}
+$$
   
 
 Therefore we are able to measure $G_t$ from real sample trajectories and
@@ -477,7 +349,7 @@ and that's why it is a Monte-Carlo method.
 
   
 
-## Algorithm {#algorithm .unnumbered}
+### Algorithm {#algorithm .unnumbered}
 
   
 
@@ -497,15 +369,10 @@ $S_1, A_1, R_2, S_2, A_2, \dots, S_T$.
 
 3. For $t = 1, 2, \dots, T$:
 
-  
+    1. Estimate the return $G_t$;
 
-1. Estimate the return $G_t$;
 
-  
-
-2. Update policy parameters:
-
-$$\theta  \leftarrow  \theta + \alpha  \gamma^t G_t \nabla_{\theta} \ln  \pi_{\theta}(A_t|S_t)$$
+    2. Update policy parameters: $\theta  \leftarrow  \theta + \alpha  \gamma^t G_t \nabla_{\theta} \ln  \pi_{\theta}(A_t|S_t)$
 
   
 
@@ -515,46 +382,33 @@ while keeping the bias unchanged** (Remember we always want to do this
 when possible).
 
   
-
 For example, a common baseline is to subtract state-value from
-action-value, and if applied, we would use **advantage**:
+action-value, and if applied, we would use **advantage** $A(s,a) = Q(s,a) - V(s)$ in the gradient ascent update. This [post](https://danieltakeshi.github.io/2017/03/28 going-deeper-into-reinforcement-learning-fundamentals-of-policy-gradients/) nicely explained why a baseline works for reducing the variance, in addition to a set of fundamentals of policy gradient.
 
   
 
-$$A(s,a) = Q(s,a) - V(s)$$
+
 
   
 
-in the gradient ascent update.
+###  $G(s)$ in Continuous Action Space 
 
   
 
-## Policy Gradient with Continuous Action Space {#policy-gradient-with-continuous-action-space .unnumbered}
-
-  
-
-## Definition of Return $G(s)$
-
-  
-
-In the continuous setting, we define the \*\*return\*\* $G(s)$ as:
-
-  
+In the continuous setting, we define the **return** $G(s)$ as:
 
 $$G(s) = \sum_{k=0}^{\infty} \gamma^k R(s_k, a_k), \quad s_0 = s, \quad a_k \sim  \pi_{\theta}(\cdot | s_k)$$
-
-  
+ 
 
 where:
 
-  
 
 - $R(s_k, a_k)$ is the reward function for state-action pair
 $(s_k, a_k)$.
 
   
 
-- $\gamma$ is the \*\*discount factor\*\*.
+- $\gamma$ is the **discount factor**.
 
   
 
@@ -567,11 +421,11 @@ the policy.
 
   
 
-## Monte Carlo Approximation of $Q^{\pi}(s,a)$
+### Monte Carlo Approximation of $Q^{\pi}(s,a)$
 
   
 
-In expectation, $G(s)$ serves as an \*\*unbiased estimator\*\* of the
+In expectation, $G(s)$ serves as an **unbiased estimator** of the
 state-action value function:
 
   
@@ -588,11 +442,11 @@ $$\nabla_{\theta} J(\theta) = \mathbb{E}_{s \sim d^{\pi}, a \sim  \pi_{\theta}} 
 
   
 
-## Variance Reduction: Advantage Function
+### Variance Reduction: Advantage Function
 
   
 
-A \*\*baseline\*\* is often subtracted to reduce variance while keeping
+A **baseline** is often subtracted to reduce variance while keeping
 the expectation unchanged:
 
   
@@ -611,44 +465,19 @@ where:
 
 - $V^{\pi}(s) = \mathbb{E}_{a \sim  \pi_{\theta}(\cdot | s)} [Q^{\pi}(s,a)]$
 
-is the \*\*state value function\*\*.
+is the **state value function**.
 
   
 
-- $A(s,a)$ measures the \*\*advantage\*\* of taking action $a$ over
+- $A(s,a)$ measures the **advantage** of taking action $a$ over
 the expected policy action.
 
   
 
-## Entropy Regularization for Exploration
+# bias and variance   
+In this section we delve deeper into the bias and variance problem in RL especially in policy gradient 
 
-  
-
-To encourage exploration, we introduce entropy regularization:
-
-  
-
-$$J_{\text{entropy}}(\theta) = J(\theta) + \beta H(\pi_{\theta}),$$
-
-  
-
-where the entropy of the policy is defined as:
-
-  
-
-$$H(\pi_{\theta}) = - \int_{\mathcal{A}} \pi_{\theta}(a | s) \log  \pi_{\theta}(a | s) \, da.$$
-
-  
-
-Thus, the final \*\*entropy-regularized policy gradient\*\* becomes:
-
-  
-
-$$\nabla_{\theta} J_{\text{entropy}}(\theta) = \mathbb{E}_{s \sim d^{\pi}, a \sim  \pi_{\theta}} \left[ A(s, a) \nabla_{\theta} \ln  \pi_{\theta}(a | s) \right] + \beta  \nabla_{\theta} H(\pi_{\theta}).$$
-
-  
-
-# Monte Carlo Estimators in Reinforcement Learning
+## Monte Carlo Estimators in Reinforcement Learning
 
   
 
@@ -690,7 +519,7 @@ rewards, state-value functions, and action-value functions.
 
   
 
-# Bias in Policy Gradient Methods
+## Bias in Policy Gradient Methods
 
   
 
@@ -701,7 +530,7 @@ computation errors.
 
   
 
-## Sources of Bias
+### Sources of Bias
 
   
 
@@ -724,20 +553,16 @@ baseline is inaccurately estimated, it introduces bias in the policy
 gradient computation.
 
 
-## Example of Bias
-
-<details><summary>Example of Bias</summary>
-<p>
-Consider a self-driving car optimizing for fuel efficiency. If the
-reward function prioritizes immediate fuel consumption over long-term
-efficiency, the learned policy may favor suboptimal strategies that
-minimize fuel use in the short term while missing globally optimal
-driving behaviors.
-<p>
-</details>
+???+ example "Example of Bias"
+    Consider a self-driving car optimizing for fuel efficiency. If the
+    reward function prioritizes immediate fuel consumption over long-term
+    efficiency, the learned policy may favor suboptimal strategies that
+    minimize fuel use in the short term while missing globally optimal
+    driving behaviors.
 
 
-## Biased vs. Unbiased Estimation
+
+### Biased vs. Unbiased Estimation
 
   
 
@@ -766,7 +591,7 @@ sizes, ensuring $\mathbb{E}[S^2_{\text{unbiased}}] = \sigma^2$.
 
   
 
-# Variance in Policy Gradient Methods
+## Variance in Policy Gradient Methods
 
   
 
@@ -776,7 +601,7 @@ instability and slow convergence.
 
   
 
-## Sources of Variance
+### Sources of Variance
 
   
 
@@ -795,20 +620,15 @@ randomness in gradient updates.
 -  **Exploration Strategies:** Methods like softmax or epsilon-greedy
 increase variance by adding stochasticity to action selection.
 
-## Example of Variance
 
-<details>
-<summary>
-Example of Variance
-</summary>
-<p>
-Consider a robotic arm learning to grasp objects. Due to high variance,
-in some episodes, it succeeds, while in others, minor variations cause
-failure. These inconsistencies slow down convergence.
-<p>
-</details>
 
-# Techniques to Reduce Variance in Policy Gradient Methods
+???+ example "Example of Variance"
+    Consider a robotic arm learning to grasp objects. Due to high variance,
+    in some episodes, it succeeds, while in others, minor variations cause
+    failure. These inconsistencies slow down convergence.
+
+
+## Techniques to Reduce Variance in Policy Gradient Methods
 
   
 
@@ -817,7 +637,7 @@ while preserving unbiased gradient estimates.
 
   
 
-## Baseline Subtraction
+### Baseline Subtraction
 
   
 
@@ -841,34 +661,32 @@ Since $b$ is independent of actions, it does not introduce bias in the
 gradient estimate while reducing variance.
 
   
+??? note "proof"
 
-**Proof:**
-
-  
-
-$$\begin{aligned}
-E\left[\nabla_\theta  \log p_\theta(\tau) b\right] &= \int p_\theta(\tau) \nabla_\theta  \log p_\theta(\tau) b \, d\tau \\
-&= \int  \nabla_\theta p_\theta(\tau) b \, d\tau \\
-&= b \nabla_\theta  \int p_\theta(\tau) \, d\tau \\
-&= b \nabla_\theta  1 \\
-&= 0
-\end{aligned}$$
+    $$\begin{aligned}
+    E\left[\nabla_\theta  \log p_\theta(\tau) b\right] &= \int p_\theta(\tau) \nabla_\theta  \log p_\theta(\tau) b \, d\tau \\
+    &= \int  \nabla_\theta p_\theta(\tau) b \, d\tau \\
+    &= b \nabla_\theta  \int p_\theta(\tau) \, d\tau \\
+    &= b \nabla_\theta  1 \\
+    &= 0
+    \end{aligned}$$
 
   
 
-::: center
 
------------------------------------------------ --
 
-![image](\assets\images\course_notes\policy-based\a4.png){width="0.8\\linewidth"}
+<!-- ![image](\assets\images\course_notes\policy-based\a4.png){width="0.8\\linewidth"} -->
 
------------------------------------------------ --
+<center> 
+<img src="\assets\images\course_notes\policy-based\a4.png"
+    style="float: center; margin-right: 10px;" 
+    /> 
+    </center>
 
-:::
 
   
 
-## Causality Trick and Reward-to-Go Estimation
+### Causality Trick and Reward-to-Go Estimation
 
   
 
@@ -900,59 +718,44 @@ compared to the traditional Monte Carlo methods.
 
   
 
-::: center
 
------------------------------------------------ -----------------------------------------------
 
-![image](\assets\images\course_notes\policy-based\a1.png){width="0.4\\linewidth"} ![image](\assets\images\course_notes\policy-based\a2.png){width="0.4\\linewidth"}
+<!-- ![image](\assets\images\course_notes\policy-based\a1.png){width="0.4\\linewidth"} ![image](\assets\images\course_notes\policy-based\a2.png){width="0.4\\linewidth"} -->
 
------------------------------------------------ -----------------------------------------------
+<center> 
+<img src="\assets\images\course_notes\policy-based\a1.png"
+    style="float: center; margin-right: 10px;" 
+    /> 
+    </center>
 
-:::
+<center> 
+<img src="\assets\images\course_notes\policy-based\a2.png"
+    style="float: center; margin-right: 10px;" 
+    /> 
+    </center>
+
+
+  
+??? note "proof"
+
+    $$
+    \begin{aligned}
+    A_{t_0-1} &= s_{t_0-1}, a_{t_0-1}, \dots, a_0, s_0 \\
+    \mathbb{E}_{A_{t_0-1}} &\left[ \mathbb{E}_{s_{t_0}, a_{t_0} | A_{t_0-1}} \left[ \nabla_{\theta} \log \pi_{\theta} (a_{t_0} | s_{t_0}) \sum_{t=0}^{t_0 - 1} r(s_t, a_t) \right] \right] \\
+    U_{t_0-1} &= \sum_{t=0}^{t_0 - 1} r(s_t, a_t) \\
+    &= \mathbb{E}_{A_{t_0-1}} \left[ U_{t_0-1} \mathbb{E}_{s_{t_0}, a_{t_0} | s_{t_0-1}, a_{t_0-1}} \nabla_{\theta} \log \pi_{\theta} (a_{t_0} | s_{t_0}) \right] \\
+    &= \mathbb{E}_{A_{t_0-1}} \left[ U_{t_0-1} \mathbb{E}_{s_{t_0} | s_{t_0-1}, a_{t_0-1}} \mathbb{E}_{a_{t_0} | s_{t_0-1}, a_{t_0-1}, s_{t_0}} \nabla_{\theta} \log \pi_{\theta} (a_{t_0} | s_{t_0}) \right] \\
+    &= \mathbb{E}_{A_{t_0-1}} \left[ U_{t_0-1} \mathbb{E}_{s_{t_0} | s_{t_0-1}, a_{t_0-1}} \mathbb{E}_{a_{t_0} | s_{t_0}} \nabla_{\theta} \log \pi_{\theta} (a_{t_0} | s_{t_0}) \right] \\
+    &= \mathbb{E}_{A_{t_0-1}} \left[ U_{t_0-1} \mathbb{E}_{s_{t_0} | s_{t_0-1}, a_{t_0-1}} \mathbb{E}_{\pi_{\theta} (a_{t_0} | s_{t_0})} \nabla_{\theta} \log \pi_{\theta} (a_{t_0} | s_{t_0}) \right] \\
+    \mathbb{E}_{\pi_{\theta} (a_{t_0} | s_{t_0})} &\nabla_{\theta} \log \pi_{\theta} (a_{t_0} | s_{t_0}) = 0 \\
+    \mathbb{E}_{A_{t_0-1}}& \left[ \mathbb{E}_{s_{t_0}, a_{t_0} | A_{t_0-1}} \left[ \nabla_{\theta} \log \pi_{\theta} (a_{t_0} | s_{t_0}) \sum_{t=0}^{t_0 - 1} r(s_t, a_t) \right] \right] = 0
+    \end{aligned}
+    $$
+
 
   
 
-**Proof:**
-
-  
-
-$$A_{t_0-1} = s_{t_0-1}, a_{t_0-1}, \dots, a_0, s_0$$
-
-  
-
-$$\mathbb{E}_{A_{t_0-1}} \left[ \mathbb{E}_{s_{t_0}, a_{t_0} | A_{t_0-1}} \left[ \nabla_{\theta} \log  \pi_{\theta} (a_{t_0} | s_{t_0}) \sum_{t=0}^{t_0 - 1} r(s_t, a_t) \right] \right]$$
-
-  
-
-$$U_{t_0-1} = \sum_{t=0}^{t_0 - 1} r(s_t, a_t)$$
-
-  
-
-$$= \mathbb{E}_{A_{t_0-1}} \left[ U_{t_0-1} \mathbb{E}_{s_{t_0}, a_{t_0} | s_{t_0-1}, a_{t_0-1}} \nabla_{\theta} \log  \pi_{\theta} (a_{t_0} | s_{t_0}) \right]$$
-
-  
-
-$$= \mathbb{E}_{A_{t_0-1}} \left[ U_{t_0-1} \mathbb{E}_{s_{t_0} | s_{t_0-1}, a_{t_0-1}} \mathbb{E}_{a_{t_0} | s_{t_0-1}, a_{t_0-1}, s_{t_0}} \nabla_{\theta} \log  \pi_{\theta} (a_{t_0} | s_{t_0}) \right]$$
-
-  
-
-$$= \mathbb{E}_{A_{t_0-1}} \left[ U_{t_0-1} \mathbb{E}_{s_{t_0} | s_{t_0-1}, a_{t_0-1}} \mathbb{E}_{a_{t_0} | s_{t_0}} \nabla_{\theta} \log  \pi_{\theta} (a_{t_0} | s_{t_0}) \right]$$
-
-  
-
-$$= \mathbb{E}_{A_{t_0-1}} \left[ U_{t_0-1} \mathbb{E}_{s_{t_0} | s_{t_0-1}, a_{t_0-1}} \mathbb{E}_{\pi_{\theta} (a_{t_0} | s_{t_0})} \nabla_{\theta} \log  \pi_{\theta} (a_{t_0} | s_{t_0}) \right]$$
-
-  
-
-$$\mathbb{E}_{\pi_{\theta} (a_{t_0} | s_{t_0})} \nabla_{\theta} \log  \pi_{\theta} (a_{t_0} | s_{t_0}) = 0$$
-
-  
-
-$$\mathbb{E}_{A_{t_0-1}} \left[ \mathbb{E}_{s_{t_0}, a_{t_0} | A_{t_0-1}} \left[ \nabla_{\theta} \log  \pi_{\theta} (a_{t_0} | s_{t_0}) \sum_{t=0}^{t_0 - 1} r(s_t, a_t) \right] \right] = 0$$
-
-  
-
-## Discount Factor Adjustment
+### Discount Factor Adjustment
 
   
 
@@ -964,24 +767,16 @@ closer to the present more heavily:
 $$G_t = \sum_{t' = t}^{T} \gamma^{t'-t} r(s_{t'}, a_{t'}).$$
 
   
+??? note "proof"
 
-**Proof:**
-
-  
-
-$$\nabla_{\theta} J(\theta) \approx  \frac{1}{N} \sum_{i=1}^{N} \sum_{t=1}^{T} \nabla_{\theta} \log  \pi_{\theta} (a_{i,t} | s_{i,t}) \left( \sum_{t' = t}^{T} \gamma^{t' - t} r(s_{i,t'}, a_{i,t'}) \right)$$
-
-  
-
-$$\nabla_{\theta} J(\theta) \approx  \frac{1}{N} \sum_{i=1}^{N} \left( \sum_{t=1}^{T} \nabla_{\theta} \log  \pi_{\theta} (a_{i,t} | s_{i,t}) \right) \left( \sum_{t=1}^{T} \gamma^{t-1} r(s_{i,t}, a_{i,t}) \right)$$
-
-  
-
-$$\nabla_{\theta} J(\theta) \approx  \frac{1}{N} \sum_{i=1}^{N} \sum_{t=1}^{T} \nabla_{\theta} \log  \pi_{\theta} (a_{i,t} | s_{i,t}) \left( \sum_{t' = t}^{T} \gamma^{t' - t} r(s_{i,t'}, a_{i,t'}) \right)$$
-
-  
-
-$$\nabla_{\theta} J(\theta) \approx  \frac{1}{N} \sum_{i=1}^{N} \sum_{t=1}^{T} \gamma^{t-1} \nabla_{\theta} \log  \pi_{\theta} (a_{i,t} | s_{i,t}) \left( \sum_{t' = t}^{T} \gamma^{t' - t} r(s_{i,t'}, a_{i,t'}) \right)$$
+    $$
+    \begin{aligned}
+    \nabla_{\theta} J(\theta) &\approx \frac{1}{N} \sum_{i=1}^{N} \sum_{t=1}^{T} \nabla_{\theta} \log \pi_{\theta} (a_{i,t} | s_{i,t}) \left( \sum_{t' = t}^{T} \gamma^{t' - t} r(s_{i,t'}, a_{i,t'}) \right) \\
+    \nabla_{\theta} J(\theta) &\approx \frac{1}{N} \sum_{i=1}^{N} \left( \sum_{t=1}^{T} \nabla_{\theta} \log \pi_{\theta} (a_{i,t} | s_{i,t}) \right) \left( \sum_{t=1}^{T} \gamma^{t-1} r(s_{i,t}, a_{i,t}) \right) \\
+    \nabla_{\theta} J(\theta) &\approx \frac{1}{N} \sum_{i=1}^{N} \sum_{t=1}^{T} \nabla_{\theta} \log \pi_{\theta} (a_{i,t} | s_{i,t}) \left( \sum_{t' = t}^{T} \gamma^{t' - t} r(s_{i,t'}, a_{i,t'}) \right) \\
+    \nabla_{\theta} J(\theta) &\approx \frac{1}{N} \sum_{i=1}^{N} \sum_{t=1}^{T} \gamma^{t-1} \nabla_{\theta} \log \pi_{\theta} (a_{i,t} | s_{i,t}) \left( \sum_{t' = t}^{T} \gamma^{t' - t} r(s_{i,t'}, a_{i,t'}) \right)
+    \end{aligned}
+    $$
 
   
 
@@ -991,7 +786,7 @@ increases variance. A balance is needed.
 
   
 
-## Advantage Estimation and Actor-Critic Methods
+### Advantage Estimation and Actor-Critic Methods
 
   
 
@@ -1035,15 +830,15 @@ efficiency.
 
   
 
-::: center
 
------------------------------------------------ --
 
-![image](\assets\images\course_notes\policy-based\a3.png){width="0.6\\linewidth"}
 
------------------------------------------------ --
 
-:::
+<center> 
+<img src="\assets\images\course_notes\policy-based\a3.png"
+    style="float: center; margin-right: 10px;" 
+    /> 
+    </center>
 
 
 ### Actor-Critic
@@ -1129,120 +924,117 @@ value function parameter updates, respectively.
 
   
 
-::: center
 
------------------------------------------------ --
+<!-- ![image](\assets\images\course_notes\policy-based\a6.png){width="0.9\\linewidth"} -->
 
-![image](\assets\images\course_notes\policy-based\a6.png){width="0.9\\linewidth"}
-
------------------------------------------------ --
+<center> 
+<img src="\assets\images\course_notes\policy-based\a6.png"
+    style="float: center; margin-right: 10px;" 
+    /> 
+    </center>
 
 ### Actor-Critic Architecture: Cartpole Example
 
 
 
+???+ example "Actor-Critic Architecture: Cartpole Example"
 
-<details markdown="1">
-<summary>
-Actor-Critic Architecture: Cartpole Example
-</summary>
+    Let's illustrate the Actor-Critic architecture with an example of a
+    classic reinforcement learning problem: the *Cartpole* environment.
 
-Let's illustrate the Actor-Critic architecture with an example of a
-classic reinforcement learning problem: the *Cartpole* environment.
+    <center> 
+    <img src="\assets\images\course_notes\policy-based\cartpole.png"
+        alt="pi estimation with monte carlo"
+        style="float: center; margin-right: 10px;" 
+        /> 
+        </center>
 
-<center> 
-<img src="\assets\images\course_notes\policy-based\cartpole.png"
-    alt="pi estimation with monte carlo"
-    style="float: center; margin-right: 10px;" 
-    /> 
-    </center>
+    ---
 
----
+    In the *Cartpole* environment, the agent controls a cart that can move
+    horizontally on a track. A pole is attached to the cart, and the agent's
+    task is to balance the pole upright for as long as possible.
 
-In the *Cartpole* environment, the agent controls a cart that can move
-horizontally on a track. A pole is attached to the cart, and the agent's
-task is to balance the pole upright for as long as possible.
+    
 
-  
+    1.  **Actor (Policy-Based)**: The actor is responsible for learning the
+    policy, which is the agent's strategy for selecting actions (left or
+    right) based on the observed state (cart position, cart velocity,
+    pole angle, and pole angular velocity).
 
-1.  **Actor (Policy-Based)**: The actor is responsible for learning the
-policy, which is the agent's strategy for selecting actions (left or
-right) based on the observed state (cart position, cart velocity,
-pole angle, and pole angular velocity).
+    
 
-  
+    2.  **Critic (Value-Based)**: The critic is responsible for learning the
+    value function, which estimates the expected total reward (return)
+    from each state. The value function helps evaluate how good or bad a
+    specific state is, which guides the actor's updates.
 
-2.  **Critic (Value-Based)**: The critic is responsible for learning the
-value function, which estimates the expected total reward (return)
-from each state. The value function helps evaluate how good or bad a
-specific state is, which guides the actor's updates.
+    
 
-  
+    3.  **Policy Representation**: For simplicity, let's use a neural
+    network as the actor. The neural network takes the current state of
+    the cart and pole as input and outputs the probabilities of
+    selecting actions (left or right).
 
-3.  **Policy Representation**: For simplicity, let's use a neural
-network as the actor. The neural network takes the current state of
-the cart and pole as input and outputs the probabilities of
-selecting actions (left or right).
+    
 
-  
+    4.  **Value Function Representation**: For the critic, we also use a
+    neural network. The neural network takes the current state as input
+    and outputs an estimate of the expected total reward (value) for
+    that state.
 
-4.  **Value Function Representation**: For the critic, we also use a
-neural network. The neural network takes the current state as input
-and outputs an estimate of the expected total reward (value) for
-that state.
-
-  
+    
 
 
 
-1.  **Collecting Experiences**: The agent interacts with the
-environment, using the current policy to select actions (left or
-right). As it moves through the environment, it collects
-experiences, including states, actions, rewards, and next states.
+    1.  **Collecting Experiences**: The agent interacts with the
+    environment, using the current policy to select actions (left or
+    right). As it moves through the environment, it collects
+    experiences, including states, actions, rewards, and next states.
 
-  
+    
 
-2.  **Updating the Critic (Value Function)**: The critic learns to
-estimate the value function using the collected experiences. It
-optimizes its neural network parameters to minimize the difference
-between the predicted values and the actual rewards experienced by
-the agent.
+    2.  **Updating the Critic (Value Function)**: The critic learns to
+    estimate the value function using the collected experiences. It
+    optimizes its neural network parameters to minimize the difference
+    between the predicted values and the actual rewards experienced by
+    the agent.
 
-  
+    
 
-3.  **Calculating the Advantage**: The advantage represents how much
-better or worse an action is compared to the average expected value.
-It is calculated as the difference between the total return (reward)
-and the value function estimate for each state-action pair.
+    3.  **Calculating the Advantage**: The advantage represents how much
+    better or worse an action is compared to the average expected value.
+    It is calculated as the difference between the total return (reward)
+    and the value function estimate for each state-action pair.
 
-  
+    
 
-4.  **Updating the Actor (Policy)**: The actor updates its policy to
-increase the probabilities of actions with higher advantages and
-decrease the probabilities of actions with lower advantages. This
-process helps the actor learn from the critic's feedback and improve
-its policy to maximize the expected rewards.
+    4.  **Updating the Actor (Policy)**: The actor updates its policy to
+    increase the probabilities of actions with higher advantages and
+    decrease the probabilities of actions with lower advantages. This
+    process helps the actor learn from the critic's feedback and improve
+    its policy to maximize the expected rewards.
 
-  
+    
 
-5.  **Iteration and Learning**: The learning process is repeated over
-multiple episodes and iterations. As the agent explores and
-interacts with the environment, the actor and critic networks
-gradually improve their performance and converge to better policies
-and value function estimates.
+    5.  **Iteration and Learning**: The learning process is repeated over
+    multiple episodes and iterations. As the agent explores and
+    interacts with the environment, the actor and critic networks
+    gradually improve their performance and converge to better policies
+    and value function estimates.
 
-  
+    
 
-Through these steps, the Actor-Critic architecture teaches the agent how
-to balance the pole effectively in the *Cartpole* environment. The actor
-learns the best actions to take in different states, while the critic
-provides feedback on the quality of the actor's decisions. As a result,
-the agent converges to a more optimal policy, achieving longer balancing
-times and better performance in the task.
+    Through these steps, the Actor-Critic architecture teaches the agent how
+    to balance the pole effectively in the *Cartpole* environment. The actor
+    learns the best actions to take in different states, while the critic
+    provides feedback on the quality of the actor's decisions. As a result,
+    the agent converges to a more optimal policy, achieving longer balancing
+    times and better performance in the task.
 
-</details>
 
-# Summary of Variance Reduction Methods
+
+## Summary of Variance Reduction Methods
 
   
 
@@ -1283,7 +1075,7 @@ stable and efficient learning with reduced variance.
 
   
 
-# Bias-Variance Trade-Off in Policy-Based Methods
+## Concluding Remarks
 
   
 
