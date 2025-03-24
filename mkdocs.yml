@@ -105,11 +105,9 @@ nav:
       - course_notes/model-based.md
       - course_notes/bandits.md
     - RL Methods in Depth:
-      - course_notes/value-based.md
-      - course_notes/policy-based.md
-      - course_notes/advanced.md
-      - course_notes/model-based.md
-      - course_notes/bandits.md
+      - course_notes/intro-to-phase2.md
+      - course_notes/value-based2.md
+      - course_notes/policy-based2.md
       - course_notes/exploration.md
       - course_notes/imitation.md
       - course_notes/inverse.md
