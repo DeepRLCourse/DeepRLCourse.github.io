@@ -97,19 +97,24 @@ nav:
     - blog/index.md
     - Tags: blog/tags.md
   - Course Notes:
-    - course_notes/intro-to-rl.md
-    - course_notes/value-based.md
-    - course_notes/policy-based.md
-    - course_notes/advanced.md
-    - course_notes/model-based.md
-    - course_notes/bandits.md
-    - course_notes/exploration.md
-    - course_notes/imitation.md
-    - course_notes/inverse.md
-    - course_notes/offline.md
-    - course_notes/multi-agent.md
-    - course_notes/hierarchical.md
-    - course_notes/meta.md
+    - Conceptual Overview of RL:
+      - course_notes/intro-to-rl.md
+      - course_notes/value-based.md
+      - course_notes/policy-based.md
+      - course_notes/advanced.md
+      - course_notes/model-based.md
+      - course_notes/bandits.md
+    - RL Methods in Depth:
+      - course_notes/intro-to-phase2.md
+      - course_notes/value-based2.md
+      - course_notes/policy-based2.md
+      - course_notes/exploration.md
+      - course_notes/imitation.md
+      - course_notes/inverse.md
+      - course_notes/offline.md
+      - course_notes/multi-agent.md
+      - course_notes/hierarchical.md
+      - course_notes/meta.md
   - Lectures:
     - lectures/week1.md
     - lectures/week2.md
@@ -223,7 +228,6 @@ markdown_extensions:
           format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tabbed:
       alternate_style: true
-  - pymdownx.details
   - pymdownx.arithmatex:
       generic: true
   - md_in_html
@@ -237,5 +241,9 @@ markdown_extensions:
   - pymdownx.mark
   - pymdownx.tilde
   - abbr
+  - extra
+  - admonition
+  - pymdownx.details
+
 
   
