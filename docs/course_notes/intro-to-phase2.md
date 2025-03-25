@@ -2,7 +2,7 @@
 ## goal
 get deeper into the concepts. learn new math that are usfull for RL 
 
-## overview
+## OVERVIEW
 
 ### value iteration
 ### policy iterration
