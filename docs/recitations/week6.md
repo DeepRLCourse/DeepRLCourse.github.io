@@ -25,7 +25,7 @@ the environment generates a reward ("payout") $R_t \sim \mathcal{R}^{A_t}$. The
 goal, as always, is to maximize the cumulative reward $\sum_{\tau=1}^t
 R_{\tau}$.
 
-![Figure 1](/assets/images/recitation/Week6/1.png)
+![Figure 1](/assets/images/recitation/week6/1.png)
 
 We can define a few more functions and variables in this setup. The
 *action-value* (Q-value) of an action is the mean reward for that action:
@@ -217,7 +217,7 @@ Q(a) = \frac{1}{N_t(a)}\sum_{t=1}^T \mathbf{1}(A_t = a)R_t.
 $$
 
 
-![Figure 2](/assets/images/recitation/Week6/2.png)
+![Figure 2](/assets/images/recitation/week6/2.png)
 
 Now, while $\varepsilon$-greedy approaches incur linear regret, certain
 strategies that decay $\varepsilon$ can actually only incur logarithmic
@@ -301,8 +301,8 @@ a higher tail such that it *could* have its mean higher than the first Gaussian,
 even if the first Gaussian has currently a greater mean (but shorter tail), then
 we should pick the second one.
 
-![Figure 3](/assets/images/recitation/Week6/3.png)
-![Figure 4](/assets/images/recitation/Week6/4.png)
+![Figure 3](/assets/images/recitation/week6/3.png)
+![Figure 4](/assets/images/recitation/week6/4.png)
 
 To formalize this idea, we can think of *confidence bounds*. Let $U_t(a)$ be an
 upper confidence bound on the value of action $a$ at time $t$, such that with
