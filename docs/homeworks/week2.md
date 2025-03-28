@@ -31,3 +31,15 @@ Please submit your completed homework on Quera by the deadline:
 - **Deadline:** <span style="direction: rtl;font-family: Vazirmatn;">۱۲ اسفند (March 2)</span> at 11:59 PM
 
 Good luck, and we look forward to your submissions!
+
+## Solution
+
+[HW2 Solution to Questions](https://raw.githubusercontent.com/DeepRLCourse/Homework-2-Questions/refs/heads/main/HW2_Solution.pdf){:target="_blank" .md-button }
+
+<iframe width="996" height="560" src="https://www.youtube.com/embed/7YCEHeVYEV4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+[HW2 Solution Notebook | Part 1: SARSA(n) and Q-Learning(n)](https://raw.githubusercontent.com/DeepRLCourse/Homework-2-Questions/refs/heads/main/HW2_P1_SARSA_and_QLearning_Solution.ipynb){:target="_blank" .md-button }
+
+<iframe width="996" height="560" src="https://www.youtube.com/embed/dtuS4vOrzBk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+[HW2 Solution Notebook | Part 2: DQN vs DDQN](https://raw.githubusercontent.com/DeepRLCourse/Homework-2-Questions/refs/heads/main/HW2_P2_DQN_vs_DDQN_Solution.ipynb){:target="_blank" .md-button }

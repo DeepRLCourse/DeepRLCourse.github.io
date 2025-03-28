@@ -271,6 +271,7 @@ Total possible points: 20 + 3 = 23
         <p>Teaching Assistant</p>
         <p>[ahmad.karami77@yahoo.com](mailto:ahmad.karami77@yahoo.com)</p>
         <p>
+        [:fontawesome-brands-github:](https://github.com/ahmad-karami){:target="_blank"}
         [:fontawesome-brands-linkedin-in:](https://www.linkedin.com/in/ahmad-karami-8a6a14255){:target="_blank"}
         </p>
     </span>

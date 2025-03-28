@@ -490,7 +490,18 @@ $$V(s_t) = \mathbb{E}_{a_t\sim \pi} \left[Q(s_t, a_t) - \text{log}\space\pi(a_t|
         <p>Teaching Assistant</p>
         <p>[ahmad.karami77@yahoo.com](mailto:ahmad.karami77@yahoo.com)</p>
         <p>
+        [:fontawesome-brands-github:](https://github.com/ahmad-karami){:target="_blank"}
         [:fontawesome-brands-linkedin-in:](https://www.linkedin.com/in/ahmad-karami-8a6a14255){:target="_blank"}
+        </p>
+    </span>
+-   ![Instructor Avatar](/assets/images/staff/Hamidreza-Ebrahimpour.jpg){align=left width="150"}
+    <span class="description">
+        <p>**Hamidreza Ebrahimpour**</p>
+        <p>Teaching Assistant</p>
+        <p>[ebrahimpour.7879@gmail.com](mailto:ebrahimpour.7879@gmail.com)</p>
+        <p>
+        [:fontawesome-brands-github:](https://github.com/hamidRezA7878){:target="_blank"}
+        [:fontawesome-brands-linkedin-in:](https://linkedin.com/in/hamidreza-ebrahimpour78){:target="_blank"}
         </p>
     </span>
 </div>
