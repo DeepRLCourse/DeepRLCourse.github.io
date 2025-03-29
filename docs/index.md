@@ -408,7 +408,7 @@ Total possible points: 20 + 3 = 23
         </p>
     </span>
 
--   ![Instructor Avatar](assets/images/staff/Hamed-Saadati.jpg){align=left width="150"}
+<!-- -   ![Instructor Avatar](assets/images/staff/Hamed-Saadati.jpg){align=left width="150"}
     <span class="description">
         <p>**Hamed Saadati**</p>
         <p>Teaching Assistant</p>
@@ -416,7 +416,7 @@ Total possible points: 20 + 3 = 23
         <p>
         [:fontawesome-brands-github:](https://github.com/hamedsa-78){:target="_blank"}
         </p>
-    </span>
+    </span> -->
 
 -   ![Instructor Avatar](assets/images/staff/HamidReza-Akbari.jpg){align=left width="150"}
     <span class="description">
