@@ -940,6 +940,7 @@ A **target value function** $V_{\bar{\psi}}$ (exponentially moving average of $V
     $$
     \theta^{-} \leftarrow \tau \theta + (1-\tau) \theta^{-}
     $$
+    
     <center> 
     <img src="\assets\images\recitation\week4\target_network1.png"
         alt="target1"
