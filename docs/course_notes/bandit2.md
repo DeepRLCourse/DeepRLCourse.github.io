@@ -10,17 +10,17 @@ Concentration inequalities help us quantify the uncertainty in our estimates and
 Markov's inequality is a simple but powerful tool for bounding the probability that a non-negative random variable exceeds a certain value. It's a fundamental result in probability theory and is often used in probabilistic analysis.
 
 !!! danger "Markov's Inequality"
-Let $X$ be a non-negative random variable and let $a > 0$. Then, the probability that $X$ is greater than or equal to $a$ is bounded by the expected value of $X$ divided by $a$:
+    Let $X$ be a non-negative random variable and let $a > 0$. Then, the probability that $X$ is greater than or equal to $a$ is bounded by the expected value of $X$ divided by $a$:
 
     $$
         P(X \geq a) \leq \frac{E[X]}{a}
     $$
 
 !!! Note
-This inequality is particularly useful when we have a ==non-negative random variable== and we want to bound the probability of it being ==large==. It provides a simple way to relate the expected value of the random variable to its tail behavior.
+    This inequality is particularly useful when we have a ==non-negative random variable== and we want to bound the probability of it being ==large==. It provides a simple way to relate the expected value of the random variable to its tail behavior.
 
 !!! Proof
-To prove Markov's inequality, we start with the definition of the expected value of a non-negative random variable $X$:
+    To prove Markov's inequality, we start with the definition of the expected value of a non-negative random variable $X$:
 
     $$
         E[X] = \int_0^\infty x f_X(x) dx
@@ -63,7 +63,7 @@ This inequality is useful in bandit problems because it allows us to bound the p
 You may ask what does "loose" mean? Let's consider a simple example:
 
 !!! example "Markov's Inequality Example"
-Let $X$ be a random variable that takes the value 0 with probability 0.9 and the value 10 with probability 0.1. Then, we have:
+    Let $X$ be a random variable that takes the value 0 with probability 0.9 and the value 10 with probability 0.1. Then, we have:
 
     $$
         E[X] = 0 \cdot 0.9 + 10 \cdot 0.1 = 1
@@ -84,7 +84,7 @@ We will discuss more about the tightness of the bounds in the next sections, but
 Chebyshev's inequality is a powerful tool for bounding the probability that a random variable deviates from its ==mean==. It is particularly useful when we have a random variable with a known variance, and we want to understand ==how likely it is to be far from its expected value==. It is a more refined version of Markov's inequality, as it takes into account the variance of the random variable, and it doesn't require the random variable to be non-negative.
 
 !!! danger "Chebyshev's Inequality"
-Let $X$ be a random variable with mean $\mu = E[X]$ and variance $\sigma^2 = Var(X)$. Then, for any $k > 0$, the probability that $X$ deviates from its mean by more than $k$ standard deviations is bounded by:
+    Let $X$ be a random variable with mean $\mu = E[X]$ and variance $\sigma^2 = Var(X)$. Then, for any $k > 0$, the probability that $X$ deviates from its mean by more than $k$ standard deviations is bounded by:
 
     $$
         P(|X - \mu| \geq k \sigma) \leq \frac{1}{k^2}
@@ -99,15 +99,15 @@ $$
 which is equivalent to the above inequality when we set $k = k \sigma$.
 
 !!! Note
-This inequality is particularly useful when we have a random variable with a known mean and variance, and we want to bound the probability of it being far from its expected value. It provides a more refined estimate than Markov's inequality, as it takes into account the variance of the random variable.
+    This inequality is particularly useful when we have a random variable with a known mean and variance, and we want to bound the probability of it being far from its expected value. It provides a more refined estimate than Markov's inequality, as it takes into account the variance of the random variable.
 
 !!! Note
-Chebyshev's inequality is a general result that applies to any random variable with a ==finite mean and variance==. It is not specific to any particular distribution, which makes it a powerful tool in probability theory.
+    Chebyshev's inequality is a general result that applies to any random variable with a ==finite mean and variance==. It is not specific to any particular distribution, which makes it a powerful tool in probability theory.
 
 Chebyshev's inequality can be easily derived from Markov's inequality. Let's break it down:
 
 !!! proof "Chebyshev's Inequality Proof"
-Start with the definition of variance:
+    Start with the definition of variance:
 
     $$
         Var(X) = E[(X - \mu)^2] = E[X^2] - \mu^2
@@ -134,7 +134,7 @@ Start with the definition of variance:
 Compared to Markov's inequality, Chebyshev's inequality is more refined as it accounts for the variance of the random variable. However, it still provides a loose bound and may not yield accurate estimates for the probability of large deviations in many cases.
 
 !!! example "Chebyshev's Inequality Example"
-Let $X$ be a normal random variable with mean $\mu = 0$ and variance $\sigma^2 = 1$,i.e., $X \sim N(0, 1)$. We can apply Chebyshev's inequality to bound the probability that $X$ deviates from its mean by more than $a$ standard deviations:
+    Let $X$ be a normal random variable with mean $\mu = 0$ and variance $\sigma^2 = 1$,i.e., $X \sim N(0, 1)$. We can apply Chebyshev's inequality to bound the probability that $X$ deviates from its mean by more than $a$ standard deviations:
 
     $$
         P(|X - 0| \geq a) \leq \frac{1}{a^2}
@@ -155,7 +155,7 @@ Now that we have find out that Markov's and Chebyshev's inequalities are loose b
 For a better illustration, consider the following theorems:
 
 !!! danger "Lidenberg-Levy Central Limit Theorem"
-Let $X_1, X_2, \ldots, X_N$ be i.i.d. random variables with mean $\mu$ and variance $\sigma^2$. Then, define sum $S_N = X_1 + X_2 + \ldots + X_N$. Define $Z_N$ to be normalized version of $S_N$:
+    Let $X_1, X_2, \ldots, X_N$ be i.i.d. random variables with mean $\mu$ and variance $\sigma^2$. Then, define sum $S_N = X_1 + X_2 + \ldots + X_N$. Define $Z_N$ to be normalized version of $S_N$:
 
     $$
         Z_N = \frac{S_N - E[S_N]}{\sqrt{Var(S_N)}} = \frac{1}{\sigma \sqrt{N}} \sum_{i=1}^N (X_i - \mu)
@@ -164,7 +164,7 @@ Let $X_1, X_2, \ldots, X_N$ be i.i.d. random variables with mean $\mu$ and varia
     Lidenberg-Levy CLT states that $Z_N$ converges in distribution to a standard normal random variable as $N \to \infty$.
 
 !!! danger "Berry-Esseen Central Limit Theorem"
-Let $X_1, X_2, \ldots, X_N$ be i.i.d. random variables with mean $\mu$ and variance $\sigma^2$. Then, define sum $S_N = X_1 + X_2 + \ldots + X_N$. Define $Z_N$ to be normalized version of $S_N$:
+    Let $X_1, X_2, \ldots, X_N$ be i.i.d. random variables with mean $\mu$ and variance $\sigma^2$. Then, define sum $S_N = X_1 + X_2 + \ldots + X_N$. Define $Z_N$ to be normalized version of $S_N$:
 
     $$
         Z_N = \frac{S_N - E[S_N]}{\sqrt{Var(S_N)}} = \frac{1}{\sigma \sqrt{N}} \sum_{i=1}^N (X_i - \mu)
@@ -207,7 +207,8 @@ Hoeffding's inequality is a powerful concentration inequality that provides boun
 Note that the above theorem is a special case of Hoeffding's inequality for symmetric Bernoulli random variables. The general form of Hoeffding's inequality applies to any bounded independent random variables, and it provides a more general result. Also pay attention to the exponential decay of the probability bound, which is much faster than the polynomial decay provided by Chebyshev's inequality. For now, let's focus on the special case of symmetric Bernoulli random variables and provide a proof for the above theorem. This proof is provided from ==Vershynin's High Dimensional Probability book==, which is a great resource for understanding concentration inequalities and their applications in high-dimensional spaces.
 
 !!! Proof
-Let us recall how we deduced Chebyshev’s inequality : we squared both sides and applied Markov’s inequality. Let us do something similar here. But instead of squaring both sides, let us multiply by a fixed parameter $\lambda > 0$(to be chosen later) and exponentiate. This gives
+    
+    Let us recall how we deduced Chebyshev’s inequality : we squared both sides and applied Markov’s inequality. Let us do something similar here. But instead of squaring both sides, let us multiply by a fixed parameter $\lambda > 0$(to be chosen later) and exponentiate. This gives
 
     $$
     \mathbb{P} \left\{ \sum_{i=1}^{N} a_i X_i \geq t \right\} = \mathbb{P} \left\{ \exp \left( \lambda \sum_{i=1}^{N} a_i X_i \right) \geq \exp(\lambda t) \right\}
@@ -267,7 +268,8 @@ Let us recall how we deduced Chebyshev’s inequality : we squared both sides an
 Hoefding's bound has two other forms, which we introduce here for completeness, but proofs are omitted.
 
 !!! danger "Hoeffding’s inequality, two-sided"
-Let $X_1, \ldots, X_N$ be independent symmetric Bernoulli random variables, and $a = (a_1, \ldots, a_N) \in \mathbb{R}^N$. Then, for any $t > 0$, we have
+    
+    Let $X_1, \ldots, X_N$ be independent symmetric Bernoulli random variables, and $a = (a_1, \ldots, a_N) \in \mathbb{R}^N$. Then, for any $t > 0$, we have
 
     $$
     \mathbb{P} \left\{ \left| \sum_{i=1}^N a_i X_i \right| \geq t \right\} \leq 2 \exp \left( -\frac{t^2}{2 \|a\|_2^2} \right).
@@ -281,7 +283,8 @@ Let $X_1, \ldots, X_N$ be independent symmetric Bernoulli random variables, and 
         $$
 
 !!! danger "Hoeffding's inequality for general bounded random variables"
-Let $X_1, \ldots, X_N$ be independent random variables. Assume that $X_i \in [m_i, M_i]$ almost surely for every $i$. Then, for any $t > 0$, we have
+    
+    Let $X_1, \ldots, X_N$ be independent random variables. Assume that $X_i \in [m_i, M_i]$ almost surely for every $i$. Then, for any $t > 0$, we have
 
     $$
     \mathbb{P} \left\{ \sum_{i=1}^N (X_i - \mathbb{E}X_i) \geq t \right\} \leq \exp \left( -\frac{2t^2}{\sum_{i=1}^N (M_i - m_i)^2} \right)
@@ -298,7 +301,8 @@ Chernoff Bound is a powerful concentration inequality that provides sharp expone
 In bandit algorithms, such as those based on upper confidence bounds (UCB), the Chernoff Bound allows us to build tight confidence intervals around the estimated rewards. These intervals serve as a guide for choosing which arm to pull next by balancing the exploration of less tried arms with the exploitation of arms that have previously shown good performance. Thus, Chernoff's exponential decay of tail probabilities helps ensure that the algorithm's estimates remain reliable even as the exploration continues, leading to more effective regret minimization over time.
 
 !!! danger "Chernoff's inequality"
-Let \( X_i \) be independent Bernoulli random variables with parameters \( p_i \). Consider their sum
+    
+    Let \( X_i \) be independent Bernoulli random variables with parameters \( p_i \). Consider their sum
 
     \[
     S_N = \sum_{i=1}^N X_i
@@ -324,7 +328,8 @@ Let \( X_i \) be independent Bernoulli random variables with parameters \( p_i \
     \]
 
 !!! Proof
-We will use the same method - based on moment generating function - as we did in the proof of Hoeffding's inequality. We repeat the first steps of that argument, leading to (1.1) and (1.2) - multiply both sides of the inequality \( S_N \geq t \) by a parameter \(\lambda\), exponentiate, and then use Markov's inequality and independence. This yields
+    
+    We will use the same method - based on moment generating function - as we did in the proof of Hoeffding's inequality. We repeat the first steps of that argument, leading to (1.1) and (1.2) - multiply both sides of the inequality \( S_N \geq t \) by a parameter \(\lambda\), exponentiate, and then use Markov's inequality and independence. This yields
 
     \[
     \mathbb{P} \{ S_N \geq t \} \leq e^{-\lambda t} \prod_{i=1}^{N} \mathbb{E} \exp(\lambda X_i).
@@ -356,12 +361,14 @@ We will use the same method - based on moment generating function - as we did in
 Sub-Gaussian random variables decay ==at least as fast as Gaussian ones==, meaning their tails are exponentially light. This ensures that large deviations from the mean are unlikely, a property crucial for concentration inequalities like Hoeffding's and Chernoff's bounds. Such bounds are extensively used to provide robust statistical guarantees in high-dimensional statistics, machine learning, and theoretical computer science, even when the underlying distribution is not normal.
 
 !!! tip "Bounded random variables are sub-Gaussian"
-Every bounded random variable is sub-Gaussian. This is because a bounded random variable has a finite variance, and thus it satisfies the sub-Gaussian condition.
+    
+    Every bounded random variable is sub-Gaussian. This is because a bounded random variable has a finite variance, and thus it satisfies the sub-Gaussian condition.
 
 So if you have a bounded random variable, you can use the sub-Gaussian properties to derive concentration inequalities and bounds on the tail probabilities. Now that we have discussed the properties of sub-Gaussian random variables, let's define them rigorously. Note that ==Vershynin== provides a more general definition of sub-Gaussian random variables - actually you can use 5 equivalent definitions - but we will use the one that is most commonly used in the literature.
 
 !!! danger "Definition (Sub-Gaussian random variable)"
-A random variable \(X\) is said to be sub-Gaussian if there exists a constant \(C > 0\) such that for all \(t > 0\), we have:
+    
+    A random variable \(X\) is said to be sub-Gaussian if there exists a constant \(C > 0\) such that for all \(t > 0\), we have:
 
     $$
         P(|X| \geq t) \leq 2 \exp \left( -\frac{t^2}{C^2} \right).
@@ -382,7 +389,8 @@ Regret is a crucial concept in bandit problems, as it allows us to evaluate the 
 In mathematical terms, if ==$r^*$ is the expected reward== of the optimal arm and $r_t$ is the expected reward of the arm chosen by the algorithm at time $t$, then the regret at time $t$ is defined as:
 
 !!! Info "Regret definition"
-$$
+    
+    $$
         R_t = r^* - r_t
     $$
 
@@ -391,23 +399,27 @@ $$
 The total regret over $T$ rounds is defined as:
 
 !!! Info "Total Regret definition"
-$$
+    
+    $$
         R_T = \sum_{t=1}^T R_t = \sum_{t=1}^T (r^* - r_t) = T r^* - \sum_{t=1}^T r_t
     $$
 
 !!! warning "Why expected reward?"
-The term **expected reward** is central to multi-armed bandit (MAB) algorithms because it captures the _long-term average performance_ of an arm, accounting for randomness in outcomes. Bandit algorithms aim to maximize cumulative rewards, but since observed rewards are stochastic (e.g., noisy clicks or purchases), the **expectation** (mean) provides a stable measure to compare arms. For example, UCB and Thompson Sampling rely on estimating \(\mathbb{E}[r_i]\) for each arm \(i\) to guide decisions, ensuring optimal exploration-exploitation trade-offs.
+    
+    The term **expected reward** is central to multi-armed bandit algorithms because it captures the _long-term average performance_ of an arm, accounting for randomness in outcomes. Bandit algorithms aim to maximize cumulative rewards, but since observed rewards are stochastic (e.g., noisy clicks or purchases), the **expectation** (mean) provides a stable measure to compare arms. For example, UCB and Thompson Sampling rely on estimating \(\mathbb{E}[r_i]\) for each arm \(i\) to guide decisions, ensuring optimal exploration-exploitation trade-offs.
 
     Alternatively, there are other ways to define regret, such as using the maximum reward of the chosen arm or the maximum reward of the optimal arm. However, there is one more elegent reason to use expected reward: it allows us to focus on the *long-term performance* of the algorithm, rather than the short-term fluctuations. This is particularly important in bandit problems, where we want to understand how well our algorithm performs over time, rather than just in a single round.
 
     If you are confused, let's first define a well-studied branch of Bandit algorithms, called **Adversarial Bandits**. and see why the term *expected reward* is here to rescue.
 
     !!! danger "Adversarial Bandits"
+        
         In adversarial bandits, the rewards are chosen by an adversary, and the algorithm has no prior knowledge about the distribution of the rewards. In this case, the algorithm must make decisions based on the observed rewards, and it cannot rely on any assumptions about the underlying distribution.
 
     Now, let's consider an adversarial bandit problem where the rewards are chosen by me, and you can pull the arms.
 
     !!! example "Why not min $r_t$ nor max $r_t$"
+        
         For simplicity, consider the case where there are only two arms, and the rewards are either 0 or 1. If I choose the rewards in such a way that one arm always gives a reward of 1 and the other arm always gives a reward of 0, then the expected reward of the optimal arm is 1, and the expected reward of the chosen arm is either 0 or 1. In this case, if you define regret as the maximum reward of the chosen arm, then you will have a regret of 0, with non-zero probability. Then if you define regret as the minimum reward of the chosen arm, then you will have a regret of 1, with non-zero probability. In both cases, the regret is not a good measure of the performance of the algorithm, because it does not capture the difference between the expected reward of the optimal arm and the expected reward of the chosen arm.
 
 Now that we have find out regret of an algorithm is actually a random variable, it's very rational that we shall try to find out that ==on average== how does algorithm perform.
@@ -418,6 +430,7 @@ Regret bounds offer simplified, worst-case guarantees on algorithm performance, 
 
 Regret bounds are typically expressed in terms of the number of rounds $T$ and the number of arms $K$. A common form of regret bound is:
 !!! Info "Regret Bound definition"
+    
     $$
         R_T \leq C \cdot f(T, K)
     $$
