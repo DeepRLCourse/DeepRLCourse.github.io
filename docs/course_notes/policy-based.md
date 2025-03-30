@@ -1133,14 +1133,13 @@ model-free reinforcement learning algorithms for many applications.
         [:fontawesome-brands-linkedin-in:](https://www.linkedin.com/in/shirzady){:target="_blank"}
         </p>
     </span>
--   ![Instructor Avatar](/assets/images/staff/Hamidreza-Ebrahimpour.jpg){align=left width="150"}
+-   ![Instructor Avatar](/assets/images/staff/Ali-MirGhasemi.jpg){align=left width="150"}
     <span class="description">
-        <p>**Hamidreza Ebrahimpour**</p>
+        <p>**SeyyedAli MirGhasemi**</p>
         <p>Teaching Assistant</p>
-        <p>[ebrahimpour.7879@gmail.com](mailto:ebrahimpour.7879@gmail.com)</p>
+        <p>[sam717269@gmail.com](mailto:sam717269@gmail.com)</p>
         <p>
-        [:fontawesome-brands-github:](https://github.com/hamidRezA7878){:target="_blank"}
-        [:fontawesome-brands-linkedin-in:](https://linkedin.com/in/hamidreza-ebrahimpour78){:target="_blank"}
+        [:fontawesome-brands-linkedin-in:](https://www.linkedin.com/in/sayyed-ali-mirghasemi-6033661b9){:target="_blank"}
         </p>
     </span>
 -   ![Instructor Avatar](/assets/images/staff/Hesam-Hosseini.jpg){align=left width="150"}
