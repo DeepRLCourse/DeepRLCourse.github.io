@@ -379,3 +379,133 @@ In conclusion, navigating the exploration–exploitation trade-off successfully 
 ## Exploration Strategies for Multi-Armed Bandits
 
 Multi-armed bandit (MAB) problems embody the fundamental challenge of balancing exploration (gathering information about the uncertain environment) and exploitation (leveraging existing knowledge to maximize rewards). Several exploration strategies have emerged, each employing distinct mechanisms to navigate this critical trade-off. Below, we elaborate on two common strategies—**the ε-Greedy algorithm** and **Optimistic Initial Values**—examining their theoretical underpinnings, implementation specifics, and intuitive rationale.
+
+
+### The $\boldsymbol{\epsilon}$-Greedy Algorithm
+
+#### Overview and Motivation
+
+The $\epsilon$-greedy algorithm is one of the most fundamental and widely used strategies for balancing the exploration-exploitation trade-off in sequential decision-making problems, particularly in the context of the stochastic multi-armed bandit problem. Its appeal lies in its simplicity and intuitive structure: the agent typically selects what appears to be the best action according to its current knowledge (exploitation), but occasionally takes a random action to gather more information about alternatives (exploration).
+
+Formally, consider a $K$-armed bandit problem, where each arm $i \in \{1, \dots, K\}$ provides i.i.d. rewards drawn from an unknown distribution with mean $\mu_i$. The goal is to maximize the cumulative reward over time, or equivalently, minimize the *regret* with respect to always playing the optimal arm $i^* = \arg\max_i \mu_i$.
+
+The $\epsilon$-greedy algorithm addresses this by injecting randomness into the action selection process. At each time step $t$, it behaves as follows:
+
+$$
+A_t = 
+\begin{cases}
+\text{random arm from } \{1,\dots,K\}, & \text{with probability } \epsilon, \\
+\arg\max_i \hat{Q}_{t-1}(i), & \text{with probability } 1 - \epsilon.
+\end{cases}
+$$
+
+Here, $\hat{Q}_{t-1}(i)$ is the estimated mean reward of arm $i$ based on observations up to time $t-1$.
+
+#### Formal Definition
+
+Let us define the following notation:
+
+- Let $K$ be the number of arms.
+- Let $X_{i, s}$ be the $s$-th observed reward from arm $i$.
+- Let $N_t(i)$ denote the number of times arm $i$ has been selected up to time $t$.
+- Let $\hat{Q}_t(i) = \frac{1}{N_t(i)} \sum_{s=1}^{N_t(i)} X_{i,s}$ denote the empirical mean reward for arm $i$ at time $t$.
+
+At time $t+1$, the $\epsilon$-greedy algorithm proceeds as:
+
+$$
+A_{t+1} =
+\begin{cases}
+\text{randomly select an arm from } \{1, \dots, K\}, & \text{with probability } \epsilon, \\
+\arg\max_i \hat{Q}_t(i), & \text{with probability } 1 - \epsilon.
+\end{cases}
+$$
+
+The value of $\epsilon \in [0,1]$ is typically a small constant (e.g., $\epsilon = 0.1$), ensuring occasional exploration while primarily exploiting the current knowledge.
+
+---
+
+#### Intuition Behind the Algorithm
+
+The core idea of $\epsilon$-greedy is to ensure that all arms are explored with non-zero probability. This addresses the fundamental problem of *uncertainty* in estimating the rewards of each arm. Initially, all estimates $\hat{Q}_t(i)$ are inaccurate due to limited samples. If the algorithm only exploits the current maximum, it risks becoming overconfident in suboptimal arms and permanently ignoring better alternatives.
+
+Exploration allows the algorithm to collect more data about all arms, improving the estimates and preventing premature convergence to a suboptimal policy. Exploitation ensures that we are using the best known option most of the time, thus maximizing the expected reward in the short term.
+
+The balance is governed by $\epsilon$: high $\epsilon$ means more exploration (potentially higher short-term regret), while low $\epsilon$ means more exploitation (potentially poor long-term performance if the optimal arm is missed early).
+
+---
+
+#### Regret Analysis with Constant $\epsilon$
+
+The regret of a bandit algorithm at time $T$ is defined as:
+
+$$
+R(T) = T \mu^* - \mathbb{E} \left[ \sum_{t=1}^T \mu_{A_t} \right],
+$$
+
+where $\mu^* = \max_i \mu_i$ is the mean reward of the optimal arm.
+
+For constant $\epsilon$, the agent explores with probability $\epsilon$ in each round. During exploration, it selects a random arm uniformly from the $K$ options. Hence, even as time progresses and the estimate $\hat{Q}_t$ of the optimal arm improves, the algorithm will still spend $\epsilon T$ steps (in expectation) exploring randomly.
+
+Let $\Delta_i = \mu^* - \mu_i$ denote the expected reward *gap* between arm $i$ and the optimal arm. Then, the expected regret due to exploration is roughly:
+
+$$
+R_{\text{explore}}(T) \approx \epsilon T \cdot \Delta_{\text{avg}},
+$$
+
+where $\Delta_{\text{avg}} = \frac{1}{K} \sum_{i=1}^K \Delta_i$ is the average regret per random pull.
+
+The expected regret due to exploitation is smaller. With enough exploration, the agent will learn to identify the optimal arm, and during the $(1 - \epsilon)T$ exploitation steps, it will mostly choose the correct arm. Hence, the dominant contribution to regret comes from exploration.
+
+Thus, for constant $\epsilon$, we have:
+
+$$
+R(T) = \Theta(T), \quad \text{(linear regret)}
+$$
+
+and the *average* regret $\frac{R(T)}{T} \to \epsilon \Delta_{\text{avg}}$ as $T \to \infty$. Therefore, constant-$\epsilon$ greedy is *not asymptotically optimal*.
+
+---
+
+#### Convergence of $\hat{Q}_t$ Estimates
+
+Despite its linear regret, constant-$\epsilon$ greedy does guarantee convergence of estimates. Since there is a fixed, non-zero probability of selecting each arm at every time step, the number of times any given arm $i$ is selected satisfies:
+
+$$
+\mathbb{E}[N_T(i)] \geq \epsilon \cdot \frac{T}{K}.
+$$
+
+By the Law of Large Numbers, this ensures:
+
+$$
+\hat{Q}_T(i) \xrightarrow{a.s.} \mu_i \quad \text{as } T \to \infty,
+$$
+
+for all $i$. Thus, in the limit, the algorithm identifies the optimal arm correctly, but continues to explore forever at a constant rate — causing the regret to grow linearly over time.
+
+---
+
+#### Decaying $\epsilon_t$ and Sublinear Regret
+
+To improve performance, one can use a time-dependent exploration rate $\epsilon_t$ that decreases with $t$. The motivation is that early on, when little is known, exploration should be frequent. As estimates improve, less exploration is needed, and exploitation becomes safer.
+
+Common choices for decaying schedules include:
+
+- **Inverse time decay**: $\epsilon_t = \frac{1}{t}$
+- **Logarithmic decay**: $\epsilon_t = \frac{c \ln t}{t}$, for some constant $c > 0$
+- **Gap-aware decay**: $\epsilon_t = \min\left\{1, \frac{K}{t \Delta^2}\right\}$ (requires knowledge of gap $\Delta$)
+
+Under such schedules, we can show that:
+
+$$
+R(T) = O(\ln T),
+$$
+
+i.e., the regret grows logarithmically, which is the best one can hope for in the stochastic setting (matching the lower bound of Lai and Robbins for the asymptotic regret of consistent algorithms).
+
+**Sketch of proof (informal intuition):** With $\epsilon_t = \frac{c \ln t}{t}$, the total number of exploration steps up to time $T$ is approximately:
+
+$$
+\sum_{t=1}^T \epsilon_t = \sum_{t=1}^T \frac{c \ln t}{t} \leq c \ln^2 T.
+$$
+
+This means that suboptimal arms are chosen much less frequently over time, and the cumulative regret remains sublinear.
