@@ -485,7 +485,7 @@ The initial state and action are given as inputs to the $Q$-function. The next a
 
 
 
-**B** $(\mathcal{T}^{\pi}Q^{\pi_k})(s,a) = \mathbb{E} \left[ \sum_{h=1}^\infty \gamma^{h-1} r_h \bigg| s_1 = s, a_1 = a, a_2 \sim \pi, a_{3: \infty} \sim \pi_k \right]$$  
+**B** $(\mathcal{T}^{\pi}Q^{\pi_k})(s,a) = \mathbb{E} \left[ \sum_{h=1}^\infty \gamma^{h-1} r_h \bigg| s_1 = s, a_1 = a, a_2 \sim \pi, a_{3: \infty} \sim \pi_k \right]$  
 
 This generalizes (A) where $\pi = \pi_k$.  
 
