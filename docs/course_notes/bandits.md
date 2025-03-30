@@ -368,3 +368,14 @@ where $N_t(i)$ denotes the number of times arm $i$ has been chosen by time $t$. 
 Thompson Sampling employs a Bayesian framework. At each step, the agent draws random samples from posterior distributions representing its belief about arm values and chooses the arm associated with the highest sampled value. This probabilistic matching naturally balances exploration and exploitation, with uncertainty directly encoded in the posterior distributions. Thompson sampling frequently demonstrates excellent empirical and theoretical performance, often achieving state-of-the-art regret bounds.
 
 In conclusion, navigating the exploration–exploitation trade-off successfully is fundamental to sequential decision-making under uncertainty. Effective policies systematically manage uncertainty to achieve optimal long-term rewards, employing strategies informed by optimism and carefully balanced exploration and exploitation.
+
+
+
+
+
+
+
+
+## Exploration Strategies for Multi-Armed Bandits
+
+Multi-armed bandit (MAB) problems embody the fundamental challenge of balancing exploration (gathering information about the uncertain environment) and exploitation (leveraging existing knowledge to maximize rewards). Several exploration strategies have emerged, each employing distinct mechanisms to navigate this critical trade-off. Below, we elaborate on two common strategies—**the ε-Greedy algorithm** and **Optimistic Initial Values**—examining their theoretical underpinnings, implementation specifics, and intuitive rationale.
