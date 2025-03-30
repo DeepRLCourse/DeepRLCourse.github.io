@@ -201,81 +201,89 @@ This exponential weighting characteristic makes the constant step-size update pa
 
 ## Regret: Measuring Suboptimality
 
-In reinforcement learning, particularly in the context of multi-armed bandit problems, an important concept used to evaluate and analyze the performance of different action-selection strategies is called **regret**. Regret quantitatively captures the difference between the reward obtained by the actions actually selected by the agent and the reward that would have been obtained if the optimal action had always been selected. In other words, regret measures how much an agent "misses out" by not always choosing the best possible action.
+### Concept of Regret
 
-#### Formal Definition of Instantaneous Regret
-
-We first define the instantaneous regret at any timestep $t$. Suppose an agent selects action $A_t$ at timestep $t$, and let $q(a)$ represent the true expected value (or expected reward) associated with any action $a$. Furthermore, let us denote $v_\star$ as the expected reward of the optimal action, i.e., the action with the highest expected value:
+In sequential decision-making, especially within reinforcement learning and multi-armed bandit frameworks, a central concept is the **regret**. Regret quantifies the notion of lost opportunity incurred by choosing suboptimal actions over optimal ones. Intuitively, regret measures how much better the agent could have performed had it always selected the best possible action available, denoted by $a^\star$. Formally, we define the instantaneous regret at iteration $t$ as the expected difference between the reward from the optimal action and the reward received from the chosen action $A_t$:
 
 $$
-v_\star = \max_{a \in \mathcal{A}} q(a)
+I_t = \mathbb{E}[v_\star - q(A_t)],
 $$
 
-Then, the instantaneous regret $I_t$ at timestep $t$ can be formally defined as the difference in expected rewards between the optimal action and the chosen action:
+where $v_\star$ represents the expected reward of the optimal action $a^\star$, and $q(A_t)$ represents the expected reward from the action actually taken at step $t$.
+
+### Total Regret
+
+To evaluate the performance of an agent over a sequence of decisions, we typically consider the cumulative effect of these instantaneous regrets. The **total regret** over a horizon of $t$ steps is thus:
 
 $$
-I_t = \mathbb{E}[v_\star - q(A_t)]
+L_t = \mathbb{E}\left[\sum_{\tau=1}^{t} (v_\star - q(A_\tau))\right].
 $$
 
-This expression captures the expected immediate loss of reward incurred by choosing suboptimal action $A_t$ rather than the optimal action $a^\star$. Clearly, if the chosen action at timestep $t$ is the optimal one, the instantaneous regret at that timestep is zero. If a suboptimal action is selected, the instantaneous regret will be positive, indicating an opportunity loss.
+Minimizing total regret is directly equivalent to maximizing cumulative reward, making regret a natural performance metric for learning algorithms in reinforcement learning contexts.
 
-#### Total Regret
+### 3. Regret, Gap, and Action Counts
 
-Building upon the instantaneous regret, we define **total regret** as the accumulated regret over multiple timesteps within an episode or experiment. Formally, the total regret over a horizon of $t$ steps is defined as:
+To analyze regret in greater detail, we introduce two important concepts:
 
-$$
-L_t = \mathbb{E}\left[\sum_{\tau=1}^t \left(v_\star - q(A_\tau)\right)\right]
-$$
-
-Here, the summation aggregates the instantaneous regrets across all actions selected from timestep 1 up to timestep $t$. The goal of an agent is typically to minimize this total regret. Equivalently, minimizing regret translates directly into maximizing cumulative reward, as minimizing the difference from optimal performance implies maximizing total rewards earned.
-
-#### Action Counts and Gap Definition
-
-To better analyze regret, it's beneficial to consider how often specific actions are selected. We define $N_t(a)$ as the expected number of times action $a$ is chosen by the agent up to timestep $t$. Another useful definition is the **gap** $\Delta_a$, which explicitly measures the quality difference between action $a$ and the optimal action:
+- The **action-count** $N_t(a)$, which denotes the expected number of times an action $a$ has been selected up to iteration $t$.
+- The **gap** $\Delta_a$, defined as the difference between the optimal action's expected value and the expected value of action $a$:
 
 $$
-\Delta_a = v_\star - q(a)
+\Delta_a = v_\star - q(a).
 $$
 
-This gap is always non-negative and directly indicates how much less rewarding action $a$ is compared to the best action available. By definition, the gap is zero for the optimal action.
-
-Using these notions, we rewrite the total regret in a more insightful way, emphasizing the contribution of each action individually:
+Given these definitions, the total regret $L_t$ can also be expressed in terms of the gaps and action counts. Specifically, by decomposing the regret according to how often each suboptimal action is chosen, we have:
 
 $$
 \begin{aligned}
-  L_t &= \mathbb{E}\left[\sum_{\tau=1}^t \left(v_\star - q(A_\tau)\right)\right] \\
-      &= \sum_{a \in \mathcal{A}} \mathbb{E}[N_t(a)]\Delta_a
+L_t &= \mathbb{E}\left[\sum_{\tau=1}^{t} (v_\star - q(A_\tau))\right] \\
+&= \sum_{a \in \mathcal{A}} \mathbb{E}[N_t(a)](v_\star - q(a)) \\
+&= \sum_{a \in \mathcal{A}} \mathbb{E}[N_t(a)] \Delta_a.
 \end{aligned}
 $$
 
-Here, we see explicitly how regret accumulates through repeatedly selecting suboptimal actions, weighted by how many times each of these suboptimal actions is chosen.
+Thus, the problem of regret minimization reduces to minimizing the expected count of suboptimal actions chosen, particularly those with large gaps.
 
-#### Intuition and Behavior of Regret
+### Regret Dynamics and Algorithmic Insights
 
-Examining the behavior of regret can reveal critical insights about action selection strategies. For instance, consider a purely greedy strategy—always selecting the action currently believed to yield the highest immediate reward based on past observations. Such a greedy strategy can potentially result in linear regret because it may prematurely commit or "lock" onto a suboptimal action due to initial misleading rewards. Once locked, it repeatedly incurs a fixed positive regret at every timestep, causing regret to increase linearly over time.
+An important insight about regret is how it grows as a function of time $t$ under various strategies. For instance, a purely greedy algorithm—one that selects actions solely based on current value estimates—will exhibit linear regret. This linear growth occurs because the algorithm might prematurely "lock in" on a suboptimal action indefinitely, accruing constant regret at each step.
 
-To address this issue, one common heuristic is called **optimistic initialization**, where the estimated Q-values for all actions are initialized optimistically (higher than their true values). Mathematically, we typically update the estimated value for each action as the empirical average reward:
-
-$$
-Q(a) = \frac{1}{N_t(a)}\sum_{\tau=1}^t \mathbf{1}(A_\tau = a)R_\tau
-$$
-
-This optimistic initialization encourages exploration by giving each action an initially favorable estimate, which makes it more likely for the agent to try every action at least once, thus reducing the risk of prematurely locking onto a suboptimal choice.
-
-#### Regret Bounds and Their Significance
-
-Theoretical studies in reinforcement learning and multi-armed bandit problems provide important guarantees in the form of **regret bounds**. Simple algorithms like the $\varepsilon$-greedy method, which randomly explore with a small fixed probability $\varepsilon$, generally incur linear regret. However, strategies that carefully decay the exploration probability $\varepsilon$ over time can achieve much more favorable performance, attaining logarithmic regret. Specifically, these algorithms incrementally become more confident and thus reduce unnecessary exploration, resulting in a logarithmic growth of regret over time.
-
-Importantly, there exists a fundamental theoretical lower bound on the achievable regret by any algorithm. This lower bound is logarithmic in nature and is formally expressed as follows:
+One powerful mitigation strategy is known as **optimistic initialization**, where we deliberately overestimate initial action values. Formally, the action-value estimates $Q(a)$ are updated using an averaging process:
 
 $$
-\lim_{t\rightarrow\infty} L_t \geq \log t \sum_{a\,|\,\Delta_a>0} \frac{\Delta_a}{\text{KL}(\mathcal{R}^a \|\| \mathcal{R}^{a^\star})}
+Q(a) = \frac{1}{N_t(a)} \sum_{\tau=1}^{t} \mathbf{1}(A_\tau = a) R_\tau.
 $$
 
-In this equation, $\text{KL}(\mathcal{R}^a \|\| \mathcal{R}^{a^\star})$ denotes the Kullback-Leibler divergence between the reward distribution $\mathcal{R}^a$ of suboptimal action $a$ and the reward distribution $\mathcal{R}^{a^\star}$ of the optimal action. This divergence measures the statistical distinguishability between these two distributions. A higher divergence implies it is easier to distinguish suboptimal actions from optimal actions, which reduces the achievable regret.
+This optimistic approach incentivizes initial exploration, reducing the chance of permanently settling on a suboptimal action, thereby improving long-term regret performance.
 
-Thus, the lower bound reveals two crucial insights:
-- Regret grows at least logarithmically with time.
-- The bound depends positively on the gaps (larger gaps yield greater minimum regret) and inversely on the distinguishability of action distributions.
+### Lower Bound on Regret (Lai-Robbins Bound)
 
-Understanding these foundational properties of regret provides the conceptual tools and mathematical frameworks necessary to design, analyze, and compare reinforcement learning strategies effectively.
+An essential theoretical result by Lai and Robbins (1985) provides a fundamental lower bound on achievable regret growth for any "consistent" algorithm—that is, any algorithm whose regret grows sublinearly for all problem instances. Formally, the Lai-Robbins bound is stated as:
+
+$$
+\liminf_{t \to \infty} \frac{L_t}{\ln t} \geq \sum_{a \mid \Delta_a > 0} \frac{\Delta_a}{D_{\text{KL}}(\mathcal{R}^a \|\| \mathcal{R}^{a^\star})},
+$$
+
+where $D_{\text{KL}}(\mathcal{R}^a || \mathcal{R}^{a^\star})$ is the Kullback–Leibler (KL) divergence between the reward distributions of a suboptimal arm $a$ and the optimal arm $a^\star$. Intuitively, this bound indicates that arms with smaller gaps ($\Delta_a$ close to zero) or similar reward distributions to the optimal arm (small KL divergence) inherently require more exploration, resulting in greater regret.
+
+### Bernoulli Bandit Case
+
+In practical scenarios such as Bernoulli bandits, where each action's reward distribution is Bernoulli($\mu_a$), the KL divergence has a closed-form expression:
+
+$$
+D_{\text{KL}}(\text{Bern}(\mu_a) \|\| \text{Bern}(\mu^\star)) = \mu^\star \ln \frac{\mu^\star}{\mu_a} + (1 - \mu^\star) \ln \frac{1 - \mu^\star}{1 - \mu_a}.
+$$
+
+For large $t$, the Lai-Robbins bound simplifies approximately to:
+
+$$
+L_t \gtrsim \sum_{a \mid \mu_a < \mu^\star} \frac{\ln t}{\mu^\star - \mu_a},
+$$
+
+clearly demonstrating the logarithmic lower bound on regret growth. Thus, no algorithm can improve beyond a logarithmic rate of regret growth for these problem instances.
+
+### Problem-Dependent versus Minimax Regret
+
+The regret bounds discussed so far are **problem-dependent**, reflecting intrinsic characteristics of specific problem instances (such as gaps between arms). Another view is the minimax regret, which considers the worst-case regret across all possible problem instances. For stochastic bandits with fixed reward distributions, the problem-dependent bound ($\Theta(\ln t)$) is generally more informative and achievable compared to the minimax bound, which typically scales as $\Theta(\sqrt{Kt})$ in adversarial settings.
+
+Several algorithms, including Upper Confidence Bound (UCB) and Thompson Sampling, have been shown to achieve regret growth matching the logarithmic Lai-Robbins lower bound, both asymptotically and in some cases even in constant factors. This optimal performance contrasts starkly with naive strategies such as fixed $\varepsilon$-greedy methods, which incur linear regret due to continual exploration.
