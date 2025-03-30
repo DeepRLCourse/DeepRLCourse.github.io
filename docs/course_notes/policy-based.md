@@ -187,13 +187,13 @@ proof and figure out why the policy gradient theorem is correct.
     \rho^{\pi}(s \to x, k + 1) = \sum_{s'} \rho^{\pi}(s \to s', k) \rho^{\pi}(s' \to x, 1).
     $$
 
-    Then we go back to unroll the recursive representation of $\nabla_{\theta}V^{\pi}(s)$! Let
+    Then we go back to unroll the recursive representation of $\nabla_{\theta}V^{\pi}(s)$. Let
 
     $$
     \phi(s) = \sum_{a \in \mathcal{A}} \nabla_{\theta} \pi_{\theta}(a|s) Q^{\pi}(s,a)
     $$
 
-    to simplify the maths. If we keep on extending $\nabla_{\theta}V^{\pi}(\cdot)$ infinitely, it is easy to find out that we can transition from the starting state $s$ to any state after any number of steps in this unrolling process and by summing up all the visitation probabilities, we get $\nabla_{\theta}V^{\pi}(s)$!
+    to simplify the equations. If we keep on extending $\nabla_{\theta}V^{\pi}(\cdot)$ infinitely, it is easy to find out that we can transition from the starting state $s$ to any state after any number of steps in this unrolling process and by summing up all the visitation probabilities, we get $\nabla_{\theta}V^{\pi}(s)$!
 
     $$
     \begin{aligned}
@@ -1030,9 +1030,7 @@ value function parameter updates, respectively.
 
   
 
-To summarize, the key methods for reducing variance in policy gradient
-
-methods include:
+To summarize, the key methods for reducing variance in policy gradient methods include:
 
   
 
