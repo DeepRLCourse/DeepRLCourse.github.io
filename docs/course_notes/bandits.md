@@ -599,3 +599,150 @@ which matches the asymptotic regret bound of more sophisticated algorithms like 
 
 However, if $Q^+$ is set *too optimistically*, the agent may spend unnecessary time validating even poor arms. Conversely, if it is set *insufficiently optimistically*, some arms may not be explored at all. Therefore, **the choice of $Q^+$ must be made carefully**, ideally based on prior knowledge of the reward bounds.
 
+
+
+
+
+
+
+
+
+
+
+
+
+### Upper Confidence Bound (UCB) Algorithms: A Detailed Exploration
+
+#### Introduction and Motivation
+
+In the study of the exploration-exploitation dilemma in stochastic multi-armed bandit (MAB) problems, one of the most elegant and foundational strategies is the **Upper Confidence Bound (UCB)** algorithm. UCB embodies a principle of decision-making known as **optimism in the face of uncertainty**. This heuristic encourages an agent to behave optimistically about less-explored actions by constructing upper confidence bounds for their expected rewards and then selecting actions as if these bounds were true estimates of the actual value.
+
+The UCB framework is based on a rigorous statistical foundation: if we can form a high-probability upper bound on the true reward of each arm, then choosing the arm with the largest such bound encourages both **exploitation** of arms that are empirically promising and **exploration** of arms about which we remain uncertain. 
+
+To put it simply: the algorithm behaves as if the true reward of each arm is the most optimistic plausible value consistent with the observed data. This naturally balances the dual needs of exploration (gathering information about uncertain arms) and exploitation (using the current best knowledge to make good decisions).
+
+---
+
+#### Problem Setup
+
+We formalize the stochastic K-armed bandit setting as follows:
+
+- Let $\mathcal{A} = \{1, 2, \dots, K\}$ denote the set of $K$ actions or arms.
+- At each time step $t = 1, 2, \dots, T$, the agent selects an arm $A_t \in \mathcal{A}$ and receives a reward $R_t \in [0,1]$ drawn from a fixed, unknown distribution associated with that arm.
+- Let $\mu_i = \mathbb{E}[R_t \mid A_t = i]$ denote the true expected reward of arm $i$.
+- Let $\mu^* = \max_i \mu_i$ denote the value of the optimal arm.
+- The goal is to minimize **regret**, defined as the expected difference between the reward accumulated by always playing the optimal arm and the reward collected by the algorithm:
+
+$$
+R(T) = T\mu^* - \mathbb{E}\left[\sum_{t=1}^T R_t\right] = \sum_{i=1}^K \Delta_i \mathbb{E}[N_i(T)],
+$$
+
+where $\Delta_i = \mu^* - \mu_i$ and $N_i(T)$ is the number of times arm $i$ was selected up to time $T$.
+
+---
+
+#### Optimism in the Face of Uncertainty
+
+At the heart of UCB algorithms lies the idea of **confidence intervals**. Suppose for each arm $i$, we maintain an estimate $\hat{Q}_{t-1}(i)$ of its true mean $\mu_i$, based on observed rewards. Alongside this estimate, we compute an upper confidence term $U_{t-1}(i)$, such that with high probability:
+
+$$
+\mu_i \leq \hat{Q}_{t-1}(i) + U_{t-1}(i).
+$$
+
+Rather than just selecting the arm with the highest empirical mean, we select the arm with the highest *upper bound*, i.e.,
+
+$$
+A_t = \arg\max_{i \in \mathcal{A}} \hat{Q}_{t-1}(i) + U_{t-1}(i).
+$$
+
+This choice reflects **optimism**: we act as if each arm is as good as it could plausibly be, given the data so far. The key insight is that this encourages exploration of less-frequently pulled arms because their confidence intervals are wider (i.e., larger $U_{t-1}(i)$), and this naturally decreases as more data accumulates.
+
+---
+
+#### Derivation via Hoeffding's Inequality
+
+To construct the upper confidence term $U_{t-1}(i)$, we rely on **Hoeffding's inequality**, a concentration bound for bounded random variables.
+
+##### Hoeffding’s Inequality:
+
+Let $X_1, ..., X_n$ be i.i.d. random variables with values in $[0, 1]$, and let $\bar{X}_n = \frac{1}{n} \sum_{j=1}^n X_j$ be their sample mean. Then for any $u > 0$,
+
+$$
+\Pr\left\{ \mathbb{E}[X] > \bar{X}_n + u \right\} \leq e^{-2nu^2}.
+$$
+
+This inequality bounds the probability that the true mean exceeds the empirical mean by more than $u$. Rearranging it gives us a confidence interval: with probability at least $1 - \delta$,
+
+$$
+\mathbb{E}[X] \leq \bar{X}_n + \sqrt{\frac{\ln(1/\delta)}{2n}}.
+$$
+
+We apply this inequality to each arm $i$, where $X_j$ is the reward from the $j$-th time we pulled arm $i$, $\bar{X}_n = \hat{Q}_{t-1}(i)$, and $n = N_{t-1}(i)$ is the number of times we’ve pulled arm $i$.
+
+This leads us to define:
+
+$$
+U_{t-1}(i) = \sqrt{\frac{\ln(1/\delta_{t-1})}{2N_{t-1}(i)}},
+$$
+
+so that with high probability,
+
+$$
+\mu_i \leq \hat{Q}_{t-1}(i) + U_{t-1}(i).
+$$
+
+---
+
+#### The UCB1 Algorithm
+
+To ensure the confidence holds for all time steps (so that the overall regret is bounded), we define a schedule for $\delta_t$ that decays with $t$, e.g., $\delta_t = 1/t^2$ or $\delta_t = 1/t^4$. Plugging this into our formula gives the well-known UCB1 index:
+
+$$
+\text{UCB}_t(i) = \hat{Q}_{t-1}(i) + \sqrt{\frac{2 \ln t}{N_{t-1}(i)}}.
+$$
+
+Then the action selection rule is:
+
+$$
+A_t = \arg\max_{i \in \mathcal{A}} \left[ \hat{Q}_{t-1}(i) + \sqrt{\frac{2 \ln t}{N_{t-1}(i)}} \right].
+$$
+
+This algorithm guarantees that each arm is explored enough to maintain confidence, while also converging to exploiting the optimal arm.
+
+---
+
+#### Interpretation and Intuition
+
+This formula can be interpreted in two parts:
+
+- **Exploitation**: $\hat{Q}_{t-1}(i)$ is the empirical mean of rewards — it represents our current best estimate.
+- **Exploration Bonus**: $\sqrt{\frac{2 \ln t}{N_{t-1}(i)}}$ is large when the arm has been pulled only a few times (small $N$) or early in time (small $t$), and shrinks as $N$ grows.
+
+Crucially, $\ln t$ grows slowly (logarithmically), so even at large time steps, the algorithm still occasionally re-explores arms with low $N_i$. This ensures that no arm is neglected forever, and yet the frequency of exploration diminishes as the confidence in $\hat{Q}$ grows.
+
+---
+
+#### Regret Analysis of UCB1
+
+The strength of UCB1 lies in its theoretical guarantees. Let $\Delta_i = \mu^* - \mu_i$ denote the suboptimality gap of arm $i$.
+
+Auer et al. (2002) proved that:
+
+$$
+\mathbb{E}[N_i(T)] \leq \frac{8 \ln T}{\Delta_i^2} + O(1),
+$$
+
+meaning the number of times a suboptimal arm is pulled grows logarithmically with $T$. This leads to the following bound on expected cumulative regret:
+
+$$
+\mathbb{E}[R(T)] = \sum_{i: \Delta_i > 0} \Delta_i \mathbb{E}[N_i(T)] \leq \sum_{i: \Delta_i > 0} \left( \frac{8 \ln T}{\Delta_i} + O(\Delta_i) \right),
+$$
+
+which simplifies to:
+
+$$
+\mathbb{E}[R(T)] = O\left( \sum_{i: \Delta_i > 0} \frac{\ln T}{\Delta_i} \right) = O(\ln T).
+$$
+
+This is **order-optimal**, matching the lower bound for regret in stochastic bandits up to constant factors. Importantly, this bound is *problem dependent*: larger suboptimality gaps $\Delta_i$ lead to fewer required explorations, and hence lower regret.
+
