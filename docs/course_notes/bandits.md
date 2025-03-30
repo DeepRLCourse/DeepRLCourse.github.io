@@ -746,3 +746,130 @@ $$
 
 This is **order-optimal**, matching the lower bound for regret in stochastic bandits up to constant factors. Importantly, this bound is *problem dependent*: larger suboptimality gaps $\Delta_i$ lead to fewer required explorations, and hence lower regret.
 
+
+
+
+
+### Thompson Sampling (Bayesian Probability Matching)
+
+Thompson Sampling (TS), originally proposed by William R. Thompson in 1933, is a foundational algorithm in the domain of sequential decision-making under uncertainty, particularly within the **multi-armed bandit (MAB)** framework. It embodies a Bayesian philosophy, maintaining a probabilistic belief about the reward-generating distribution of each arm and using this belief to guide arm selection.
+
+At its core, Thompson Sampling follows the principle of **probability matching**: it selects actions (i.e., arms) in proportion to the probability that each is the optimal choice, conditioned on observed data. This leads to a dynamic and adaptive strategy that naturally balances **exploration** (gathering information about uncertain arms) and **exploitation** (leveraging the current best guess to maximize reward).
+
+---
+
+#### Bayesian Framework
+
+Suppose we have a stochastic K-armed bandit problem with arms indexed by $i=1,2,\dots,K$. Each arm $i$ is associated with an unknown reward distribution parameterized by $\theta_i$, and our goal is to maximize cumulative reward over $T$ rounds. At each time $t$, the learner chooses an arm $A_t$, observes a reward $R_t\sim\mathcal{D}_{A_t}$, and updates their belief about the corresponding $\theta_{A_t}$.
+
+From a Bayesian standpoint, we place a **prior distribution** $p(\theta_i)$ over each $\theta_i$, and after observing data $\mathcal{H}_t$ (history up to time $t$), we update the posterior $p(\theta_i|\mathcal{H}_t)$ via Bayes' theorem:
+
+$$
+p(\theta_i|\mathcal{H}_t)=\frac{p(\mathcal{H}_t|\theta_i)p(\theta_i)}{p(\mathcal{H}_t)}
+$$
+
+Thompson Sampling samples $\tilde{\theta}_i^{(t)}\sim p(\theta_i|\mathcal{H}_t)$ for each arm and chooses the arm with the highest sampled expected reward.
+
+Formally:
+
+$$
+A_t=\arg\max_{i\in\{1,\dots,K\}}\mathbb{E}[R_t|\tilde{\theta}_i^{(t)}]
+$$
+
+---
+
+#### Bernoulli Bandits: Beta-Bernoulli Model
+
+To make these ideas concrete, consider the special case where each arm yields **Bernoulli rewards**:
+
+$$
+R_t\in\{0,1\} \quad \text{with} \quad R_t\sim\text{Bernoulli}(\theta_i)
+$$
+
+We assume that the success probability $\theta_i\in[0,1]$ is unknown. The natural conjugate prior for the Bernoulli distribution is the **Beta distribution**, defined as:
+
+$$
+\theta_i\sim\text{Beta}(\alpha_i,\beta_i), \quad \text{with density:} \quad p(\theta_i)=\frac{\theta_i^{\alpha_i-1}(1-\theta_i)^{\beta_i-1}}{B(\alpha_i,\beta_i)}
+$$
+
+where $B(\alpha,\beta)$ is the beta function (a normalization constant). The Beta distribution is flexible and allows us to express varying degrees of prior belief. For instance, the **uninformative uniform prior** is $\text{Beta}(1,1)$.
+
+#### Algorithm Steps
+
+At each round $t$, the Thompson Sampling algorithm proceeds as follows:
+
+1. **Posterior Sampling**:  
+   For each arm $i=1,\dots,K$, draw:
+
+   $$
+   \tilde{\theta}_i^{(t)}\sim\text{Beta}(\alpha_i,\beta_i)
+   $$
+
+2. **Action Selection**:  
+   Choose the arm with the highest sampled value:
+
+   $$
+   A_t=\arg\max_{i}\tilde{\theta}_i^{(t)}
+   $$
+
+3. **Reward Observation**:  
+   Pull arm $A_t$, observe reward $R_t\in\{0,1\}$
+
+4. **Posterior Update**:  
+   Update the Beta parameters:
+
+   $$
+   \alpha_{A_t}\leftarrow\alpha_{A_t}+R_t, \quad \beta_{A_t}\leftarrow\beta_{A_t}+(1-R_t)
+   $$
+
+The rest of the arms' parameters remain unchanged.
+
+---
+
+#### Intuition Behind Exploration and Exploitation
+
+This process allows the algorithm to **explore uncertain arms** and **exploit promising ones** in a naturally balanced way. Consider an arm $i$ with a high mean estimate but low certainty (wide posterior). There's a non-negligible chance that its sampled $\tilde{\theta}_i$ will be large, leading to selection. Conversely, an arm with high empirical reward but tight posterior still occasionally gets out-sampled by a more uncertain one.
+
+This phenomenon is called **randomized optimism**: sometimes, by chance, an uncertain arm is sampled optimistically, leading to its exploration. The more we pull an arm, the narrower its posterior becomes, reducing unnecessary exploration over time.
+
+---
+
+#### Extension Beyond Bernoulli Rewards
+
+While the Beta-Bernoulli setup is particularly elegant due to its conjugacy (posterior is analytically tractable), Thompson Sampling extends naturally to other reward models:
+
+- **Gaussian rewards with unknown mean (known variance)**: Use a normal prior $\theta_i\sim\mathcal{N}(\mu_i,\sigma_i^2)$  
+- **Poisson rewards**: Use a Gamma prior on the rate parameter $\lambda_i$  
+- **General likelihoods**: Use approximate inference (e.g., Monte Carlo methods, variational inference)
+
+In non-conjugate or complex settings, one often resorts to **sampling-based approximations** of the posterior, such as particle filters or MCMC methods.
+
+---
+
+#### Regret Analysis
+
+Thompson Sampling was initially justified from a **Bayesian** perspective — minimizing expected regret under a prior over reward distributions. However, rigorous analysis has shown that TS also achieves **strong frequentist guarantees**.
+
+#### Regret Definition
+
+Let $\mu_i=\mathbb{E}[R_t|A_t=i]$ be the expected reward of arm $i$, and let $\mu^*=\max_i\mu_i$ be the optimal reward. Then the cumulative regret over $T$ rounds is:
+
+$$
+R(T)=T\mu^*-\sum_{t=1}^T\mathbb{E}[\mu_{A_t}]
+$$
+
+For Bernoulli bandits, let $\Delta_i=\mu^*-\mu_i$. Then under mild conditions, the **expected regret** of Thompson Sampling satisfies:
+
+$$
+\mathbb{E}[R(T)]=O\left(\sum_{i:\Delta_i>0}\frac{\ln T}{\Delta_i^2}\right)
+$$
+
+This bound is only slightly looser than the regret of UCB algorithms, which have regret scaling as $\sum_i\frac{\ln T}{\Delta_i}$. Despite this, Thompson Sampling often **outperforms UCB in practice** due to better constant factors and more flexible adaptation.
+
+In fact, for many distributions, it has been shown that TS **asymptotically matches the Lai–Robbins lower bound**:
+
+$$
+\liminf_{T\to\infty}\frac{\mathbb{E}[R(T)]}{\ln T}\geq\sum_{i:\Delta_i>0}\frac{\Delta_i}{D(\mu_i\|\mu^*)}
+$$
+
+where $D(p\|q)$ is the Kullback–Leibler divergence between the reward distributions of arms $i$ and the optimal arm.
