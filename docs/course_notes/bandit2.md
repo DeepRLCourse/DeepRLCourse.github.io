@@ -15,9 +15,9 @@ Markov's inequality is a simple but powerful tool for bounding the probability t
 
     Let $X$ be a non-negative random variable and let $a > 0$. Then, the probability that $X$ is greater than or equal to $a$ is bounded by the expected value of $X$ divided by $a$:
 
-        $$
-            P(X \geq a) \leq \frac{E[X]}{a}
-        $$
+    $$
+        P(X \geq a) \leq \frac{E[X]}{a}
+    $$
 
 !!! Note
 
@@ -570,10 +570,13 @@ $$
 R(T) = \sum_{i: \Delta_i > 0} \Delta_i \cdot E[n_i(T)] \leq \sum_{i: \Delta_i > 0} \left( \frac{8 \ln T}{\Delta_i} + \left(1 + \frac{\pi^2}{3}\right)\Delta_i \right).
 $$
 
-## This shows that UCB1 attains a **logarithmic regret**, which is order-optimal up to constant factors.
 
-!!! Proof #### 1. **Initialization**  
- Each arm is pulled once, ensuring that initial estimates are available.
+This shows that UCB1 attains a **logarithmic regret**, which is order-optimal up to constant factors.
+
+!!! Proof 
+
+    #### 1. **Initialization**  
+    Each arm is pulled once, ensuring that initial estimates are available.
 
     #### 2. **Confidence Bounds & Chernoff-Hoeffding Inequality**
     For each arm $i$, the UCB1 algorithm computes
