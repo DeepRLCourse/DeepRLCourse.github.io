@@ -12,17 +12,20 @@ Concentration inequalities help us quantify the uncertainty in our estimates and
 Markov's inequality is a simple but powerful tool for bounding the probability that a non-negative random variable exceeds a certain value. It's a fundamental result in probability theory and is often used in probabilistic analysis.
 
 !!! danger "Markov's Inequality"
-Let $X$ be a non-negative random variable and let $a > 0$. Then, the probability that $X$ is greater than or equal to $a$ is bounded by the expected value of $X$ divided by $a$:
 
-    $$
-        P(X \geq a) \leq \frac{E[X]}{a}
-    $$
+    Let $X$ be a non-negative random variable and let $a > 0$. Then, the probability that $X$ is greater than or equal to $a$ is bounded by the expected value of $X$ divided by $a$:
+
+        $$
+            P(X \geq a) \leq \frac{E[X]}{a}
+        $$
 
 !!! Note
-This inequality is particularly useful when we have a ==non-negative random variable== and we want to bound the probability of it being ==large==. It provides a simple way to relate the expected value of the random variable to its tail behavior.
+
+    This inequality is particularly useful when we have a ==non-negative random variable== and we want to bound the probability of it being ==large==. It provides a simple way to relate the expected value of the random variable to its tail behavior.
 
 !!! Proof
-To prove Markov's inequality, we start with the definition of the expected value of a non-negative random variable $X$:
+
+    To prove Markov's inequality, we start with the definition of the expected value of a non-negative random variable $X$:
 
     $$
         E[X] = \int_0^\infty x f_X(x) dx
@@ -65,7 +68,8 @@ This inequality is useful in bandit problems because it allows us to bound the p
 You may ask what does "loose" mean? Let's consider a simple example:
 
 !!! example "Markov's Inequality Example"
-Let $X$ be a random variable that takes the value 0 with probability 0.9 and the value 10 with probability 0.1. Then, we have:
+
+    Let $X$ be a random variable that takes the value 0 with probability 0.9 and the value 10 with probability 0.1. Then, we have:
 
     $$
         E[X] = 0 \cdot 0.9 + 10 \cdot 0.1 = 1
@@ -86,7 +90,8 @@ We will discuss more about the tightness of the bounds in the next sections, but
 Chebyshev's inequality is a powerful tool for bounding the probability that a random variable deviates from its ==mean==. It is particularly useful when we have a random variable with a known variance, and we want to understand ==how likely it is to be far from its expected value==. It is a more refined version of Markov's inequality, as it takes into account the variance of the random variable, and it doesn't require the random variable to be non-negative.
 
 !!! danger "Chebyshev's Inequality"
-Let $X$ be a random variable with mean $\mu = E[X]$ and variance $\sigma^2 = Var(X)$. Then, for any $k > 0$, the probability that $X$ deviates from its mean by more than $k$ standard deviations is bounded by:
+
+    Let $X$ be a random variable with mean $\mu = E[X]$ and variance $\sigma^2 = Var(X)$. Then, for any $k > 0$, the probability that $X$ deviates from its mean by more than $k$ standard deviations is bounded by:
 
     $$
         P(|X - \mu| \geq k \sigma) \leq \frac{1}{k^2}
@@ -101,15 +106,18 @@ $$
 which is equivalent to the above inequality when we set $k = k \sigma$.
 
 !!! Note
-This inequality is particularly useful when we have a random variable with a known mean and variance, and we want to bound the probability of it being far from its expected value. It provides a more refined estimate than Markov's inequality, as it takes into account the variance of the random variable.
+
+    This inequality is particularly useful when we have a random variable with a known mean and variance, and we want to bound the probability of it being far from its expected value. It provides a more refined estimate than Markov's inequality, as it takes into account the variance of the random variable.
 
 !!! Note
-Chebyshev's inequality is a general result that applies to any random variable with a ==finite mean and variance==. It is not specific to any particular distribution, which makes it a powerful tool in probability theory.
+
+    Chebyshev's inequality is a general result that applies to any random variable with a ==finite mean and variance==. It is not specific to any particular distribution, which makes it a powerful tool in probability theory.
 
 Chebyshev's inequality can be easily derived from Markov's inequality. Let's break it down:
 
 !!! proof "Chebyshev's Inequality Proof"
-Start with the definition of variance:
+
+    Start with the definition of variance:
 
     $$
         Var(X) = E[(X - \mu)^2] = E[X^2] - \mu^2
@@ -136,7 +144,8 @@ Start with the definition of variance:
 Compared to Markov's inequality, Chebyshev's inequality is more refined as it accounts for the variance of the random variable. However, it still provides a loose bound and may not yield accurate estimates for the probability of large deviations in many cases.
 
 !!! example "Chebyshev's Inequality Example"
-Let $X$ be a normal random variable with mean $\mu = 0$ and variance $\sigma^2 = 1$,i.e., $X \sim N(0, 1)$. We can apply Chebyshev's inequality to bound the probability that $X$ deviates from its mean by more than $a$ standard deviations:
+
+    Let $X$ be a normal random variable with mean $\mu = 0$ and variance $\sigma^2 = 1$,i.e., $X \sim N(0, 1)$. We can apply Chebyshev's inequality to bound the probability that $X$ deviates from its mean by more than $a$ standard deviations:
 
     $$
         P(|X - 0| \geq a) \leq \frac{1}{a^2}
