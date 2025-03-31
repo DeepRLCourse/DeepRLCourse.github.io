@@ -1,6 +1,6 @@
 # Introduction to RL in Depth
 ## goal
-get deeper into the concepts. learn new math that are usfull for RL 
+get deeper into the concepts. learn new math that are usfull for RL
 
 ## overview
 
