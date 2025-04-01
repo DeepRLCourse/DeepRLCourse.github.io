@@ -872,6 +872,8 @@ $$
 \liminf_{T\to\infty}\frac{\mathbb{E}[R(T)]}{\ln T}\geq\sum_{i:\Delta_i>0}\frac{\Delta_i}{D(\mu_i\|\mu^*)}
 $$
 
+where $D(p\|q)$ is the Kullback–Leibler divergence between the reward distributions of arms $i$ and the optimal arm.
+
 ---
 
 ## **Contextual Bandits**
@@ -970,18 +972,17 @@ Thompson Sampling (TS) can also be extended to **contextual** bandits by placing
 
 ### Usage of Thompson Sampling Algorithm in Contextual Bandits
 
-1. **Model Specification**: Assume a prior distribution over each arm’s parameter \(\theta_i\) (e.g., Gaussian for linear models).  
-2. **At Each Round \( t \)**:
-   - Observe context \( x_t \).  
-   - Sample \(\tilde{\theta}_i\) from the posterior for each arm \( i \).  
-   - Compute \(\tilde{r}_i(t) = x_t^\top \tilde{\theta}_i\).  
-   - Select \( A_t = \arg\max_i \tilde{r}_i(t) \).  
-   - Observe reward \( R_t \).  
-   - Update the posterior of \(\theta_{A_t}\).
+1. **Model Specification**: Assume a prior distribution over each arm’s parameter $\(\theta_i\)$ (e.g., Gaussian for linear models).  
+2. **At Each Round $\( t \)$ **:
+   - Observe context $\( x_t \)$ .  
+   - Sample $\(\tilde{\theta}_i\)$ from the posterior for each arm $\( i \)$ .  
+   - Compute $\(\tilde{r}_i(t) = x_t^\top \tilde{\theta}_i\)$ .  
+   - Select $\( A_t = \arg\max_i \tilde{r}_i(t) \)$ .  
+   - Observe reward $\( R_t \)$ .  
+   - Update the posterior of $\(\theta_{A_t}\)$ .
 
 ### Regret Analysis of Thompson Sampling in Contextual Bandits
 
-With similar assumptions to LinUCB, contextual Thompson Sampling attains comparable \(O(\sqrt{T})\)-type regret bounds, often with good empirical results due to its Bayesian “probability matching” mechanism.
+With similar assumptions to LinUCB, contextual Thompson Sampling attains comparable $\(O(\sqrt{T})\)$ -type regret bounds, often with good empirical results due to its Bayesian “probability matching” mechanism.
 
 
-where $D(p\|q)$ is the Kullback–Leibler divergence between the reward distributions of arms $i$ and the optimal arm.
