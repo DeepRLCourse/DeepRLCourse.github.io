@@ -933,13 +933,13 @@ LinUCB maintains an **estimate** $\(\hat{\theta}_i\)$ for each arm $\(i\)$ . To 
 2. **At time $\( t \)$ **, upon receiving context $\( x_t \)$ :
    - For each arm $\( i \)$ :
 
-     $$
+     $
        \hat{\theta}_i = A_i^{-1} b_i
-     $$
+     $
 
-     $$
+     $
        p_i(t) = x_t^\top \hat{\theta}_i + \alpha \sqrt{x_t^\top A_i^{-1} x_t}
-     $$
+     $
 
      where $\(\alpha\)$ is an exploration parameter, and $\(\sqrt{x_t^\top A_i^{-1} x_t}\)$ measures uncertainty.
 
