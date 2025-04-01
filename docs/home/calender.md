@@ -1,6 +1,10 @@
 ---
 comments: True
 description: This page contains the Google Calendar for the Deep Reinforcement Learning course, including weekly lecture times, assignment deadlines, and other important events.
+hide:
+  - feedback
+  - navigation
+  - toc
 ---
 
 # Calender
