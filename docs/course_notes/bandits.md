@@ -888,9 +888,9 @@ In a **contextual bandit** problem, at each time step \(t\):
 
 Formally, we might write:
 $$
-\[
+
    R_t \sim \mathcal{R}\bigl(a = A_t, x = x_t\bigr).
-\]
+
 $$
 
 Here, $\(\mathcal{X}\)$ is a (possibly high-dimensional) space of contexts. The agent’s goal remains to maximize cumulative reward (or minimize regret), but now it can exploit the relationship between **(context, action)** and reward.
