@@ -872,4 +872,110 @@ $$
 \liminf_{T\to\infty}\frac{\mathbb{E}[R(T)]}{\ln T}\geq\sum_{i:\Delta_i>0}\frac{\Delta_i}{D(\mu_i\|\mu^*)}
 $$
 
+---
+
+## **Contextual Bandits**
+
+While standard multi-armed bandits assume no additional data or “context” is available when selecting an arm, many real-world applications present extra information—sometimes called **features** or **context**—that can help guide the choice of action. This setting is known as a **contextual bandit** or **bandit with side information**.
+
+### Motivation and Setup
+
+In a **contextual bandit** problem, at each time step \(t\):
+
+1. The environment reveals a **context** \(x_t \in \mathcal{X}\).  
+2. Based on this context, the agent chooses an action (arm) \(A_t \in \{1, \dots, K\}\).  
+3. The chosen action yields a reward \(R_t\), drawn from a distribution that can depend on both the action and the context.
+
+Formally, we might write:
+\[
+   R_t \sim \mathcal{R}\bigl(a = A_t, x = x_t\bigr).
+\]
+
+Here, \(\mathcal{X}\) is a (possibly high-dimensional) space of contexts. The agent’s goal remains to maximize cumulative reward (or minimize regret), but now it can exploit the relationship between **(context, action)** and reward.
+
+### Distinction from Standard MAB
+
+- In **standard MAB**, the same arms are offered in every round, with no side information, and each arm has a single reward distribution.  
+- In **contextual bandits**, each arm’s reward distribution changes depending on the context \(x\). The agent must learn a **context-to-action** mapping (a policy) that predicts which arm will perform best in each situation.
+
+### Example Use Cases
+
+- **News Article Recommendation**  
+- **Personalized Medicine**  
+- **Targeted Advertising**
+
+---
+
+## **LinUCB Algorithm**
+
+One of the canonical and most influential approaches to contextual bandits is the **LinUCB** algorithm. LinUCB is designed for problems where the reward can be assumed (or approximated) to be a **linear function** of the context.
+
+### Linear Contextual Model
+
+Assume the reward from arm \( i \) when context \( x_t \in \mathbb{R}^d \) is presented has an **expected value** of the form
+
+\[
+   \mathbb{E}[R_t \mid x_t, A_t = i] = x_t^\top \theta_i,
+\]
+
+where \(\theta_i \in \mathbb{R}^d\) is an unknown weight vector for arm \( i \). Each arm \( i \) thus corresponds to a particular linear relationship between context and reward.
+
+### Algorithm Structure
+
+LinUCB maintains an **estimate** \(\hat{\theta}_i\) for each arm \(i\). To derive an exploration bonus, it uses confidence intervals constructed via linear regression theory.
+
+1. **Initialization** (for each arm \(i\)):
+   - \( A_i = I_{d\times d} \) (identity matrix)  
+   - \( b_i = 0 \) (zero vector in \(\mathbb{R}^d\))  
+
+2. **At time \( t \)**, upon receiving context \( x_t \):
+   - For each arm \( i \):
+     \[
+       \hat{\theta}_i = A_i^{-1} b_i,
+     \]
+     \[
+       p_i(t) = x_t^\top \hat{\theta}_i + \alpha \sqrt{x_t^\top A_i^{-1} x_t},
+     \]
+     where \(\alpha\) is an exploration parameter, and \(\sqrt{x_t^\top A_i^{-1} x_t}\) measures uncertainty.
+
+   - **Select** arm \( A_t = \arg\max_i \; p_i(t) \).  
+
+3. **Observe reward** \( R_t \). **Update**:
+   \[
+     A_{A_t} \leftarrow A_{A_t} + x_t x_t^\top, \quad
+     b_{A_t} \leftarrow b_{A_t} + R_t x_t.
+   \]
+
+### Usage of LinUCB in Contextual Bandits
+
+LinUCB is particularly effective when the context-reward relationship is (or is close to) linear. It scales well to large time horizons so long as the context dimension \(d\) is not too large.
+
+### Regret Analysis of LinUCB
+
+Under standard assumptions (linear rewards, bounded noise), LinUCB achieves **sublinear** regret in the order of \(O(d \sqrt{T} \ln T)\). As \(T\) grows, average per-step regret goes to zero, indicating the algorithm efficiently balances exploration and exploitation.
+
+---
+
+## **Thompson Sampling in Contextual Bandits**
+
+### Overview
+
+Thompson Sampling (TS) can also be extended to **contextual** bandits by placing a prior over each arm’s parameter vector and updating that posterior after each interaction. Similar to standard TS, it selects arms by sampling from this posterior and picking the arm whose sampled parameter suggests the highest reward given the current context.
+
+### Usage of Thompson Sampling Algorithm in Contextual Bandits
+
+1. **Model Specification**: Assume a prior distribution over each arm’s parameter \(\theta_i\) (e.g., Gaussian for linear models).  
+2. **At Each Round \( t \)**:
+   - Observe context \( x_t \).  
+   - Sample \(\tilde{\theta}_i\) from the posterior for each arm \( i \).  
+   - Compute \(\tilde{r}_i(t) = x_t^\top \tilde{\theta}_i\).  
+   - Select \( A_t = \arg\max_i \tilde{r}_i(t) \).  
+   - Observe reward \( R_t \).  
+   - Update the posterior of \(\theta_{A_t}\).
+
+### Regret Analysis of Thompson Sampling in Contextual Bandits
+
+With similar assumptions to LinUCB, contextual Thompson Sampling attains comparable \(O(\sqrt{T})\)-type regret bounds, often with good empirical results due to its Bayesian “probability matching” mechanism.
+
+
 where $D(p\|q)$ is the Kullback–Leibler divergence between the reward distributions of arms $i$ and the optimal arm.
