@@ -947,10 +947,10 @@ $$
 
 3. **Observe reward** $\( R_t \)$ . **Update**:
 
-   $$
-     A_{A_t} \leftarrow A_{A_t} + x_t x_t^\top, \quad
-     b_{A_t} \leftarrow b_{A_t} + R_t x_t.
-   $$
+$$
+A_{A_t} \leftarrow A_{A_t} + x_t x_t^\top, \quad
+b_{A_t} \leftarrow b_{A_t} + R_t x_t.
+$$
 
 ### Usage of LinUCB in Contextual Bandits
 
