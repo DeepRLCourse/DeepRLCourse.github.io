@@ -887,6 +887,7 @@ In a **contextual bandit** problem, at each time step \(t\):
 3. The chosen action yields a reward $\(R_t\)$, drawn from a distribution that can depend on both the action and the context.
 
 Formally, we might write:
+
 $$
 R_t \sim \mathcal{R}\bigl(a = A_t, x = x_t\bigr)
 $$
@@ -896,7 +897,7 @@ Here, $\(\mathcal{X}\)$ is a (possibly high-dimensional) space of contexts. The 
 ### Distinction from Standard MAB
 
 - In **standard MAB**, the same arms are offered in every round, with no side information, and each arm has a single reward distribution.  
-- In **contextual bandits**, each arm’s reward distribution changes depending on the context \(x\). The agent must learn a **context-to-action** mapping (a policy) that predicts which arm will perform best in each situation.
+- In **contextual bandits**, each arm’s reward distribution changes depending on the context $\(x\)$. The agent must learn a **context-to-action** mapping (a policy) that predicts which arm will perform best in each situation.
 
 ### Example Use Cases
 
@@ -912,13 +913,14 @@ One of the canonical and most influential approaches to contextual bandits is th
 
 ### Linear Contextual Model
 
-Assume the reward from arm \( i \) when context \( x_t \in \mathbb{R}^d \) is presented has an **expected value** of the form
+Assume the reward from arm $\( i \)$ when context $\( x_t \in \mathbb{R}^d \)$ is presented has an **expected value** of the form
 
-\[
+
+$$
    \mathbb{E}[R_t \mid x_t, A_t = i] = x_t^\top \theta_i,
-\]
+$$
 
-where \(\theta_i \in \mathbb{R}^d\) is an unknown weight vector for arm \( i \). Each arm \( i \) thus corresponds to a particular linear relationship between context and reward.
+where $\(\theta_i \in \mathbb{R}^d\)$ is an unknown weight vector for arm $\( i \)$. Each arm $\( i \)$ thus corresponds to a particular linear relationship between context and reward.
 
 ### Algorithm Structure
 
