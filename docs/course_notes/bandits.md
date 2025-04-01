@@ -932,7 +932,7 @@ LinUCB maintains an **estimate** $\(\hat{\theta}_i\)$ for each arm $\(i\)$ . To 
    - $\( A_i = I_{d\times d} \)$ (identity matrix)  
    - $\( b_i = 0 \)$ (zero vector in $\(\mathbb{R}^d\)$ )  
 
-2. **At time $\( t \)$ **, upon receiving context $\( x_t \)$ :
+2. **At time $\( t \)$**, upon receiving context $\( x_t \)$ :
    - For each arm $\( i \)$ :
 
 $$
