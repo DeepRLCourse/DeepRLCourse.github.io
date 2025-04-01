@@ -28,7 +28,7 @@
   {% set class = class ~ " md-nav--lifted" %}
 {% endif %}
 {% if "toc.integrate" in features  %}
-  {% if page and page.meta and (not page.meta.disable_toc_integrate) %}
+  {% if not disable_toc_integrate %}
     {% set class = class ~ " md-nav--integrated" %}
   {% endif %}
 {% endif %}

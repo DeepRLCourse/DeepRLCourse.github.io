@@ -2,6 +2,26 @@
 
 <!-- Sidebars -->
 {% block site_nav %}
+    {% set disable_toc_integrate_paths = config.extra.disable_toc_integrate_paths | default([]) %}
+    {% set ns = namespace(disable_toc_integrate=false) %}  {# Namespace variable #}
+
+    {% if page and page.meta and page.meta.disable_toc_integrate %}
+        {% set ns.disable_toc_integrate = true %}
+    {% endif %}
+
+    {% if page and page.url %}
+
+        {% for prefix in disable_toc_integrate_paths %}
+
+            {% if page.url.startswith(prefix) %}
+                {% set ns.disable_toc_integrate = true %}  {# Modify namespace variable #}
+            {% endif %}
+
+        {% endfor %}
+    {% endif %}
+
+    {% set disable_toc_integrate = ns.disable_toc_integrate %}
+
 
     <!-- Navigation -->
     {% if nav %}
@@ -23,7 +43,7 @@
     {% endif %}
 
     <!-- Table of contents -->
-    {% if "toc.integrate" not in features or (page and page.meta and page.meta.disable_toc_integrate)%}
+    {% if "toc.integrate" not in features or disable_toc_integrate %}
         {% if page.meta and page.meta.hide %}
             {% set hidden = "hidden" if "toc" in page.meta.hide %}
         {% endif %}
