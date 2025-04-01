@@ -930,15 +930,15 @@ LinUCB maintains an **estimate** $\(\hat{\theta}_i\)$ for each arm $\(i\)$ . To 
    - $\( A_i = I_{d\times d} \)$ (identity matrix)  
    - $\( b_i = 0 \)$ (zero vector in $\(\mathbb{R}^d\)$ )  
 
-2. **At time $\( t \)$**, upon receiving context $\( x_t \)$ :
-   - For each arm $\( i \)$:
+2. **At time $\( t \)$ **, upon receiving context $\( x_t \)$ :
+   - For each arm $\( i \)$ :
 
      $$
-       \hat{\theta}_i = A_i^{-1} b_i,
+       \hat{\theta}_i = A_i^{-1} b_i
      $$
 
      $$
-       p_i(t) = x_t^\top \hat{\theta}_i + \alpha \sqrt{x_t^\top A_i^{-1} x_t},
+       p_i(t) = x_t^\top \hat{\theta}_i + \alpha \sqrt{x_t^\top A_i^{-1} x_t}
      $$
 
      where $\(\alpha\)$ is an exploration parameter, and $\(\sqrt{x_t^\top A_i^{-1} x_t}\)$ measures uncertainty.
@@ -954,11 +954,11 @@ LinUCB maintains an **estimate** $\(\hat{\theta}_i\)$ for each arm $\(i\)$ . To 
 
 ### Usage of LinUCB in Contextual Bandits
 
-LinUCB is particularly effective when the context-reward relationship is (or is close to) linear. It scales well to large time horizons so long as the context dimension \(d\) is not too large.
+LinUCB is particularly effective when the context-reward relationship is (or is close to) linear. It scales well to large time horizons so long as the context dimension $\(d\)$ is not too large.
 
 ### Regret Analysis of LinUCB
 
-Under standard assumptions (linear rewards, bounded noise), LinUCB achieves **sublinear** regret in the order of \(O(d \sqrt{T} \ln T)\). As \(T\) grows, average per-step regret goes to zero, indicating the algorithm efficiently balances exploration and exploitation.
+Under standard assumptions (linear rewards, bounded noise), LinUCB achieves **sublinear** regret in the order of $\(O(d \sqrt{T} \ln T)\)$ . As $\(T\)$ grows, average per-step regret goes to zero, indicating the algorithm efficiently balances exploration and exploitation.
 
 ---
 
