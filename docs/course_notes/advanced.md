@@ -21,7 +21,7 @@ Each section delves into these algorithms, their theoretical foundations, and th
   
 ---
 
-
+z
 #### Actor_Critic
 
 The variance of policy methods can originate from two sources:
