@@ -883,15 +883,17 @@ While standard multi-armed bandits assume no additional data or “context” is
 In a **contextual bandit** problem, at each time step \(t\):
 
 1. The environment reveals a **context** $\(x_t \in \mathcal{X}\)$.  
-2. Based on this context, the agent chooses an action (arm) \(A_t \in \{1, \dots, K\}\).  
-3. The chosen action yields a reward \(R_t\), drawn from a distribution that can depend on both the action and the context.
+2. Based on this context, the agent chooses an action (arm) $\(A_t \in \{1, \dots, K\}\)$.  
+3. The chosen action yields a reward $\(R_t\)$, drawn from a distribution that can depend on both the action and the context.
 
 Formally, we might write:
+$$
 \[
    R_t \sim \mathcal{R}\bigl(a = A_t, x = x_t\bigr).
 \]
+$$
 
-Here, \(\mathcal{X}\) is a (possibly high-dimensional) space of contexts. The agent’s goal remains to maximize cumulative reward (or minimize regret), but now it can exploit the relationship between **(context, action)** and reward.
+Here, $\(\mathcal{X}\)$ is a (possibly high-dimensional) space of contexts. The agent’s goal remains to maximize cumulative reward (or minimize regret), but now it can exploit the relationship between **(context, action)** and reward.
 
 ### Distinction from Standard MAB
 
