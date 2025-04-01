@@ -973,7 +973,7 @@ Thompson Sampling (TS) can also be extended to **contextual** bandits by placing
 ### Usage of Thompson Sampling Algorithm in Contextual Bandits
 
 1. **Model Specification**: Assume a prior distribution over each arm’s parameter $\(\theta_i\)$ (e.g., Gaussian for linear models).  
-2. ** At Each Round $\( t \)$ **:
+2. **At Each Round $\( t \)$**:
    - Observe context $\( x_t \)$ .  
    - Sample $\(\tilde{\theta}_i\)$ from the posterior for each arm $\( i \)$ .  
    - Compute $\(\tilde{r}_i(t) = x_t^\top \tilde{\theta}_i\)$ .  
