@@ -924,25 +924,29 @@ where $\(\theta_i \in \mathbb{R}^d\)$ is an unknown weight vector for arm $\( i 
 
 ### Algorithm Structure
 
-LinUCB maintains an **estimate** $\(\hat{\theta}_i\)$ for each arm $\(i\)$. To derive an exploration bonus, it uses confidence intervals constructed via linear regression theory.
+LinUCB maintains an **estimate** $\(\hat{\theta}_i\)$ for each arm $\(i\)$ . To derive an exploration bonus, it uses confidence intervals constructed via linear regression theory.
 
-1. **Initialization** (for each arm $\(i\)$):
+1. **Initialization** (for each arm $\(i\)$ ):
    - $\( A_i = I_{d\times d} \)$ (identity matrix)  
-   - $\( b_i = 0 \)$ (zero vector in $\(\mathbb{R}^d\)$)  
+   - $\( b_i = 0 \)$ (zero vector in $\(\mathbb{R}^d\)$ )  
 
-2. **At time $\( t \)$**, upon receiving context $\( x_t \)$:
+2. **At time $\( t \)$**, upon receiving context $\( x_t \)$ :
    - For each arm $\( i \)$:
+
      $$
        \hat{\theta}_i = A_i^{-1} b_i,
      $$
+
      $$
        p_i(t) = x_t^\top \hat{\theta}_i + \alpha \sqrt{x_t^\top A_i^{-1} x_t},
      $$
+
      where $\(\alpha\)$ is an exploration parameter, and $\(\sqrt{x_t^\top A_i^{-1} x_t}\)$ measures uncertainty.
 
-   - **Select** arm $\( A_t = \arg\max_i \; p_i(t) \)$.  
+   - **Select** arm $\( A_t = \arg\max_i \; p_i(t) \)$ .  
 
-3. **Observe reward** $\( R_t \)$. **Update**:
+3. **Observe reward** $\( R_t \)$ . **Update**:
+
    $$
      A_{A_t} \leftarrow A_{A_t} + x_t x_t^\top, \quad
      b_{A_t} \leftarrow b_{A_t} + R_t x_t.
