@@ -4,6 +4,7 @@ hide:
   - feedback
   - navigation
 toc_title: Deep RL Course
+disable_toc_integrate: true
 ---
 
 # Welcome
