@@ -882,7 +882,7 @@ While standard multi-armed bandits assume no additional data or “context” is
 
 In a **contextual bandit** problem, at each time step \(t\):
 
-1. The environment reveals a **context** \(x_t \in \mathcal{X}\).  
+1. The environment reveals a **context** $\(x_t \in \mathcal{X}\)$.  
 2. Based on this context, the agent chooses an action (arm) \(A_t \in \{1, \dots, K\}\).  
 3. The chosen action yields a reward \(R_t\), drawn from a distribution that can depend on both the action and the context.
 
