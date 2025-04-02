@@ -1,6 +1,7 @@
 ---
 comments: True
 description: This page provides an introduction to Reinforcement Learning, covering key concepts, comparisons with other AI methods, and foundational frameworks like MDPs and POMDPs.
+disable_toc_integrate: true
 ---
 
 # Week 1: Introduction to RL

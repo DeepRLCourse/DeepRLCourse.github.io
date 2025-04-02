@@ -34,6 +34,8 @@ theme:
       accent: red
   features:
     - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.top
     - toc.integrate
     # - navigation.indexes
 
@@ -86,16 +88,18 @@ extra:
           note: >- 
             Thanks for your feedback! Help us improve this page by
             using our <a href="..." target="_blank" rel="noopener">feedback form</a>.
+  disable_toc_integrate_paths:
+    - course_notes
+    - prerequisites
+
 
 copyright: Made with ❤️ in Robust and Interpretable Machine Learning Lab
 
 nav:
   - Home:
     - index.md
+  - Calendar:
     - home/calender.md
-  - Blog:
-    - blog/index.md
-    - Tags: blog/tags.md
   - Course Notes:
     - Conceptual Overview of RL:
       - course_notes/intro-to-rl.md
@@ -201,6 +205,9 @@ nav:
     - poster_session/sp24.md
   - Resources:
     - resources/index.md
+  - Blog:
+    - blog/index.md
+    - Tags: blog/tags.md
 
 extra_css:
   - stylesheets/extra.css
