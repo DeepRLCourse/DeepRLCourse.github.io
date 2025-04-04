@@ -31,3 +31,15 @@ Please submit your completed homework on Quera by the deadline:
 - **Deadline:** <span style="direction: rtl;font-family: Vazirmatn;">۲۴ اسفند (March 14)</span> at 11:59 PM
 
 Good luck, and we look forward to your submissions!
+
+## Solution
+
+[HW4 Solution to Questions](https://raw.githubusercontent.com/DeepRLCourse/Homework-4-Questions/refs/heads/main/HW4_Solution.pdf){:target="_blank" .md-button }
+
+<iframe width="996" height="560" src="https://www.youtube.com/embed/j77hDUUkfZ4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+[HW4 Solution Notebook | Part 1: PPO Continuous](https://raw.githubusercontent.com/DeepRLCourse/Homework-4-Questions/refs/heads/main/HW4_P1_PPO_Continuous_Solution.ipynb){:target="_blank" .md-button }
+
+<iframe width="996" height="560" src="https://www.youtube.com/embed/ebUyYfbb7l4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+[HW4 Solution Notebook | Part 2: SAC & DDPG Continuous](https://raw.githubusercontent.com/DeepRLCourse/Homework-4-Questions/refs/heads/main/HW4_P2_SAC_DDPG_Continuous_Solution.ipynb){:target="_blank" .md-button }
