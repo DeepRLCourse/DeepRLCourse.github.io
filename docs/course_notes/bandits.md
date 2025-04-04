@@ -972,7 +972,7 @@ LinUCB is particularly effective when the context-reward relationship is (or is 
 
 For more details and practical insights, see:
 - [Li et al. (2010)](https://dl.acm.org/doi/10.1145/1772690.1772758) for the original application to personalized news recommendation.  
-- [Chapelle & Li (2011)](https://dl.acm.org/doi/10.1145/1963405.1963458) for empirical comparisons of bandit algorithms (including LinUCB).  
+- [Chapelle & Li (2011)](https://proceedings.neurips.cc/paper_files/paper/2011/file/e53a0a2978c28872a4505bdb51db06dc-Paper.pdf) for empirical comparisons of bandit algorithms (including LinUCB).  
 - [Auer (2002)](https://dl.acm.org/doi/10.1023/A:1013689704352) for the foundational UCB concept.
 
 ### Regret Analysis of LinUCB
@@ -985,7 +985,7 @@ Under standard assumptions (linear rewards, bounded noise), LinUCB achieves **su
 For a formal derivation of these regret bounds, one can consult:
 
 - [Abbasi-Yadkori et al. (2011)](https://arxiv.org/abs/1102.2670) — detailed proofs for linear bandits’ regret bounds.  
-- [Russo et al. (2018)](https://arxiv.org/abs/1805.02099) — comprehensive survey on bandits, including contextual and linear settings.
+- [Bouneffouf et al. (2020)](https://www.researchgate.net/publication/346700490_Survey_on_Applications_of_Multi-Armed_and_Contextual_Bandits) — comprehensive survey on bandits, including contextual and linear settings.
 
 
 
