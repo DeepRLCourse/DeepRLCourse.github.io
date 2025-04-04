@@ -32,6 +32,16 @@ description: This page contains the lecture materials for Week 6 of the Deep Rei
 
 [Download Summary](/assets/lectures/summaries/Lecture_11_Summary.pdf){:target="_blank" .md-button .md-button--primary }
 
+### Lecture Quiz
+
+<object class="pdf" 
+        data="/assets/lectures/quizzes/Quiz_11___Solution.pdf"
+        width="996"
+        height="560">
+</object>
+
+[Download Quiz](/assets/lectures/quizzes/Quiz_11___Solution.pdf){:target="_blank" .md-button .md-button--primary }
+
 ## Lecture 12
 
 ### Screen Record

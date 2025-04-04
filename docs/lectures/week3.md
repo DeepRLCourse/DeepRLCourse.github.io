@@ -36,6 +36,16 @@ description: This page contains the lecture materials for Week 3 of the Deep Rei
 
 [Download Summary](/assets/lectures/summaries/Lecture_5_Summary.pdf){:target="_blank" .md-button .md-button--primary }
 
+### Lecture Quiz
+
+<object class="pdf" 
+        data="/assets/lectures/quizzes/Quiz_5___Solution.pdf"
+        width="996"
+        height="560">
+</object>
+
+[Download Quiz](/assets/lectures/quizzes/Quiz_5___Solution.pdf){:target="_blank" .md-button .md-button--primary }
+
 ## Lecture 6
 
 ### Screen + Camera
@@ -65,3 +75,13 @@ This lecture was held online due to the university being closed.
 </object>
 
 [Download Summary](/assets/lectures/summaries/Lecture_6_Summary.pdf){:target="_blank" .md-button .md-button--primary }
+
+### Lecture Quiz
+
+<object class="pdf" 
+        data="/assets/lectures/quizzes/Quiz_6___Solution.pdf"
+        width="996"
+        height="560">
+</object>
+
+[Download Quiz](/assets/lectures/quizzes/Quiz_6___Solution.pdf){:target="_blank" .md-button .md-button--primary }
