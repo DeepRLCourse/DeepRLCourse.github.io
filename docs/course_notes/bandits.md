@@ -909,59 +909,92 @@ Here, $\(\mathcal{X}\)$ is a (possibly high-dimensional) space of contexts. The 
 
 ---
 
-## **LinUCB Algorithm**
+\section{LinUCB Algorithm}
 
-One of the canonical and most influential approaches to contextual bandits is the **LinUCB** algorithm. LinUCB is designed for problems where the reward can be assumed (or approximated) to be a **linear function** of the context.
+One of the canonical and most influential approaches to contextual bandits is the \textbf{LinUCB} algorithm. LinUCB is designed for problems where the reward can be assumed (or approximated) to be a \textit{linear function} of the context. This approach was popularized by \href{https://dl.acm.org/doi/10.1145/1772690.1772758}{Li et al. (2010)}, where it was used for news article recommendation; see also the \href{https://dl.acm.org/doi/10.1023/A:1013689704352}{original UCB framework by Auer et al. (2002)} for the theoretical underpinnings of confidence-bound methods.
 
-### Linear Contextual Model
+\subsection{Linear Contextual Model}
 
-Assume the reward from arm $\( i \)$ when context $\( x_t \in \mathbb{R}^d \)$ is presented has an **expected value** of the form
-
-
-$$
-   \mathbb{E}[R_t \mid x_t, A_t = i] = x_t^\top \theta_i,
-$$
-
-where $\(\theta_i \in \mathbb{R}^d\)$ is an unknown weight vector for arm $\( i \)$. Each arm $\( i \)$ thus corresponds to a particular linear relationship between context and reward.
-
-### Algorithm Structure
-
-LinUCB maintains an **estimate** $\(\hat{\theta}_i\)$ for each arm $\(i\)$ . To derive an exploration bonus, it uses confidence intervals constructed via linear regression theory.
-
-1. **Initialization** (for each arm $\(i\)$ ):
-   - $\( A_i = I_{d\times d} \)$ (identity matrix)  
-   - $\( b_i = 0 \)$ (zero vector in $\(\mathbb{R}^d\)$ )  
-
-2. **At time $\( t \)$**, upon receiving context $\( x_t \)$ :
-   - For each arm $\( i \)$ :
+Assume the reward from arm $i$ when context $x_t \in \mathbb{R}^d$ is presented has an \textbf{expected value} of the form
 
 $$
-\hat{\theta}_i = A_i^{-1} b_i
+\mathbb{E}[R_t \mid x_t, A_t = i] = x_t^\top \theta_i,
 $$
 
-$$
-p_i(t) = x_t^\top \hat{\theta}_i + \alpha \sqrt{x_t^\top A_i^{-1} x_t}
-$$
+where $\theta_i \in \mathbb{R}^d$ is an unknown weight vector for arm $i$. Each arm $i$ thus corresponds to a particular linear relationship between context and reward. In practice, this means if you have a $d$-dimensional feature vector $x_t$ representing the context at time $t$, the arm's expected payoff is captured by the dot product between $x_t$ and the parameter vector $\theta_i$.
 
-   where $\(\alpha\)$ is an exploration parameter, and $\(\sqrt{x_t^\top A_i^{-1} x_t}\)$ measures uncertainty.
+\begin{itemize}
+    \item \textit{Why linearity?} The assumption of linearity often arises from modeling each component of $x_t$ as contributing additively to the reward. While real-world relationships may be more complex, linear approximations can be quite effective in high-dimensional settings, especially when combined with feature engineering.
+\end{itemize}
 
-   - **Select** arm $\( A_t = \arg\max_i \; p_i(t) \)$ .  
+\subsection{Algorithm Structure}
 
-3. **Observe reward** $\( R_t \)$ . **Update**:
+At a high level, LinUCB maintains an \textbf{estimate} $\hat{\theta}_i$ for each arm $i$. To account for uncertainty in $\hat{\theta}_i$, it constructs an upper confidence bound for the expected reward of each arm, thereby balancing exploration and exploitation (see \href{https://arxiv.org/abs/1102.2670}{Abbasi-Yadkori et al. (2011)} for in-depth theoretical analysis).
 
-$$
-A_{A_t} \leftarrow A_{A_t} + x_t x_t^\top, \quad
-b_{A_t} \leftarrow b_{A_t} + R_t x_t.
-$$
+\begin{enumerate}
+    \item \textbf{Initialization} (for each arm $i$):
+    $$
+      A_i = I_{d \times d} \quad (\text{identity matrix}), 
+      \quad
+      b_i = 0 \quad (\text{zero vector in } \mathbb{R}^d).
+    $$
+    Here, $A_i$ and $b_i$ can be understood in terms of \textit{ridge regression}: they will accumulate the contextual data and observed rewards for arm $i$, respectively.
+    \item \textbf{At time $t$}, upon receiving context $x_t$:
+    \begin{itemize}
+       \item For each arm $i$:
+         $$
+         \hat{\theta}_i = A_i^{-1} b_i
+         $$
+         $$
+         p_i(t) = x_t^\top \hat{\theta}_i + \alpha \sqrt{x_t^\top A_i^{-1} x_t}
+         $$
+         where $\alpha$ is an exploration parameter controlling how ``optimistic'' the estimate is, and $\sqrt{x_t^\top A_i^{-1} x_t}$ measures uncertainty in the linear reward estimate.     
+       \item \textbf{Select} arm
+         $$
+         A_t = \arg\max_i \; p_i(t).
+         $$
+       Intuitively, $p_i(t)$ combines the \textit{current best guess} ($x_t^\top \hat{\theta}_i$) with a \textit{statistical bonus} ($\alpha \sqrt{x_t^\top A_i^{-1} x_t}$).
+    \end{itemize}
+    \item \textbf{Observe reward} $R_t$. \textbf{Update}:
+    $$
+    A_{A_t} \leftarrow A_{A_t} + x_t x_t^\top, 
+    \quad
+    b_{A_t} \leftarrow b_{A_t} + R_t x_t.
+    $$
+    These updates are analogous to incrementally solving a regularized least-squares problem for each arm's parameters. After enough pulls, $A_i$ becomes well-conditioned, shrinking the confidence interval in $p_i(t)$ for arm $i$.
+\end{enumerate}
 
-### Usage of LinUCB in Contextual Bandits
+\subsection{Usage of LinUCB in Contextual Bandits}
 
-LinUCB is particularly effective when the context-reward relationship is (or is close to) linear. It scales well to large time horizons so long as the context dimension $\(d\)$ is not too large.
+LinUCB is particularly effective when the context-reward relationship is (or is close to) linear. It scales well to large time horizons so long as the context dimension $d$ is not too large, because the key matrix inverse $A_i^{-1}$ is only $d \times d$. Some additional points:
 
-### Regret Analysis of LinUCB
+\begin{itemize}
+    \item \textit{Feature Construction}: If the raw context is not linear, one can often use polynomial or kernel feature mappings to \textit{approximate} non-linear relationships in a higher-dimensional linear model.
+    \item \textit{Hyperparameter Tuning}: The exploration parameter $\alpha$ often requires careful tuning (or theoretically derived values) to ensure a good balance of exploration and exploitation.
+    \item \textit{Practical Extensions}: Variants of LinUCB can incorporate regularization, remove or discount old data (for nonstationary environments), and even use approximate matrix updates for very large $d$.
+\end{itemize}
 
-Under standard assumptions (linear rewards, bounded noise), LinUCB achieves **sublinear** regret in the order of $\(O(d \sqrt{T} \ln T)\)$ . As $\(T\)$ grows, average per-step regret goes to zero, indicating the algorithm efficiently balances exploration and exploitation.
+For more details and practical insights, see:
+\begin{itemize}
+    \item \href{https://dl.acm.org/doi/10.1145/1772690.1772758}{Li et al. (2010)} for the original application to personalized news recommendation.
+    \item \href{https://dl.acm.org/doi/10.1145/1963405.1963458}{Chapelle \& Li (2011)} for empirical comparisons of bandit algorithms.
+    \item \href{https://dl.acm.org/doi/10.1023/A:1013689704352}{Auer (2002)} for foundational concepts of UCB.
+\end{itemize}
 
+\subsection{Regret Analysis of LinUCB}
+
+Under standard assumptions (linear rewards, bounded noise), LinUCB achieves \textbf{sublinear} regret in the order of $O\bigl(d \sqrt{T} \ln T\bigr)$. As $T$ grows, average per-step regret goes to zero, indicating the algorithm efficiently balances exploration and exploitation.
+
+\begin{itemize}
+    \item \textit{High-Level Idea}: The quantity $x_t^\top A_i^{-1} x_t$ captures how much ``new information'' the context $x_t$ provides about arm $i$. Once $A_i$ becomes large and well-inverted, the algorithm is confident in its parameter estimates, reducing the exploration term.
+    \item \textit{Practical Interpretation}: Each arm $i$ fits a linear predictor $\hat{\theta}_i$ by ``collecting'' relevant $(x_t, R_t)$ pairs. With enough data, the algorithm zeroes in on the optimal linear function.
+\end{itemize}
+
+For formal derivations of these regret bounds, see:
+\begin{itemize}
+    \item \href{https://arxiv.org/abs/1102.2670}{Abbasi-Yadkori et al. (2011)} --- detailed proofs for linear bandits.
+    \item \href{https://arxiv.org/abs/1805.02099}{Russo et al. (2018)} --- comprehensive survey on bandits, including contextual and linear settings.
+\end{itemize}
 ---
 
 ## **Thompson Sampling in Contextual Bandits**
