@@ -920,12 +920,9 @@ $w$ at random.
   
 
 Two learning rates, $\alpha$ and $\beta$, are predefined for policy and
-value function parameter updates, respectively. also note that during the value function loss calculation $Q(s_{t+1}, a_{t+1})$ is freezed.
+value function parameter updates, respectively. Also note that the $Q(s_{t+1}, a_{t+1})$ in the TD error uses the freezed values of $w$ for better stablity.
 
   
-
-
-<!-- ![image](\assets\images\course_notes\policy-based\a6.png){width="0.9\\linewidth"} -->
 
 <center> 
 <img src="\assets\images\course_notes\policy-based\a6.png"

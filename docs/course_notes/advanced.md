@@ -1,4 +1,4 @@
-# Advanced Methods
+# Week 4: Advanced Methods
 
 
 ## Introduction
@@ -363,7 +363,6 @@ The idea with Proximal Policy Optimization (PPO) is that we want to improve the 
     /> 
     </center>
 
-<!-- ![Figure 5](..//assets//images//recitation//week4//cliff.jpg) -->
 
 *soruce: [Unit 8, of the Deep Reinforcement Learning Class with Hugging Face](https://huggingface.co/blog/deep-rl-ppo)*
 
@@ -1047,9 +1046,6 @@ This trick is used to make sure that sampling from the policy is a differentiabl
         style="float: center; margin-right: 10px;" 
         /> 
         </center>
-
-    <!-- ![Figure 14](..//assets//images//recitation//week4//trick.png)
-    ![Figure 15](..//assets//images//recitation//week4//trick2.png) -->
 
     - **Continuous Action Generation**
 
