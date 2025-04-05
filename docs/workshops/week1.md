@@ -9,7 +9,10 @@ comments: True
 <iframe width="996" height="560" src="https://www.youtube.com/embed/50fZWSWoU6Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 <a href="https://colab.research.google.com/github/DeepRLCourse/Workshop-1-Material/blob/master/Workshop1_Notebook.ipynb" target="_blank">
-  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" style="height: 50px; cursor: pointer; display: inline-block;">
+  <img src="/assets/icons/colab-badge.svg" alt="Open In Colab" style="height: 50px; cursor: pointer; display: inline-block;">
+</a>
+<a href="https://www.kaggle.com/kernels/welcome?src=https://github.com/DeepRLCourse/Workshop-1-Material/blob/master/Workshop1_Notebook.ipynb" target="_blank">
+  <img src="/assets/icons/open-in-kaggle.svg" alt="Open In Kaggle" style="height: 50px; cursor: pointer; display: inline-block;">
 </a>
 
 ### PyGame [Extra]
@@ -17,7 +20,10 @@ comments: True
 <iframe width="996" height="560" src="https://www.youtube.com/embed/O-nr-2Wchq8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 <a href="https://colab.research.google.com/github/DeepRLCourse/Workshop-1-Material/blob/master/Workshop1_PyGame.ipynb" target="_blank">
-  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" style="height: 50px; cursor: pointer; display: inline-block;">
+  <img src="/assets/icons/colab-badge.svg" alt="Open In Colab" style="height: 50px; cursor: pointer; display: inline-block;">
+</a>
+<a href="https://www.kaggle.com/kernels/welcome?src=https://github.com/DeepRLCourse/Workshop-1-Material/blob/master/Workshop1_PyGame.ipynb" target="_blank">
+  <img src="/assets/icons/open-in-kaggle.svg" alt="Open In Kaggle" style="height: 50px; cursor: pointer; display: inline-block;">
 </a>
 
 ### Notebook(s)

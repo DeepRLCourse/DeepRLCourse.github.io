@@ -31,3 +31,16 @@ Please submit your completed homework on Quera by the deadline:
 
 Good luck, and we look forward to your submissions!
 
+## Solution
+
+<iframe width="996" height="560" src="https://www.youtube.com/embed/eHNKSILda88" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<object class="pdf" 
+        data="/assets/homeworks/hw1_slides.pdf"
+        width="996"
+        height="560">
+</object>
+
+[HW1 Solution Notebook](https://raw.githubusercontent.com/DeepRLCourse/Homework-1-Questions/refs/heads/main/HW1_Notebook_Solution.ipynb){:target="_blank" .md-button }
+[HW1 Solution Slides](/assets/homeworks/hw1_slides.pdf){:target="_blank" .md-button }
+

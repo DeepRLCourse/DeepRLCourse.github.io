@@ -33,3 +33,19 @@ Please submit your completed homework on Quera by the deadline:
 - **Deadline:** <span style="direction: rtl;font-family: Vazirmatn;">۱۲ اسفند (March 2)</span> at 11:59 PM
 
 Good luck, and we look forward to your submissions!
+
+## Solution
+
+[HW3 Solution to Questions](https://raw.githubusercontent.com/DeepRLCourse/Homework-3-Questions/refs/heads/main/HW3_Solution.pdf){:target="_blank" .md-button }
+
+<iframe width="996" height="560" src="https://www.youtube.com/embed/G3RguXle4hE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+[HW3 Solution Notebook | Part 1: REINFORCE vs GA](https://raw.githubusercontent.com/DeepRLCourse/Homework-3-Questions/refs/heads/main/HW3_P1_REINFORCE_VS_GA_Solution.ipynb){:target="_blank" .md-button }
+
+[HW3 Solution Notebook | Part 2: REINFORCE in CartPole](https://raw.githubusercontent.com/DeepRLCourse/Homework-3-Questions/refs/heads/main/HW3_P2_CartPole_REINFORCE_Baseline_Solution.ipynb){:target="_blank" .md-button }
+
+[HW3 Solution Notebook | Part 3: REINFORCE in Mountain Car](https://raw.githubusercontent.com/DeepRLCourse/Homework-3-Questions/refs/heads/main/HW3_P3_MountainCarContinuous_REINFORCE_Solution.ipynb){:target="_blank" .md-button }
+
+<iframe width="996" height="560" src="https://www.youtube.com/embed/syVyRVCPVGo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+[HW3 Solution Notebook | Part 4: REINFORCE vs DQN](https://raw.githubusercontent.com/DeepRLCourse/Homework-3-Questions/refs/heads/main/HW3_P4_REINFORCEvsDQN_Solution.ipynb){:target="_blank" .md-button }

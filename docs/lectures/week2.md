@@ -36,6 +36,16 @@ description: This page contains the lecture materials for Week 2 of the Deep Rei
 
 [Download Summary](/assets/lectures/summaries/Lecture_3_Summary.pdf){:target="_blank" .md-button .md-button--primary }
 
+### Lecture Quiz
+
+<object class="pdf" 
+        data="/assets/lectures/quizzes/Quiz_3___Solution.pdf"
+        width="996"
+        height="560">
+</object>
+
+[Download Quiz](/assets/lectures/quizzes/Quiz_3___Solution.pdf){:target="_blank" .md-button .md-button--primary }
+
 ## Lecture 4
 
 ### Screen + Camera
@@ -66,3 +76,13 @@ description: This page contains the lecture materials for Week 2 of the Deep Rei
 </object>
 
 [Download Summary](/assets/lectures/summaries/Lecture_4_Summary.pdf){:target="_blank" .md-button .md-button--primary }
+
+### Lecture Quiz
+
+<object class="pdf" 
+        data="/assets/lectures/quizzes/Quiz_4___Solution.pdf"
+        width="996"
+        height="560">
+</object>
+
+[Download Quiz](/assets/lectures/quizzes/Quiz_4___Solution.pdf){:target="_blank" .md-button .md-button--primary }
