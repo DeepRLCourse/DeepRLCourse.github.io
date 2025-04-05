@@ -1013,3 +1013,16 @@ Thompson Sampling (TS) can also be extended to **contextual** bandits by placing
 With similar assumptions to LinUCB, contextual Thompson Sampling attains comparable $\(O(\sqrt{T})\)$ -type regret bounds, often with good empirical results due to its Bayesian “probability matching” mechanism.
 
 
+# References
+
+1. [The RL Hub MAB Chapters](https://the-rl-hub.github.io/Pages/2-smab/smab.html)
+
+2. [The Multi-Armed Bandit Problem and Its Solutions](https://lilianweng.github.io/)
+
+3. [How to make decisions in a bandit game?](https://www.chenyi-li.com/posts/sequence_decision/)
+
+4. [Lower bounds on regret for multi-armed bandits.](https://www.stat.berkeley.edu/~bartlett/courses/2014fall-cs294stat260/lectures/bandit-lower-bound-notes.pdf)
+
+5. [Continuous Intelligence with Contextual Bandits](https://ambiata.com/blog/2020-06-03-intro-contextual-bandits/)
+
+6. [Reinforcement Learning (BartoSutton)](https://www.andrew.cmu.edu/course/10-703/textbook/BartoSutton.pdf)
