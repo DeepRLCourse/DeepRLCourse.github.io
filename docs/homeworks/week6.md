@@ -17,9 +17,9 @@ You can download the homework questions and the notebook from the following link
 
 You can use this [template for your answers](https://github.com/DeepRLCourse/Homework-6-Template){:target="_blank"}.
 
-<!-- ## Explanation
+## Explanation
 
-<iframe width="996" height="560" src="https://www.youtube.com/embed/rUBBmLP1Rdg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> -->
+<iframe width="996" height="560" src="https://www.youtube.com/embed/0i6zmVU7mj0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Submission
 
