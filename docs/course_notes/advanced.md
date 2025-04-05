@@ -67,7 +67,12 @@ $$
 ##### Advantage Value:
 ***Measures how much an action is better than the average of other actions in a given state.***
 
-![Figure 1](..//assets//images//course_notes//advanced//Actor_Critic.jpg "Advantage value")
+<center> 
+<img src="\assets\images\course_notes\advanced\Actor_Critic.jpg"
+    alt="Advantage value"
+    style="float: center; margin-right: 10px;" 
+    /> 
+    </center>
 
 ###### Why Use the Advantage Value?
 We can further reduce variance by subtracting a baseline from $Q(s_{i,t}, a_{i,t})$ without altering the expectation of $\nabla_\theta J(\theta)$, making it an unbiased estimator:
@@ -108,11 +113,18 @@ $$
 
     Consider a penalty shootout game to illustrate the concept of the advantage function and Q-values in reinforcement learning.
 
-    ![Figure 2](..//assets//images//course_notes//advanced//Football.png "penalty shootout game")
+
+    <center> 
+    <img src="\assets\images\course_notes\advanced\Football.png"
+        alt="penalty shootout game"
+        style="float: center; margin-right: 10px;" 
+        /> 
+        </center>
 
     - **Game Setup**:
         1. *Goalie Strategy*:  A goalie always jumps to the right to block the shot.
         2. *Kicker Strategy*: A kicker can shoot either left or right with equal probability (0.5 each), defining the kicker's policy $\pi_k$.
+
 
     The reward matrix for the game is:
 
@@ -262,7 +274,12 @@ To mitigate this issue, two main solutions are commonly used:
 ###### Parallel Actor-Critic (Online)
 Many high-performance implementations are based on the actor critic approach. For large problems, the algorithm is typically parallelized and implemented on a large cluster computer.
 
-![Figure 3](..//assets//images//course_notes//advanced//Parallel.jpg "Parallel Actor-Critic framework")
+<center> 
+<img src="\assets\images\course_notes\advanced\Parallel.jpg"
+    alt="Parallel Actor-Critic framework"
+    style="float: center; margin-right: 10px;" 
+    /> 
+    </center>
 
 To reduce variance, multiple actors are used to update the policy. There are two main approaches:
 
@@ -284,8 +301,12 @@ To reduce variance, multiple actors are used to update the policy. There are two
 In the off-policy approach, we maintain a replay buffer to store past experiences, allowing us to train the model using previously collected data rather than relying solely on the most recent experience.
 
 
-![Figure 4](..//assets//images//course_notes//advanced//offpolicy.png "Replay buffer")
-
+<center> 
+<img src="\assets\images\course_notes\advanced\offpolicy.png"
+    alt="Replay buffer"
+    style="float: center; margin-right: 10px;" 
+    /> 
+    </center>
 
 **Off-policy actor-critic algorithm:**
 
@@ -334,7 +355,15 @@ The idea with Proximal Policy Optimization (PPO) is that we want to improve the 
 1. We know empirically that smaller policy updates during training are more likely to converge to an optimal solution.
 2. If we change the policy too much, we may end up with a bad policy that cannot be improved.
 
-![Figure 5](..//assets//images//course_notes//advanced//cliff.jpg)
+
+<center> 
+<img src="\assets\images\course_notes\advanced\cliff.jpg"
+    alt="Replay buffer"
+    style="float: center; margin-right: 10px;" 
+    /> 
+    </center>
+
+<!-- ![Figure 5](..//assets//images//recitation//week4//cliff.jpg) -->
 
 *soruce: [Unit 8, of the Deep Reinforcement Learning Class with Hugging Face](https://huggingface.co/blog/deep-rl-ppo)*
 
@@ -391,9 +420,13 @@ In this formulation, the optimization is performed with respect to the new polic
 
 ##### Visualize the Clipped Surrogate Objective
 
-![Figure 6](..//assets//images//course_notes//advanced//recap.jpg)
-
-##### PPO pseudocode
+<center> 
+<img src="\assets\images\course_notes\advanced\recap.jpg"
+    alt="recap"
+    style="float: center; margin-right: 10px;" 
+    /> 
+    </center>
+    
 **Algorithm: PPO-Clip** 
 
 1. Input: initial policy parameters $\theta_0$, initial value function parameters $\phi_0$   
@@ -500,7 +533,7 @@ $$
 
 These tuples are stored in a **finite-sized cache** (replay buffer). During training, **random mini-batches** are sampled from this buffer to update the value and policy networks.
 
-??? note "Why Use Experience Replay?"
+???+ note "Why Use Experience Replay?"
 
     In optimization tasks, we want **data to be independently distributed**. However, in an **on-policy** learning process, the collected data is highly correlated.  
 
@@ -574,21 +607,27 @@ The DDPG paper proposes adding **Ornstein-Uhlenbeck (OU) noise** to the actions.
 The **OU Process** generates **temporally correlated noise**, preventing the noise from canceling out or "freezing" the action dynamics.
 
 
+
 $$
 \mu^{'}(s_t) = \mu(s_t|\theta^\mu_t) + \mathcal{N}
 $$
-??? Tip "Diagram Of DDPG Algorithms"
+???+ Tip "Diagram Of DDPG Algorithms"
 
-    ![Figure 7](..//assets//images//course_notes//advanced//DDPG.png)
-
-
-    ![Figure 8](..//assets//images//course_notes//advanced//DDPG_alg.png)
-
-
-##### DDPG Pseudocode: A Step-by-Step Breakdown
+    <center> 
+    <img src="\assets\images\course_notes\advanced\DDPG.png"
+        alt="DDPG"
+        style="float: center; margin-right: 10px;" 
+        /> 
+        </center>
+    <center> 
+    <img src="\assets\images\course_notes\advanced\DDPG_alg.png"
+        alt="DDPG_alg"
+        style="float: center; margin-right: 10px;" 
+        /> 
+        </center>
 
 **Algorithm: DDPG Algorithm**  
-
+---  
 Randomly initialize critic network \( Q(s, a | \theta^Q) \) and actor \( \mu(s | \theta^\mu) \) with weights \( \theta^Q \) and \( \theta^\mu \).  
 Initialize target networks \( Q' \) and \( \mu' \) with weights \( \theta^{Q'} \gets \theta^Q, \quad \theta^{\mu'} \gets \theta^\mu \).  
 Initialize replay buffer \( R \).  
@@ -643,12 +682,15 @@ $$
 
 In essence, SAC seeks to maximize the entropy in policy, in addition to the expected reward from the environment. The entropy in policy can be interpreted as randomness in the policy.
 
-??? note "what is entropy?"
+???+ note "what is entropy?"
 
     We can think of entropy as how unpredictable a random variable is. If a random variable always takes a single value then it has zero entropy because it’s not unpredictable at all. If a random variable can be any Real Number with equal probability then it has very high entropy as it is very unpredictable.
-
-    ![Figure 9](..//assets//images//course_notes//advanced//entropy.jpg)
-
+    <center> 
+    <img src="\assets\images\course_notes\advanced\entropy.jpg"
+        alt="entropy"
+        style="float: center; margin-right: 10px;" 
+        /> 
+        </center>
 
 
     *probability distributions with low entropy have a tendency to greedily sample certain values, as the probability mass is distributed relatively unevenly*.
@@ -687,7 +729,13 @@ In this context, the robot is in an initial state and has two possible passages 
 
 ###### **Standard RL Approach**
 
-![Figure 10](..//assets//images//course_notes//advanced//SAC1.png)
+<center> 
+<img src="\assets\images\course_notes\advanced\SAC1.png"
+    alt="sac1"
+    style="float: center; margin-right: 10px;" 
+    /> 
+    </center>
+
 
 The **grey curve** represents the Q-function, which has two peaks, indicating two promising actions.A conventional RL approach typically assumes a unimodal (single-peaked) policy distribution, represented by the **red curve**.
 
@@ -702,8 +750,12 @@ The **policy distribution (green shaded area)** is proportional to $\exp(Q(s_t, 
 
 This approach allows the agent to explore multiple high-reward actions and avoids the bias of ignoring one passage.
 As a result, the agent recognizes both options, increasing the chance of finding the optimal path.
-
-![Figure 11](..//assets//images//course_notes//advanced//SAC2.png)
+<center> 
+<img src="\assets\images\course_notes\advanced\SAC2.png"
+    alt="SAC2"
+    style="float: center; margin-right: 10px;" 
+    /> 
+    </center>
 
 
 This concept is relevant for **actor-critic RL methods** like **Soft Actor-Critic (SAC)**, which uses entropy to encourage diverse exploration.
@@ -731,7 +783,7 @@ $$
 V(s_t) = \mathbb{E}_{a_t\sim \pi} \left[Q(s_t, a_t) - \text{log}\space\pi(a_t|s_t)\right]
 $$
 
-##### Soft policy iteration
+##### Soft Policy Iteration
 Soft Policy Iteration is an entropy-regularized version of classical policy iteration, which consists of:
 
 1. *Soft Policy Evaluation*: Estimating the soft Q-value function under the current policy.
@@ -859,8 +911,9 @@ $$
 
 A **target value function** $V_{\bar{\psi}}$ (exponentially moving average of $V_{\psi}$) is used to stabilize training.
 
+---
 
-??? note "More Explanation About Target Networks"
+???+ note "More Explanation About Target Networks"
 
     The use of target networks is motivated by a problem in training $V$ network. If you go back to the objective functions in the Theory section, you will find that the target for the $Q$ network training depends on the $V$ Network and the target for the $V$ Network depends on the $Q$ network (this makes sense because we are trying to enforce Bellman Consistency between the two functions). Because of this, the $V$ network has a target that’s indirectly dependent on itself which means that the $V$ network’s target depends on the same parameters we are trying to train. This makes training very unstable.
 
@@ -916,14 +969,18 @@ A **target value function** $V_{\bar{\psi}}$ (exponentially moving average of $V
         Slower adaptation to the main network’s parameters compared to hard updates, but the added stability usually outweighs this drawback.
 
 
-    ![Figure 12](..//assets//images//course_notes//advanced//target_network1.png)
-    /// caption
-    *Q function approximation without target network*
-    ///
-    ![Figure 13](..//assets//images//course_notes//advanced//target_network_2.png)
-    /// caption
-    *Q function approximation with target network*
-    ///
+    <center> 
+    <img src="\assets\images\course_notes\advanced\target_network1.png"
+        alt="Q function approximation without target network"
+        style="float: center; margin-right: 10px;" 
+        /> 
+        </center>
+    <center> 
+    <img src="\assets\images\course_notes\advanced\target_network_2.png"
+        alt="Q function approximation with target network"
+        style="float: center; margin-right: 10px;" 
+        /> 
+        </center>
 
     *source: [concept target network in category reinforcement learning](https://livebook.manning.com/concept/reinforcement-learning/target-network#:~:text=By%20using%20target%20networks%2C%20we,a%20new%20one%20is%20set.)*
     
@@ -951,7 +1008,7 @@ $$
 This trick is used to make sure that sampling from the policy is a differentiable process so that there are no problems in backpropagating the errors.  $\epsilon_t$ is random noise vector sampled from fixed distribution (e.g., Spherical Gaussian).
 
 
-??? note "Why Reparameterization is Needed?"
+???+ note "Why Reparameterization is Needed?"
 
     In reinforcement learning, the policy $\pi(a | s)$ often outputs a probability distribution over actions rather than deterministic actions. The standard way to sample an action is:
 
@@ -978,17 +1035,33 @@ This trick is used to make sure that sampling from the policy is a differentiabl
 
     So instead of sampling from $\mathcal{N}(\mu, \sigma^2)$ directly, we sample from a fixed standard normal and transform it using a differentiable function.This makes the policy differentiable, allowing gradients to flow through $\mu_{\phi}$ and $\sigma_{\phi}$.
 
+    <center> 
+    <img src="\assets\images\course_notes\advanced\trick.png"
+        alt="trick"
+        style="float: center; margin-right: 10px;" 
+        /> 
+        </center>
+    <center> 
+    <img src="\assets\images\course_notes\advanced\trick2.png"
+        alt="trick2"
+        style="float: center; margin-right: 10px;" 
+        /> 
+        </center>
 
-    ![Figure 14](..//assets//images//course_notes//advanced//trick.png)
-    ![Figure 15](..//assets//images//course_notes//advanced//trick2.png)
+    <!-- ![Figure 14](..//assets//images//recitation//week4//trick.png)
+    ![Figure 15](..//assets//images//recitation//week4//trick2.png) -->
 
     - **Continuous Action Generation**
 
     In a continuous action space soft actor-critic agent, the neural network in the actor takes the current observation and generates two outputs, one for the mean and the other for the standard deviation. To select an action, the actor randomly selects an unbounded action from this Gaussian distribution. If the soft actor-critic agent needs to generate bounded actions, the actor applies tanh and scaling operations to the action sampled from the Gaussian distribution.
 
     During training, the agent uses the unbounded Gaussian distribution to calculate the entropy of the policy for the given observation.
-
-    ![Figure 16](..//assets//images//course_notes//advanced//bounded.png)
+    <center> 
+    <img src="\assets\images\course_notes\advanced\bounded.png"
+        alt="bounded"
+        style="float: center; margin-right: 10px;" 
+        /> 
+        </center>
 
     - **Discrete Action Generation**
 
@@ -1039,8 +1112,6 @@ $$
         Collect more data by interacting with the environment using the updated policy.
 
 
-
-##### **SAC pseudocode**  
 
 **Algorithm: Soft Actor-Critic**
 
@@ -1194,6 +1265,43 @@ Actor-critic methods such as **PPO, DDPG, and SAC** have significantly improved 
 - **DDPG** works well in continuous control but suffers from poor exploration and instability.  
 - **SAC** improves upon DDPG by adding entropy regularization, leading to better exploration and stability.  
 
+
+
+## Author(s)
+
+<div class="grid cards" markdown>
+-   ![Instructor Avatar](/assets/images/staff/Ahmad-Karami.jpg){align=left width="150"}
+    <span class="description">
+        <p>**Ahmad Karami**</p>
+        <p>Teaching Assistant</p>
+        <p>[ahmad.karami77@yahoo.com](mailto:ahmad.karami77@yahoo.com)</p>
+        <p>
+        [:fontawesome-brands-linkedin-in:](https://www.linkedin.com/in/ahmad-karami-8a6a14255){:target="_blank"}
+        </p>
+    </span>
+-   ![Instructor Avatar](/assets/images/staff/Hamidreza-Ebrahimpour.jpg){align=left width="150"}
+    <span class="description">
+        <p>**Hamidreza Ebrahimpour**</p>
+        <p>Teaching Assistant</p>
+        <p>[ebrahimpour.7879@gmail.com](mailto:ebrahimpour.7879@gmail.com)</p>
+        <p>
+        [:fontawesome-brands-github:](https://github.com/hamidRezA7878){:target="_blank"}
+        [:fontawesome-brands-linkedin-in:](https://linkedin.com/in/hamidreza-ebrahimpour78){:target="_blank"}
+        </p>
+    </span>
+-   ![Instructor Avatar](/assets/images/staff/Hesam-Hosseini.jpg){align=left width="150"}
+    <span class="description">
+        <p>**Hesam Hosseini**</p>
+        <p>Teaching Assistant</p>
+        <p>[hesam138122@gmail.com](mailto:hesam138122@gmail.com)</p>
+        <p>
+        [:fontawesome-brands-google-scholar:](https://scholar.google.com/citations?user=ODTtV1gAAAAJ&hl=en){:target="_blank"}
+        [:fontawesome-brands-github:](https://github.com/Sam-the-first){:target="_blank"}
+        [:fontawesome-brands-linkedin-in:](https://www.linkedin.com/in/hesam-hosseini-b57092259){:target="_blank"}
+        </p>
+    </span>
+    
+</div>
   
 # References
 
