@@ -341,6 +341,7 @@ $$
 \end{aligned}
 $$
   
+where $G_t = \sum_{k=0}^{\infty} \gamma^kR_{t+k+1}$ is the discounted future reward starting from time setp $t$.
 
 Therefore we are able to measure $G_t$ from real sample trajectories and
 use that to update our policy gradient. It relies on a full trajectory
@@ -380,13 +381,13 @@ when possible).
 
   
 For example, a common baseline is to subtract state-value from
-action-value, and if applied, we would use **advantage** $A(s,a) = Q(s,a) - V(s)$ in the gradient ascent update. This [post](https://danieltakeshi.github.io/2017/03/28 going-deeper-into-reinforcement-learning-fundamentals-of-policy-gradients/) nicely explained why a baseline works for reducing the variance, in addition to a set of fundamentals of policy gradient.
+action-value, and if applied, we would use **advantage** $A(s,a) = Q(s,a) - V(s)$ in the gradient ascent update. This [post](https://danieltakeshi.github.io/2017/03/28/going-deeper-into-reinforcement-learning-fundamentals-of-policy-gradients/) nicely explained why a baseline works for reducing the variance, in addition to a set of fundamentals of policy gradient.
 
   
 
 
 
-  
+<!--   
 
 ####  $G(s)$ in Continuous Action Space 
 
@@ -469,10 +470,24 @@ is the **state value function**.
 - $A(s,a)$ measures the **advantage** of taking action $a$ over
 the expected policy action.
 
-  
+   -->
 
 ## Bias and Variance   
-In this section we delve deeper into the bias and variance problem in RL especially in policy gradient 
+As introduced in previous sections, REINFORCE employs Monte Carlo estimation of returns. Recall that Monte Carlo methods estimate expected values by sampling trajectories from the environment. While these estimators are unbiased (they converge to the true expected value given enough samples), they often suffer from high variance, making policy gradient methods challenging to stabilize.
+
+In this section, we delve deeper into the bias-variance tradeoff in reinforcement learning, with a focus on policy gradient methods. While these concepts were mentioned earlier, we now analyze them as the central topic:
+
+**Bias** occurs when our gradient estimates systematically deviate from the true expected gradient, leading to suboptimal policy updates.
+
+**Variance** measures how much our gradient estimates fluctuate across different batches of samples, affecting training stability.
+
+Policy gradient methods face unique challenges:
+
+- High variance from Monte Carlo sampling of full trajectories.
+
+- Potential bias from function approximation (e.g., neural networks) or improper baselines.
+
+Below, we formalize these concepts and explore techniques to mitigate their effects.
 
 ### Monte Carlo Estimators in Reinforcement Learning
 
@@ -655,7 +670,7 @@ $$b = \frac{1}{N} \sum_{i=1}^{N} G_i.$$
   
 
 Since $b$ is independent of actions, it does not introduce bias in the
-gradient estimate while reducing variance.
+gradient estimate while reducing variance. A simple proof for this is illustrated bleow.
 
   
 ??? note "proof"
@@ -892,29 +907,22 @@ $w$ at random.
 
   
 
-4. Compute the correction (TD error) for action-value at time $t$:
+4. Compute the correction (TD error) for action-value at time $t$: $\delta_t = r_t + \gamma Q(s_{t+1}, a_{t+1}) - Q_w(s_t, a_t)$
 
-$$\delta_t = r_t + \gamma Q(s_{t+1}, a_{t+1}) - Q(s_t, a_t)$$
 
+5. Compute MSE loss : $\mathcal{L}(w) = \frac{1}{2} \mathbb{E}_{(s_t, a_t, r_t, s_{t+1}) \sim \pi_\theta} \left[ \delta_t^2 \right]$
   
 
-5. Use it to update the parameters of the action-value function:
+6. Use it to update the parameters of the action-value function : $w \leftarrow w + \beta  \delta_t  \nabla_w Q_w(s_t, a_t)$
 
-$$w \leftarrow w + \beta  \delta_t  \nabla_w Q(s_t, a_t)$$
-
-  
-
-6. Update $\theta$ and $w$.
+7. Update $\theta$ and $w$.
 
   
 
 Two learning rates, $\alpha$ and $\beta$, are predefined for policy and
-value function parameter updates, respectively.
+value function parameter updates, respectively. Also note that the $Q(s_{t+1}, a_{t+1})$ in the TD error uses the freezed values of $w$ for better stablity.
 
   
-
-
-<!-- ![image](\assets\images\course_notes\policy-based\a6.png){width="0.9\\linewidth"} -->
 
 <center> 
 <img src="\assets\images\course_notes\policy-based\a6.png"
