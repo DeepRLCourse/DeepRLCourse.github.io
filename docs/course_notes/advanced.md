@@ -67,7 +67,7 @@ $$
 ##### Advantage Value:
 ***Measures how much an action is better than the average of other actions in a given state.***
 
-![Figure 1](..//assets//images//recitation//week4//Actor_Critic.jpg "Advantage value")
+![Figure 1](..//assets//images//course_notes//advanced//Actor_Critic.jpg "Advantage value")
 
 ###### Why Use the Advantage Value?
 We can further reduce variance by subtracting a baseline from $Q(s_{i,t}, a_{i,t})$ without altering the expectation of $\nabla_\theta J(\theta)$, making it an unbiased estimator:
@@ -108,7 +108,7 @@ $$
 
     Consider a penalty shootout game to illustrate the concept of the advantage function and Q-values in reinforcement learning.
 
-    ![Figure 2](..//assets//images//recitation//week4//Football.png "penalty shootout game")
+    ![Figure 2](..//assets//images//course_notes//advanced//Football.png "penalty shootout game")
 
     - **Game Setup**:
         1. *Goalie Strategy*:  A goalie always jumps to the right to block the shot.
@@ -262,7 +262,7 @@ To mitigate this issue, two main solutions are commonly used:
 ###### Parallel Actor-Critic (Online)
 Many high-performance implementations are based on the actor critic approach. For large problems, the algorithm is typically parallelized and implemented on a large cluster computer.
 
-![Figure 3](..//assets//images//recitation//week4//Parallel.jpg "Parallel Actor-Critic framework")
+![Figure 3](..//assets//images//course_notes//advanced//Parallel.jpg "Parallel Actor-Critic framework")
 
 To reduce variance, multiple actors are used to update the policy. There are two main approaches:
 
@@ -284,7 +284,7 @@ To reduce variance, multiple actors are used to update the policy. There are two
 In the off-policy approach, we maintain a replay buffer to store past experiences, allowing us to train the model using previously collected data rather than relying solely on the most recent experience.
 
 
-![Figure 4](..//assets//images//recitation//week4//offpolicy.png "Replay buffer")
+![Figure 4](..//assets//images//course_notes//advanced//offpolicy.png "Replay buffer")
 
 
 **Off-policy actor-critic algorithm:**
@@ -334,7 +334,7 @@ The idea with Proximal Policy Optimization (PPO) is that we want to improve the 
 1. We know empirically that smaller policy updates during training are more likely to converge to an optimal solution.
 2. If we change the policy too much, we may end up with a bad policy that cannot be improved.
 
-![Figure 5](..//assets//images//recitation//week4//cliff.jpg)
+![Figure 5](..//assets//images//course_notes//advanced//cliff.jpg)
 
 *soruce: [Unit 8, of the Deep Reinforcement Learning Class with Hugging Face](https://huggingface.co/blog/deep-rl-ppo)*
 
@@ -391,7 +391,7 @@ In this formulation, the optimization is performed with respect to the new polic
 
 ##### Visualize the Clipped Surrogate Objective
 
-![Figure 6](..//assets//images//recitation//week4//recap.jpg)
+![Figure 6](..//assets//images//course_notes//advanced//recap.jpg)
 
 ##### PPO pseudocode
 **Algorithm: PPO-Clip** 
@@ -579,10 +579,10 @@ $$
 $$
 ??? Tip "Diagram Of DDPG Algorithms"
 
-    ![Figure 7](..//assets//images//recitation//week4//DDPG.png)
+    ![Figure 7](..//assets//images//course_notes//advanced//DDPG.png)
 
 
-    ![Figure 8](..//assets//images//recitation//week4//DDPG_alg.png)
+    ![Figure 8](..//assets//images//course_notes//advanced//DDPG_alg.png)
 
 
 ##### DDPG Pseudocode: A Step-by-Step Breakdown
@@ -647,7 +647,7 @@ In essence, SAC seeks to maximize the entropy in policy, in addition to the expe
 
     We can think of entropy as how unpredictable a random variable is. If a random variable always takes a single value then it has zero entropy because it’s not unpredictable at all. If a random variable can be any Real Number with equal probability then it has very high entropy as it is very unpredictable.
 
-    ![Figure 9](..//assets//images//recitation//week4//entropy.jpg)
+    ![Figure 9](..//assets//images//course_notes//advanced//entropy.jpg)
 
 
 
@@ -687,7 +687,7 @@ In this context, the robot is in an initial state and has two possible passages 
 
 ###### **Standard RL Approach**
 
-![Figure 10](..//assets//images//recitation//week4//SAC1.png)
+![Figure 10](..//assets//images//course_notes//advanced//SAC1.png)
 
 The **grey curve** represents the Q-function, which has two peaks, indicating two promising actions.A conventional RL approach typically assumes a unimodal (single-peaked) policy distribution, represented by the **red curve**.
 
@@ -703,7 +703,7 @@ The **policy distribution (green shaded area)** is proportional to $\exp(Q(s_t, 
 This approach allows the agent to explore multiple high-reward actions and avoids the bias of ignoring one passage.
 As a result, the agent recognizes both options, increasing the chance of finding the optimal path.
 
-![Figure 11](..//assets//images//recitation//week4//SAC2.png)
+![Figure 11](..//assets//images//course_notes//advanced//SAC2.png)
 
 
 This concept is relevant for **actor-critic RL methods** like **Soft Actor-Critic (SAC)**, which uses entropy to encourage diverse exploration.
@@ -916,11 +916,11 @@ A **target value function** $V_{\bar{\psi}}$ (exponentially moving average of $V
         Slower adaptation to the main network’s parameters compared to hard updates, but the added stability usually outweighs this drawback.
 
 
-    ![Figure 12](..//assets//images//recitation//week4//target_network1.png)
+    ![Figure 12](..//assets//images//course_notes//advanced//target_network1.png)
     /// caption
     *Q function approximation without target network*
     ///
-    ![Figure 13](..//assets//images//recitation//week4//target_network_2.png)
+    ![Figure 13](..//assets//images//course_notes//advanced//target_network_2.png)
     /// caption
     *Q function approximation with target network*
     ///
@@ -979,8 +979,8 @@ This trick is used to make sure that sampling from the policy is a differentiabl
     So instead of sampling from $\mathcal{N}(\mu, \sigma^2)$ directly, we sample from a fixed standard normal and transform it using a differentiable function.This makes the policy differentiable, allowing gradients to flow through $\mu_{\phi}$ and $\sigma_{\phi}$.
 
 
-    ![Figure 14](..//assets//images//recitation//week4//trick.png)
-    ![Figure 15](..//assets//images//recitation//week4//trick2.png)
+    ![Figure 14](..//assets//images//course_notes//advanced//trick.png)
+    ![Figure 15](..//assets//images//course_notes//advanced//trick2.png)
 
     - **Continuous Action Generation**
 
@@ -988,7 +988,7 @@ This trick is used to make sure that sampling from the policy is a differentiabl
 
     During training, the agent uses the unbounded Gaussian distribution to calculate the entropy of the policy for the given observation.
 
-    ![Figure 16](..//assets//images//recitation//week4//bounded.png)
+    ![Figure 16](..//assets//images//course_notes//advanced//bounded.png)
 
     - **Discrete Action Generation**
 
