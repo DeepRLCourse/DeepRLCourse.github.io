@@ -1,3 +1,8 @@
+---
+comments: True
+description: This page delves into advanced reinforcement learning methods, focusing on actor-critic algorithms such as PPO, DDPG, and SAC. It explores key concepts like Reward-to-Go, Advantage Estimation, and Generalized Advantage Estimation (GAE), providing theoretical insights and practical applications. The document also highlights the challenges and solutions in continuous action spaces, policy optimization, and exploration strategies, making it a comprehensive guide for mastering advanced RL techniques.
+---
+
 # Week 4: Advanced Methods
 
 

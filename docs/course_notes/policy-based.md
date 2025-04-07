@@ -1,3 +1,8 @@
+---
+comments: True
+description: This page provides an in-depth exploration of policy-based methods in reinforcement learning, focusing on their theoretical foundations, practical implementations, and advantages over value-based methods. Topics include policy gradient theorem, variance reduction techniques, REINFORCE algorithm, actor-critic methods, and their applications in continuous action spaces. The content is enriched with mathematical proofs, examples, and visual aids to enhance understanding.
+---
+
 # Week 3: Policy-Based Methods
 
 
