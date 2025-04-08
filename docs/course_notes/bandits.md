@@ -108,11 +108,14 @@ $$
 
 where:
 - $N_t(a)$ is the total number of times action $a$ has been selected up to time step $t$.
+  
 - $R_i$ is the reward received at the $i^{th}$ time action $a$ was selected.
 
-##### Intuition
 
-This method relies on the Law of Large Numbers, where averaging a large number of observations converges to the true expected reward. Initially, the estimates are inaccurate due to limited observations, but as the action is repeatedly selected, the estimate $Q_t(a)$ increasingly stabilizes and converges towards the true mean reward $q_*(a)$.
+
+??? Tip "Intuition"
+    
+    This method relies on the Law of Large Numbers, where averaging a large number of observations converges to the true expected reward. Initially, the estimates are inaccurate due to limited observations, but as the action is repeatedly selected, the estimate    $Q_t(a)$ increasingly stabilizes and converges towards the true mean reward $q_*(a)$.
 
 #### Incremental Update Rule for Efficient Computation
 
@@ -124,39 +127,45 @@ $$
 Q_{t+1}(a) = Q_t(a) + \frac{1}{N_t(a)} \left(R_t - Q_t(a)\right).
 $$
 
-##### Derivation of the Incremental Update Rule
 
-Starting from the definition of the sample-average estimate at the next time step $t+1$, we have:
 
-$$
-Q_{t+1}(a) = \frac{1}{N_{t+1}(a)} \sum_{i=1}^{N_{t+1}(a)} R_i.
-$$
 
-Breaking this down into the previous $N_t(a)$ rewards plus the most recent reward $R_t$, we have:
+??? note "Derivation of the Incremental Update Rule"
 
-$$
-Q_{t+1}(a) = \frac{1}{N_{t+1}(a)} \left(\sum_{i=1}^{N_t(a)} R_i + R_t\right).
-$$
+    Starting from the definition of the sample-average estimate at the next time step $t+1$, we have:
 
-We already have from the previous step:
+    $$
+    Q_{t+1}(a) = \frac{1}{N_{t+1}(a)} \sum_{i=1}^{N_{t+1}(a)} R_i.
+    $$
 
-$$
-Q_t(a) = \frac{1}{N_t(a)} \sum_{i=1}^{N_t(a)} R_i \quad \Rightarrow \quad \sum_{i=1}^{N_t(a)} R_i = N_t(a)Q_t(a).
-$$
+    Breaking this down into the previous $N_t(a)$ rewards plus the most recent reward $R_t$, we have:
 
-Substituting this into the equation above gives:
+    $$
+    Q_{t+1}(a) = \frac{1}{N_{t+1}(a)} \left(\sum_{i=1}^{N_t(a)} R_i + R_t\right).
+    $$
 
-$$
-Q_{t+1}(a) = \frac{1}{N_{t+1}(a)} \left(N_t(a)Q_t(a) + R_t\right).
-$$
+    We already have from the previous step:
 
-Recognizing that $N_{t+1}(a) = N_t(a) + 1$, we can rewrite this as:
+    $$
+    Q_t(a) = \frac{1}{N_t(a)} \sum_{i=1}^{N_t(a)} R_i \quad \Rightarrow \quad \sum_{i=1}^{N_t(a)} R_i = N_t(a)Q_t(a).
+    $$
 
-$$
-Q_{t+1}(a) = Q_t(a) + \frac{1}{N_t(a) + 1}\left(R_t - Q_t(a)\right),
-$$
+      Substituting this into the equation above gives:
 
-which is precisely the incremental update rule. This formulation clearly demonstrates that updating action-value estimates does not require retaining all historical rewards—only the current estimate, $Q_t(a)$, and the most recent observation, $R_t$, are needed.
+      $$
+      Q_{t+1}(a) = \frac{1}{N_{t+1}(a)} \left(N_t(a)Q_t(a) + R_t\right).
+      $$
+
+      Recognizing that $N_{t+1}(a) = N_t(a) + 1$, we can rewrite this as:
+
+      $$
+      Q_{t+1}(a) = Q_t(a) + \frac{1}{N_t(a) + 1}\left(R_t - Q_t(a)\right),
+      $$
+   
+      which is precisely the incremental update rule. This formulation clearly demonstrates that updating action-value estimates does not require retaining all historical rewards—only the current estimate, $Q_t(a)$, and the most recent       observation, $R_t$, are needed.
+
+
+
 
 #### Constant Step-Size Update for Nonstationary Problems
 
@@ -171,29 +180,32 @@ where $0 < \alpha \leq 1$ determines how much emphasis is placed on recent rewar
 - If $\alpha = \frac{1}{N_t(a)}$, this formulation reverts back to the sample-average method.
 - If $\alpha$ is constant and fixed, recent rewards have greater influence, making the estimates more responsive to changes in the environment.
 
-##### Exponential Weighted Averaging
 
-When employing a constant step-size, the estimate effectively becomes an exponentially weighted average of past rewards, giving exponentially decreasing weights to older observations. This becomes clear by expanding the incremental update recursively:
 
-$$
-Q_{t+1}(a) = (1 - \alpha)Q_t(a) + \alpha R_t
-$$
+??? note "Exponential Weighted Averaging"
 
-Continuing recursively for additional steps, we have:
+      When employing a constant step-size, the estimate effectively becomes an exponentially weighted average of past rewards, giving exponentially decreasing weights to older observations. This becomes clear by expanding the incremental update recursively:
 
-$$
-Q_{t+2}(a) = (1 - \alpha)^2 Q_t(a) + \alpha(1 - \alpha) R_t + \alpha R_{t+1}.
-$$
+      $$
+      Q_{t+1}(a) = (1 - \alpha)Q_t(a) + \alpha R_t
+      $$
+      
+      Continuing recursively for additional steps, we have:
+      
+      $$
+      Q_{t+2}(a) = (1 - \alpha)^2 Q_t(a) + \alpha(1 - \alpha) R_t + \alpha R_{t+1}.
+      $$
+      
+      Generalizing this recursive expansion, the influence of the initial estimate $Q_0(a)$ decreases exponentially, and we have the general form:
+      
+      $$
+      Q_t(a) = (1 - \alpha)^t Q_0(a) + \sum_{i=0}^{t-1} \alpha(1 - \alpha)^i R_{t-i}.
+      $$
+      
+      This explicitly illustrates the exponential weighting mechanism: recent rewards (closer to the current time $t$) exert a higher influence on the current estimate, while older rewards have their influence gradually diminished by a factor of $(1 - \alpha)$ per time step.
+      
+      This exponential weighting characteristic makes the constant step-size update particularly well-suited for dynamic, nonstationary environments, where quickly adapting to changes in action-value distributions is critical.
 
-Generalizing this recursive expansion, the influence of the initial estimate $Q_0(a)$ decreases exponentially, and we have the general form:
-
-$$
-Q_t(a) = (1 - \alpha)^t Q_0(a) + \sum_{i=0}^{t-1} \alpha(1 - \alpha)^i R_{t-i}.
-$$
-
-This explicitly illustrates the exponential weighting mechanism: recent rewards (closer to the current time $t$) exert a higher influence on the current estimate, while older rewards have their influence gradually diminished by a factor of $(1 - \alpha)$ per time step.
-
-This exponential weighting characteristic makes the constant step-size update particularly well-suited for dynamic, nonstationary environments, where quickly adapting to changes in action-value distributions is critical.
 
 
 
@@ -257,7 +269,7 @@ $$
 
 This optimistic approach incentivizes initial exploration, reducing the chance of permanently settling on a suboptimal action, thereby improving long-term regret performance.
 
-### Lower Bound on Regret (Lai-Robbins Bound)
+### Lower Bound on Regret (Lai-Robbins Bound) (This topic is beyond the scope of this course.)
 
 An essential theoretical result by Lai and Robbins (1985) provides a fundamental lower bound on achievable regret growth for any "consistent" algorithm—that is, any algorithm whose regret grows sublinearly for all problem instances. Formally, the Lai-Robbins bound is stated as:
 
@@ -266,6 +278,16 @@ $$
 $$
 
 where $D_{\text{KL}}(\mathcal{R}^a || \mathcal{R}^{a^\star})$ is the Kullback–Leibler (KL) divergence between the reward distributions of a suboptimal arm $a$ and the optimal arm $a^\star$. Intuitively, this bound indicates that arms with smaller gaps ($\Delta_a$ close to zero) or similar reward distributions to the optimal arm (small KL divergence) inherently require more exploration, resulting in greater regret.
+
+??? Tip "liminf"
+    
+    In mathematics, the **limit inferior** (or **liminf**) of a sequence \(\{a_n\}\) is defined as:
+
+      $$
+      \liminf_{n \to \infty} a_n = \lim_{n \to \infty} \left( \inf \{a_k : k \geq n\} \right)
+      $$
+      
+      This expression represents the greatest lower bound of the tail of the sequence, effectively capturing the "largest eventual minimum" of the sequence.   
 
 ### Bernoulli Bandit Case
 
@@ -344,7 +366,7 @@ Strategies addressing the exploration–exploitation trade-off aim for sublinear
 
 ### Common Approaches to Balancing Exploration and Exploitation
 
-Several classic strategies systematically manage exploration and exploitation, each embodying optimism in a different way:
+Several classic strategies systematically manage exploration and exploitation, each embodying optimism in a different way. We'll now skim through them briefly and then dive deeper into each one.
 
 #### 1. $\epsilon$-Greedy Strategy
 
@@ -422,15 +444,18 @@ $$
 
 The value of $\epsilon \in [0,1]$ is typically a small constant (e.g., $\epsilon = 0.1$), ensuring occasional exploration while primarily exploiting the current knowledge.
 
----
 
-#### Intuition Behind the Algorithm
 
-The core idea of $\epsilon$-greedy is to ensure that all arms are explored with non-zero probability. This addresses the fundamental problem of *uncertainty* in estimating the rewards of each arm. Initially, all estimates $\hat{Q}_t(i)$ are inaccurate due to limited samples. If the algorithm only exploits the current maximum, it risks becoming overconfident in suboptimal arms and permanently ignoring better alternatives.
 
-Exploration allows the algorithm to collect more data about all arms, improving the estimates and preventing premature convergence to a suboptimal policy. Exploitation ensures that we are using the best known option most of the time, thus maximizing the expected reward in the short term.
+??? Tip "Intuition Behind the Algorithm"
+    
+    The core idea of $\epsilon$-greedy is to ensure that all arms are explored with non-zero probability. This addresses the fundamental problem of *uncertainty* in estimating the rewards of each arm. Initially, all estimates $\hat{Q}_t(i)$ are inaccurate due to limited samples. If the algorithm only exploits the current maximum, it risks becoming overconfident in suboptimal arms and permanently ignoring better alternatives.
 
-The balance is governed by $\epsilon$: high $\epsilon$ means more exploration (potentially higher short-term regret), while low $\epsilon$ means more exploitation (potentially poor long-term performance if the optimal arm is missed early).
+      Exploration allows the algorithm to collect more data about all arms, improving the estimates and preventing premature convergence to a suboptimal policy. Exploitation ensures that we are using the best known option most of the time, thus maximizing the expected reward in the short term.
+      
+      The balance is governed by $\epsilon$: high $\epsilon$ means more exploration (potentially higher short-term regret), while low $\epsilon$ means more exploitation (potentially poor long-term performance if the optimal arm is missed early).
+
+
 
 ---
 
@@ -825,13 +850,13 @@ $$
 
 The rest of the arms' parameters remain unchanged.
 
----
+??? Tip "Intuition Behind Exploration and Exploitation"
+    
+    This process allows the algorithm to **explore uncertain arms** and **exploit promising ones** in a naturally balanced way. Consider an arm $i$ with a high mean estimate but low certainty (wide posterior). There's a non-negligible chance that its sampled $\tilde{\theta}_i$ will be large, leading to selection. Conversely, an arm with high empirical reward but tight posterior still occasionally gets out-sampled by a more uncertain one.
 
-#### Intuition Behind Exploration and Exploitation
+      This phenomenon is called **randomized optimism**: sometimes, by chance, an uncertain arm is sampled optimistically, leading to its exploration. The more we pull an arm, the narrower its posterior becomes, reducing unnecessary exploration over time.
 
-This process allows the algorithm to **explore uncertain arms** and **exploit promising ones** in a naturally balanced way. Consider an arm $i$ with a high mean estimate but low certainty (wide posterior). There's a non-negligible chance that its sampled $\tilde{\theta}_i$ will be large, leading to selection. Conversely, an arm with high empirical reward but tight posterior still occasionally gets out-sampled by a more uncertain one.
 
-This phenomenon is called **randomized optimism**: sometimes, by chance, an uncertain arm is sampled optimistically, leading to its exploration. The more we pull an arm, the narrower its posterior becomes, reducing unnecessary exploration over time.
 
 ---
 
