@@ -32,3 +32,17 @@ Please submit your completed homework on Quera by the deadline:
 - **Deadline:** <span style="direction: rtl;font-family: Vazirmatn;">۸ فروردین (March 28)</span> at 11:59 PM
 
 Good luck, and we look forward to your submissions!
+
+## Solution
+
+[HW5 Solution to Questions](https://raw.githubusercontent.com/DeepRLCourse/Homework-5-Questions/refs/heads/main/HW5_Solution.pdf){:target="_blank" .md-button }
+
+<iframe width="996" height="560" src="https://www.youtube.com/embed/AAtanARdURk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+[HW5 Solution Notebook | Part 1: MCTS](https://raw.githubusercontent.com/DeepRLCourse/Homework-5-Questions/refs/heads/main/RL_HW5_MCTS_Solution.ipynb){:target="_blank" .md-button }
+
+<iframe width="996" height="560" src="https://www.youtube.com/embed/052XHvqOkjw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+[HW5 Solution Notebook | Part 2: Dyna](https://raw.githubusercontent.com/DeepRLCourse/Homework-5-Questions/refs/heads/main/RL_HW5_Dyna_Solution.ipynb){:target="_blank" .md-button }
+
+[HW5 Solution Notebook | Part 3: MPC](https://raw.githubusercontent.com/DeepRLCourse/Homework-5-Questions/refs/heads/main/RL_HW5_MPC_Solution.ipynb){:target="_blank" .md-button }
