@@ -130,10 +130,10 @@ $$
 
 
 
-??? note "Derivation of the Incremental Update Rule"
+???+ note "Derivation of the Incremental Update Rule"
 
     Starting from the definition of the sample-average estimate at the next time step $t+1$, we have:
-
+   
     $$
     Q_{t+1}(a) = \frac{1}{N_{t+1}(a)} \sum_{i=1}^{N_{t+1}(a)} R_i.
     $$
@@ -150,19 +150,19 @@ $$
     Q_t(a) = \frac{1}{N_t(a)} \sum_{i=1}^{N_t(a)} R_i \quad \Rightarrow \quad \sum_{i=1}^{N_t(a)} R_i = N_t(a)Q_t(a).
     $$
 
-      Substituting this into the equation above gives:
+    Substituting this into the equation above gives:
 
-      $$
-      Q_{t+1}(a) = \frac{1}{N_{t+1}(a)} \left(N_t(a)Q_t(a) + R_t\right).
-      $$
+    $$
+    Q_{t+1}(a) = \frac{1}{N_{t+1}(a)} \left(N_t(a)Q_t(a) + R_t\right).
+    $$
 
-      Recognizing that $N_{t+1}(a) = N_t(a) + 1$, we can rewrite this as:
+    Recognizing that $N_{t+1}(a) = N_t(a) + 1$, we can rewrite this as:
 
-      $$
-      Q_{t+1}(a) = Q_t(a) + \frac{1}{N_t(a) + 1}\left(R_t - Q_t(a)\right),
-      $$
-   
-      which is precisely the incremental update rule. This formulation clearly demonstrates that updating action-value estimates does not require retaining all historical rewards—only the current estimate, $Q_t(a)$, and the most recent       observation, $R_t$, are needed.
+    $$
+    Q_{t+1}(a) = Q_t(a) + \frac{1}{N_t(a) + 1}\left(R_t - Q_t(a)\right),
+    $$
+
+    which is precisely the incremental update rule. This formulation clearly demonstrates that updating action-value estimates does not require retaining all historical  rewards—only the current estimate, $Q_t(a)$, and the most recent observation, $R_t$, are needed.
 
 
 
@@ -182,29 +182,29 @@ where $0 < \alpha \leq 1$ determines how much emphasis is placed on recent rewar
 
 
 
-??? note "Exponential Weighted Averaging"
+???+ note "Exponential Weighted Averaging"
 
-      When employing a constant step-size, the estimate effectively becomes an exponentially weighted average of past rewards, giving exponentially decreasing weights to older observations. This becomes clear by expanding the incremental update recursively:
+    When employing a constant step-size, the estimate effectively becomes an exponentially weighted average of past rewards, giving exponentially decreasing weights to older observations. This becomes clear by expanding the incremental update recursively:
 
-      $$
-      Q_{t+1}(a) = (1 - \alpha)Q_t(a) + \alpha R_t
-      $$
-      
-      Continuing recursively for additional steps, we have:
-      
-      $$
-      Q_{t+2}(a) = (1 - \alpha)^2 Q_t(a) + \alpha(1 - \alpha) R_t + \alpha R_{t+1}.
-      $$
-      
-      Generalizing this recursive expansion, the influence of the initial estimate $Q_0(a)$ decreases exponentially, and we have the general form:
-      
-      $$
-      Q_t(a) = (1 - \alpha)^t Q_0(a) + \sum_{i=0}^{t-1} \alpha(1 - \alpha)^i R_{t-i}.
-      $$
-      
-      This explicitly illustrates the exponential weighting mechanism: recent rewards (closer to the current time $t$) exert a higher influence on the current estimate, while older rewards have their influence gradually diminished by a factor of $(1 - \alpha)$ per time step.
-      
-      This exponential weighting characteristic makes the constant step-size update particularly well-suited for dynamic, nonstationary environments, where quickly adapting to changes in action-value distributions is critical.
+    $$
+    Q_{t+1}(a) = (1 - \alpha)Q_t(a) + \alpha R_t
+    $$
+   
+    Continuing recursively for additional steps, we have:
+   
+    $$
+    Q_{t+2}(a) = (1 - \alpha)^2 Q_t(a) + \alpha(1 - \alpha) R_t + \alpha R_{t+1}.
+    $$
+   
+    Generalizing this recursive expansion, the influence of the initial estimate $Q_0(a)$ decreases exponentially, and we have the general form:
+   
+    $$
+    Q_t(a) = (1 - \alpha)^t Q_0(a) + \sum_{i=0}^{t-1} \alpha(1 - \alpha)^i R_{t-i}.
+    $$
+   
+    This explicitly illustrates the exponential weighting mechanism: recent rewards (closer to the current time $t$) exert a higher influence on the current estimate, while older rewards have their influence gradually diminished by a factor of $(1 - \alpha)$ per time step.
+   
+    This exponential weighting characteristic makes the constant step-size update particularly well-suited for dynamic, nonstationary environments, where quickly adapting to changes in action-value distributions is critical.
 
 
 
@@ -283,11 +283,11 @@ where $D_{\text{KL}}(\mathcal{R}^a || \mathcal{R}^{a^\star})$ is the Kullback–
     
     In mathematics, the **limit inferior** (or **liminf**) of a sequence \(\{a_n\}\) is defined as:
 
-      $$
-      \liminf_{n \to \infty} a_n = \lim_{n \to \infty} \left( \inf \{a_k : k \geq n\} \right)
-      $$
+    $$
+    \liminf_{n \to \infty} a_n = \lim_{n \to \infty} \left( \inf \{a_k : k \geq n\} \right)
+    $$
       
-      This expression represents the greatest lower bound of the tail of the sequence, effectively capturing the "largest eventual minimum" of the sequence.   
+    This expression represents the greatest lower bound of the tail of the sequence, effectively capturing the "largest eventual minimum" of the sequence.   
 
 ### Bernoulli Bandit Case
 
@@ -403,7 +403,7 @@ Thompson Sampling employs a Bayesian framework. At each step, the agent draws ra
 Multi-armed bandit (MAB) problems embody the fundamental challenge of balancing exploration (gathering information about the uncertain environment) and exploitation (leveraging existing knowledge to maximize rewards). Several exploration strategies have emerged, each employing distinct mechanisms to navigate this critical trade-off. Below, we elaborate on two common strategies—**the ε-Greedy algorithm** and **Optimistic Initial Values**—examining their theoretical underpinnings, implementation specifics, and intuitive rationale.
 
 
-### The $\boldsymbol{\epsilon}$-Greedy Algorithm
+### The **$\epsilon$**-Greedy Algorithm
 
 #### Overview and Motivation
 
@@ -910,9 +910,9 @@ While standard multi-armed bandits assume no additional data or “context” is
 
 In a **contextual bandit** problem, at each time step \(t\):
 
-1. The environment reveals a **context** $\(x_t \in \mathcal{X}\)$.  
-2. Based on this context, the agent chooses an action (arm) $\(A_t \in \{1, \dots, K\}\)$.  
-3. The chosen action yields a reward $\(R_t\)$, drawn from a distribution that can depend on both the action and the context.
+1. The environment reveals a **context** $x_t \in \mathcal{X}$.  
+2. Based on this context, the agent chooses an action (arm) $A_t \in \{1, \dots, K\}$.  
+3. The chosen action yields a reward $R_t$, drawn from a distribution that can depend on both the action and the context.
 
 Formally, we might write:
 
@@ -920,7 +920,7 @@ $$
 R_t \sim \mathcal{R}\bigl(a = A_t, x = x_t\bigr)
 $$
 
-Here, $\(\mathcal{X}\)$ is a (possibly high-dimensional) space of contexts. The agent’s goal remains to maximize cumulative reward (or minimize regret), but now it can exploit the relationship between **(context, action)** and reward.
+Here, $\mathcal{X}$ is a (possibly high-dimensional) space of contexts. The agent’s goal remains to maximize cumulative reward (or minimize regret), but now it can exploit the relationship between **(context, action)** and reward.
 
 ### Distinction from Standard MAB
 
@@ -1025,18 +1025,18 @@ Thompson Sampling (TS) can also be extended to **contextual** bandits by placing
 
 ### Usage of Thompson Sampling Algorithm in Contextual Bandits
 
-1. **Model Specification**: Assume a prior distribution over each arm’s parameter $\(\theta_i\)$ (e.g., Gaussian for linear models).  
-2. **At Each Round $\( t \)$**:
-   - Observe context $\( x_t \)$ .  
-   - Sample $\(\tilde{\theta}_i\)$ from the posterior for each arm $\( i \)$ .  
-   - Compute $\(\tilde{r}_i(t) = x_t^\top \tilde{\theta}_i\)$ .  
-   - Select $\( A_t = \arg\max_i \tilde{r}_i(t) \)$ .  
-   - Observe reward $\( R_t \)$ .  
-   - Update the posterior of $\(\theta_{A_t}\)$ .
+1. **Model Specification**: Assume a prior distribution over each arm’s parameter $\theta_i$ (e.g., Gaussian for linear models).  
+2. **At Each Round $t$**:
+   - Observe context $x_t$ .  
+   - Sample $\tilde{\theta}_i$ from the posterior for each arm $i$ .  
+   - Compute $\tilde{r}_i(t) = x_t^\top \tilde{\theta}_i$ .  
+   - Select $A_t = \arg\max_i \tilde{r}_i(t)$ .  
+   - Observe reward $R_t$ .  
+   - Update the posterior of $\theta_{A_t}$ .
 
 ### Regret Analysis of Thompson Sampling in Contextual Bandits
 
-With similar assumptions to LinUCB, contextual Thompson Sampling attains comparable $\(O(\sqrt{T})\)$ -type regret bounds, often with good empirical results due to its Bayesian “probability matching” mechanism.
+With similar assumptions to LinUCB, contextual Thompson Sampling attains comparable $O(\sqrt{T})$ -type regret bounds, often with good empirical results due to its Bayesian “probability matching” mechanism.
 
 
 
@@ -1066,7 +1066,43 @@ To this end, various algorithmic strategies were introduced for estimating actio
 In summary, the MAB framework offers a minimal yet powerful model that lies at the heart of many online learning and reinforcement learning scenarios. The theoretical underpinnings, from regret analysis to optimal exploration policies, provide valuable tools for designing adaptive systems. Simultaneously, the algorithmic developments discussed herein continue to form the basis of modern intelligent agents operating in uncertain, real-time environments.
 
 
-
+## Author(s)
+<div class="grid cards" markdown>
+-   ![Instructor Avatar](/assets/images/staff/Arshia-Gharooni.jpg){align=left width="150"}
+    <span class="description">
+        <p>**Arshia Gharooni**</p>
+        <p>Teaching Assistant</p>
+        <p>[arshiyagharoony@gmail.com](mailto:arshiyagharoony@gmail.com)</p>
+        <p>
+        [:fontawesome-brands-x-twitter:](https://x.com/Arshia_Gharooni){:target="_blank"}
+        [:fontawesome-brands-github:](https://github.com/SilentDrift){:target="_blank"}
+        [:material-web:](https://silentdrift.github.io/){:target="_blank"}
+        </p>
+    </span>
+-   ![Instructor Avatar](/assets/images/staff/Mohammad-Mohammadi.jpg){align=left width="150"}
+    <span class="description">
+        <p>**Mohammad Mohammadi**</p>
+        <p>Teaching Assistant</p>
+        <p>[mohammadm97i@gmail.com](mailto:mohammadm97i@gmail.com)</p>
+        <p>
+        [:fontawesome-brands-x-twitter:](https://x.com/imohammad97){:target="_blank"}
+        [:fontawesome-brands-github:](https://github.com/iMohammad97){:target="_blank"}
+        [:fontawesome-brands-linkedin-in:](https://www.linkedin.com/in/mohammadmohammadi97){:target="_blank"}
+        </p>
+    </span>
+-   ![Instructor Avatar](/assets/images/staff/Hesam-Hosseini.jpg){align=left width="150"}
+    <span class="description">
+        <p>**Hesam Hosseini**</p>
+        <p>Teaching Assistant</p>
+        <p>[hesam138122@gmail.com](mailto:hesam138122@gmail.com)</p>
+        <p>
+        [:fontawesome-brands-google-scholar:](https://scholar.google.com/citations?user=ODTtV1gAAAAJ&hl=en){:target="_blank"}
+        [:fontawesome-brands-github:](https://github.com/Sam-the-first){:target="_blank"}
+        [:fontawesome-brands-linkedin-in:](https://www.linkedin.com/in/hesam-hosseini-b57092259){:target="_blank"}
+        </p>
+    </span>
+    
+</div>
 
 
 
