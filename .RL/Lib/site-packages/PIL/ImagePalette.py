@@ -18,7 +18,8 @@
 from __future__ import annotations
 
 import array
-from typing import IO, TYPE_CHECKING, Sequence
+from collections.abc import Sequence
+from typing import IO, TYPE_CHECKING
 
 from . import GimpGradientFile, GimpPaletteFile, ImageColor, PaletteFile
 
@@ -207,7 +208,7 @@ class ImagePalette:
 # Internal
 
 
-def raw(rawmode, data: Sequence[int] | bytes | bytearray) -> ImagePalette:
+def raw(rawmode: str, data: Sequence[int] | bytes | bytearray) -> ImagePalette:
     palette = ImagePalette()
     palette.rawmode = rawmode
     palette.palette = data

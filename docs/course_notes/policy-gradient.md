@@ -484,8 +484,54 @@ While being an **unbiased estimation**, it suffers from high variance problem. T
     1. The return $R(\tau) = \sum_{t=0}^T r_t$ accumulates variance from each timestep
 
     2. For long horizons, the variance scales approximately with $O(T^2)$
+    Here's a concise derivation showing why the variance of Monte Carlo policy gradient estimates scales as $O(T^2)$ with horizon length $T$:
+
+        - **Variance of Monte Carlo Estimation**
+
+            Consider the **total return** over a trajectory:
+
+            $$
+            R(\tau) = \sum_{t=0}^{T-1} r_t
+            $$
+
+            The **policy gradient estimator** is:
+
+            $$
+            g = \sum_{t=0}^{T-1} \left( \nabla_\theta \log \pi_\theta(a_t|s_t) \right) R(\tau)
+            $$
+
+        - **Reward Covariance Structure**  
+
+            Assume rewards are correlated across timesteps (true in RL), with:
+
+            $$
+            \text{Var}(r_t) = \sigma^2, \quad \text{Cov}(r_t, r_{t'}) = \rho \sigma^2 \quad (\rho > 0)
+            $$
+
+        - **Variance of Total Return**  
+
+            $$
+            \text{Var}(R(\tau)) = \sum_{t=0}^{T-1} \text{Var}(r_t) + 2 \sum_{t<t'} \text{Cov}(r_t, r_{t'}) = T \sigma^2 + T(T-1) \rho \sigma^2
+            $$
+
+            For large $T$, this dominates as:
+
+            $$
+            \text{Var}(R(\tau)) \approx \rho \sigma^2 T^2 \quad \text{(since } T^2 \gg T \text{)}
+            $$
+
+        - **Policy Gradient Variance**  
+
+            The score function $\nabla_\theta \log \pi_\theta$ is typically correlated with $R(\tau)$. If we approximate $\text{Var}(g) \propto \text{Var}(R(\tau))$ (since the score function terms are multipliers), we get:
+            
+            $$
+            \text{Var}(g) = O(T^2)
+            $$
+
 
     3. The gradient estimate multiplies this already-high-variance term by another stochastic quantity (the policy score)
+
+
 
 This explains why vanilla REINFORCE often requires an impractical number of samples to converge reliably in complex environments. Several strategies help mitigate variance in policy gradient methods
 while preserving unbiased gradient estimates.
@@ -697,16 +743,6 @@ leveraging learned state-value estimates. Actor-critic methods are
 widely used in modern reinforcement learning due to their stability and
 efficiency.
 
-Here is a nice summary of a general form of policy gradient methods borrowed from the GAE (general advantage estimation) paper [Schulman et al., 2016](https://arxiv.org/abs/1506.02438)
-
-
-
-<center> 
-<img src="\assets\images\course_notes\policy-based\general_form_policy_gradient.png"
-    style="float: center; margin-right: 10px;" 
-    /> 
-    </center>
-
 #### **N-Step Returns and Generalized Advantage Estimation (GAE)**
 
 *The Bias-Variance Tradeoff in Policy Gradients*
@@ -827,6 +863,18 @@ $$
 !!! danger
 
     **Tradeoff:** Requires tuning two networks (Actor + Critic), which can be unstable without proper tricks (e.g., target networks, policy constraints).  
+
+
+
+Here is a nice summary of a general form of policy gradient methods borrowed from the GAE (general advantage estimation) paper [Schulman et al., 2016](https://arxiv.org/abs/1506.02438)
+
+
+
+<center> 
+<img src="\assets\images\course_notes\policy-based\general_form_policy_gradient.png"
+    style="float: center; margin-right: 10px;" 
+    /> 
+    </center>
 
 ### **Advanced Policy Gradients: From REINFORCE to Natural Policy Gradient**
 
@@ -967,14 +1015,14 @@ Thus, when policy updates are small, this assumption is reasonable, and the appr
 This leads to a constrained optimization problem:
 
 $$
-\theta' = \arg\max_{\theta'} \sum_t \underbrace{\mathbb{E}_{s_t \sim p_\theta(s_t)}\left[\mathbb{E}_{a_t \sim \pi_\theta(a_t|s_t)}\left[\frac{\pi_{\theta'}(a_t|s_t)}{\pi_\theta(a_t|s_t)} \gamma^t A^{\pi_\theta}(s_t, a_t)\right]\right]}_{\bar{A}(\theta')}
+\theta' = \arg\max_{\theta'} \underbrace{\sum_t \mathbb{E}_{s_t \sim p_\theta(s_t)}\left[\mathbb{E}_{a_t \sim \pi_\theta(a_t|s_t)}\left[\frac{\pi_{\theta'}(a_t|s_t)}{\pi_\theta(a_t|s_t)} \gamma^t A^{\pi_\theta}(s_t, a_t)\right]\right]}_{\bar{A}(\theta')}
 $$
 
 $$
 \text{such that } D_{KL}(\pi_{\theta'}(\cdot|s_t) \| \pi_\theta(\cdot|s_t)) \leq \epsilon
 $$
 
-The KL divergence constraint ensures policies remain close, making our approximation valid. For small enough $\epsilon$, this is **guaranteed** to improve $J(\theta') - J(\theta) $
+The KL divergence constraint ensures policies remain close, making our approximation valid. For small enough $\epsilon$, this is **guaranteed** to improve $J(\theta') - J(\theta)$
 
 #### Solving the Constrained Problem
 
@@ -1003,8 +1051,8 @@ $$
 \text{s.t. } D_{KL}(\pi_{\theta'}\|\pi_\theta) \leq \epsilon
 $$
 
-
-The objective aims to find a new parameter $\theta'$ that maximally improves the policy while ensuring that the policy update remains **within a "trust region"** to prevent drastic changes.
+Where $\bar{A}(\theta') = \sum_t \mathbb{E}_{s_t \sim p_\theta(s_t)}\left[\mathbb{E}_{a_t \sim \pi_\theta(a_t|s_t)}\left[\frac{\pi_{\theta'}(a_t|s_t)}{\pi_\theta(a_t|s_t)} \gamma^t A^{\pi_\theta}(s_t, a_t)\right]\right]$
+The objective aims to find a new parameter $\theta'$ that maximally improves the policy while ensuring that the policy update remains within a **trust region** to prevent drastic changes.
 
 We now show that the gradient of the expected advantage function is equal to the gradient of the policy objective $J(\theta)$, i.e.,  
 
@@ -1454,6 +1502,69 @@ $$
 
 This means the **policy is updated in the direction that increases $Q(s, a)$** by following the gradient of the Q-function.
 
+??? note "proof"
+    
+    We consider a **deterministic policy** $\mu_\theta: \mathcal{S} \rightarrow \mathcal{A}$, which maps each state $s$ deterministically to an action $a$.
+
+    The goal is to maximize the expected return:
+
+    $$
+    J(\theta) = \mathbb{E}_{s \sim \mathcal{D}} \left[ Q^{\mu_\theta}(s, \mu_\theta(s)) \right],
+    $$
+
+    where:
+
+    - $\mathcal{D}$ is a **replay buffer distribution** or the **state visitation distribution** induced by the policy.
+    - $Q^{\mu}(s, a)$ is the **action-value function** under the policy $\mu$.
+
+    The **Deterministic Policy Gradient Theorem** states:
+
+    $$
+    \nabla_{\theta} J(\theta) = \mathbb{E}_{s \sim \mathcal{D}} \left[ \nabla_a Q^\mu(s, a) \big|_{a = \mu_{\theta}(s)} \nabla_{\theta} \mu_{\theta}(s) \right].
+    $$
+
+    Unlike the stochastic case, this gradient does **not** involve the log-derivative trick. Instead, it directly leverages the **chain rule** through the deterministic policy.
+
+    We start from the objective:
+
+    $$
+    J(\theta) = \mathbb{E}_{s \sim \mathcal{D}} \left[ Q^{\mu_\theta}(s, \mu_\theta(s)) \right].
+    $$
+
+    We apply the gradient to the objective using the chain rule:
+
+    $$
+    \nabla_\theta J(\theta) = \nabla_\theta \mathbb{E}_{s \sim \mathcal{D}} \left[ Q^{\mu_\theta}(s, \mu_\theta(s)) \right].
+    $$
+
+    Assuming $s$ is sampled from a fixed distribution $\mathcal{D}$ (e.g., a replay buffer or steady-state distribution), we can move the gradient inside the expectation:
+
+    $$
+    \nabla_\theta J(\theta) = \mathbb{E}_{s \sim \mathcal{D}} \left[ \nabla_\theta Q^{\mu_\theta}(s, \mu_\theta(s)) \right].
+    $$
+
+    We now differentiate $Q^{\mu_\theta}(s, \mu_\theta(s))$ using the chain rule:
+
+    $$
+    \nabla_\theta Q^{\mu_\theta}(s, \mu_\theta(s)) = \nabla_a Q^{\mu}(s, a) \big|_{a = \mu_\theta(s)} \cdot \nabla_\theta \mu_\theta(s).
+    $$
+
+    So the full gradient becomes:
+
+    $$
+    \nabla_\theta J(\theta) = \mathbb{E}_{s \sim \mathcal{D}} \left[ \nabla_a Q^{\mu}(s, a) \big|_{a = \mu_\theta(s)} \cdot \nabla_\theta \mu_\theta(s) \right].
+    $$
+
+    **Intuition**
+
+    - We are optimizing how the policy $\mu_\theta(s)$ chooses actions **in states visited by the current policy**.
+    - The gradient tells us **how much changing the policy parameters would increase the expected return**, by:
+    - Measuring how $Q(s, a)$ changes with $a$.
+    - Multiplying by how $a = \mu_\theta(s)$ changes with $\\theta$.
+
+    This gives a **direct signal** to adjust the policy in directions that **increase expected reward**.
+
+
 
 DDPG follows a **soft policy iteration approach**, similar to Conservative Policy Iteration:
 
@@ -1549,7 +1660,33 @@ where **$\mathcal{N}_t$** is a noise process.
         \mathcal{N}_{t+1} = \theta (\mu - \mathcal{N}_t) + \sigma W_t
         $$
 
-        where $W_t$ is a Wiener process (Gaussian noise).  
+        where $W_t$ is a Wiener process.  
+
+        ??? abstract 
+
+            **What is a Wiener Process?**
+
+            The **Wiener process** (also known as **Brownian motion**) is a continuous-time stochastic process with the following properties:
+
+            - Starts at zero: $\mathcal{W}_0 = 0$.
+            - Has **independent increments**.
+            - Increments are normally distributed: $\mathcal{W}_{t+1} - \mathcal{W}_t \sim \mathcal{N}(0, \Delta t)$.
+            - Paths are continuous but nowhere differentiable.
+
+            In the context of the Ornstein-Uhlenbeck process, the term $W_t$ denotes **Gaussian noise sampled over time**, and can be interpreted as a discrete-time approximation of the Wiener process. This introduces **time-correlated** randomness, unlike independent Gaussian noise, making it more suitable for environments like physical control tasks where smooth actions are preferred.
+
+            **Why Use the Wiener Process in DDPG?**
+
+            In DDPG, actions are chosen by a **deterministic policy**, which means there’s no inherent exploration like in stochastic policies. To encourage exploration, noise is added to the actions during training.
+
+            The **Ornstein-Uhlenbeck process**, driven by a Wiener process, is used because:
+            
+            - It produces **temporally correlated noise**, meaning the noise values change smoothly over time.
+            - This leads to **more natural, realistic exploration** in physical systems (e.g., robotics), where abrupt changes in action are undesirable or infeasible.
+            - The Wiener process ensures that the noise evolves in a **stochastic yet continuous** way, helping the agent explore the action space more effectively than with uncorrelated (white) Gaussian noise.
+
+            Thus, using OU noise (based on a Wiener process) improves stability and realism in continuous control tasks during the exploration phase.
+
 
 2. **Gaussian Noise**  
     - Simpler alternative to OU noise.  
@@ -1587,5 +1724,468 @@ DDPG is **off-policy**, meaning it **stores experiences** and learns from **past
 | **Sample Efficiency** | High (reuses past data) | Low (requires new samples) |
 | **Update Stability** | More stable      | Can be unstable   |
 | **Trust Region**   | No                | Yes (TRPO, PPO use KL/clipping) |
+
+</center>
+
+
+### **Soft Actor-Critic (SAC)**
+
+#### Challenges and motivation of SAC
+1. Previous Off-policy methods like DDPG often struggle with exploration , leading to suboptimal policies. SAC overcomes this by introducing entropy maximization, which encourages the agent to explore more efficiently.
+2. Sample inefficiency is a major issue in on-policy algorithms like Proximal Policy Optimization (PPO), which require a large number of interactions with the environment. SAC, being an off-policy algorithm, reuses past experiences stored in a replay buffer, making it significantly more sample-efficient.
+3. Another challenge is instability in learning, as methods like DDPG can suffer from overestimation of Q-values. SAC mitigates this by employing twin Q-functions (similar to TD3) and incorporating entropy regularization, leading to more stable and robust learning.
+
+In essence, SAC seeks to maximize the entropy in policy, in addition to the expected reward from the environment. The entropy in policy can be interpreted as randomness in the policy.
+
+???+ note "what is entropy?"
+
+    We can think of entropy as how unpredictable a random variable is. If a random variable always takes a single value then it has zero entropy because it’s not unpredictable at all. If a random variable can be any Real Number with equal probability then it has very high entropy as it is very unpredictable.
+    <center> 
+    <img src="\assets\images\course_notes\policy-based\entropy.jpg"
+        alt="entropy"
+        style="float: center; margin-right: 10px;" 
+        /> 
+        </center>
+
+    <!-- ![Figure 9](..//assets//images//course_notes//policy-based//entropy.jpg) -->
+
+
+
+    *probability distributions with low entropy have a tendency to greedily sample certain values, as the probability mass is distributed relatively unevenly*.
+
+
+#### Maximum Entropy Reinforcement Learning
+
+In Maximum Entropy RL, the agent tries to optimize the policy to choose the right action that can receive the highest sum of reward and long term sum of entropy. This enables the agent to explore more and avoid converging to local optima.
+
+!!! note "reason"
+
+    We want a high entropy in our policy to encourage the policy to assign equal probabilities to actions that have same or nearly equal Q-values(allow the policy to capture multiple modes of good policies), and also to ensure that it does not collapse into repeatedly selecting a particular action that could exploit some inconsistency in the approximated Q function. Therefore, SAC overcomes the  problem by encouraging the policy network to explore and not assign a very high probability to any one part of the range of actions.
+
+The objective function of the Maximum entropy RL is as shown below:
+
+$$
+J(\pi_{\theta}) = \mathbb{E}_{\pi_{\theta}} \left[ \sum_{t=0}^{\infty} \gamma^t R(s_t, a_t) + \alpha H(\pi(\cdot | s_t)) \right]
+$$
+
+and the optimal policy is:
+
+$$
+\pi^* = \arg\max_{\pi_{\theta}} \mathbb{E}_{\pi_{\theta}} \left[ \sum_{t=0}^{\infty} \gamma^t R(s_t, a_t) + \alpha H(\pi(\cdot | s_t)) \right]
+$$
+
+
+**$\alpha$** is the temperature parameter that balances between exploration and exploitation.
+
+
+
+
+#### Overcoming Exploration Bias in Multimodal Q-Functions
+
+
+
+Here we want to explain the concept of a **multimodal Q-function** in reinforcement learning (RL), where the **Q-value function**, $Q(s, a)$, represents the expected cumulative reward for taking action $a$ in state $s$. 
+
+In this context, the robot is in an initial state and has two possible passages to follow, which result in a **bimodal Q-function** (a function with two peaks). These peaks correspond to two different action choices, each leading to different potential outcomes.
+
+
+#### **Standard RL Approach**
+<center> 
+<img src="\assets\images\course_notes\policy-based\SAC1.png" 
+    alt="sac1"
+    style="float: center; margin-right: 10px;" 
+    /> 
+    </center>
+
+<!-- ![Figure 10](..//assets//images//recitation//week4//SAC1.png) -->
+
+The **grey curve** represents the Q-function, which has two peaks, indicating two promising actions.A conventional RL approach typically assumes a unimodal (single-peaked) policy distribution, represented by the **red curve**.
+
+This policy distribution is modeled as a Gaussian $\mathcal{N}(\mu(s_t), \Sigma)$ centered around the highest Q-value peak.
+
+This setup results in exploration bias where the agent primarily explores around the highest peak and ignores the lower peak entirely.
+
+
+#### Improved Exploration Strategy
+Instead of using a unimodal Gaussian policy, a Boltzmann-weighted policy is used.
+The **policy distribution (green shaded area)** is proportional to $\exp(Q(s_t, a_t))$, meaning actions are sampled based on their Q-values. 
+
+This approach allows the agent to explore multiple high-reward actions and avoids the bias of ignoring one passage.
+As a result, the agent recognizes both options, increasing the chance of finding the optimal path.
+<center> 
+<img src="\assets\images\course_notes\policy-based\SAC2.png"
+    alt="SAC2"
+    style="float: center; margin-right: 10px;" 
+    /> 
+    </center>
+
+<!-- ![Figure 11](..//assets//images//recitation//week4//SAC2.png) -->
+
+
+This concept is relevant for **actor-critic RL methods** like **Soft Actor-Critic (SAC)**, which uses entropy to encourage diverse exploration.
+ 
+
+#### **Soft Policy**
+- Soft policy:
+
+
+$$
+J(\pi) = \sum_{t=0}^{T} \mathbb{E}_{(s_t, a_t)\sim\rho_{\pi}} \left[ r(s_t, a_t) + \alpha\mathcal{H}(\pi(\cdot | s_t)) \right]
+$$
+
+With new objective function we need to define Value funciton and Q-value funciton again. 
+
+
+
+- Soft Q-value funciton:
+
+$$
+Q(s_t, a_t) = r(s_t, a_t) + \gamma\mathbb{E}_{s_{t+1}\sim p}\left[ V(s_{t+1}) \right]
+$$
+
+- Soft Value function:
+
+$$
+V(s_t) = \mathbb{E}_{a_t\sim \pi} \left[Q(s_t, a_t) - \text{log}\space\pi(a_t|s_t)\right]
+$$
+
+#### Soft policy iteration
+Soft Policy Iteration is an entropy-regularized version of classical policy iteration, which consists of:
+
+1. *Soft Policy Evaluation*: Estimating the soft Q-value function under the current policy.
+2. *Soft Policy Improvement*:  Updating the policy to maximize the soft Q-value function,incorporating entropy regularization.
+
+This process iteratively improves the policy while balancing exploration and exploitation.
+
+#### Soft Policy Evaluation (Critic Update)
+The goal of soft policy evaluation is to compute the expected return of a given policy $\pi$ under the maximum entropy objective, which modifies the standard Bellman equation by adding an entropy term. (SAC explicitly learns the Q-function for the current policy)
+
+The soft Q-value function for a policy $\pi$ is updated using a modified Bellman operator $T^{\pi}$:
+
+$$
+T^\pi Q(s_t, a_t) = r(s_t, a_t) + \gamma \mathbb{E}_{s_{t+1} \sim p} [V(s_{t+1})]
+$$
+
+with substitution of $V$ we have :
+
+$$
+T^\pi Q(s_t, a_t) = r(s_t, a_t) + \gamma \mathbb{E}_{\substack{s_{t+1} \sim p \\ a_{t+1} \sim \pi}} [Q(s_{t+1,}, a_{t+1}) - \text{log}\space\pi(a_{t+1}|s_{t+1})]
+$$
+
+**Key Result: Soft Bellman Backup Convergence**  
+
+**Theorem:** By repeatedly applying the operator $T^\pi$, the Q-value function converges to the true soft Q-value function for policy $\pi$:  
+
+$$
+Q_k \to Q^\pi \text{ as } k \to \infty
+$$
+
+Thus, we can estimate $Q^\pi$ iteratively.
+
+---
+#### Soft Policy Improvement (Actor Update)
+Once the Q-function is learned, we need to improve the policy using a gradient-based update. This means:
+
+- Instead of directly maximizing Q-values, the policy is updated to optimize a modified objective that balances reward maximization and exploration.
+- The update is off-policy, meaning the policy can be trained using past experiences stored in a replay buffer, rather than requiring fresh samples like on-policy methods (e.g., PPO).
+
+The update is based on an ***exponential function of the Q-values***:
+
+$$
+\pi^*(a | s) \propto \exp (Q^\pi(s, a))
+$$
+
+which means the optimal policy is obtained by normalizing $\exp (Q^\pi(s, a))$ over all actions:
+
+$$
+\pi^*(a | s) = \frac{\exp (Q^\pi(s, a))}{Z^\pi(s)}
+$$
+
+where $Z^\pi(s)$ is the partition function that ensures the distribution sums to 1.
+
+For the policy improvement step, we update the policy distribution towards the softmax distribution for the current Q function.
+
+$$
+\pi_{\text{new}} = \arg \min_{\pi' \in \Pi} D_{\text{KL}} \left( \pi'(\cdot | s) \, \bigg|\bigg| \, \frac{\exp (Q^\pi(s, \cdot))}{Z^\pi(s)} \right)
+$$
+
+
+**Key Result: Soft Policy Improvement Theorem**  
+The new policy $\pi_{\text{new}}$ obtained via this update improves the expected soft return:
+
+$$
+Q^{\pi_{\text{new}}}(s, a) \geq Q^{\pi_{\text{old}}}(s, a) \quad \forall (s, a)
+$$
+
+Thus, iterating this process leads to a better policy.
+
+#### Convergence of Soft Policy Iteration
+By alternating between soft policy evaluation and soft policy improvement, soft policy iteration converges to an optimal maximum entropy policy within the policy class $\Pi$:
+
+$$
+\pi^* = \arg \max_{\pi \in \Pi} \sum_t \mathbb{E}[r_t + \alpha H(\pi(\cdot | s_t))]
+$$
+
+
+However, this exact method is only feasible in the ***tabular setting***. For ***continuous control***, we approximate it using function approximators.
+
+
+#### Soft Actor-Critic Method
+
+For complex learning domains with high-dimensional and/or continuous state-action spaces, it is mostly impossible to find exact solutions for the MDP. Thus, we must leverage function approximation (i.e. neural networks) to find a practical approximation to soft policy iteration. then we use stochastic gradient descent (SGD) to update parameters of these networks.
+
+we model the value functions as expressive neural networks, and the policy as a Gaussian distribution over the action space with the mean and covariance given as neural network outputs with the current state as input.
+
+#### **Soft Value function ($V_{\psi}(s)$)**
+
+A separate soft value function which helps in stabilising the training process. The soft value function approximator minimizes the squared residual error as follows:
+
+$$
+J_V(\psi) = \mathbb{E}_{s_{t} \sim \mathcal{D}} \left[ \frac{1}{2} \left( V_{\psi}(s_t) - \mathbb{E}_{a \sim \pi_{\phi}} [Q_{\theta}(s_t, a_t) - \log \pi_{\phi}(a_t | s_t)] \right)^2 \right]
+$$
+
+It means the learning of the state-value function $V$, is done by minimizing the squared difference between the prediction of the value network and expected prediction of Q-function with the entropy of the policy, $\pi$.
+
+  - $D$ is the distribution of previously sampled states and actions, or a replay buffer.
+
+**Gradient Update for $V_{\psi}(s)$**
+
+$$
+\hat{\nabla}_{\psi} J_V(\psi) = \nabla_{\psi} V_{\psi}(s_t) \left( V_{\psi}(s_t) - Q_{\theta}(s_t, a_t) + \log \pi_{\phi}(a_t | s_t) \right)
+$$
+
+where the actions are sampled according to the current policy, instead of the replay buffer.
+
+#### **Soft Q-funciton ($Q_{\theta}(s, a)$)**
+
+We minimize the soft Q-function parameters by using the soft Bellman residual provided here:
+
+$$
+J_Q(\theta) = \mathbb{E}_{(s_{t}, a_t) \sim \mathcal{D}} \left[ \frac{1}{2} \left( Q_{\theta}(s_t, a_t) - \hat{Q}(s_t, a_t)\right)^2 \right]
+$$
+
+with : 
+
+$$
+\hat{Q}(s_t, a_t) = r(s_t, a_t) + \gamma \space \mathbb{E}_{s_{t+1} \sim p} [V_{\bar{\psi}}(s_{t+1})]
+$$
+
+**Gradient Update for $Q_{\theta}$**:
+
+$$
+\hat{\nabla}_\theta J_Q(\theta) = \nabla_{\theta} Q_{\theta}(s_t, a_t) \left( Q_{\theta}(s_t, a_t) - r(s_t, a_t) - \gamma V_{\bar{\psi}}(s_{t+1}) \right)
+$$
+
+A **target value function** $V_{\bar{\psi}}$ (exponentially moving average of $V_{\psi}$) is used to stabilize training.
+
+---
+
+???+ note "More Explanation About Target Networks"
+
+    The use of target networks is motivated by a problem in training $V$ network. If you go back to the objective functions in the Theory section, you will find that the target for the $Q$ network training depends on the $V$ Network and the target for the $V$ Network depends on the $Q$ network (this makes sense because we are trying to enforce Bellman Consistency between the two functions). Because of this, the $V$ network has a target that’s indirectly dependent on itself which means that the $V$ network’s target depends on the same parameters we are trying to train. This makes training very unstable.
+
+
+    The solution is to use a set of parameters which comes close to the parameters of the main $V$ network, but with a time delay. Thus we create a second network which lags the main network called the target network. There are two ways to go about this.
+
+    1. The first way is to have the target network copied over from the main network regularly after a set number of steps -> **Periodic Hard Update**
+
+
+    $$
+    \theta^{-} \leftarrow \theta
+    $$
+
+    2. The other way is to update the target network by Polyak averaging (a kind of moving averaging) itself and the main network. -> **Soft Update**
+
+    $$
+    \theta^{-} \leftarrow \tau \theta + (1-\tau) \theta^{-}
+    $$
+    
+    <center> 
+    <img src="\assets\images\course_notes\policy-based\target_network1.png"
+        alt="target1"
+        style="float: center; margin-right: 10px;" 
+        /> 
+        </center>
+    <center> 
+    <img src="\assets\images\course_notes\policy-based\target_network_2.png"
+        alt="target2"
+        style="float: center; margin-right: 10px;" 
+        /> 
+        </center>
+
+    <!-- ![Figure 12](..//assets//images//course_notes//policy-based//target_network1.png)
+    <!-- ![Figure 13](..//assets//images//course_notes//policy-based//target_network_2.png) --> -->
+
+    *source: [concept target network in category reinforcement learning](https://livebook.manning.com/concept/reinforcement-learning/target-network#:~:text=By%20using%20target%20networks%2C%20we,a%20new%20one%20is%20set.)*
+
+---
+
+#### **Policy network ($\pi_{\phi}(a|s)$)**
+
+The policy $\pi_{\phi}(a | s)$ is updated using the soft policy improvement step, minimizing the KL-divergence:
+
+$$
+J_{\pi}(\phi) = \mathbb{E}_{s_t \sim \mathcal{D}} \left[ D_{\text{KL}} \left( \pi_{\phi}(\cdot | s_t) \bigg\| \frac{\exp(Q_{\theta}(s_t, \cdot))}{Z_{\theta}(s_t)} \right) \right]
+$$
+
+Instead of solving this directly, SAC reparameterizes the policy using:
+
+$$
+a_t = f_{\phi}(\epsilon_t; s_t)
+$$
+
+This trick is used to make sure that sampling from the policy is a differentiable process so that there are no problems in backpropagating the errors.  $\epsilon_t$ is random noise vector sampled from fixed distribution (e.g., Spherical Gaussian).
+
+
+???+ note "Why Reparameterization is Needed?"
+
+    In reinforcement learning, the policy $\pi(a | s)$ often outputs a probability distribution over actions rather than deterministic actions. The standard way to sample an action is:
+
+    $$
+    a_t \sim \pi_{\phi}(a_t | s_t)
+    $$
+
+    However, this sampling operation blocks gradient flow during backpropagation, preventing efficient training using stochastic gradient descent (SGD).
+
+    Instead of directly sampling $a_t$ from $\pi_{\phi}(a_t | s_t)$, we transform a simple noise variable into an action:
+
+    $$
+    a_t = f_{\phi}(\epsilon_t, s_t)
+    $$
+
+    - $\epsilon_t \sim \mathcal{N}(0, I)$ is sampled from a fixed noise distribution (e.g., a Gaussian).
+    - $f_{\phi}(\epsilon_t, s_t)$ is a differentiable function (often a neural network) that maps noise to an action.
+
+    For a Gaussian policy in SAC, the action is computed as:
+
+    $$
+    a_t = \mu_{\phi}(s_t) + \sigma_{\phi}(s_t) \cdot \epsilon_t
+    $$
+
+    So instead of sampling from $\mathcal{N}(\mu, \sigma^2)$ directly, we sample from a fixed standard normal and transform it using a differentiable function.This makes the policy differentiable, allowing gradients to flow through $\mu_{\phi}$ and $\sigma_{\phi}$.
+
+    <center> 
+    <img src="\assets\images\course_notes\policy-based\trick.png"
+        alt="trick"
+        style="float: center; margin-right: 10px;" 
+        /> 
+        </center>
+    <center> 
+    <img src="\assets\images\course_notes\policy-based\trick2.png"
+        alt="trick2"
+        style="float: center; margin-right: 10px;" 
+        /> 
+        </center>
+
+    <!-- ![Figure 14](..//assets//images//course_notes//policy-based//trick.png)
+    ![Figure 15](..//assets//images//course_notes//policy-based//trick2.png) -->
+
+    - **Continuous Action Generation**
+
+    In a continuous action space soft actor-critic agent, the neural network in the actor takes the current observation and generates two outputs, one for the mean and the other for the standard deviation. To select an action, the actor randomly selects an unbounded action from this Gaussian distribution. If the soft actor-critic agent needs to generate bounded actions, the actor applies tanh and scaling operations to the action sampled from the Gaussian distribution.
+
+    During training, the agent uses the unbounded Gaussian distribution to calculate the entropy of the policy for the given observation.
+    <center> 
+    <img src="\assets\images\course_notes\policy-based\bounded.png"
+        alt="bounded"
+        style="float: center; margin-right: 10px;" 
+        /> 
+        </center>
+
+    <!-- ![Figure 16](..//assets//images//course_notes//policy-based//bounded.png) -->
+
+    - **Discrete Action Generation**
+
+    In a discrete action space soft actor-critic agent, the actor takes the current observation and generates a categorical distribution, in which each possible action is associated with a probability. Since each action that belongs to the finite set is already assumed feasible, no bounding is needed.
+
+    During training, the agent uses the categorical distribution to calculate the entropy of the policy for the given observation.
+
+
+
+
+if we rewrite the equation we have:
+
+$$
+J_{\pi}(\phi) = \mathbb{E}_{s_t \sim \mathcal{D}, \epsilon_t \sim \mathcal{N}} \left[ \text{log}\space\pi_{\phi} \left(f_{\phi}(\epsilon_t; s_t) | s_t \right) - Q_{\theta}(s_t,f_{\phi}(\epsilon_t; s_t) \right]
+$$
+
+where $\pi_{\phi}$ is defined implicitly in terms of $f_{\phi}$, and we have
+noted that the partition function is independent of $\phi$ and can
+thus be omitted.
+
+**Policy Gradient Update**
+
+$$
+\hat{\nabla}_{\phi} J_{\pi}(\phi) = \nabla_{\phi} \log \pi_{\phi}(a_t | s_t) + \left( \nabla_{a_t} \log \pi_{\phi}(a_t | s_t)- \nabla_{a_t} Q_{\theta}(s_t, a_t) \right) \nabla_{\phi} f_{\phi}(\epsilon_t; s_t)
+$$
+
+
+!!! note "SAC main steps"
+
+
+      1. **Q-function Update**:
+        
+        $$
+        Q(s, a) \leftarrow r(s, a) + \mathbb{E}_{s' \sim p, a' \sim \pi} \left[ Q(s', a') - \log \pi(a' | s') \right].
+        $$
+
+        This update converges to $Q^\pi$, the Q-function under the current policy $\pi$.
+
+      2. **Policy Update**:
+
+        $$
+        \pi_{\text{new}} = \arg\min_{\pi'} D_{KL} \left( \pi'(\cdot | s) \Bigg\| \frac{1}{Z} \exp Q^{\pi_{\text{old}}}(s, \cdot) \right).
+        $$
+
+        In practice, only one gradient step is taken on this objective to ensure stability.
+
+      3. **Interaction with the Environment**:  
+        Collect more data by interacting with the environment using the updated policy.
+
+
+
+!!! note "**SAC Pseudocode** "
+
+    Initialize parameter vectors $\psi, \bar{\psi}, \theta, \phi$
+
+    **for** each iteration **do**  
+    &nbsp;&nbsp;&nbsp;&nbsp;**for** each environment step **do**  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$a_t \sim \pi_{\phi}(a_t | s_t)$  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$s_{t+1} \sim p(s_{t+1} | s_t, a_t)$  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$\mathcal{D} \gets \mathcal{D} \cup \{(s_t, a_t, r(s_t, a_t), s_{t+1})\}$  
+    &nbsp;&nbsp;&nbsp;&nbsp;**end for**  
+
+    &nbsp;&nbsp;&nbsp;&nbsp;**for** each gradient step **do**  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$\psi \gets \psi - \lambda \hat{\nabla}_{\psi} J_V(\psi)$  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$\theta_i \gets \theta_i - \lambda_Q \hat{\nabla}_{\theta_i} J_Q(\theta_i) \quad \text{for } i \in \{1,2\}$  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$\phi \gets \phi - \lambda_{\pi} \hat{\nabla}_{\phi} J_{\pi}(\phi)$  
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$\bar{\psi} \gets \tau \psi + (1 - \tau) \bar{\psi}$  
+    &nbsp;&nbsp;&nbsp;&nbsp;**end for**  
+    **end for**
+
+
+### **Summary**  
+
+SAC is an **off-policy** algorithm that improves upon DDPG by introducing **entropy regularization**, which encourages exploration and robustness. It uses **two Q-networks (double Q-learning)** to mitigate overestimation bias and a **stochastic policy** for improved exploration.  
+
+- **Advantages:**  
+    - Better exploration due to entropy regularization.  
+    - More stable than DDPG because of double Q-learning.  
+    - Handles high-dimensional continuous control tasks efficiently.  
+    - More sample-efficient than PPO.  
+
+- **Disadvantages:**  
+    - Higher computational cost due to multiple Q-function updates.  
+    - Requires careful tuning of entropy coefficient $\alpha$.  
+    - Slower than DDPG in deterministic settings where exploration is not an issue.  
+
+### **Comparison Table: PPO vs. DDPG vs. SAC**  
+<center>
+
+| Algorithm | Type | Sample Efficiency | Stability | Exploration |
+|-----------|------|------------------|----------|------------|
+| **PPO**  | On-policy | Low | High | Moderate | Large-scale RL, discrete & continuous actions |
+| **DDPG** | Off-policy | High | Moderate | Weak (deterministic) | Continuous control, robotics |
+| **SAC**  | Off-policy | High | High | Strong (entropy regularization) |
 
 </center>
