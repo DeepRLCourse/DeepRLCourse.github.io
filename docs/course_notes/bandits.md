@@ -802,16 +802,16 @@ At each round $t$, the Thompson Sampling algorithm proceeds as follows:
 1. **Posterior Sampling**:  
    For each arm $i=1,\dots,K$, draw:
 
-   $$
-   \tilde{\theta}_i^{(t)}\sim\text{Beta}(\alpha_i,\beta_i)
-   $$
+$$
+\tilde{\theta}_i^{(t)}\sim\text{Beta}(\alpha_i,\beta_i)
+$$
 
 2. **Action Selection**:  
    Choose the arm with the highest sampled value:
 
-   $$
-   A_t=\arg\max_{i}\tilde{\theta}_i^{(t)}
-   $$
+$$
+A_t=\arg\max_{i}\tilde{\theta}_i^{(t)}
+$$
 
 3. **Reward Observation**:  
    Pull arm $A_t$, observe reward $R_t\in\{0,1\}$
@@ -819,9 +819,9 @@ At each round $t$, the Thompson Sampling algorithm proceeds as follows:
 4. **Posterior Update**:  
    Update the Beta parameters:
 
-   $$
-   \alpha_{A_t}\leftarrow\alpha_{A_t}+R_t, \quad \beta_{A_t}\leftarrow\beta_{A_t}+(1-R_t)
-   $$
+$$
+\alpha_{A_t}\leftarrow\alpha_{A_t}+R_t, \quad \beta_{A_t}\leftarrow\beta_{A_t}+(1-R_t)
+$$
 
 The rest of the arms' parameters remain unchanged.
 
