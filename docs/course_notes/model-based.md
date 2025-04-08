@@ -636,7 +636,7 @@ $$
 
 **Modeling Uncertainty**  
 - Train \(N\) distinct neural networks \(\{\hat{P}_{\theta_i}\}\), each predicting \(\mathbf{s}_{t+1}\) given \(\mathbf{s}_t, a_t\).  
-- Each network outputs a mean \(\boldsymbol{\mu}_i\) and variance \(\boldsymbol{\Sigma}_i\) for \(\mathbf{s}_{t+1}\).  
+- Each network outputs a mean \(\mu_i\) and variance \(\Sigma_i\) for \(\mathbf{s}_{t+1}\).  
 - **Ensemble Disagreement** can signal model uncertainty, guiding more cautious or exploratory planning.
 
 **Planning via Trajectory Sampling**  
