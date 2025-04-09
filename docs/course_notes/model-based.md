@@ -8,11 +8,10 @@ description: This page provides a comprehensive overview of Model-Based Reinforc
 !!! note
     This document merges **Lectures 9 and 10** from Prof. Mohammad Hossein Rohban's DRL course, **Lecture 9: Model-Based RL** slides from Prof. Sergey Levine’s CS 294-112 (Deep RL) with a **more rigorous, survey-based structure** drawing on Moerland et al. (2022). We provide intuitions, mathematical details, and references to relevant works.
 
----
 
 ## Table of Contents
 
-- [Model-Based Methods](#model-based-methods)
+- [Week 5: Model-Based Methods](#week-5-model-based-methods)
   - [Table of Contents](#table-of-contents)
   - [1. Introduction \& Scope](#1-introduction--scope)
   - [2. Markov Decision Processes](#2-markov-decision-processes)
@@ -77,7 +76,6 @@ description: This page provides a comprehensive overview of Model-Based Reinforc
       - [6.3.1 Monte Carlo Tree Search (MCTS)](#631-monte-carlo-tree-search-mcts)
     - [6.4 Integration in the Learning and Acting Loop](#64-integration-in-the-learning-and-acting-loop)
     - [6.5 Dyna and Dyna-Style Methods](#65-dyna-and-dyna-style-methods)
-      - [Dyna Pseudocode](#dyna-pseudocode)
   - [7. Modern Model-Based RL Algorithms](#7-modern-model-based-rl-algorithms)
     - [7.1 World Models (Ha \& Schmidhuber, 2018)](#71-world-models-ha--schmidhuber-2018)
     - [7.2 PETS (Chua et al., 2018)](#72-pets-chua-et-al-2018)
@@ -236,16 +234,16 @@ References present high-level approaches, sometimes referred to as:
 
 #### Core Steps
 1. **One-Time Data Collection**  
-   - Collect a static dataset of (state, action, next-state, reward) tuples, typically via random or fixed exploration.
-   - No further data is gathered afterward.
+      - Collect a static dataset of (state, action, next-state, reward) tuples, typically via random or fixed exploration.
+      - No further data is gathered afterward.
 
 2. **One-Time Model Learning**  
-   - Fit a dynamics model \( p_\theta(s' \mid s, a) \) using the static dataset.
-   - The model may be inaccurate in regions not well-represented in the dataset.
+      - Fit a dynamics model \( p_\theta(s' \mid s, a) \) using the static dataset.
+      - The model may be inaccurate in regions not well-represented in the dataset.
 
 3. **One-Time Planning**  
-   - Use the learned model to plan or optimize a policy (e.g., via trajectory optimization or tree search).
-   - The plan is executed in the real environment without re-planning.
+      - Use the learned model to plan or optimize a policy (e.g., via trajectory optimization or tree search).
+      - The plan is executed in the real environment without re-planning.
 
 #### Shortcomings
 - **Distribution Mismatch**: The policy can enter states the model has never “seen,” leading to large prediction errors (extrapolation).  
@@ -264,16 +262,16 @@ References present high-level approaches, sometimes referred to as:
 
 #### Core Steps
 1. **Iterative Data Collection**
-   - Use a current policy (or plan) to interact with the environment.
-   - Gather new transitions (state, action, next-state, reward) and add them to the dataset.
+      - Use a current policy (or plan) to interact with the environment.
+      - Gather new transitions (state, action, next-state, reward) and add them to the dataset.
 
 2. **Re-Fit the Model**
-   - Update the dynamics model \( p_\theta(s' \mid s, a) \) using the expanded dataset.
-   - The model gradually learns the dynamics in regions the policy visits.
+      - Update the dynamics model \( p_\theta(s' \mid s, a) \) using the expanded dataset.
+      - The model gradually learns the dynamics in regions the policy visits.
 
 3. **Re-Plan or Update the Policy**
-   - After each model update, re-run planning or policy optimization to refine the policy.
-   - Deploy the updated policy in the real environment, collect more data, and repeat.
+      - After each model update, re-run planning or policy optimization to refine the policy.
+      - Deploy the updated policy in the real environment, collect more data, and repeat.
 
 #### Shortcomings
 - **Open-Loop Execution**: Even though the model is updated iteratively, each plan can be executed “open loop,” so stochastic events or modest model errors can derail a plan until the **next** re-planning cycle.  
@@ -365,20 +363,15 @@ Well, **Version 2.0** is often seen as an “end goal” rather than a stepping 
 
 #### Other Challenges and Notes
 
-1. **Reward Function Misspecification**  
-   - If the reward function itself is imperfect or learned, it can exacerbate overshooting or produce unintended behaviors.
+1. **Reward Function Misspecification.** If the reward function itself is imperfect or learned, it can exacerbate overshooting or produce unintended behaviors.
 
-2. **Stochastic Environments**  
-   - Open-loop methods (Version 0.5, 1.0) can fail if they don’t adapt in real time. MPC (Version 1.5) or robust policy optimization (Version 2.0) are better at handling randomness.
+2. **Stochastic Environments.** Open-loop methods (Version 0.5, 1.0) can fail if they don’t adapt in real time. MPC (Version 1.5) or robust policy optimization (Version 2.0) are better at handling randomness.
 
-3. **Exploding/Vanishing Gradients**  
-   - A big challenge for Version 2.0 when unrolling many timesteps through a neural model.
+3. **Exploding/Vanishing Gradients.** A big challenge for Version 2.0 when unrolling many timesteps through a neural model.
 
-4. **Safety Concerns**  
-   - In physical or high-stakes domains, any form of model inaccuracy can be dangerous. MPC is often the pragmatic choice in safety-critical tasks.
+4. **Safety Concerns.** In physical or high-stakes domains, any form of model inaccuracy can be dangerous. MPC is often the pragmatic choice in safety-critical tasks.
 
-5. **Computational Trade-Offs**  
-   - MPC (Version 1.5) can be expensive online. End-to-end policy learning (Version 2.0) moves the heavy lifting offline, but training is more delicate.
+5. **Computational Trade-Offs.** MPC (Version 1.5) can be expensive online. End-to-end policy learning (Version 2.0) moves the heavy lifting offline, but training is more delicate.
 
 ---
 
@@ -389,21 +382,21 @@ Learning a model \(\hat{P}(s_{t+1}\mid s_t,a_t)\) + \(\hat{R}(s_t,a_t)\) is ofte
 ### 5.1 Basic Considerations
 
 1. **Type of Model**  
-   - **Forward** (most common): \((s_t,a_t)\mapsto s_{t+1}\).  
-   - **Backward** (reverse model): \(s_{t+1}\mapsto (s_t,a_t)\). Used in prioritized sweeping.  
-   - **Inverse**: \((s_t, s_{t+1}) \mapsto a_t\). Sometimes used in representation learning or feedback control.
+      - **Forward** (most common): \((s_t,a_t)\mapsto s_{t+1}\).  
+      - **Backward** (reverse model): \(s_{t+1}\mapsto (s_t,a_t)\). Used in prioritized sweeping.  
+      - **Inverse**: \((s_t, s_{t+1}) \mapsto a_t\). Sometimes used in representation learning or feedback control.
 
 2. **Estimation Method**  
-   - **Parametric** (e.g., neural networks, linear regressors, GPs).  
-   - **Non-parametric** (e.g., nearest neighbors, kernel methods).  
-   - **Exact** (tabular) vs. **approximate** (function approximation).
+      - **Parametric** (e.g., neural networks, linear regressors, GPs).  
+      - **Non-parametric** (e.g., nearest neighbors, kernel methods).  
+      - **Exact** (tabular) vs. **approximate** (function approximation).
 
 3. **Region of Validity**  
-   - **Global** model: Attempt to capture all states. Common in large-scale MBRL.  
-   - **Local** model: Fit only around the current trajectory or region of interest (common in robotics, e.g., local linearization).
+      - **Global** model: Attempt to capture all states. Common in large-scale MBRL.  
+      - **Local** model: Fit only around the current trajectory or region of interest (common in robotics, e.g., local linearization).
 
 ![Overview of different types of mappings in model learning](../assets/images/figures/model-based/dyn-base.png)
-***Overview of different types of mappings in model learning.** **1)** Standard Markovian transition model \( s_t, a_t \rightarrow s_{t+1} \). **2)** Partial observability. We model \( s_0 \ldots s_t, a_t \rightarrow s_{t+1} \), leveraging the state history to make an accurate prediction. **3)** Multi-step prediction (Section 4.6), where we model \( s_t, a_t \ldots a_{t+n-1} \rightarrow s_{t+n} \), to predict the \( n \) step effect of a sequence of actions. **4)** State abstraction, where we compress the state into a compact representation \( z_t \) and model the transition in this latent space. **5)** Temporal/action abstraction, better known as hierarchical reinforcement learning, where we learn an abstract action \( u_t \) that brings us to \( s_{t+n} \). Temporal abstraction directly implies multi-step prediction, as otherwise the abstract action \( u_t \) is equal to the low level action \( a_t \). All the above ideas (**2–5**) are orthogonal and can be combined.*
+*Overview of different types of mappings in model learning. **1)** Standard Markovian transition model \( s_t, a_t \rightarrow s_{t+1} \). **2)** Partial observability. We model \( s_0 \ldots s_t, a_t \rightarrow s_{t+1} \), leveraging the state history to make an accurate prediction. **3)** Multi-step prediction (Section 4.6), where we model \( s_t, a_t \ldots a_{t+n-1} \rightarrow s_{t+n} \), to predict the \( n \) step effect of a sequence of actions. **4)** State abstraction, where we compress the state into a compact representation \( z_t \) and model the transition in this latent space. **5)** Temporal/action abstraction, better known as hierarchical reinforcement learning, where we learn an abstract action \( u_t \) that brings us to \( s_{t+n} \). Temporal abstraction directly implies multi-step prediction, as otherwise the abstract action \( u_t \) is equal to the low level action \( a_t \). All the above ideas (**2–5**) are orthogonal and can be combined.*
 
 ---
 
@@ -428,9 +421,11 @@ When training a purely deterministic network (e.g., a standard neural network wi
 *Illustration of stochastic transition dynamics. **Left**: 500 samples from an example transition function \(P(s_{t+1} \mid s, a)\). The vertical dashed line indicates the cross-section distribution on the right. **Right**: distribution of \(s_{t+1}\) for a particular \((s, a)\). We observe a multimodal distribution. The conditional mean of this distribution, which would be predicted by MSE training, is shown as a vertical line.*
 
 Formally, if the true next state is a random variable \(S_{t+1}\), then MSE-based regression gives
+
 \[
 \hat{s}_{t+1} \;=\; \mathbb{E}\bigl[S_{t+1}\,\big|\,(s_t,a_t)\bigr].
 \]
+
 Hence, if \(S_{t+1}\) can take on several distinct modes with similar probabilities, a single mean prediction \(\hat{s}_{t+1}\) may not capture the actual modes at all.
 
 ---
@@ -440,25 +435,31 @@ Hence, if \(S_{t+1}\) can take on several distinct modes with similar probabilit
 To capture multi-modal dynamics rigorously, one can represent the full *distribution* \(P(s_{t+1}\mid s_t,a_t)\). Common choices include:
 
 1. **Gaussian Distribution**  
-   Assume
-   \[
-   s_{t+1} \;\sim\; \mathcal{N}\bigl(\mu_\theta(s_t,a_t),\,\Sigma_\theta(s_t,a_t)\bigr),
-   \]
-   where \(\theta\) denotes model parameters. Typically trained by maximizing log-likelihood of observed transitions.
+    Assume
+
+    \[
+    s_{t+1} \;\sim\; \mathcal{N}\bigl(\mu_\theta(s_t,a_t),\,\Sigma_\theta(s_t,a_t)\bigr),
+    \]
+
+    where \(\theta\) denotes model parameters. Typically trained by maximizing log-likelihood of observed transitions.
 
 2. **Gaussian Mixture Models (GMM)**  
-   Use a sum of \(K\) Gaussians:
-   \[
-   s_{t+1} \;\sim\; \sum_{k=1}^{K}\;\alpha_k(\theta; s_t,a_t)\;\mathcal{N}\!\Bigl(\mu_k,\;\Sigma_k\Bigr).
-   \]
-   The mixture weights \(\alpha_k\) sum to 1. This better captures multi-modality than a single Gaussian but can be more complex to train (e.g., via EM).
+    Use a sum of \(K\) Gaussians:
+
+    \[
+    s_{t+1} \;\sim\; \sum_{k=1}^{K}\;\alpha_k(\theta; s_t,a_t)\;\mathcal{N}\!\Bigl(\mu_k,\;\Sigma_k\Bigr).
+    \]
+    
+    The mixture weights \(\alpha_k\) sum to 1. This better captures multi-modality than a single Gaussian but can be more complex to train (e.g., via EM).
 
 3. **Tabular/Histogram-Based**  
-   For lower-dimensional or discrete states:
-   \[
-   \hat{P}\bigl(s' \mid s,a\bigr) \;=\; \frac{n(s,a,s')}{\sum_{\tilde{s}}\,n(s,a,\tilde{s})},
-   \]
-   where \(n(\cdot)\) counts observed transitions. This is often infeasible in large or continuous domains.
+    For lower-dimensional or discrete states:
+
+    \[
+    \hat{P}\bigl(s' \mid s,a\bigr) \;=\; \frac{n(s,a,s')}{\sum_{\tilde{s}}\,n(s,a,\tilde{s})},
+    \]
+    
+    where \(n(\cdot)\) counts observed transitions. This is often infeasible in large or continuous domains.
 
 ---
 
@@ -467,28 +468,32 @@ To capture multi-modal dynamics rigorously, one can represent the full *distribu
 Instead of closed-form probability distributions, one might learn a **generative** mapping that *samples* from \(P(s_{t+1}\mid s_t,a_t)\). Examples:
 
 1. **Variational Autoencoders (VAEs)**  
-   Introduce a latent variable \(\mathbf{z}\). Then
-   \[
-     s_{t+1} \;=\; f_\theta\!\bigl(\mathbf{z},\,s_t,\,a_t\bigr), 
-     \quad 
-     \mathbf{z}\;\sim\;\mathcal{N}(\mathbf{0},\mathbf{I}),
-   \]
-   and fit \(\theta\) via variational inference. Inference-time sampling of \(\mathbf{z}\) yields diverse future states.
+    Introduce a latent variable \(\mathbf{z}\). Then
+
+    \[
+        s_{t+1} \;=\; f_\theta\!\bigl(\mathbf{z},\,s_t,\,a_t\bigr), 
+        \quad 
+        \mathbf{z}\;\sim\;\mathcal{N}(\mathbf{0},\mathbf{I}),
+    \]
+    
+    and fit \(\theta\) via variational inference. Inference-time sampling of \(\mathbf{z}\) yields diverse future states.
 
 2. **Normalizing Flows**  
-   Transform a simple base distribution (like a Gaussian) through a stack of invertible mappings \(\{f_\theta^{(\ell)}\}\):
-   \[
-   \mathbf{z}\,\sim\,\mathcal{N}(\mathbf{0},\mathbf{I}), 
-   \quad
-   s_{t+1} \;=\; (f_\theta^{(L)} \circ \cdots \circ f_\theta^{(1)})(\mathbf{z}).
-   \]
-   Optimized via maximum likelihood, enabling expressive densities.
+    Transform a simple base distribution (like a Gaussian) through a stack of invertible mappings \(\{f_\theta^{(\ell)}\}\):
+
+    \[
+    \mathbf{z}\,\sim\,\mathcal{N}(\mathbf{0},\mathbf{I}), 
+    \quad
+    s_{t+1} \;=\; (f_\theta^{(L)} \circ \cdots \circ f_\theta^{(1)})(\mathbf{z}).
+    \]
+    
+    Optimized via maximum likelihood, enabling expressive densities.
 
 3. **Generative Adversarial Networks (GANs)**  
-   A discriminator \(D\) distinguishes real vs. generated next states, while the generator \(G\) attempts to fool \(D\). Though flexible, GAN training can be unstable or prone to mode collapse.
+    A discriminator \(D\) distinguishes real vs. generated next states, while the generator \(G\) attempts to fool \(D\). Though flexible, GAN training can be unstable or prone to mode collapse.
 
 4. **Autoregressive Models**  
-   Factorize high-dimensional \(s_{t+1}\) into a chain of conditionals. Useful for image-based transitions but can be computationally heavy.
+    Factorize high-dimensional \(s_{t+1}\) into a chain of conditionals. Useful for image-based transitions but can be computationally heavy.
 
 ---
 
@@ -529,10 +534,13 @@ where \(\Omega(\theta)\) might be a regularization term. GAN-based models use a 
 #### 5.2.6 Example: Gaussian Transitions via Maximum Likelihood
 
 A common assumption uses a unimodal Gaussian:
+
 \[
 s_{t+1} \;\sim\; \mathcal{N}\Bigl(\mu_\theta(s_t,a_t),\;\Sigma_\theta(s_t,a_t)\Bigr).
 \]
+
 Assume diagonal covariance \(\Sigma_\theta=\mathrm{diag}(\sigma_1^2,\dots,\sigma_d^2)\). The log-likelihood for one observed transition is:
+
 \[
 \log p\bigl(s_{t+1}\mid s_t,a_t;\,\theta\bigr)
 \,=\,
@@ -543,6 +551,7 @@ Assume diagonal covariance \(\Sigma_\theta=\mathrm{diag}(\sigma_1^2,\dots,\sigma
 \tfrac{\bigl(s_{t+1}[j]-\mu_j(\cdot)\bigr)^2}{2\,\sigma_j^2(\cdot)}
 \Bigr].
 \]
+
 Maximizing this finds a Gaussian best-fit to the empirical data. While unimodal, it remains a popular, tractable choice for continuous control.
 
 ---
@@ -664,48 +673,56 @@ This structure reduces modeling complexity and can enable more efficient plannin
 #### 5.7.1 Common Approaches to Representation Learning
 
 1. **Autoencoders and Variational Autoencoders (VAEs)**  
-   An autoencoder aims to learn an encoding \(\mathbf{z}=f_{\text{enc}}(s)\) that, when passed through a decoder \(f_{\text{dec}}\), reconstructs the original state \(s\). In **variational** autoencoders (VAEs), one imposes a prior distribution \(p(\mathbf{z})\) (often Gaussian) over the latent space, adding a Kullback–Leibler (KL) divergence penalty:
-   \[
-   \max_{\theta,\phi} 
-   \;\;
-   \mathbb{E}_{q_\phi(\mathbf{z}\mid s)}
-   \Bigl[\log p_\theta(s\mid \mathbf{z})\Bigr]
-   \;-\;
-   D_{\mathrm{KL}}\bigl(q_\phi(\mathbf{z}\mid s)\,\|\,p(\mathbf{z})\bigr),
-   \]
-   where \(q_\phi(\mathbf{z}\mid s)\) is the *encoder* distribution and \(p_\theta(s\mid \mathbf{z})\) is the *decoder*. This ensures the learned latent code \(\mathbf{z}\) both reconstructs well and remains “organized” under the prior \(p(\mathbf{z})\). Once learned, a **latent dynamics** model \(\mathbf{z}_{t+1}=f_{\text{trans}}(\mathbf{z}_t,a_t)\) can be fitted by minimizing a prediction loss (e.g., mean-squared error on \(\mathbf{z}\)-space).
+    An autoencoder aims to learn an encoding \(\mathbf{z}=f_{\text{enc}}(s)\) that, when passed through a decoder \(f_{\text{dec}}\), reconstructs the original state \(s\). In **variational** autoencoders (VAEs), one imposes a prior distribution \(p(\mathbf{z})\) (often Gaussian) over the latent space, adding a Kullback–Leibler (KL) divergence penalty:
+
+    \[
+    \max_{\theta,\phi} 
+    \;\;
+    \mathbb{E}_{q_\phi(\mathbf{z}\mid s)}
+    \Bigl[\log p_\theta(s\mid \mathbf{z})\Bigr]
+    \;-\;
+    D_{\mathrm{KL}}\bigl(q_\phi(\mathbf{z}\mid s)\,\|\,p(\mathbf{z})\bigr),
+    \]
+    
+    where \(q_\phi(\mathbf{z}\mid s)\) is the *encoder* distribution and \(p_\theta(s\mid \mathbf{z})\) is the *decoder*. This ensures the learned latent code \(\mathbf{z}\) both reconstructs well and remains “organized” under the prior \(p(\mathbf{z})\). Once learned, a **latent dynamics** model \(\mathbf{z}_{t+1}=f_{\text{trans}}(\mathbf{z}_t,a_t)\) can be fitted by minimizing a prediction loss (e.g., mean-squared error on \(\mathbf{z}\)-space).
 
 2. **Object-Based Approaches**  
-   For environments that can be factorized into distinct **objects** (e.g., multiple physical entities), **Graph Neural Networks (GNNs)** or **object-centric** models can more naturally capture the underlying structure. Concretely, each latent node \(\mathbf{z}_i\) corresponds to an object’s state (e.g., location, velocity, shape), and edges model interactions among objects. Formally,
-   \[
-   \mathbf{z}_{t+1}^{(i)} 
-   \;=\;
-   f_{\text{trans}}^{(i)}
-   \Bigl(
-     \mathbf{z}_t^{(i)},\,a_t,\,
-     \{\mathbf{z}_t^{(j)}\}_{j \in \mathcal{N}(i)}
-   \Bigr),
-   \]
-   where \(\mathcal{N}(i)\) denotes neighbors of object \(i\). This is particularly effective in physics-based settings [Battaglia et al., 2016], allowing each object’s transition to depend primarily on relevant neighbors (e.g., collisions). Such structured representations often facilitate **better generalization** to new configurations (e.g., changing the number or arrangement of objects).
+    For environments that can be factorized into distinct **objects** (e.g., multiple physical entities), **Graph Neural Networks (GNNs)** or **object-centric** models can more naturally capture the underlying structure. Concretely, each latent node \(\mathbf{z}_i\) corresponds to an object’s state (e.g., location, velocity, shape), and edges model interactions among objects. Formally,
+
+    \[
+    \mathbf{z}_{t+1}^{(i)} 
+    \;=\;
+    f_{\text{trans}}^{(i)}
+    \Bigl(
+        \mathbf{z}_t^{(i)},\,a_t,\,
+        \{\mathbf{z}_t^{(j)}\}_{j \in \mathcal{N}(i)}
+    \Bigr),
+    \]
+    
+    where \(\mathcal{N}(i)\) denotes neighbors of object \(i\). This is particularly effective in physics-based settings [Battaglia et al., 2016], allowing each object’s transition to depend primarily on relevant neighbors (e.g., collisions). Such structured representations often facilitate **better generalization** to new configurations (e.g., changing the number or arrangement of objects).
 
 3. **Contrastive Losses for Semantic/Controllable Features**  
-   Sometimes, a purely reconstruction-based loss can over-focus on visually salient but decision-irrelevant details. **Contrastive** methods use pairs (or triplets) of observations to emphasize meaningful relationships. For instance, if two states \(s\) and \(s'\) are known to be *dynamically close* (reachable with few actions), one encourages their embeddings \(\mathbf{z}\) and \(\mathbf{z}'\) to be close under some metric. Formally, a **contrastive loss** might look like:
-   \[
-   \ell_{\mathrm{contrast}}(\mathbf{z}, \mathbf{z}') 
-   \;=\;
-   y\,\|\mathbf{z}-\mathbf{z}'\|^2 
-   \;+\;
-   (1-y)\,\bigl[\alpha - \|\mathbf{z}-\mathbf{z}'\|\bigr]_{+},
-   \]
-   where \(y=1\) if the states should be similar, and \(y=0\) otherwise, and \(\alpha\) is a margin. Examples include time-contrastive approaches [Sermanet et al., 2018] that bring together frames from different camera angles but the *same* physical scene, or goal-oriented distances [Ghosh et al., 2018]. These tasks guide the learned \(\mathbf{z}\)-space to capture features that matter for control, rather than trivial background details.
+    Sometimes, a purely reconstruction-based loss can over-focus on visually salient but decision-irrelevant details. **Contrastive** methods use pairs (or triplets) of observations to emphasize meaningful relationships. For instance, if two states \(s\) and \(s'\) are known to be *dynamically close* (reachable with few actions), one encourages their embeddings \(\mathbf{z}\) and \(\mathbf{z}'\) to be close under some metric. Formally, a **contrastive loss** might look like:
+
+    \[
+    \ell_{\mathrm{contrast}}(\mathbf{z}, \mathbf{z}') 
+    \;=\;
+    y\,\|\mathbf{z}-\mathbf{z}'\|^2 
+    \;+\;
+    (1-y)\,\bigl[\alpha - \|\mathbf{z}-\mathbf{z}'\|\bigr]_{+},
+    \]
+    
+    where \(y=1\) if the states should be similar, and \(y=0\) otherwise, and \(\alpha\) is a margin. Examples include time-contrastive approaches [Sermanet et al., 2018] that bring together frames from different camera angles but the *same* physical scene, or goal-oriented distances [Ghosh et al., 2018]. These tasks guide the learned \(\mathbf{z}\)-space to capture features that matter for control, rather than trivial background details.
 
 ---
 
 #### 5.7.2 Planning in Latent Space
 
 Once a latent representation is established, an agent can:
+
 1. **Plan directly in \(\mathbf{z}\)-space**  
    For instance, run a forward-search or gradient-based policy optimization with states \(\mathbf{z}\) and transitions \(f_{\text{trans}}(\mathbf{z}, a)\). If the decoder \(f_{\text{dec}}\) is not explicitly needed (e.g., if the agent only needs to output actions), planning in the latent domain can reduce computational overhead and reduce the “curse of dimensionality.”
+
 2. **Decode for interpretability or environment feedback**  
    If the environment requires real-world actions or if interpretability is desired, one can decode predicted latent states \(\mathbf{z}_{t+1}\) to \(\hat{s}_{t+1}\). The environment then checks feasibility or yields a reward. This is especially relevant when the environment is external (like a simulator or the real world) expecting inputs in the original space.
 
@@ -720,9 +737,10 @@ In Markov Decision Processes (MDPs), each action typically spans one environment
 #### 5.8.1 Options Framework
 
 An **Option** \(\omega\) is a tuple \((I_\omega, \pi_\omega, \beta_\omega)\) [Sutton et al., 1999]:
-- **Initiation set** \(I_\omega \subseteq \mathcal{S}\): states from which \(\omega\) can be invoked.
-- **Subpolicy** \(\pi_\omega(a \mid s)\): governs low-level actions while the option runs.
-- **Termination condition** \(\beta_\omega(s)\): probability that \(\omega\) terminates upon reaching state \(s\).
+
+   - **Initiation set** \(I_\omega \subseteq \mathcal{S}\): states from which \(\omega\) can be invoked.
+   - **Subpolicy** \(\pi_\omega(a \mid s)\): governs low-level actions while the option runs.
+   - **Termination condition** \(\beta_\omega(s)\): probability that \(\omega\) terminates upon reaching state \(s\).
 
 When executing option \(\omega\), the agent follows \(\pi_\omega\) until a stochastic termination event triggers, transitioning back to the high-level policy’s control. The high-level policy thus selects from a *set* of options, each a multi-step “chunk” of actions. This can drastically reduce the horizon of the planning problem.
 
@@ -731,9 +749,11 @@ Mathematically, a **semi-MDP** formalism captures these temporally extended acti
 #### 5.8.2 Goal-Conditioned Policies
 
 Alternatively, **goal-conditioned** or **universal** value functions [Schaul et al., 2015] define a function \(Q(s, a, g)\) that specifies the expected return for taking action \(a\) in state \(s\) while aiming to achieve *goal* \(g\). One can then plan by selecting subgoals:
+
 \[
 g_1, g_2, \dots, g_K,
 \]
+
 where each “macro-step” is the agent trying to reach \(g_i\) from the current state. Feudal RL frameworks [Dayan and Hinton, 1993] similarly treat higher-level “managers” that set subgoals for lower-level “workers.” A learned, **goal-conditioned** subpolicy \(\pi(a\mid s,g)\) can generalize across different goals \(g\), unlike the options approach that typically uses separate subpolicies per option.
 
 #### 5.8.3 Subgoal Discovery
@@ -789,12 +809,12 @@ With a learned model in hand (or a known one), we combine **planning** and **lea
 Two sub-questions:
 
 1. **Frequency**: plan after every environment step, or collect entire episodes first?  
-   - Dyna plans after each step (like 100 imaginary updates per real step).  
-   - PILCO [Deisenroth & Rasmussen, 2011] fits a GP model after each episode.
+      - Dyna plans after each step (like 100 imaginary updates per real step).  
+      - PILCO [Deisenroth & Rasmussen, 2011] fits a GP model after each episode.
 
 2. **Budget**: how many model rollouts or expansions per planning cycle?  
-   - Dyna might do 100 short rollouts.  
-   - AlphaZero expands a single MCTS iteration by up to 1600 × depth calls.
+      - Dyna might do 100 short rollouts.  
+      - AlphaZero expands a single MCTS iteration by up to 1600 × depth calls.
 
 Some methods adaptively adjust planning vs. real data based on model uncertainty [Kalweit & Boedecker, 2017]. The right ratio can significantly affect performance.
 
@@ -805,25 +825,27 @@ Some methods adaptively adjust planning vs. real data based on model uncertainty
 Broadly:
 
 1. **Discrete** (non-differentiable) search:
-   - **One-step** lookahead  
-   - **Tree search** (MCTS, minimax)  
-   - **Forward vs. backward**: e.g., prioritized sweeping uses a reverse model to propagate value changes quickly
+      - **One-step** lookahead  
+      - **Tree search** (MCTS, minimax)  
+      - **Forward vs. backward**: e.g., prioritized sweeping uses a reverse model to propagate value changes quickly
 
 2. **Differential** (gradient-based) planning:
-   - Requires a differentiable model \(\hat{P}\).  
-   - E.g., iterative LQR, or direct backprop through unrolled transitions (Dreamer).  
-   - Suited for continuous control with smooth dynamics.
+      - Requires a differentiable model \(\hat{P}\).  
+      - E.g., iterative LQR, or direct backprop through unrolled transitions (Dreamer).  
+      - Suited for continuous control with smooth dynamics.
 
 3. **Depth & Breadth** choices:
-   - Some do short-horizon expansions (MBPO uses 1–5 step imaginary rollouts).  
-   - Others do deeper expansions if computing resources allow (AlphaZero MCTS).
+      - Some do short-horizon expansions (MBPO uses 1–5 step imaginary rollouts).  
+      - Others do deeper expansions if computing resources allow (AlphaZero MCTS).
 
 4. **Uncertainty handling**:
-   - Plan only near states with low model uncertainty or penalize uncertain states.  
-   - Ensemble-based expansions [Chua et al., 2018].
+      - Plan only near states with low model uncertainty or penalize uncertain states.  
+      - Ensemble-based expansions [Chua et al., 2018].
 
 !!! example "Cross-Entropy Method (CEM) – Pseudocode"
-    ```python
+
+
+``` python
     # Suppose we want to find the best action sequence of length H
     # that maximizes the expected return under our model.
 
@@ -848,7 +870,7 @@ Broadly:
     # Final distribution reflects the best action sequence
     best_action_seq = mu
     return best_action_seq
-    ```
+```
 
 ---
 
@@ -857,57 +879,58 @@ Broadly:
 **Monte Carlo Tree Search** is a powerful method for **discrete action** planning—famously used in AlphaGo, AlphaZero, MuZero. Key components:
 
 1. **Tree Representation**  
-   - Each node is a state, edges correspond to actions.  
-   - MCTS incrementally expands the search tree from a **root** (the current state).
+      - Each node is a state, edges correspond to actions.  
+      - MCTS incrementally expands the search tree from a **root** (the current state).
 
 2. **Four Steps** commonly described as:
-   1. **Selection**: Repeatedly choose child nodes (actions) from the root, typically via **Upper Confidence Bound** or policy heuristics, until reaching a leaf node.  
-   2. **Expansion**: If the leaf is not terminal (or at max depth), add one or more child nodes for possible next actions.  
-   3. **Simulation**: From that new node, simulate a **rollout** (random or policy-driven) until reaching a terminal state or horizon.  
-   4. **Backpropagation**: Propagate the **return** from the simulation up the tree to update value/statistics at each node.
+      1. **Selection**: Repeatedly choose child nodes (actions) from the root, typically via **Upper Confidence Bound** or policy heuristics, until reaching a leaf node.  
+      2. **Expansion**: If the leaf is not terminal (or at max depth), add one or more child nodes for possible next actions.  
+      3. **Simulation**: From that new node, simulate a **rollout** (random or policy-driven) until reaching a terminal state or horizon.  
+      4. **Backpropagation**: Propagate the **return** from the simulation up the tree to update value/statistics at each node.
 
 3. **Mathematical Form**  
-   - Let \(N(s,a)\) be the number of visits to child action \(a\) from state \(s\).  
-   - Let \(\hat{Q}(s,a)\) be the estimated action-value from MCTS.  
-   - UCB selection uses:
+      - Let \(N(s,a)\) be the number of visits to child action \(a\) from state \(s\).  
+      - Let \(\hat{Q}(s,a)\) be the estimated action-value from MCTS.  
+      - UCB selection uses:
 
-\[
-a_\text{select} = \arg\max_{a}\Bigl[\hat{Q}(s,a) + c \sqrt{\frac{\ln \sum_{b} N(s,b)}{N(s,a)}}\Bigr].
-\]
+        \[
+        a_\text{select} = \arg\max_{a}\Bigl[\hat{Q}(s,a) + c \sqrt{\frac{\ln \sum_{b} N(s,b)}{N(s,a)}}\Bigr].
+        \]
 
-(One can also incorporate a learned prior policy \(\pi_\theta\) to bias exploration.)
+        (One can also incorporate a learned prior policy \(\pi_\theta\) to bias exploration.)
 
-4. **Planning & Policy Extraction**  
-   - After many simulations from the root, MCTS typically normalizes node visits or Q-values to produce a final policy distribution \(\alpha\).  
-   - This policy \(\alpha\) may be used for real action selection, or to train a global policy network (as in AlphaZero).
+1. **Planning & Policy Extraction**  
+      - After many simulations from the root, MCTS typically normalizes node visits or Q-values to produce a final policy distribution \(\alpha\).  
+      - This policy \(\alpha\) may be used for real action selection, or to train a global policy network (as in AlphaZero).
 
-!!! info "MCTS Pseudocode"
-    ```vbnet
-    MCTS(root_state, model, N_simulations)
-    Initialize the search tree with root_state
+!!! example "MCTS Pseudocode"
 
-    for simulation in 1 to N_simulations do
-        node ← root of the tree
+```vbnet
+MCTS(root_state, model, N_simulations)
+Initialize the search tree with root_state
 
-        # Selection
-        while node is fully expanded and node is not terminal do
-            action ← select child of node using UCB
-            node ← child corresponding to action
+for simulation in 1 to N_simulations do
+    node ← root of the tree
 
-        # Expansion
-        if node is not terminal then
-            expand node using model (generate all children)
-            node ← select one of the new children
+    # Selection
+    while node is fully expanded and node is not terminal do
+        action ← select child of node using UCB
+        node ← child corresponding to action
 
-        # Simulation
-        reward ← simulate from node.state using model
+    # Expansion
+    if node is not terminal then
+        expand node using model (generate all children)
+        node ← select one of the new children
 
-        # Backpropagation
-        backpropagate reward up the tree from node
+    # Simulation
+    reward ← simulate from node.state using model
 
-    # Final decision
-    Return action from root with highest visit count
-    ```
+    # Backpropagation
+    backpropagate reward up the tree from node
+
+# Final decision
+Return action from root with highest visit count
+```
   
 ![MCTS: Illustration of selection, expansion, simulation, backprop.](../assets/images/figures/model-based/mcts.png)
 
@@ -918,15 +941,15 @@ a_\text{select} = \arg\max_{a}\Bigl[\hat{Q}(s,a) + c \sqrt{\frac{\ln \sum_{b} N(
 **Key integration channels**:
 
 1. **Planning input** from existing policy/value?  
-   - E.g., MCTS uses a prior policy to guide expansions.
+      - E.g., MCTS uses a prior policy to guide expansions.
 
 2. **Planning output** as a **training target** for the global policy/value?  
-   - E.g., **Dyna** uses imaginary transitions to update Q-values.  
-   - **AlphaZero** uses MCTS results as a learning target for \(\pi\) and \(V\).
+      - E.g., **Dyna** uses imaginary transitions to update Q-values.  
+      - **AlphaZero** uses MCTS results as a learning target for \(\pi\) and \(V\).
 
 3. **Action selection** from the planning procedure or from the learned policy?
-   - E.g., MPC picks the best action from a planned sequence.  
-   - Or a final learned policy is used if no real-time planning is feasible.
+      - E.g., MPC picks the best action from a planned sequence.  
+      - Or a final learned policy is used if no real-time planning is feasible.
 
 ![Integration in the Learning and Acting Loop](../assets/images/figures/model-based/integration.png)
 
@@ -942,7 +965,7 @@ One of the earliest and most influential frameworks for **model-based RL** is **
 - **Model learning** from that real data  
 - **Imagined experience** from the learned model to augment the policy/value updates.
 
-#### Dyna Pseudocode
+!!! example "Dyna Pseudocode"
 
 ```vbnet
 Input: α (learning rate), γ (discount factor), ε (exploration rate), 
@@ -989,13 +1012,13 @@ for each episode do
 ![Dyna-Q characteristics](../assets/images/figures/model-based/dyna-q.png)
 
 
-**Benefits**:  
-- Dyna can drastically reduce real environment interactions by effectively **replaying** or generating new transitions from the learned model.  
-- Even short rollouts or repeated “one-step planning” from random visited states helps refine Q-values more quickly.
+**Benefits**:
+      - Dyna can drastically reduce real environment interactions by effectively **replaying** or generating new transitions from the learned model.  
+      - Even short rollouts or repeated “one-step planning” from random visited states helps refine Q-values more quickly.
 
-**Dyna-Style** in modern deep RL:  
-- Many algorithms (e.g., **MBPO**) add short-horizon imaginary transitions to an off-policy buffer.  
-- They differ in details: how many model steps, how they sample states for imagination, how they manage uncertainty, etc.
+**Dyna-Style** in modern deep RL:
+      - Many algorithms (e.g., **MBPO**) add short-horizon imaginary transitions to an off-policy buffer.  
+      - They differ in details: how many model steps, how they sample states for imagination, how they manage uncertainty, etc.
 
 ---
 
@@ -1012,32 +1035,37 @@ Train a **latent generative model** of the environment (specifically from high-d
 
 ![World Model](../assets/images/figures/model-based/world-model.png)
 
-**Key Components**  
+**Key Components**
+
 1. **Variational Autoencoder (VAE)**:  
-   - Maps raw observation \(\mathbf{o}_t\) to a compact latent representation \(\mathbf{z}_t\).  
-   - \(\mathbf{z}_t = E_\phi(\mathbf{o}_t)\) where \(E_\phi\) is the learned encoder.  
-   - Reconstruction loss ensures \(E_\phi\) and a corresponding decoder \(D_\phi\) compress and reconstruct images effectively.
+      - Maps raw observation \(\mathbf{o}_t\) to a compact latent representation \(\mathbf{z}_t\).  
+      - \(\mathbf{z}_t = E_\phi(\mathbf{o}_t)\) where \(E_\phi\) is the learned encoder.  
+      - Reconstruction loss ensures \(E_\phi\) and a corresponding decoder \(D_\phi\) compress and reconstruct images effectively.
 
 2. **Recurrent Dynamics Model (MDN-RNN)**:  
-   - Predicts the next latent \(\mathbf{z}_{t+1}\) given \(\mathbf{z}_t\) and action \(a_t\).  
-   - Often parameterized as a **Mixture Density Network** inside an RNN:  
-     \[
-       \mathbf{z}_{t+1} \sim p_\theta(\mathbf{z}_{t+1} \mid \mathbf{z}_t, a_t).
-     \]
-   - This distribution can be modeled by a mixture of Gaussians, providing a probabilistic estimate of the next latent state.
+      - Predicts the next latent \(\mathbf{z}_{t+1}\) given \(\mathbf{z}_t\) and action \(a_t\).  
+      - Often parameterized as a **Mixture Density Network** inside an RNN:  
+      
+        \[
+          \mathbf{z}_{t+1} \sim p_\theta(\mathbf{z}_{t+1} \mid \mathbf{z}_t, a_t).
+        \]
+
+      - This distribution can be modeled by a mixture of Gaussians, providing a probabilistic estimate of the next latent state.
 
 3. **Controller (Policy)**:  
-   - A small neural network \(\pi_\eta\) that outputs actions \(a_t = \pi_\eta(\mathbf{z}_t)\) in the latent space.  
-   - Trained (in the original paper) via an evolutionary strategy (e.g., CMA-ES) *entirely in the dream world*.  
+      - A small neural network \(\pi_\eta\) that outputs actions \(a_t = \pi_\eta(\mathbf{z}_t)\) in the latent space.  
+      - Trained (in the original paper) via an evolutionary strategy (e.g., CMA-ES) *entirely in the dream world*.  
 
-**Algorithmic Flow**  
+**Algorithmic Flow**
+
 1. **Unsupervised Phase**: Run a random or exploratory policy in the real environment, collect observations \(\mathbf{o}_1, \mathbf{o}_2, ...\).  
 2. **Train the VAE** to learn \(\mathbf{z} = E_\phi(\mathbf{o})\).  
 3. **Train the MDN-RNN** on sequences \((\mathbf{z}_t, a_t, \mathbf{z}_{t+1})\).  
 4. **“Dream”**: Roll out the MDN-RNN from random latents and evaluate candidate controllers \(\pi_\eta\).  
 5. **Update \(\pi_\eta\)** based on the dream performance (e.g., via evolutionary search).
 
-**Significance**  
+**Significance**
+
 - Demonstrated that an agent can learn a **world model** of high-dimensional environments (CarRacing, VizDoom) and train policies in “latent imagination.”  
 - Paved the way for subsequent latent-space MBRL (PlaNet, Dreamer).
 
@@ -1050,29 +1078,37 @@ Train a **latent generative model** of the environment (specifically from high-d
 
 ![PETS](../assets/images/figures/model-based/pets.png)
 
-**Modeling Uncertainty**  
+**Modeling Uncertainty**
+
 - Train \(N\) distinct neural networks \(\{\hat{P}_{\theta_i}\}\), each predicting \(\mathbf{s}_{t+1}\) given \(\mathbf{s}_t, a_t\).  
-- Each network outputs a mean \(\boldsymbol{\mu}_i\) and variance \(\boldsymbol{\Sigma}_i\) for \(\mathbf{s}_{t+1}\).  
+- Each network outputs a mean \(\mathbf{\mu}_i\) and variance \(\mathbf{\Sigma}_i\) for \(\mathbf{s}_{t+1}\).  
 - **Ensemble Disagreement** can signal model uncertainty, guiding more cautious or exploratory planning.
 
 **Planning via Trajectory Sampling**  
+
 1. At state \(\mathbf{s}_0\), sample multiple candidate action sequences \(\{\mathbf{a}_{0:H}\}\).  
 2. For each sequence, roll out in **all** or a subset of the ensemble models:
-   \[
-     \mathbf{s}_{t+1}^{(i)} \sim \hat{P}_{\theta_i}(\mathbf{s}_{t+1} \mid \mathbf{s}_t^{(i)}, a_t).
-   \]
-3. Evaluate cumulative predicted reward \(\sum_{t=0}^{H-1} r(\mathbf{s}_t^{(i)}, a_t)\).  
-4. (Optional) Refine the action distribution using **CEM**:  
-   - Fit a Gaussian to the top-performing sequences.  
-   - Resample from that Gaussian, repeat until convergence.
+3. 
+
+    \[
+        \mathbf{s}_{t+1}^{(i)} \sim \hat{P}_{\theta_i}(\mathbf{s}_{t+1} \mid \mathbf{s}_t^{(i)}, a_t).
+    \]
+
+4. Evaluate cumulative predicted reward \(\sum_{t=0}^{H-1} r(\mathbf{s}_t^{(i)}, a_t)\).  
+5. (Optional) Refine the action distribution using **CEM**:  
+      - Fit a Gaussian to the top-performing sequences.  
+      - Resample from that Gaussian, repeat until convergence.
 
 **Mathematically**, the planning objective is:
+
 \[
 \max_{\{a_0, \ldots, a_{H-1}\}} \;\; \mathbb{E}_{\hat{P}_{\theta_i}}\!\Bigl[\sum_{t=0}^{H-1} \gamma^t r(\mathbf{s}_t, a_t)\Bigr],
 \]
+
 where the expectation is approximated by sampling from the ensemble.
 
-**Significance**  
+**Significance**
+
 - Achieved **strong sample efficiency** on continuous control (HalfCheetah, Ant, etc.), often matching model-free baselines (SAC, PPO) with far fewer environment interactions.  
 - Demonstrated the importance of **probabilistic ensembling** to avoid catastrophic model exploitation.
 
@@ -1083,7 +1119,8 @@ where the expectation is approximated by sampling from the ensemble.
 **Core Idea**  
 **M**odel-**B**ased **P**olicy **O**ptimization (MBPO) merges the Dyna-like approach (using a learned model to generate synthetic experience) with a **short rollout horizon** to control compounding errors. It then **trains a model-free RL algorithm** (Soft Actor-Critic, SAC) using both real and model-generated data.
 
-**Algorithmic Steps**  
+**Algorithmic Steps**
+
 1. **Learn an ensemble** of dynamics models \(\{\hat{P}_{\theta_i}\}\) from real data.  
 2. From each *real* state \(\mathbf{s}\) in the replay buffer:
    - Sample a short-horizon trajectory (1–5 steps) using \(\hat{P}_{\theta_i}\), with actions from the current policy \(\pi_\phi\).  
@@ -1091,20 +1128,25 @@ where the expectation is approximated by sampling from the ensemble.
 3. **Train SAC** on the combined real + model-generated transitions.  
 4. Periodically collect more real data with the updated policy, re-fit the model ensemble, and repeat.
 
-**Key Equations**  
+**Key Equations**
+
 - The model-based transitions:
-  \[
-    \mathbf{s}_{t+1}^\text{model} \sim \hat{P}_\theta(\mathbf{s}_{t+1} \mid \mathbf{s}_t, a_t),
-    \quad
-    r_t^\text{model} \sim \hat{R}_\theta(\mathbf{s}_t, a_t).
-  \]
+
+    \[
+        \mathbf{s}_{t+1}^\text{model} \sim \hat{P}_\theta(\mathbf{s}_{t+1} \mid \mathbf{s}_t, a_t),
+        \quad
+        r_t^\text{model} \sim \hat{R}_\theta(\mathbf{s}_t, a_t).
+    \]
+
 - The short horizon \(H_\text{roll}\) is chosen to limit error accumulation, e.g. \(H_\text{roll} = 1\) or \(5\).
 
-**Why Short Rollouts?**  
+**Why Short Rollouts?**
+
 - Long-horizon imagination can deviate quickly from real states => inaccurate transitions.  
 - By restricting to a small horizon, MBPO ensures the model is only used in near-realistic states, greatly reducing compounding bias.
 
-**Performance**  
+**Performance**
+
 - MBPO matches or exceeds the final returns of top model-free algorithms using ~10% of the environment interactions, combining **high sample efficiency** with **strong asymptotic performance**.
 
 ---
@@ -1116,24 +1158,30 @@ Learn a **recurrent latent dynamics model** from images, then **backprop** throu
 
 ![Dreamer](../assets/images/figures/model-based/dreamer.png)
 
-**Latent World Model**  
+**Latent World Model**
+
 1. **Encoder** \(e_\phi(\mathbf{o}_t)\) compresses raw observation \(\mathbf{o}_t\) into a latent state \(\mathbf{z}_t\).  
 2. **Recurrent Transition** \(p_\theta(\mathbf{z}_{t+1}\mid \mathbf{z}_t, a_t)\) predicts the next latent, plus a reward model \(\hat{r}_\theta(\mathbf{z}_t,a_t)\).  
 3. **Decoder** \(d_\phi(\mathbf{z}_t)\) (optional) can reconstruct \(\mathbf{o}_t\) for training, but not necessarily used at inference.
 
-**Policy Learning in Imagination**  
+**Policy Learning in Imagination**
+
 - An actor \(\pi_\psi(a_t\mid \mathbf{z}_t)\) and critic \(V_\psi(\mathbf{z}_t)\) are learned by **backprop through the latent rollouts**:
-  \[
-    \max_{\psi} \;\; \mathbb{E}_{\substack{\mathbf{z}_0 \sim q(\mathbf{z}_0|\mathbf{o}_0) \\ a_t \sim \pi_\psi(\cdot|\mathbf{z}_t) \\ \mathbf{z}_{t+1} \sim p_\theta(\cdot|\mathbf{z}_t,a_t)}}\!\biggl[\sum_{t=0}^{H-1} \gamma^t \hat{r}_\theta(\mathbf{z}_t, a_t)\biggr].
-  \]
+
+    \[
+        \max_{\psi} \;\; \mathbb{E}_{\substack{\mathbf{z}_0 \sim q(\mathbf{z}_0|\mathbf{o}_0) \\ a_t \sim \pi_\psi(\cdot|\mathbf{z}_t) \\ \mathbf{z}_{t+1} \sim p_\theta(\cdot|\mathbf{z}_t,a_t)}}\!\biggl[\sum_{t=0}^{H-1} \gamma^t \hat{r}_\theta(\mathbf{z}_t, a_t)\biggr].
+    \]
+
 - Dreamer uses advanced techniques (e.g., **reparameterization**, **actor-critic with value expansion**, etc.) to stabilize training.
 
-**Highlights**  
+**Highlights**
+
 - **DreamerV1**: SOTA results on DM Control from image inputs.  
 - **DreamerV2**: Extended to Atari, surpassing DQN with a single architecture.  
 - **DreamerV3**: Achieved multi-domain generality (Atari, ProcGen, DM Control, robotics, Minecraft). The first algorithm to solve “collect a diamond” in Minecraft from scratch without demonstrations.
 
-**Significance**  
+**Significance**
+
 - Demonstrates that purely **learning a latent world model** + **training by imagination** can match or surpass leading model-free methods in terms of both sample efficiency and final returns.
 
 ---
@@ -1145,7 +1193,8 @@ Combines **Monte Carlo Tree Search (MCTS)** with a **learned latent state** to a
 
 ![MuZero](../assets/images/figures/model-based/muzero.png)
 
-**Network Architecture**  
+**Network Architecture**
+
 1. **Representation Function** \(h\):  
    - Maps the observation history to a latent state \(s_0 = h(\mathbf{o}_{1:t})\).  
 2. **Dynamics Function** \(g\):  
@@ -1153,24 +1202,30 @@ Combines **Monte Carlo Tree Search (MCTS)** with a **learned latent state** to a
 3. **Prediction Function** \(f\):  
    - From a latent state \(s_k\), outputs a **policy** \(\pi_k\) (action logits) and a **value** \(v_k\).
 
-**MCTS in Latent Space**  
+**MCTS in Latent Space**
+
 - Starting from \(s_0\), expand a search tree by simulating actions via \(g\).  
 - Each node stores mean value estimates \(\hat{V}\), visit counts, etc.  
 - The final search policy \(\alpha\) is used to update the network (target policy), and the environment reward is used to refine the reward/dynamics parameters.
 
-**Key Equations**  
+**Key Equations**
+
 - MuZero is trained to **minimize errors** in reward, value, and policy predictions:
-  \[
-    \mathcal{L}(\theta) = \sum_{t=1}^{T} \bigl(\ell_\mathrm{value}(v_\theta(s_t), z_t) + \ell_\mathrm{policy}(\pi_\theta(s_t), \pi_t) + \ell_\mathrm{dyn}\bigl(g_\theta(s_t, a_t), s_{t+1}\bigr)\bigr),
-  \]
+  
+    \[
+        \mathcal{L}(\theta) = \sum_{t=1}^{T} \bigl(\ell_\mathrm{value}(v_\theta(s_t), z_t) + \ell_\mathrm{policy}(\pi_\theta(s_t), \pi_t) + \ell_\mathrm{dyn}\bigl(g_\theta(s_t, a_t), s_{t+1}\bigr)\bigr),
+    \]
+
   with \(\pi_t\) and \(z_t\) from the improved MCTS-based targets.
 
-**Achievements**  
+**Achievements**
+
 - Matches **AlphaZero** performance on Go, Chess, Shogi, but **without** an explicit rules model.  
 - Set new records on **Atari-57**.  
 - Demonstrates that an **end-to-end learned model** can be as effective for MCTS as a known simulator, provided it is trained to be “value-equivalent” (predict future rewards and values accurately).
 
-**Impact**  
+**Impact**
+
 - Showed that **“learning to model the environment’s reward and value structure is enough”**—MuZero does not need pixel-perfect next-state reconstructions.  
 - Successfully extended MCTS-based planning to domains with unknown or complex dynamics.
 
@@ -1182,6 +1237,7 @@ Combines **Monte Carlo Tree Search (MCTS)** with a **learned latent state** to a
 ### 8.1 Data Efficiency
 
 MBRL can yield higher sample efficiency:
+
 - Simulating transitions in the model extracts more learning signal from each real step  
 - E.g., PETS, MBPO, Dreamer require fewer environment interactions than top model-free methods
 
@@ -1190,6 +1246,7 @@ MBRL can yield higher sample efficiency:
 ### 8.2 Exploration
 
 A learned **uncertainty-aware** model can direct exploration to uncertain states:
+
 - Bayesian or ensemble-based MBRL  
 - Potentially more efficient than naive \(\epsilon\)-greedy in high dimensions
 
@@ -1204,6 +1261,7 @@ With a perfect model, MBRL can find better or equal policies vs. model-free. But
 ### 8.4 Transfer
 
 A global **dynamics model** can be re-used across tasks or reward functions:
+
 - E.g., a learned robotic physics model can quickly adapt to new goals
 - Saves extensive retraining
 
@@ -1234,6 +1292,7 @@ A learned model can sometimes be probed or visualized, offering partial interpre
 Model-Based RL integrates **planning** and **learning** in the RL framework, offering strong sample efficiency and structured decision-making. Algorithms like **MBPO**, **Dreamer**, and **MuZero** demonstrate that short rollouts, uncertainty estimates, or latent value-equivalent models can yield high final performance with fewer real samples.
 
 Still, challenges remain:
+
 - Robustness under partial observability, stochastic transitions, or non-stationary tasks  
 - Balancing planning vs. data collection adaptively  
 - Scaling to high-dimensional, real-world tasks with safety constraints
