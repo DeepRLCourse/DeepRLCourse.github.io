@@ -1,2 +1,2 @@
-# Week 14: Hierarchical & Meta RL
+# HW14: Hierarchical & Meta RL
 

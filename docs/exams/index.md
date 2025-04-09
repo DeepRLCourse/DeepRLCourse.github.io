@@ -1,9 +1,9 @@
 ---
-title: Exams
+comments: True
+description: This page contains the exam materials from previous semesters of the Deep Reinforcement Learning course. You can find links to download quizzes, midterms, and final exams.
 ---
 
-# Introduction
-
+# Previous Semesters
 
 ## Spring 2024 Exams
 

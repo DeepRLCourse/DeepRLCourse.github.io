@@ -1,2 +1,2 @@
-# Week 10: Exploration Methods
+# HW10: Exploration Methods
 

@@ -1,8 +1,9 @@
 ---
-title: Homeworks
+comments: True
+description: This page contains the homework assignments from previous semesters of the Deep Reinforcement Learning course. You can find links to the problems and solutions for each homework.
 ---
 
-# Introduction
+# Previous Semesters
 
 ## Spring 2024 Homeworks
 

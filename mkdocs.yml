@@ -34,6 +34,8 @@ theme:
       accent: red
   features:
     - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.top
     - toc.integrate
     # - navigation.indexes
 
@@ -59,6 +61,8 @@ plugins:
 extra:
   generator: false
   social:
+    - icon: material/email-outline
+      link: mailto:deeprlcourse@gmail.com
     - icon: fontawesome/brands/github
       link: https://github.com/DeepRLCourse
     - icon: fontawesome/brands/youtube
@@ -67,33 +71,55 @@ extra:
       link: https://x.com/DeepRLCourse
     - icon: fontawesome/brands/telegram
       link: https://t.me/DeepRLCourse
+  analytics:
+    provider: google
+    property: G-Q1YT8K39WE
+    feedback:
+      title: Was this page helpful?
+      ratings:
+        - icon: material/emoticon-happy-outline
+          name: This page was helpful
+          data: 1
+          note: >-
+            Thanks for your feedback!
+        - icon: material/emoticon-sad-outline
+          name: This page could be improved
+          data: 0
+          note: >- 
+            Thanks for your feedback! Help us improve this page by
+            using our <a href="..." target="_blank" rel="noopener">feedback form</a>.
+  disable_toc_integrate_paths:
+    - course_notes
+    - prerequisites
+
 
 copyright: Made with ❤️ in Robust and Interpretable Machine Learning Lab
 
 nav:
   - Home:
     - index.md
+  - Calendar:
     - home/calender.md
-  - Blog:
-    - blog/index.md
-    - Tags: blog/tags.md
   - Course Notes:
-    - course_notes/index.md
-    - course_notes/into-to-rl.md
-    - course_notes/value-based.md
-    - course_notes/policy-based.md
-    - course_notes/advanced.md
-    - course_notes/model-based.md
-    - course_notes/bandits.md
-    - course_notes/exploration.md
-    - course_notes/imitation.md
-    - course_notes/inverse.md
-    - course_notes/offline.md
-    - course_notes/multi-agent.md
-    - course_notes/hierarchical.md
-    - course_notes/meta.md
+    - Conceptual Overview of RL:
+      - course_notes/intro-to-rl.md
+      - course_notes/value-based.md
+      - course_notes/policy-based.md
+      - course_notes/advanced.md
+      - course_notes/model-based.md
+      - course_notes/bandits.md
+    - RL Methods in Depth:
+      - course_notes/intro-to-phase2.md
+      - course_notes/value-based2.md
+      - course_notes/policy-based2.md
+      - course_notes/exploration.md
+      - course_notes/imitation.md
+      - course_notes/inverse.md
+      - course_notes/offline.md
+      - course_notes/multi-agent.md
+      - course_notes/hierarchical.md
+      - course_notes/meta.md
   - Lectures:
-    - lectures/index.md
     - lectures/week1.md
     - lectures/week2.md
     - lectures/week3.md
@@ -109,16 +135,13 @@ nav:
     - lectures/week13.md
     - lectures/week14.md
     - lectures/week15.md
-  - Prerequisites:
-    - prerequisites/index.md
-    - prerequisites/deep_learning.md
-    - prerequisites/game_theory.md
-    - prerequisites/linear_algebra.md
-    - prerequisites/numerical_optimization.md
-    - prerequisites/information_theory.md
-    - prerequisites/stochastic_processes.md
+  - Guests:
+    - guests/richard_sutton.md
+    - guests/michael_littman.md
+    - guests/chris_watkins.md
+    - guests/peter_stone.md
+    - guests/jakob_foerster.md
   - Recitations:
-    - recitations/index.md
     - recitations/week1.md
     - recitations/week2.md
     - recitations/week3.md
@@ -134,7 +157,6 @@ nav:
     - recitations/week13.md
     - recitations/week14.md
   - Workshops:
-    - workshops/index.md
     - workshops/week1.md
     - workshops/week2.md
     - workshops/week3.md
@@ -150,7 +172,6 @@ nav:
     - workshops/week13.md
     - workshops/week14.md
   - Homeworks:
-    - homeworks/index.md
     - homeworks/week1.md
     - homeworks/week2.md
     - homeworks/week3.md
@@ -165,10 +186,18 @@ nav:
     - homeworks/week12.md
     - homeworks/week13.md
     - homeworks/week14.md
+    - homeworks/index.md
+  - Prerequisites:
+    - prerequisites/deep_learning.md
+    - prerequisites/game_theory.md
+    - prerequisites/linear_algebra.md
+    - prerequisites/numerical_optimization.md
+    - prerequisites/information_theory.md
+    - prerequisites/stochastic_processes.md
   - Exams:
-    - exams/index.md
     - exams/midterm.md
     - exams/final.md
+    - exams/index.md
   - Journal Club:
     - journal_club/index.md
   - Poster Session:
@@ -176,6 +205,9 @@ nav:
     - poster_session/sp24.md
   - Resources:
     - resources/index.md
+  - Blog:
+    - blog/index.md
+    - Tags: blog/tags.md
 
 extra_css:
   - stylesheets/extra.css
@@ -203,7 +235,6 @@ markdown_extensions:
           format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tabbed:
       alternate_style: true
-  - pymdownx.details
   - pymdownx.arithmatex:
       generic: true
   - md_in_html
@@ -217,5 +248,9 @@ markdown_extensions:
   - pymdownx.mark
   - pymdownx.tilde
   - abbr
+  - extra
+  - admonition
+  - pymdownx.details
+
 
   
