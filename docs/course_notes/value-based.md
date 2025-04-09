@@ -1,6 +1,6 @@
 ---
 comments: True
-description: This page provides detailed notes on value-based methods in reinforcement learning, including Bellman equations, dynamic programming, Monte Carlo methods, and temporal difference learning.
+description: This page delves into the foundational concepts and methods of value-based reinforcement learning. It covers the Bellman equations, dynamic programming techniques like value iteration and policy iteration, Monte Carlo methods for prediction and control, and temporal difference learning. The content is designed to provide a comprehensive understanding of how agents evaluate and optimize their decision-making processes in various environments. Key comparisons between model-based and model-free approaches, as well as on-policy and off-policy learning, are also included to highlight the strengths and applications of each method.
 ---
 
 # Week 2: Value-based Methods

@@ -1,6 +1,6 @@
 ---
 comments: True
-description: This page provides an introduction to Reinforcement Learning, covering key concepts, comparisons with other AI methods, and foundational frameworks like MDPs and POMDPs.
+description: This page serves as a comprehensive introduction to Reinforcement Learning (RL), a key area of artificial intelligence. It explores the limitations of traditional AI methods, highlights the unique strengths of RL, and provides foundational knowledge on concepts like Markov Decision Processes (MDPs) and Partially Observable MDPs (POMDPs). Through examples such as Grid World and autonomous driving, the page illustrates how RL agents learn optimal policies by interacting with dynamic environments. Additionally, it delves into utility functions, the Bellman equation, and the challenges of exploration and sparse rewards, offering a solid foundation for understanding RL's principles and applications.
 disable_toc_integrate: true
 ---
 

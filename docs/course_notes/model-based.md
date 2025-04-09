@@ -1,4 +1,9 @@
-# Model-Based Methods
+---
+comments: True
+description: This page provides a comprehensive overview of Model-Based Reinforcement Learning (MBRL), covering foundational concepts, key methodologies, and modern algorithms. It explores the integration of planning and learning, dynamics model learning, and advanced techniques for handling stochasticity, uncertainty, and partial observability. The document also highlights state-of-the-art MBRL algorithms such as PETS, MBPO, Dreamer, and MuZero, emphasizing their benefits, challenges, and applications in achieving sample-efficient and robust decision-making.
+---
+
+# Week 5: Model-Based Methods
 
 !!! note
     This document merges **Lectures 9 and 10** from Prof. Mohammad Hossein Rohban's DRL course, **Lecture 9: Model-Based RL** slides from Prof. Sergey Levine’s CS 294-112 (Deep RL) with a **more rigorous, survey-based structure** drawing on Moerland et al. (2022). We provide intuitions, mathematical details, and references to relevant works.

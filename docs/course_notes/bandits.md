@@ -1,4 +1,4 @@
-# Multi-Armed Bandit Problem
+# Week 6: Multi-Armed Bandits
 
 ## Introduction
 
