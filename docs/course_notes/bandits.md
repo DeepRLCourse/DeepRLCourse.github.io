@@ -1,3 +1,8 @@
+---
+comments: True
+description: This page provides an in-depth exploration of the Multi-Armed Bandit (MAB) problem, a foundational concept in reinforcement learning and decision-making under uncertainty. It covers the theoretical framework, key algorithms, and practical applications of MABs, including strategies for balancing exploration and exploitation. Topics include action-value estimation, regret analysis, and advanced methods like UCB, Thompson Sampling, and contextual bandits. The content is designed to equip readers with both theoretical insights and practical tools for solving MAB problems in diverse real-world scenarios.
+---
+
 # Week 6: Multi-Armed Bandits
 
 ## Introduction
