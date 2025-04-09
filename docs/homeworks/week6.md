@@ -30,3 +30,11 @@ Please submit your completed homework on Quera by the deadline:
 - **Deadline:** <span style="direction: rtl;font-family: Vazirmatn;">۱۷ فروردین (April 6)</span> at 11:59 PM
 
 Good luck, and we look forward to your submissions!
+
+## Solution
+
+[HW6 Solution to Questions](https://raw.githubusercontent.com/DeepRLCourse/Homework-6-Questions/refs/heads/main/HW6_Solution.pdf){:target="_blank" .md-button }
+
+<iframe width="996" height="560" src="https://www.youtube.com/embed/iW2rCL0vV3o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+[HW6 Solution Notebook](https://raw.githubusercontent.com/DeepRLCourse/Homework-6-Questions/refs/heads/main/HW6_Notebook_Solution.ipynb){:target="_blank" .md-button }
