@@ -1,5 +1,7 @@
 # Stochastic Process
 
+## Preliminary Definitions
+
 **Definition:** A *sample space*, \( \Omega \), is a set of possible outcomes of a random experiment.
 
 ---
