@@ -1,3 +1,22 @@
+## Notation
+
+| Symbol | Meaning |
+|--------|---------|
+| $s \in \mathcal{S}$ | States. |
+| $a \in \mathcal{A}$ | Actions. |
+| $r \in \mathcal{R}$ | Rewards. |
+| $S_t, A_t, R_t$ | State, action, and reward at time step $t$ of one trajectory. I may occasionally use $s_t, a_t, r_t$ as well. |
+| $\gamma$ | Discount factor; penalty to uncertainty of future rewards; $0 < \gamma \leq 1$. |
+| $G_t$ | Return; or discounted future reward; $G_t = \sum_{k=0}^{\infty} \gamma^k R_{t+k+1}$. |
+| $P(s',r\|s,a)$ | Transition probability of getting to the next state $s'$ from the current state $s$ with action $a$ and reward $r$. |
+| $\pi(a\|s)$ | Stochastic policy (agent behavior strategy); $\pi_\theta(\cdot)$ is a policy parameterized by $\theta$. |
+| $\mu(s)$ | Deterministic policy; we can also label this as $\pi(s)$, but using a different letter gives better distinction so that we can easily tell when the policy is stochastic or deterministic without further explanation. Either $\pi$ or $\mu$ is what a reinforcement learning algorithm aims to learn. |
+| $V(s)$ | State-value function measures the expected return of state $s$; $V_w(\cdot)$ is a value function parameterized by $w$. |
+| $V^\pi(s)$ | The value of state $s$ when we follow a policy $\pi$; $V^\pi(s) = \mathbb{E}_{a\sim\pi}[G_t\|S_t = s]$. |
+| $Q(s,a)$ | Action-value function is similar to $V(s)$, but it assesses the expected return of a pair of state and action $(s,a)$; $Q_w(\cdot)$ is a action value function parameterized by $w$. |
+| $Q^\pi(s,a)$ | Similar to $V^\pi(\cdot)$, the value of (state, action) pair when we follow a policy $\pi$; $Q^\pi(s,a) = \mathbb{E}_{a\sim\pi}[G_t\|S_t = s, A_t = a]$. |
+| $A(s, a)$ | Advantage function, $A(s, a) = Q(s,a) - V(s)$;  it can be considered as another version of Q-value with lower variance by taking the state-value off as the baseline.
+
 # Policy Gradient
 
 
@@ -2189,3 +2208,23 @@ SAC is an **off-policy** algorithm that improves upon DDPG by introducing **entr
 | **SAC**  | Off-policy | High | High | Strong (entropy regularization) |
 
 </center>
+
+## References
+
+1. [Policy Gradient Algorithms](https://lilianweng.github.io/posts/2018-04-08-policy-gradient/)
+
+2. [CS285 Deep Reinforcement Learning](https://rail.eecs.berkeley.edu/deeprlcourse/)
+
+3. [Reinforcement Learning Explained](http://172.27.48.15/Resources/Books/Nikolic%20L.%20Reinforcement%20Learning%20Explained.%20A%20Step-by-Step%20Guide...2023.pdf)
+
+4. [An Introduction to Deep Reinforcement Learning](http://172.27.48.15/Resources/Books/Textbooks/An%20Introduction%20to%20Deep%20Reinforcement%20Learning.pdf)
+
+5. [Deep Reinforcement Learning Processor Design for Mobile Applications](http://172.27.48.15/Resources/Books/Juhyoung%20Lee%2C%20Hoi-Jun%20Yoo%20-%20Deep%20Reinforcement%20Learning%20Processor%20Design%20for%20Mobile%20Applications-Springer%20%282023%29.pdf)
+
+6. [REINFORCE — a policy-gradient based reinforcement Learning algorithm](https://medium.com/intro-to-artificial-intelligence/reinforce-a-policy-gradient-based-reinforcement-learning-algorithm-84bde440c816)
+
+7. [Policy Gradient Algorithms](https://lilianweng.github.io/posts/2018-04-08-policy-gradient/)
+
+8. [Deep Reinforcement Learning](http://172.27.48.15/Resources/Books/Textbooks/Aske%20Plaat%20-%20Deep%20Reinforcement%20Learning-arXiv%20%282023%29.pdf)
+
+9. [Reinforcement Learning (BartoSutton)](https://www.andrew.cmu.edu/course/10-703/textbook/BartoSutton.pdf)
