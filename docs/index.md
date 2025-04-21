@@ -576,7 +576,7 @@ Total possible points: 20 + 3 = 23
         </p>
     </span>
 
--   ![Instructor Avatar](assets/images/staff/Saeed-Masoudnia.jpg){align=left width="150"}
+<!-- -   ![Instructor Avatar](assets/images/staff/Saeed-Masoudnia.jpg){align=left width="150"}
     <span class="description">
         <p>**Saeed Masoudnia**</p>
         <p>Teaching Assistant</p>
@@ -587,7 +587,7 @@ Total possible points: 20 + 3 = 23
         [:fontawesome-brands-github:](https://github.com/smsnia){:target="_blank"}
         [:fontawesome-brands-linkedin-in:](https://www.linkedin.com/in/saeed-masoudnia-45803434){:target="_blank"}
         </p>
-    </span>
+    </span> -->
 
 <!-- -   ![Instructor Avatar](assets/images/staff/Sara-Karimi.jpg){align=left width="150"}
     <span class="description">
