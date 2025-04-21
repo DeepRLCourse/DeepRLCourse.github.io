@@ -1,3 +1,74 @@
+# Stochastic Bandits
+
+## Core Assumptions
+A **stochastic bandit** is a collection of distributions 
+
+\[
+\nu = (P_a : a \in \mathcal{A}),
+\]
+
+where \(\mathcal{A}\) is the set of available actions.  Over \(n\) rounds (possibly \(n=\infty\)), the interaction proceeds as follows:
+
+1. At round \(t\), the learner chooses an action \(A_t \in \mathcal{A}\).  
+2. The environment samples a reward,\(X_t \sim P_{A_t}\) and reveals \(X_t\) to the learner.  
+3. This yields a history \((A_1, X_1, \dots, A_n, X_n)\).  
+
+We require two key assumptions on this sequence:
+
+- **(a) Environment sampling**
+The reward at time \(t\) depends only on the chosen arm \(A_t\). In other
+
+\[
+X_t \,\bigl\lvert\, A_1, X_1,\dots,A_{t-1},X_{t-1},A_t\;\sim\;P_{A_t}.
+\]  
+
+
+- **(b) Non‑anticipation (Learner’s policy)**
+The learner’s choice can only depend on past observations, not future ones. in other words:
+
+\[
+A_t \,\bigl\lvert\, A_1,X_1,\dots,A_{t-1},X_{t-1}
+\;\sim\;\pi_t\bigl(\cdot\mid A_1,X_1,\dots,X_{t-1}\bigr),
+\]  
+
+## The Learning Objective
+
+The learner aims to **maximize** the total reward
+
+\[
+S_n = \sum_{t=1}^n X_t,
+\]
+
+but this isn’t a straightforward optimization for three main reasons:
+
+1. **Unknown horizon**  
+   The number of rounds \(n\) may not be known in advance.  
+2. **Random outcomes**  
+   Even if all reward distributions were known, \(S_n\) is still a random variable requiring a utility measure.  
+3. **Unknown distributions**  
+   The learner must discover each arm’s reward law via interaction.
+
+Points 1 and 2 can often be managed—e.g.\ by designing a policy for a guessed \(n\) and adapting it—so the core challenge is point 3.
+
+## Beyond The Learning Objective
+
+Beyond maximizing the raw sum \(S_n=\sum_{t=1}^n X_t\), we need a way to **measure** how well a learner performs **relative** to the best possible strategy.  A common approach is to compare the learner’s cumulative reward to that of the best fixed action in hindsight.  Concretely, define the *regret* after \(n\) rounds as
+
+\[
+R_n \;=\; \max_{a\in\mathcal A}\sum_{t=1}^n \mathbb{E}[X_t \mid A_t=a]\;-\;\sum_{t=1}^n X_t.
+\]
+
+Intuitively, \(R_n\) quantifies the loss from not always playing the optimal arm.  We aim to design policies for which \(R_n\) grows as slowly as possible (ideally sublinearly in \(n\)), so that average regret \(R_n/n\to0\).  A precise definition and discussion of **regret bounds** will be given later.
+
+
+### Why Concentration Bounds Matter
+
+Since rewards are random, even a policy with low expected regret may occasionally suffer large deviations.  To guarantee that \(R_n\) stays small **with high probability**, we need **concentration inequalities** (e.g.\ Hoeffding’s or Bernstein’s inequalities).  These tools let us bound the probability that empirical averages deviate from their means, which in turn controls how soon the learner can distinguish a good arm from a suboptimal one.
+
+---
+
+
+
 ## Concentration Bounds
 
 Concentration bounds are mathematical inequalities that provide upper (or lower) bounds on the probability that a random variable deviates from its expected value. They are particularly useful in the context of bandit problems, where we want to understand how our algorithm's estimates of the expected rewards can vary due to randomness.
@@ -614,3 +685,8 @@ This shows that UCB1 attains a **logarithmic regret**, which is order-optimal up
 ---
 
 Thus, **UCB1 enjoys a regret bound of order O(ln T)** for **T** rounds, which is optimal for many stochastic bandit problems.
+
+References:
+
+- Vershynin, R. (2018). High-dimensional probability: An introduction with applications in data science. Cambridge University Press.
+- Tor Lattimore, Csaba Szepesvari. Bandit Algorithms. Cambridge University Press, 2020.
