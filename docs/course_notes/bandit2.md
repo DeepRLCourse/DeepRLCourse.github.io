@@ -536,6 +536,45 @@ In literature, people often classify the regret of algorithms by it's ratio over
 | **Square-root**   | Near-optimal         | Regret grows as \(O(\sqrt{T})\)             | EXP3                   | Adversarial bandits      |
 | **Polynomial**    | Moderately efficient | Regret grows as \(O(T^\alpha), \alpha < 1\) | Gradient Bandit        | Continuous action spaces |
 
+## Explore Then Commit (ETC)
+
+Explore Then Commit (ETC) is a simple strategy for multi-armed bandit problems that divides the decision process into two distinct phases:
+
+1. **Exploration Phase:**  
+    In this phase, each arm is played a predetermined number of times. The goal is to gather sufficient data to estimate each arm's expected reward reliably. No arm is favored initially, ensuring unbiased estimates.
+
+2. **Commit Phase:**  
+    After exploration, the arm with the highest empirical mean is chosen and played exclusively for the remaining rounds. No further exploration occurs, which can lead to suboptimal choices if the exploration phase was too short or if the estimates were noisy.
+
+### Key Considerations
+
+- **Trade-off:**  
+  The performance of ETC depends critically on the length of the exploration phase. Too brief a phase may produce inaccurate estimates, while an overly long phase wastes opportunities to gather more rewards.
+
+- **Regret Analysis:**  
+  The cumulative regret of ETC typically includes both the loss from exploring suboptimal arms and the loss from committing to an arm with an estimated reward that differs from the optimal. Optimally balancing exploration can lead to sublinear regret in some settings.
+
+### Pseudo-Code
+
+Below is a simplified pseudo-code outline for ETC:
+
+1 **Input** \( m \).  
+2 In round \( t \) choose action  
+
+\[
+A_t = \begin{cases} 
+(t \mod k) + 1, & \text{if } t \leq mk; \\
+\arg\max_i \hat{\mu}_i(mk), & \text{if } t > mk.
+\end{cases}
+\]
+    
+where \( \hat{\mu}_i(mk) \) is the empirical mean of arm \( i \) after \( mk \) rounds.
+
+### When to Use ETC
+
+ETC is especially useful in scenarios with a known time horizon and where the cost of switching arms is significant. Its simplicity makes it an attractive baseline for comparison with more adaptive strategies like UCB or Thompson Sampling.
+
+
 ## UCB (Upper Confidence Bound)
 
 The UCB strategy manages the exploration-exploitation trade-off in multi-armed bandit problems. This tutorial covers two main variants—UCB1 and UCB2—and explains their regret bounds.
@@ -562,6 +601,26 @@ UCB1 is a simple yet powerful algorithm that selects arms based on the following
 
    - **Exploration Bonus Formula:**  
      $$\sqrt{\frac{2\ln(\text{total plays})}{\text{plays of arm } i}}$$
+
+#### Pseudo-Code
+More formally, define \(USB_i(t)\) as the upper confidence bound for arm \(i\) at time \(t\):
+
+\[
+\text{UCB}_i(t - 1, \delta) = 
+\begin{cases}
+\infty & \text{if } T_i(t - 1) = 0 \\
+\hat{\mu}_i(t - 1) + \sqrt{\frac{2 \log(1/\delta)}{T_i(t - 1)}} & \text{otherwise}.
+\end{cases}
+\]
+
+Respectively, the pseudo-code for UCB1 is as follows:
+
+1. **Input** \( k \) and \( \delta \)  
+2. **for** \( t \in \{1, \ldots, n\} \) **do**  
+3. &nbsp;&nbsp;&nbsp;&nbsp;Choose action \( A_t = \arg\max_i \text{UCB}_i(t - 1, \delta) \)  
+4. &nbsp;&nbsp;&nbsp;&nbsp;Observe reward \( X_t \) and update upper confidence bounds  
+5. **end for**
+
 
 #### Python Example:
 
