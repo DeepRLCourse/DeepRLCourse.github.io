@@ -18,7 +18,7 @@ description: This page contains the lecture materials for Week 8 of the Deep Rei
 ### Lecture Slides
 
 <object class="pdf" 
-        data="/assets/lectures/slides/Lecture_13.pdf"
+        data="/assets/lectures/slides/Lecture_15.pdf"
         width="996"
         height="560"></object>
 
@@ -35,6 +35,16 @@ description: This page contains the lecture materials for Week 8 of the Deep Rei
 
 [Download Summary](/assets/lectures/summaries/Lecture_15_Summary.pdf){:target="_blank" .md-button .md-button--primary }
 
+### Lecture Quiz
+
+<object class="pdf" 
+        data="/assets/lectures/quizzes/Quiz_15___Solution.pdf"
+        width="996"
+        height="560">
+</object>
+
+[Download Quiz](/assets/lectures/quizzes/Quiz_15___Solution.pdf){:target="_blank" .md-button .md-button--primary }
+
 ## Lecture 16
 
 ### Screen + Camera
@@ -48,7 +58,7 @@ description: This page contains the lecture materials for Week 8 of the Deep Rei
 ### Lecture Slides
 
 <object class="pdf" 
-        data="/assets/lectures/slides/Lecture_13.pdf"
+        data="/assets/lectures/slides/Lecture_16.pdf"
         width="996"
         height="560"></object>
 
@@ -66,3 +76,13 @@ description: This page contains the lecture materials for Week 8 of the Deep Rei
 </object>
 
 [Download Summary](/assets/lectures/summaries/Lecture_16_Summary.pdf){:target="_blank" .md-button .md-button--primary }
+
+### Lecture Quiz
+
+<object class="pdf" 
+        data="/assets/lectures/quizzes/Quiz_16___Solution.pdf"
+        width="996"
+        height="560">
+</object>
+
+[Download Quiz](/assets/lectures/quizzes/Quiz_16___Solution.pdf){:target="_blank" .md-button .md-button--primary }
