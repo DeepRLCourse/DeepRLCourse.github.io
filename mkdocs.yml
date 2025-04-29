@@ -107,8 +107,8 @@ nav:
     - RL Methods in Depth:
       - course_notes/intro-to-phase2.md
       - course_notes/value-based2.md
-      - course_notes/policy-based2.md
-      - course_notes/exploration.md
+      - course_notes/policy-gradient.md
+      - course_notes/bandit2.md
       - course_notes/imitation.md
       - course_notes/inverse.md
       - course_notes/offline.md
