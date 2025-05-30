@@ -571,16 +571,6 @@ Total possible points: 20 + 3 = 23
         </p>
     </span>
 
--   ![Instructor Avatar](assets/images/staff/Hesan-Nobakht.jpg){align=left width="150"}
-    <span class="description">
-        <p>**Hesan Nobakht**</p>
-        <p>Teaching Assistant</p>
-        <p>[hesan.nobakht@gmail.com](mailto:hesan.nobakht@gmail.com)</p>
-        <p>
-        [:fontawesome-brands-linkedin-in:](https://www.linkedin.com/in/h-nobakht){:target="_blank"}
-        </p>
-    </span>
-
 -   ![Instructor Avatar](assets/images/staff/Mahyar-Afshinmehr.jpg){align=left width="150"}
     <span class="description">
         <p>**Mahyar Afshinmehr**</p>
