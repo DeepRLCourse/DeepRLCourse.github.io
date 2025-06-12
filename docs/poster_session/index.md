@@ -53,7 +53,7 @@ Record a **Full HD video (1920×1080)** presenting your final work to someone wh
 
 ## Poster Design (0.3 points)
 
-Create a **vertical A2** poster (594 mm × 840 mm) that visually communicates your project. You can submit either: A **vector** file (PDF, SVG, etc.), or A **high-resolution raster** (PNG, TIF) at **≥ 300 DPI**.
+Create a **Vertical A1** poster (594 mm × 841 mm) that visually communicates your project. You can submit either: A **vector** file (PDF, SVG, etc.), or A **high-resolution raster** (PNG, TIF) at **≥ 300 DPI**.
 
 - **Submission:** Upload your final poster to Google Drive and share the link on Quera ([submit here](https://quera.org/course/add_to_course/course/20598/)) by **June 24**.
 - **Objective:** Use layout, color, and concise text to guide viewers through your research question, methods, and results.
