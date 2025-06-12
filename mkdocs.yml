@@ -151,6 +151,16 @@ nav:
     - guests/benjamin_van_roy.md
     - guests/wolfram_schultz.md
     - guests/mark_ho.md
+    - guests/pascal_poupart.md
+    - guests/peter_norvig.md
+    - guests/karl_friston.md
+    - guests/amy_zhang.md
+    - guests/adam_white.md
+    - guests/anne_collins.md
+    - guests/luis_serrano.md
+    - guests/martha_white.md
+    - guests/christopher_amato.md
+    - guests/marlos_machado.md
   - Recitations:
     - recitations/week1.md
     - recitations/week2.md
@@ -258,6 +268,3 @@ markdown_extensions:
   - extra
   - admonition
   - pymdownx.details
-
-
-  
