@@ -205,7 +205,7 @@ Two fundamental problems in sequential decision making:
 
 2. **Planning**:
     - A model of the environment is **known**
-    - The agent performs computations with its model (w**ithout any external
+    - The agent performs computations with its model (**without any external
     interaction**)
     - The agent **improves** its policy, a.k.a. deliberation, reasoning, introspection, pondering, thought, search 
 
@@ -290,18 +290,19 @@ In the provided Gridworld example, the agent starts from the yellow square and h
    Fig4. Grid World Example </center>
 
 The agent's choice depends on:
-- The **discount factor ($\gamma$)**, which determines whether it prioritizes short-term or long-term rewards.
-- The **noise level**, which introduces randomness into actions.
+   - The **discount factor ($\gamma$)**, which determines whether it prioritizes short-term or long-term rewards.
+   - The **noise level**, which introduces randomness into actions.
 
 Depending on the values of $\gamma$ and noise, the agent's behavior varies:
+
 1. **$\gamma$ = 0.1, noise = 0.5:**  
-   - The agent **prefers the close exit (+1) but takes the risk of stepping into the cliff (-10).**  
+   - The agent **prefers the close exit (+1) but doesn't take the risk of stepping into the cliff (-10).**  
 2. **$\gamma$ = 0.99, noise = 0:**  
-   - The agent **prefers the distant exit (+10) while avoiding the cliff (-10).**  
+   - The agent **prefers the distant exit (+10) and takes the risk of the cliff (-10).**  
 3. **$\gamma$ = 0.99, noise = 0.5:**  
-   - The agent **still prefers the distant exit (+10), but due to noise, it risks the cliff (-10).**  
+   - The agent **still prefers the distant exit (+10), but due to noise, it doesn't risk the cliff (-10).**  
 4. **$\gamma$ = 0.1, noise = 0:**  
-   - The agent **chooses the close exit (+1) while avoiding the cliff.**  
+   - The agent **chooses the close exit (+1) and takes the risk of the cliff.**  
 
 ### Stochastic Policy  
 
