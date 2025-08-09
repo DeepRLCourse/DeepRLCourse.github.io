@@ -653,7 +653,7 @@ Total possible points: 20 + 3 = 23
         </p>
     </span> -->
 
--   ![Instructor Avatar](assets/images/staff/HamidReza-Akbari.jpg){align=left width="150"}
+<!-- -   ![Instructor Avatar](assets/images/staff/HamidReza-Akbari.jpg){align=left width="150"}
     <span class="description">
         <p>**HamidReza Akbari**</p>
         <p>Teaching Assistant</p>
@@ -662,7 +662,7 @@ Total possible points: 20 + 3 = 23
         [:fontawesome-brands-github:](https://github.com/hakbari14){:target="_blank"}
         [:fontawesome-brands-linkedin-in:](https://linkedin.com/in/hamid-reza-akbari-154257104){:target="_blank"}
         </p>
-    </span>
+    </span> -->
 
 -   ![Instructor Avatar](assets/images/staff/Hamidreza-Ebrahimpour.jpg){align=left width="150"}
     <span class="description">
