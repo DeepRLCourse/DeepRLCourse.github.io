@@ -12,7 +12,7 @@ Amy Zhang is an Assistant Professor of Electrical & Computer Engineering at UTâ€
 
 ### Lecture
 
-<iframe width="996" height="560" src="https://www.youtube.com/embed/nyXXX3fIzMw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="996" height="560" src="https://www.youtube.com/embed/nyXXX3fIzMw?;start=364" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ### Slides
 

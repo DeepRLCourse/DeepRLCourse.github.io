@@ -11,7 +11,7 @@ Mark Ho is an Assistant Professor of Psychology at New York University and an af
 
 ### Lecture
 
-<iframe width="996" height="560" src="https://www.youtube.com/embed/pxh8thATY2k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="996" height="560" src="https://www.youtube.com/embed/pxh8thATY2k?;start=207" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ### Slides
 

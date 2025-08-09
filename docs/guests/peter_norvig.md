@@ -12,4 +12,4 @@ Peter Norvig (born December 14, 1956) is an American computer scientist, Dis
 
 ### Lecture
 
-<iframe width="996" height="560" src="https://www.youtube.com/embed/sj2GCabcfgc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="996" height="560" src="https://www.youtube.com/embed/sj2GCabcfgc?;start=879" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>

@@ -12,7 +12,7 @@ Martha White is an Associate Professor of Computing Science at the University of
 
 ### Lecture
 
-<iframe width="996" height="560" src="https://www.youtube.com/embed/bmq9jmhWkq0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="996" height="560" src="https://www.youtube.com/embed/bmq9jmhWkq0?;start=205" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ### Slides
 

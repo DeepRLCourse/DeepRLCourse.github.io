@@ -11,7 +11,7 @@ Ida Momennejad is a Principal Researcher at Microsoft Research NYC, where she de
 
 ### Lecture
 
-<iframe width="996" height="560" src="https://www.youtube.com/embed/_E8DJ8BX57Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="996" height="560" src="https://www.youtube.com/embed/_E8DJ8BX57Q?;start=630" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 <!-- ### Slides
 

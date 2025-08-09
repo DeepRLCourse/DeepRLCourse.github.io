@@ -12,7 +12,7 @@ Marlos C. Machado is an Assistant Professor in the Department of Computing Sci
 
 ### Lecture
 
-<iframe width="996" height="560" src="https://www.youtube.com/embed/nuvAdKf9d1s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="996" height="560" src="https://www.youtube.com/embed/nuvAdKf9d1s?;start=487" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ### Slides
 

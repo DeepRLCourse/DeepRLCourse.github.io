@@ -11,7 +11,7 @@ Peter Dayan is a Director at the Max Planck Institute for Biological Cybernetics
 
 ### Lecture
 
-<iframe width="996" height="560" src="https://www.youtube.com/embed/VdmDCQ8KWEE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="996" height="560" src="https://www.youtube.com/embed/VdmDCQ8KWEE?;start=610" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ### Slides
 

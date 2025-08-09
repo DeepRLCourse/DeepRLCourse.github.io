@@ -12,14 +12,14 @@ Anne G. E. Collins is an Associate Professor in the Department of Psycholo
 
 ### Lecture
 
-<iframe width="996" height="560" src="https://www.youtube.com/embed/u9GQUBqKR3c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="996" height="560" src="https://www.youtube.com/embed/u9GQUBqKR3c?;start=63" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-<!-- ### Slides
+### Slides
 
 <object class="pdf" 
-        data="/assets/guests/adam_white.pdf"
+        data="/assets/guests/anne_collins.pdf"
         width="996"
         height="560">
 </object>
 
-[Download Slides](/assets/guests/adam_white.pdf){:target="_blank" .md-button .md-button--primary } -->
+[Download Slides](/assets/guests/anne_collins.pdf){:target="_blank" .md-button .md-button--primary }

@@ -11,7 +11,7 @@ Jeff Clune is a Professor of Computer Science at the University of British Colum
 
 ### Lecture
 
-<iframe width="996" height="560" src="https://www.youtube.com/embed/tP5AB5GgZAE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="996" height="560" src="https://www.youtube.com/embed/tP5AB5GgZAE?;start=1276" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ### Slides
 

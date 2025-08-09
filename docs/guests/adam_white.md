@@ -13,7 +13,7 @@ Adam White is an Assistant Professor at the University of Alberta in the Departm
 
 ### Lecture
 
-<iframe width="996" height="560" src="https://www.youtube.com/embed/TjQSaOqj5R8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="996" height="560" src="https://www.youtube.com/embed/TjQSaOqj5R8?;start=900" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ### Slides
 

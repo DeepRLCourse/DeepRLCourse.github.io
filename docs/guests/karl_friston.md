@@ -11,8 +11,14 @@ Karl Friston is a theoretical neuroscientist and authority on brain imaging. He 
 
 ### Lecture
 
-<iframe width="996" height="560" src="https://www.youtube.com/embed/-F2XYrh6afs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="996" height="560" src="https://www.youtube.com/embed/-F2XYrh6afs?;start=620" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ### Slides
 
-<!-- Add PDF embed or download link here when available -->
+<object class="pdf" 
+        data="/assets/guests/karl_friston.pdf"
+        width="996"
+        height="560">
+</object>
+
+[Download Slides](/assets/guests/karl_friston.pdf){:target="_blank" .md-button .md-button--primary }
