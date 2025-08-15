@@ -1,0 +1,5551 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="This page contains the recitation materials for Week 5 of the Deep Reinforcement Learning course. You can find links to the recitation recordings and slides.">
+      
+      
+      
+        <link rel="canonical" href="https://deeprlcourse.github.io/recitations/week5/">
+      
+      
+        <link rel="prev" href="../week4/">
+      
+      
+        <link rel="next" href="../week6/">
+      
+      
+      <link rel="icon" href="../../assets/favicon/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+    
+    
+      
+        <title>Week 5: Model-Based Methods - Deep RL Course</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,700,700i%7CRed+Hat+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Ubuntu";--md-code-font:"Red Hat Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/vazirmatn.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-Q1YT8K39WE"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-Q1YT8K39WE",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-Q1YT8K39WE",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="Week 5: Model-Based Methods - Deep RL Course" >
+      
+        <meta  property="og:description"  content="This page contains the recitation materials for Week 5 of the Deep Reinforcement Learning course. You can find links to the recitation recordings and slides." >
+      
+        <meta  property="og:image"  content="https://deeprlcourse.github.io/assets/images/social/recitations/week5.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="https://deeprlcourse.github.io/recitations/week5/" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="Week 5: Model-Based Methods - Deep RL Course" >
+      
+        <meta  name="twitter:description"  content="This page contains the recitation materials for Week 5 of the Deep Reinforcement Learning course. You can find links to the recitation recordings and slides." >
+      
+        <meta  name="twitter:image"  content="https://deeprlcourse.github.io/assets/images/social/recitations/week5.png" >
+      
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#week-5-model-based-methods" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Deep RL Course" class="md-header__button md-logo" aria-label="Deep RL Course" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Deep RL Course
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Week 5: Model-Based Methods
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="red"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="red"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../home/calender/" class="md-tabs__link">
+          
+  
+  
+  Calendar
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../course_notes/intro-to-rl/" class="md-tabs__link">
+          
+  
+  
+  Course Notes
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../lectures/week1/" class="md-tabs__link">
+          
+  
+  
+  Lectures
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../guests/richard_sutton/" class="md-tabs__link">
+          
+  
+  
+  Guests
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../week1/" class="md-tabs__link">
+          
+  
+  
+  Recitations
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../workshops/week1/" class="md-tabs__link">
+          
+  
+  
+  Workshops
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../homeworks/week1/" class="md-tabs__link">
+          
+  
+  
+  Homeworks
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../prerequisites/deep_learning/" class="md-tabs__link">
+          
+  
+  
+  Prerequisites
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../exams/midterm/" class="md-tabs__link">
+          
+  
+  
+  Exams
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../journal_club/" class="md-tabs__link">
+          
+  
+  
+  Journal Club
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../poster_session/" class="md-tabs__link">
+          
+  
+  
+  Poster Session
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../resources/" class="md-tabs__link">
+          
+  
+  
+  Resources
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../blog/" class="md-tabs__link">
+          
+  
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+    
+      
+
+    
+
+    
+
+        
+
+            
+
+        
+
+            
+
+        
+    
+
+    
+
+
+    <!-- Navigation -->
+    
+        
+        <div
+            class="md-sidebar md-sidebar--primary"
+            data-md-component="sidebar"
+            data-md-type="navigation"
+            
+        >
+            <div class="md-sidebar__scrollwrap">
+            <div class="md-sidebar__inner">
+                <!--
+  Copyright (c) 2016-2025 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+
+
+<!-- Determine classes -->
+
+
+  
+
+
+  
+    
+  
+
+
+<!-- Navigation -->
+<nav
+  class="md-nav md-nav--primary md-nav--lifted md-nav--integrated"
+  aria-label="Navigation"
+  data-md-level="0"
+>
+
+  <!-- Site title -->
+  <label class="md-nav__title" for="__drawer">
+    <a
+      href="../.."
+      title="Deep RL Course"
+      class="md-nav__button md-logo"
+      aria-label="Deep RL Course"
+      data-md-component="logo"
+    >
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Deep RL Course
+  </label>
+
+  <!-- Repository information -->
+  
+
+  <!-- Navigation list -->
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Welcome
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Calendar
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Calendar
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home/calender/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Calender
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Course Notes
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Course Notes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Conceptual Overview of RL
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            Conceptual Overview of RL
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/intro-to-rl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 1: Introduction to RL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/value-based/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 2: Value-based Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/policy-based/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 3: Policy-Based Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/advanced/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 4: Advanced Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/model-based/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 5: Model-Based Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/bandits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 6: Multi-Armed Bandits
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    RL Methods in Depth
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            RL Methods in Depth
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/intro-to-phase2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction to RL in Depth
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/value-based2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 7: Value-based Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/policy-based2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 8: Policy-Based Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/exploration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Exploration Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/imitation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Imitation Learning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/inverse/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Inverse RL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/offline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Offline RL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/multi-agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Multi-Agent RL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/hierarchical/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Hierarchical RL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/meta/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Meta-RL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Lectures
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Lectures
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 1: Introduction to RL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 2: Value-Based Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 3: Policy-Based Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 4: Advanced Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 5: Model-Based Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 6: Multi-Armed Bandits
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 7: Value-Based Theory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 8: Policy-Based Theory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 9: Advanced Theory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 10: Exploration Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 11: Imitation &amp; Inverse RL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 12: Offline Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 13: Multi-Agent Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 14: Hierarchical &amp; Meta RL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 15: Guest Lectures
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Guests
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Guests
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/richard_sutton/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Richard Sutton
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/chris_watkins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chris Watkins
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/michael_littman/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Michael Littman
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/peter_stone/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Peter Stone
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/jakob_foerster/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Jakob Foerster
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/nan_jiang/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Nan Jiang
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/benjamin_eysenbach/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Benjamin Eysenbach
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/ian_osband/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ian Osband
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/jeff_clune/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Jeff Clune
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/peter_dayan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Peter Dayan
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/ida_momennejad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ida Momennejad
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/abhishek_gupta/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Abhishek Gupta
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/benjamin_van_roy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Benjamin Van Roy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/wolfram_schultz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Wolfram Schultz
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/mark_ho/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Mark Ho
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/pascal_poupart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pascal Poupart
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/peter_norvig/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Peter Norvig
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/karl_friston/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Karl Friston
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/amy_zhang/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amy Zhang
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/adam_white/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Adam White
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/anne_collins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Anne Collins
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/luis_serrano/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Luis Serrano
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/martha_white/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Martha White
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/christopher_amato/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Christopher Amato
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/marlos_machado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Marlos C. Machado
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Recitations
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Recitations
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 1: Introduction to RL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 2: Value-Based Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 3: Policy-Based Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 4: Advanced Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Week 5: Model-Based Methods
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 5: Model-Based Methods
+    
+  </span>
+  
+
+      </a>
+      
+        <!--
+  Copyright (c) 2016-2025 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Determine title -->
+
+
+
+
+<!-- Table of contents -->
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+
+  <!--
+    Check whether the content starts with a level 1 headline. If it does, the
+    top-level anchor must be skipped, since it would be redundant to the link
+    to the current page that is located just above the anchor. Therefore we
+    directly continue with the children of the anchor.
+  -->
+  
+  
+    
+  
+
+  <!-- Table of contents title and list -->
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#screen-record" class="md-nav__link">
+    <span class="md-ellipsis">
+      Screen Record
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recitation-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recitation Notes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recitation Notes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#table-of-contents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Table of Contents
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-introduction-to-model-based-reinforcement-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Introduction to Model-Based Reinforcement Learning
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-stochastic-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Stochastic Optimization
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Stochastic Optimization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-problem-formulation" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Problem Formulation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-sample-based-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Sample-Based Methods
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-example-problem-fitting-a-linear-regression-model-for-transition-prediction" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 Example Problem: Fitting a Linear Regression Model for Transition Prediction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 Example Problem: Fitting a Linear Regression Model for Transition Prediction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#iteration-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Iteration 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-predictions-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      # 1) Predictions &amp; Errors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-gradients" class="md-nav__link">
+    <span class="md-ellipsis">
+      # 2) Gradients
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      # 3) Update
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iteration-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Iteration 2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-predictions-errors_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      # 1) Predictions &amp; Errors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-gradients_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      # 2) Gradients
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-update_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      # 3) Update
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#result" class="md-nav__link">
+    <span class="md-ellipsis">
+      Result
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-cross-entropy-method-cem" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Cross-Entropy Method (CEM)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Cross-Entropy Method (CEM)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-algorithmic-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Algorithmic Steps
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-intuition-and-variants" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Intuition and Variants
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-example-problem-1d-action-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Example Problem: 1D Action Optimization
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-monte-carlo-tree-search-mcts" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Monte Carlo Tree Search (MCTS)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Monte Carlo Tree Search (MCTS)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-basic-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Basic Components
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-puct-ucb-for-trees" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 PUCT / UCB for Trees
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-example-problem-mcts-for-a-simple-game-tic-tac-toe" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Example Problem: MCTS for a Simple Game (Tic-Tac-Toe)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.3 Example Problem: MCTS for a Simple Game (Tic-Tac-Toe)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#game-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Game Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notation-for-game-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notation for Game States
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simulation-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Simulation #1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-1-selection-from-the-root" class="md-nav__link">
+    <span class="md-ellipsis">
+      # Step 1: Selection (from the root)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-expansion" class="md-nav__link">
+    <span class="md-ellipsis">
+      # Step 2: Expansion
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-simulation-rollout" class="md-nav__link">
+    <span class="md-ellipsis">
+      # Step 3: Simulation (Rollout)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-backpropagation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Backpropagation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 4: Backpropagation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simulation-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Simulation #2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-1-selection-from-root" class="md-nav__link">
+    <span class="md-ellipsis">
+      # Step 1: Selection (from root)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-expansion_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      # Step 2: Expansion
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-simulation-rollout_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      # Step 3: Simulation (Rollout)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-backpropagation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      # Step 4: Backpropagation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#after-two-simulations" class="md-nav__link">
+    <span class="md-ellipsis">
+      After Two Simulations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-model-predictive-control-mpc" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Model Predictive Control (MPC)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Model Predictive Control (MPC)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-general-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 General Framework
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-mpc-in-reinforcement-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 MPC in Reinforcement Learning
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-example-problem-double-integrator-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 Example Problem: Double Integrator System
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-uncertainty-estimation" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Uncertainty Estimation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Uncertainty Estimation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-sources-of-uncertainty" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 Sources of Uncertainty
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-methods-of-estimation" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 Methods of Estimation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-implications-for-model-based-rl" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3 Implications for Model-Based RL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-example-problem-gaussian-process-for-next-state-prediction" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.4 Example Problem: Gaussian Process for Next-State Prediction
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-dyna-style-algorithms" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Dyna-Style Algorithms
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Dyna-Style Algorithms">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-suttons-dyna-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1 Sutton’s Dyna Architecture
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-integrating-planning-acting-and-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2 Integrating Planning, Acting, and Learning
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-example-problem-dyna-q-in-a-3-state-chain-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.3 Example Problem: Dyna-Q in a 3-State Chain Environment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. References
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Author(s)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 6: Multi-Armed Bandits
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 7: Value-Based Theory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 8: Policy-Based Theory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 9: Advanced Theory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Workshops
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Workshops
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/week1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 1: Introduction to RL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/week2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 2: Value-Based Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/week3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 3: Policy-Based Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/week4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 4: Advanced Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/week5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 5: Model-Based Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/week6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 6: Multi-Armed Bandits
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Homeworks
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Homeworks
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    HW1: Introduction to RL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    HW2: Value-Based Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    HW3: Policy-Based Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    HW4: Advanced Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    HW5: Model-Based Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    HW6: Multi-Armed Bandits
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    HW7: Value-Based Theory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    HW8: Policy-Based Theory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    HW9: Advanced Theory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    HW10: Exploration Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    HW11: Imitation &amp; Inverse RL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    HW12: Offline Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    HW13: Multi-Agent Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    HW14: Hierarchical &amp; Meta RL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Previous Semesters
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Prerequisites
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Prerequisites
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prerequisites/deep_learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deep Learning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prerequisites/game_theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Game Theory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prerequisites/linear_algebra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Linear Algebra
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prerequisites/numerical_optimization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Numerical Optimization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prerequisites/information_theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Information Theory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prerequisites/stochastic_processes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Stochastic Process
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Exams
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Exams
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exams/midterm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Spring 2025 Midterm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exams/final/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Spring 2025 Final
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exams/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Previous Semesters
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Journal Club
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Journal Club
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../journal_club/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Journal Club
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Poster Session
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            Poster Session
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../poster_session/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Poster Session
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../poster_session/sp24/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Spring 2024
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Resources
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            Resources
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Resources
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tags
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_14_3" id="__nav_14_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Archive
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_14_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14_3">
+            <span class="md-nav__icon md-icon"></span>
+            Archive
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/archive/2025/02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    February 2025
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_14_4" id="__nav_14_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Categories
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_14_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14_4">
+            <span class="md-nav__icon md-icon"></span>
+            Categories
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/category/course-updates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Course Updates
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+            </div>
+            </div>
+        </div>
+    
+
+    <!-- Table of contents -->
+    
+
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="week-5-model-based-methods">Week 5: Model-Based Methods</h1>
+<h3 id="screen-record">Screen Record</h3>
+<iframe width="996" height="560" src="https://www.youtube.com/embed/VOTmlx4_sTs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<hr />
+<h3 id="recitation-notes">Recitation Notes</h3>
+<h4 id="table-of-contents"><strong>Table of Contents</strong></h4>
+<ul>
+<li><a href="#week-5-model-based-methods">Week 5: Model-Based Methods</a></li>
+<li><a href="#lecture-notes-on-model-based-reinforcement-learning"><strong>Lecture Notes on Model-Based Reinforcement Learning</strong></a></li>
+<li><a href="#table-of-contents"><strong>Table of Contents</strong></a></li>
+<li><a href="#1-introduction-to-model-based-reinforcement-learning">1. <strong>Introduction to Model-Based Reinforcement Learning</strong></a></li>
+<li><a href="#2-stochastic-optimization">2. <strong>Stochastic Optimization</strong></a><ul>
+<li><a href="#21-problem-formulation">2.1 <strong>Problem Formulation</strong></a></li>
+<li><a href="#22-sample-based-methods">2.2 <strong>Sample-Based Methods</strong></a></li>
+<li><a href="#23-example-problem-fitting-a-linear-regression-model-for-transition-prediction">2.3 <strong>Example Problem: Fitting a Linear Regression Model for Transition Prediction</strong></a></li>
+<li><a href="#iteration-1"><strong>Iteration 1</strong></a><ul>
+<li><a href="#1-predictions--errors"><strong>1) Predictions \&amp; Errors</strong></a></li>
+<li><a href="#2-gradients"><strong>2) Gradients</strong></a></li>
+<li><a href="#3-update"><strong>3) Update</strong></a></li>
+</ul>
+</li>
+<li><a href="#iteration-2"><strong>Iteration 2</strong></a><ul>
+<li><a href="#1-predictions--errors-1"><strong>1) Predictions \&amp; Errors</strong></a></li>
+<li><a href="#2-gradients-1"><strong>2) Gradients</strong></a></li>
+<li><a href="#3-update-1"><strong>3) Update</strong></a></li>
+</ul>
+</li>
+<li><a href="#result"><strong>Result</strong></a></li>
+</ul>
+</li>
+<li><a href="#3-cross-entropy-method-cem">3. <strong>Cross-Entropy Method (CEM)</strong></a><ul>
+<li><a href="#31-algorithmic-steps">3.1 <strong>Algorithmic Steps</strong></a></li>
+<li><a href="#32-intuition-and-variants">3.2 <strong>Intuition and Variants</strong></a></li>
+<li><a href="#33-example-problem-1d-action-optimization">3.3 <strong>Example Problem: 1D Action Optimization</strong></a></li>
+</ul>
+</li>
+<li><a href="#4-monte-carlo-tree-search-mcts">4. <strong>Monte Carlo Tree Search (MCTS)</strong></a><ul>
+<li><a href="#41-basic-components">4.1 <strong>Basic Components</strong></a></li>
+<li><a href="#42-puct--ucb-for-trees">4.2 <strong>PUCT / UCB for Trees</strong></a></li>
+<li><a href="#43-example-problem-mcts-for-a-simple-game-tic-tac-toe">4.3 <strong>Example Problem: MCTS for a Simple Game (Tic-Tac-Toe)</strong></a></li>
+<li><a href="#game-overview"><strong>Game Overview</strong></a></li>
+<li><a href="#notation-for-game-states"><strong>Notation for Game States</strong></a></li>
+<li><a href="#simulation-1"><strong>Simulation #1</strong></a><ul>
+<li><a href="#step-1-selection-from-the-root"><strong>Step 1: Selection (from the root)</strong></a></li>
+<li><a href="#step-2-expansion"><strong>Step 2: Expansion</strong></a></li>
+<li><a href="#step-3-simulation-rollout"><strong>Step 3: Simulation (Rollout)</strong></a></li>
+</ul>
+</li>
+<li><a href="#step-4-backpropagation"><strong>Step 4: Backpropagation</strong></a></li>
+<li><a href="#simulation-2"><strong>Simulation #2</strong></a><ul>
+<li><a href="#step-1-selection-from-root"><strong>Step 1: Selection (from root)</strong></a></li>
+<li><a href="#step-2-expansion-1"><strong>Step 2: Expansion</strong></a></li>
+<li><a href="#step-3-simulation-rollout-1"><strong>Step 3: Simulation (Rollout)</strong></a></li>
+<li><a href="#step-4-backpropagation-1"><strong>Step 4: Backpropagation</strong></a></li>
+</ul>
+</li>
+<li><a href="#after-two-simulations"><strong>After Two Simulations</strong></a></li>
+</ul>
+</li>
+<li><a href="#5-model-predictive-control-mpc">5. <strong>Model Predictive Control (MPC)</strong></a><ul>
+<li><a href="#51-general-framework">5.1 <strong>General Framework</strong></a></li>
+<li><a href="#52-mpc-in-reinforcement-learning">5.2 <strong>MPC in Reinforcement Learning</strong></a></li>
+<li><a href="#53-example-problem-double-integrator-system">5.3 <strong>Example Problem: Double Integrator System</strong></a></li>
+</ul>
+</li>
+<li><a href="#6-uncertainty-estimation">6. <strong>Uncertainty Estimation</strong></a><ul>
+<li><a href="#61-sources-of-uncertainty">6.1 <strong>Sources of Uncertainty</strong></a></li>
+<li><a href="#62-methods-of-estimation">6.2 <strong>Methods of Estimation</strong></a></li>
+<li><a href="#63-implications-for-model-based-rl">6.3 <strong>Implications for Model-Based RL</strong></a></li>
+<li><a href="#64-example-problem-gaussian-process-for-next-state-prediction">6.4 <strong>Example Problem: Gaussian Process for Next-State Prediction</strong></a></li>
+</ul>
+</li>
+<li><a href="#7-dyna-style-algorithms">7. <strong>Dyna-Style Algorithms</strong></a><ul>
+<li><a href="#71-suttons-dyna-architecture">7.1 <strong>Sutton’s Dyna Architecture</strong></a></li>
+<li><a href="#72-integrating-planning-acting-and-learning">7.2 <strong>Integrating Planning, Acting, and Learning</strong></a></li>
+<li><a href="#73-example-problem-dyna-q-in-a-3-state-chain-environment">7.3 <strong>Example Problem: Dyna-Q in a 3-State Chain Environment</strong></a></li>
+</ul>
+</li>
+<li><a href="#8-references">8. <strong>References</strong></a></li>
+</ul>
+<hr />
+<h4 id="1-introduction-to-model-based-reinforcement-learning">1. <strong>Introduction to Model-Based Reinforcement Learning</strong></h4>
+<p>In reinforcement learning, an agent interacts with an environment modeled (or approximated) as a Markov Decision Process <span class="arithmatex">\(\langle \mathcal{S}, \mathcal{A}, P, R, \gamma \rangle\)</span>. Model-based RL involves explicitly learning or using a model of the environment—transition dynamics <span class="arithmatex">\(P(s'|s,a)\)</span> and/or reward <span class="arithmatex">\(R(s,a)\)</span>—to <strong>plan</strong> actions. </p>
+<p><strong>Why Model-Based?</strong><br />
+- <strong>Sample Efficiency</strong>: If collecting data is expensive, using a model for planning can reduce the necessary real-world interactions.<br />
+- <strong>Exploration</strong>: A model allows the agent to simulate potential scenarios offline and direct exploration more effectively.<br />
+- <strong>Robustness and Safety</strong>: In safety-critical applications (e.g., robotics, autonomous driving), planning with a model can help avoid catastrophic outcomes during training.  </p>
+<p>In the sections that follow, we will delve into foundational methods and demonstrate their use in simple, illustrative problems.</p>
+<hr />
+<h4 id="2-stochastic-optimization">2. <strong>Stochastic Optimization</strong></h4>
+<h5 id="21-problem-formulation">2.1 <strong>Problem Formulation</strong></h5>
+<p>A <strong>stochastic optimization</strong> problem aims to optimize an objective function under uncertainty:</p>
+<div class="arithmatex">\[\min_{\theta} \; \mathbb{E}_{x \sim \mathcal{D}}[ f(\theta, x) ],\]</div>
+<p>where
+- <span class="arithmatex">\(\theta\)</span> are parameters (could be neural network weights, policy parameters, etc.),
+- <span class="arithmatex">\(\mathcal{D}\)</span> is a (possibly unknown) data distribution or environment dynamics,
+- <span class="arithmatex">\(f(\theta, x)\)</span> is a cost (or negative reward) function.</p>
+<p>In model-based RL, such problems appear when we:
+1. <strong>Train a model</strong> <span class="arithmatex">\(\hat{P}_\theta(s'|s,a)\)</span> to predict transitions by minimizing some loss <span class="arithmatex">\(\mathcal{L}(\theta)\)</span>.
+2. <strong>Optimize a policy</strong> using predicted trajectories.</p>
+<h5 id="22-sample-based-methods">2.2 <strong>Sample-Based Methods</strong></h5>
+<p>Because <span class="arithmatex">\(\mathcal{D}\)</span> or <span class="arithmatex">\(f(\theta, x)\)</span> might be complex or high-dimensional, <strong>sample-based approaches</strong> are common:</p>
+<ol>
+<li><strong>Stochastic Gradient Descent (SGD)</strong>: </li>
+<li>Evaluate <span class="arithmatex">\(\nabla_\theta f(\theta, x^{(i)})\)</span> on mini-batches of samples from <span class="arithmatex">\(\mathcal{D}\)</span>.  </li>
+<li>
+<p>Update <span class="arithmatex">\(\theta \leftarrow \theta - \alpha \nabla_\theta f(\theta, x^{(i)})\)</span>.</p>
+</li>
+<li>
+<p><strong>Population-Based / Evolutionary Algorithms</strong>:</p>
+</li>
+<li>Maintain a population of candidate solutions <span class="arithmatex">\(\{\theta_1, \theta_2, \ldots\}\)</span>.  </li>
+<li>
+<p>Evaluate fitness and use selection, crossover, mutation to evolve better solutions.</p>
+</li>
+<li>
+<p><strong>Simulated Annealing</strong>:</p>
+</li>
+<li>Iteratively propose a new solution and accept/reject based on a temperature parameter that decreases over time, allowing for occasional acceptance of worse solutions to escape local minima.</li>
+</ol>
+<h5 id="23-example-problem-fitting-a-linear-regression-model-for-transition-prediction">2.3 <strong>Example Problem: Fitting a Linear Regression Model for Transition Prediction</strong></h5>
+<p><strong>Problem Setup</strong><br />
+- We have a small environment: state <span class="arithmatex">\(s\in \mathbb{R}\)</span> is 1D, action <span class="arithmatex">\(a\in \{-1, 1\}\)</span>.<br />
+- The true environment dynamics is <span class="arithmatex">\(s_{t+1} = s_t + 0.5 \, a + \epsilon_t\)</span>, where <span class="arithmatex">\(\epsilon_t \sim \mathcal{N}(0, 0.1^2)\)</span>.<br />
+- We collect <span class="arithmatex">\(N=100\)</span> transitions <span class="arithmatex">\(\{(s^{(i)}, a^{(i)}, s'^{(i)})\}_{i=1}^N\)</span>.<br />
+- We want to fit a <em>linear model</em>: <span class="arithmatex">\(\hat{s}_{t+1} = w_0 + w_1 s_t + w_2 a_t\)</span>.  </p>
+<p><strong>Cost Function</strong> </p>
+<div class="arithmatex">\[\mathcal{L}(w_0, w_1, w_2) = \sum_{i=1}^N \bigl(s'^{(i)} - (w_0 + w_1 s^{(i)} + w_2 a^{(i)}) \bigr)^2.\]</div>
+<p><strong>Stochastic Gradient Descent Approach</strong>  </p>
+<ol>
+<li><strong>Initialize</strong> parameters <span class="arithmatex">\(\theta = (w_0, w_1, w_2)\)</span> randomly.  </li>
+<li>
+<p><strong>Loop</strong> until convergence:</p>
+<ul>
+<li>Sample a mini-batch <span class="arithmatex">\(\mathcal{B}\)</span> of transitions from the dataset.</li>
+<li>
+<p>Compute the gradient:</p>
+<div class="arithmatex">\[\nabla_\theta \mathcal{L}_\mathcal{B}(\theta) = \sum_{(s,a,s') \in \mathcal{B}} 2 \, (s' - \hat{s}) \, (-1) \nabla_\theta \hat{s},\]</div>
+<p>where <span class="arithmatex">\(\hat{s} = w_0 + w_1 s + w_2 a\)</span>.</p>
+</li>
+<li>
+<p><strong>Update</strong>:</p>
+<div class="arithmatex">\[\theta \leftarrow \theta - \alpha \nabla_\theta \mathcal{L}_\mathcal{B}(\theta).\]</div>
+</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h6 id="iteration-1"><strong>Iteration 1</strong></h6>
+<h6 id="1-predictions-errors"># <strong>1) Predictions &amp; Errors</strong></h6>
+<ol>
+<li><span class="arithmatex">\(\hat{s}^{(1)} = 0.20 + 0.90\cdot0.0 + 0.30\cdot(+1)=0.50\)</span>; error <span class="arithmatex">\(e^{(1)}=0.55-0.50=0.05.\)</span>  </li>
+<li><span class="arithmatex">\(\hat{s}^{(2)} = 0.20 + 0.90\cdot1.0 + 0.30\cdot(-1)=0.80\)</span>; error <span class="arithmatex">\(e^{(2)}=0.40-0.80=-0.40.\)</span></li>
+</ol>
+<h6 id="2-gradients"># <strong>2) Gradients</strong></h6>
+<ul>
+<li>Point #1: <span class="arithmatex">\(\nabla = -2e^{(1)}[1,\,s,\,a] = -2\cdot0.05\,[1,\,0.0,\,+1] = [-0.10,0,-0.10].\)</span>  </li>
+<li>Point #2: <span class="arithmatex">\(\nabla = -2e^{(2)}[1,\,s,\,a] = -2\cdot(-0.40)\,[1,\,1.0,\,-1] = [+0.80,+0.80,-0.80].\)</span></li>
+</ul>
+<p><strong>Sum</strong>: <span class="arithmatex">\([0.70,\,0.80,\,-0.90].\)</span></p>
+<h6 id="3-update"># <strong>3) Update</strong></h6>
+<div class="arithmatex">\[
+(w_0,w_1,w_2) \leftarrow (0.20,0.90,0.30)\;-\;0.1\times(0.70,\,0.80,\,-0.90)
+$$
+$$
+= (0.13,\,0.82,\,0.39).
+\]</div>
+<h6 id="iteration-2"><strong>Iteration 2</strong></h6>
+<h6 id="1-predictions-errors_1"># <strong>1) Predictions &amp; Errors</strong></h6>
+<ol>
+<li><span class="arithmatex">\(\hat{s}^{(1)}=0.13 + 0.82\cdot0.0 + 0.39\cdot(+1)=0.52\)</span>; <span class="arithmatex">\(e^{(1)}=0.55-0.52=0.03.\)</span>  </li>
+<li><span class="arithmatex">\(\hat{s}^{(2)}=0.13 + 0.82\cdot1.0 + 0.39\cdot(-1)=0.56\)</span>; <span class="arithmatex">\(e^{(2)}=0.40-0.56=-0.16.\)</span></li>
+</ol>
+<h6 id="2-gradients_1"># <strong>2) Gradients</strong></h6>
+<ul>
+<li>Point #1: <span class="arithmatex">\([-2\cdot0.03,\,-2\cdot0.03\cdot0,\,-2\cdot0.03\cdot1]=[-0.06,\,0,\,-0.06].\)</span>  </li>
+<li>Point #2: <span class="arithmatex">\([-2\cdot(-0.16),\,-2\cdot(-0.16)\cdot1,\,-2\cdot(-0.16)\cdot(-1)]=[+0.32,+0.32,-0.32].\)</span></li>
+</ul>
+<p><strong>Sum</strong>: <span class="arithmatex">\([0.26,\,0.32,\,-0.38].\)</span></p>
+<h6 id="3-update_1"># <strong>3) Update</strong></h6>
+<div class="arithmatex">\[
+(w_0,w_1,w_2)\leftarrow(0.13,\,0.82,\,0.39)-0.1\times(0.26,\,0.32,\,-0.38)
+$$
+$$
+= (0.104,\,0.788,\,0.428).
+\]</div>
+<hr />
+<h6 id="result"><strong>Result</strong></h6>
+<p>After two steps, <span class="arithmatex">\(\theta\)</span> moved from <span class="arithmatex">\((0.20,\,0.90,\,0.30)\)</span> to <span class="arithmatex">\((0.104,\,0.788,\,0.428)\)</span>. With more iterations (and more data), the model converges near <span class="arithmatex">\((0,1.0,0.5)\)</span>, reflecting the true dynamics <span class="arithmatex">\(s_{t+1} = s_t + 0.5\,a + \epsilon_t\)</span>.</p>
+<hr />
+<h4 id="3-cross-entropy-method-cem">3. <strong>Cross-Entropy Method (CEM)</strong></h4>
+<p>The <strong>Cross-Entropy Method (CEM)</strong> is a population-based algorithm that iteratively refines a sampling distribution over possible solutions, focusing on an “elite” set of the highest-performing samples.</p>
+<h5 id="31-algorithmic-steps">3.1 <strong>Algorithmic Steps</strong></h5>
+<ol>
+<li><strong>Parameterize a Distribution</strong>: Let <span class="arithmatex">\(q(\theta \mid \phi)\)</span> be a distribution over solutions <span class="arithmatex">\(\theta\)</span>. Often, we use a multivariate Gaussian with parameters <span class="arithmatex">\(\phi = \{\mu, \Sigma\}\)</span>.  </li>
+<li><strong>Sample Solutions</strong>: Draw <span class="arithmatex">\(\{\theta_1,\ldots,\theta_M\}\)</span> from <span class="arithmatex">\(q(\theta|\phi)\)</span>.  </li>
+<li><strong>Evaluate Solutions</strong>: Compute an objective <span class="arithmatex">\(J(\theta_i)\)</span> for each sample (e.g., cumulative reward, negative cost).  </li>
+<li><strong>Select Elites</strong>: Pick the top <span class="arithmatex">\(K\)</span> samples (or a top percentage).  </li>
+<li><strong>Update Distribution</strong>: Update <span class="arithmatex">\(\phi\)</span> (e.g., <span class="arithmatex">\(\mu, \Sigma\)</span>) to fit the elite set.  </li>
+<li><strong>Iterate</strong>: Continue sampling from the updated distribution until convergence or a maximum iteration limit.</li>
+</ol>
+<h5 id="32-intuition-and-variants">3.2 <strong>Intuition and Variants</strong></h5>
+<ul>
+<li><strong>Intuition</strong>: By repeatedly sampling solutions and focusing on the best ones, we “zoom in” on promising regions.  </li>
+<li><strong>Quantile Selection</strong>: Instead of picking the top <span class="arithmatex">\(K\)</span>, one can pick all solutions above a certain performance threshold.  </li>
+<li><strong>Regularization</strong>: Add a fraction of the old mean/covariance to stabilize updates (avoiding collapsing to a single point).</li>
+</ul>
+<h5 id="33-example-problem-1d-action-optimization">3.3 <strong>Example Problem: 1D Action Optimization</strong></h5>
+<p><strong>Scenario</strong>  </p>
+<ul>
+<li>We have a 1D system with state <span class="arithmatex">\(s_0 = 0\)</span>.  </li>
+<li>We can choose a <em>single</em> action <span class="arithmatex">\(a\in\mathbb{R}\)</span> that transitions the system to <span class="arithmatex">\(s_1 = s_0 + a\)</span>. Then a reward is given by <span class="arithmatex">\(r(s_1) = -(s_1 - 2)^2\)</span>.  </li>
+<li>We want to find the action <span class="arithmatex">\(a^*\)</span> that maximizes the reward (equivalently minimizes the negative reward):</li>
+</ul>
+<div class="arithmatex">\[a^* = \arg\max_a \; - (0 + a - 2)^2.\]</div>
+<p>The optimal solution is obviously <span class="arithmatex">\(a^*=2\)</span>.</p>
+<p>But let's see how CEM would handle this <em>without</em> an analytical solution.</p>
+<p><strong>CEM Steps</strong><br />
+1. <strong>Initialize</strong> a Gaussian distribution for <span class="arithmatex">\(a\)</span>: <span class="arithmatex">\(\mu=0\)</span>, <span class="arithmatex">\(\sigma^2=4\)</span>.<br />
+2. <strong>Sample</strong> 20 actions: <span class="arithmatex">\(\{a_1,\ldots,a_{20}\}\)</span>.<br />
+3. <strong>Evaluate</strong> each action: <span class="arithmatex">\(J(a_i)= - (a_i - 2)^2.\)</span><br />
+4. <strong>Select Elites</strong>: Suppose we pick the top 5 actions.<br />
+5. <strong>Update</strong> <span class="arithmatex">\(\mu,\sigma\)</span> to the mean and std of these top 5 actions.<br />
+6. <strong>Iterate</strong>: After a few iterations, <span class="arithmatex">\(\mu\)</span> converges near <span class="arithmatex">\(2\)</span>.</p>
+<p>A table might look like:</p>
+<table>
+<thead>
+<tr>
+<th>Iteration</th>
+<th>Sample Actions</th>
+<th>Best 5 (Elites)</th>
+<th>New Mean (μ)</th>
+<th>New Std (σ)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><span class="arithmatex">\(\{-4, 1.2, 3.1, ...\}\)</span></td>
+<td><span class="arithmatex">\(\{2.9, 3.1, 1.8, 2.4, 1.6\}\)</span></td>
+<td>2.36</td>
+<td>0.53</td>
+</tr>
+<tr>
+<td>2</td>
+<td><span class="arithmatex">\(\{1.9, 2.6, 2.1, ...\}\)</span></td>
+<td><span class="arithmatex">\(\{2.0, 2.1, 2.4, 2.6, 1.9\}\)</span></td>
+<td>2.2</td>
+<td>0.24</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+</tbody>
+</table>
+<p>The method “homes in” on the correct action <span class="arithmatex">\(a^*\approx 2\)</span>.</p>
+<hr />
+<h4 id="4-monte-carlo-tree-search-mcts">4. <strong>Monte Carlo Tree Search (MCTS)</strong></h4>
+<p><strong>Monte Carlo Tree Search</strong> is a powerful method for decision-making in discrete action spaces (notably games). It builds a partial search tree by random simulations (rollouts) and updates action values based on the simulation outcomes.</p>
+<h5 id="41-basic-components">4.1 <strong>Basic Components</strong></h5>
+<ol>
+<li><strong>Selection</strong>: Traverse down the tree from the root state, choosing actions that balance exploration and exploitation (e.g., UCB).  </li>
+<li><strong>Expansion</strong>: When reaching a leaf node, expand one or more children.  </li>
+<li><strong>Simulation (Rollout)</strong>: From the new child node, simulate a default policy until a terminal state (or a depth limit) is reached.  </li>
+<li><strong>Backpropagation</strong>: Propagate the final simulation outcome (win/loss or reward) back up the tree, updating visit counts and action-value estimates.</li>
+</ol>
+<h5 id="42-puct-ucb-for-trees">4.2 <strong>PUCT / UCB for Trees</strong></h5>
+<p>A common selection formula is:</p>
+<div class="arithmatex">\[\text{UCT}(s,a) = \bar{Q}(s,a) + c \sqrt{\frac{\ln N(s)}{N(s,a)}}.\]</div>
+<ul>
+<li><span class="arithmatex">\(\bar{Q}(s,a)\)</span>: average return of choosing <span class="arithmatex">\(a\)</span> at <span class="arithmatex">\(s\)</span>.  </li>
+<li><span class="arithmatex">\(N(s)\)</span>: visits to state <span class="arithmatex">\(s\)</span>.  </li>
+<li><span class="arithmatex">\(N(s,a)\)</span>: visits to the action <span class="arithmatex">\(a\)</span> from state <span class="arithmatex">\(s\)</span>.  </li>
+<li><span class="arithmatex">\(c\)</span>: exploration constant.</li>
+</ul>
+<p>In <strong>AlphaZero</strong>, a variation called <strong>PUCT</strong> (Polynomial Upper Confidence Trees) adds a prior probability <span class="arithmatex">\(\pi(a|s)\)</span> from a policy network:</p>
+<div class="arithmatex">\[\text{PUCT}(s,a) = \bar{Q}(s,a) + c \,\pi(a\mid s)\,\frac{\sqrt{N(s)}}{1+N(s,a)}.\]</div>
+<h5 id="43-example-problem-mcts-for-a-simple-game-tic-tac-toe">4.3 <strong>Example Problem: MCTS for a Simple Game (Tic-Tac-Toe)</strong></h5>
+<p>To illustrate how Monte Carlo Tree Search (MCTS) proceeds in a small game like Tic-Tac-Toe, let’s walk step-by-step through <strong>two</strong> simulated MCTS iterations. We will track how a single simulation (playout) is done each time, and how the search tree is incrementally updated. </p>
+<hr />
+<h6 id="game-overview"><strong>Game Overview</strong></h6>
+<ul>
+<li><strong>Board</strong>: 3x3 grid.</li>
+<li><strong>Players</strong>: </li>
+<li><strong>X</strong> (the MCTS agent we are training), who always goes first.</li>
+<li><strong>O</strong> (the opponent), which we will assume plays randomly in this example.</li>
+<li><strong>Rewards</strong> (from X’s perspective):</li>
+<li>+1 if X eventually wins,</li>
+<li>-1 if O wins,</li>
+<li>0 for a draw.</li>
+</ul>
+<p>We will show how:
+1. The <strong>Selection</strong> step chooses which moves to explore based on visit statistics.
+2. The <strong>Expansion</strong> step adds new nodes (child states) to the tree.
+3. The <strong>Simulation</strong> (rollout) step plays randomly until a terminal board state is reached.
+4. The <strong>Backpropagation</strong> step updates the node statistics.</p>
+<blockquote>
+<p><strong>Note</strong>: Real MCTS typically runs many (hundreds or thousands) of simulations per move. We’ll illustrate just <strong>two</strong> simulations for clarity.</p>
+</blockquote>
+<h6 id="notation-for-game-states"><strong>Notation for Game States</strong></h6>
+<p>We’ll represent the board states with a simple ASCII layout. For example:</p>
+<div class="language-text highlight"><pre><span></span><code>```
+1 | 2 | 3 
+---+---+--- 
+4 | 5 | 6 
+---+---+--- 
+7 | 8 | 9
+```
+</code></pre></div>
+<ul>
+<li>Positions <span class="arithmatex">\(1,2,3,4,5,6,7,8,9\)</span> can be empty, 'X', or 'O'.</li>
+<li>The <strong>root state</strong> (empty board) has all 9 positions empty.</li>
+</ul>
+<hr />
+<h6 id="simulation-1"><strong>Simulation #1</strong></h6>
+<h6 id="step-1-selection-from-the-root"># <strong>Step 1: Selection (from the root)</strong></h6>
+<ul>
+<li><strong>Root State</strong>: Empty board. We have no Q-values (no prior visits).  </li>
+<li>MCTS typically breaks ties randomly when no node has a better value or visit count.  </li>
+<li><strong>Possible moves</strong> for X: 9 (positions 1 through 9).  </li>
+</ul>
+<p>Let's assume the selection step picks <strong>the center move</strong> (position 5) for X.<br />
+- Because all moves are identical from the MCTS perspective at the start, we choose position 5 arbitrarily (or randomly among the 9).</p>
+<h6 id="step-2-expansion"># <strong>Step 2: Expansion</strong></h6>
+<ul>
+<li>We’ve now arrived at the child node corresponding to X having placed a mark in position 5.  </li>
+<li>
+<p>Board now (child node):</p>
+<p><code>1 | 2 | 3
+---+---+---
+4 | X | 6
+---+---+---
+7 | 8 | 9</code></p>
+</li>
+<li>
+<p>We expand from this node. In basic MCTS, we typically <strong>expand one child</strong> for the next player (O).  </p>
+</li>
+<li>So let's add a single child for O’s move. But O can choose any of the 8 empty positions.  </li>
+</ul>
+<p><strong>For simplicity,</strong> say the expansion picks O’s move at position 1.</p>
+<h6 id="step-3-simulation-rollout"># <strong>Step 3: Simulation (Rollout)</strong></h6>
+<p>We now have a partially specified board:</p>
+<div class="language-text highlight"><pre><span></span><code>```
+O | 2 | 3 
+---+---+--- 
+4 | X | 6 
+---+---+---
+7 | 8 | 9
+```
+</code></pre></div>
+<p>From here, the <strong>simulation</strong> step means:
+1. We keep playing until the game ends (win/loss/draw),
+2. <strong>Both</strong> players choose moves randomly (in a real MCTS rollout, we typically do a “default policy” or random play).</p>
+<p>Let’s illustrate a possible random sequence:</p>
+<ol>
+<li>
+<p><strong>X</strong>’s random move: positions available are <span class="arithmatex">\(\{2,3,4,6,7,8,9\}\)</span>. Suppose X picks position 9.  </p>
+<p><code>O | 2 | 3
+---+---+---
+4 | X | 6
+---+---+---
+7 | 8 | X</code></p>
+</li>
+<li>
+<p><strong>O</strong> picks randomly from the remaining <span class="arithmatex">\(\{2,3,4,6,7,8\}\)</span>. Suppose O goes in position 2.</p>
+<p><code>O | O | 3
+---+---+---
+4 | X | 6
+---+---+---
+7 | 8 | X</code></p>
+</li>
+<li>
+<p><strong>X</strong> picks from <span class="arithmatex">\(\{3,4,6,7,8\}\)</span>. Suppose X picks position 3.  </p>
+<p><code>O | O | X
+---+---+---
+4 | X | 6
+---+---+---
+7 | 8 | X</code></p>
+</li>
+<li>
+<p>Check if X wins: Right now, no row/column/diagonal is complete.  </p>
+</li>
+<li>
+<p><strong>O</strong> picks from <span class="arithmatex">\(\{4,6,7,8\}\)</span>. Suppose O picks position 6.  </p>
+<p><code>O | O | X
+---+---+---
+4 | X | O
+---+---+---
+7 | 8 | X</code></p>
+</li>
+<li>
+<p>No win yet.  </p>
+</li>
+<li>
+<p><strong>X</strong> picks from <span class="arithmatex">\(\{4,7,8\}\)</span>. Suppose X picks position 7.  </p>
+<p><code>O | O | X
+---+---+---
+4 | X | O
+---+---+---
+X | 8 | X</code></p>
+</li>
+<li>
+<p>Now X has positions {3,5,7,9}. That <strong>is</strong> a winning combination on a diagonal? Actually, 3-5-7 is not a diagonal; the diagonals are (1,5,9) and (3,5,7). </p>
+</li>
+<li><strong>Check</strong>: 3,5,7 <em>does indeed form a diagonal</em> (top-right to bottom-left). So X has a <strong>win</strong>.</li>
+</ol>
+<p>Hence, the random rollout ends with <strong>X winning</strong> at step 5.<br />
+- <strong>Return</strong> from X’s perspective: +1</p>
+<h5 id="step-4-backpropagation"><strong>Step 4: Backpropagation</strong></h5>
+<p>We backpropagate the <strong>reward</strong> (+1 for an X win) up the search tree:</p>
+<ol>
+<li><strong>Child Node (O at pos 1)</strong>: </li>
+<li>Visit count: <span class="arithmatex">\(N = 1\)</span></li>
+<li>Sum of returns: <span class="arithmatex">\(W = +1\)</span>  (since from X’s perspective, that rollout was a success)</li>
+<li>
+<p>Average Q-value: <span class="arithmatex">\(\bar{Q} = +1/1 = +1\)</span></p>
+</li>
+<li>
+<p><strong>Parent Node (X at pos 5)</strong>:</p>
+</li>
+<li>Visit count: <span class="arithmatex">\(N = 1\)</span></li>
+<li>Sum of returns: <span class="arithmatex">\(W = +1\)</span></li>
+<li>
+<p><span class="arithmatex">\(\bar{Q} = +1\)</span></p>
+</li>
+<li>
+<p><strong>Root Node</strong> (empty board):</p>
+</li>
+<li>Visit count: <span class="arithmatex">\(N = 1\)</span></li>
+<li>Sum of returns: <span class="arithmatex">\(W = +1\)</span></li>
+<li><span class="arithmatex">\(\bar{Q} = +1\)</span></li>
+</ol>
+<p><em>(We typically store separate counts for each edge or node, but conceptually the result is the same: each visited node has +1 to its total returns.)</em></p>
+<p>Thus, after <strong>one</strong> simulation, the move “X at center” has 100% success rate in our limited data. The child move “O at pos 1” also has an average value of +1 (though that’s from X’s perspective, which might seem counterintuitive for O’s move, but in MCTS we track the perspective of the player to move at that node).</p>
+<hr />
+<hr />
+<h6 id="simulation-2"><strong>Simulation #2</strong></h6>
+<p>Let’s now do a <strong>second</strong> MCTS simulation. We start again at the <strong>root</strong> (empty board).</p>
+<h6 id="step-1-selection-from-root"># <strong>Step 1: Selection (from root)</strong></h6>
+<p>Now, the root node has a single visited child: “X at pos 5” with a Q-value of +1.<br />
+- All <strong>other 8 moves</strong> are unvisited (Q=0, visits=0).<br />
+- With typical MCTS selection criteria (like UCB), we might still explore an unvisited move. 
+  However, because “X at pos 5” has a very high (maximum) average return so far, let’s assume the selection again picks “X at pos 5”.</p>
+<h6 id="step-2-expansion_1"># <strong>Step 2: Expansion</strong></h6>
+<p>From the state with “X at center,” we already have an expanded child “O at pos 1.”<br />
+- But O could also move to positions 2,3,4,6,7,8,9.<br />
+- Typically, MCTS expansions add at least one <strong>unvisited</strong> move for O.<br />
+- Let’s say we expand “O at pos 9” this time as a new child node.</p>
+<h6 id="step-3-simulation-rollout_1"># <strong>Step 3: Simulation (Rollout)</strong></h6>
+<p>From the state:</p>
+<pre><code>   1 | 2 | 3
+  ---+---+---
+   4 | X | 6
+  ---+---+---
+   7 | 8 | O
+</code></pre>
+<p>(That is X in 5, O in 9.)</p>
+<p>We do another random rollout:</p>
+<ol>
+<li><strong>X</strong> picks from <span class="arithmatex">\(\{1,2,3,4,6,7,8\}\)</span>. Suppose X picks position 1.
+   <code>X | 2 | 3
+   ---+---+---
+   4 | X | 6
+   ---+---+---
+   7 | 8 | O</code></li>
+<li><strong>O</strong> picks from <span class="arithmatex">\(\{2,3,4,6,7,8\}\)</span>. Suppose O picks position 2.
+   <code>X | O | 3
+   ---+---+---
+   4 | X | 6
+   ---+---+---
+   7 | 8 | O</code></li>
+<li><strong>X</strong> picks from <span class="arithmatex">\(\{3,4,6,7,8\}\)</span>. Suppose X picks position 6.
+   <code>X | O | 3
+   ---+---+---
+   4 | X | X
+   ---+---+---
+   7 | 8 | O</code></li>
+<li><strong>O</strong> picks from <span class="arithmatex">\(\{3,4,7,8\}\)</span>. Suppose O picks position 4.
+   <code>X | O | 3
+   ---+---+---
+   O | X | X
+   ---+---+---
+   7 | 8 | O</code></li>
+<li><strong>X</strong> picks from <span class="arithmatex">\(\{3,7,8\}\)</span>. Suppose X picks 3:
+   <code>X | O | X
+   ---+---+---
+   O | X | X
+   ---+---+---
+   7 | 8 | O</code></li>
+<li>Check if X has 3 in a row: Not yet (positions X has are {1,3,5,6} – no row/column/diagonal complete).</li>
+<li><strong>O</strong> picks from <span class="arithmatex">\(\{7,8\}\)</span>. Suppose O picks 7:
+   <code>X | O | X
+   ---+---+---
+   O | X | X
+   ---+---+---
+   O | 8 | O</code></li>
+<li>O has positions {2,4,7,9}. Check if O wins: <ul>
+<li>2,4,7 is not a line, 4,7,9 is not a line, 2,7,9 is not a line, etc. So no win yet.</li>
+</ul>
+</li>
+<li><strong>X</strong> picks the last available spot 8:
+   <code>X | O | X
+   ---+---+---
+   O | X | X
+   ---+---+---
+   O | X | O</code></li>
+<li>Now the board is full. Check final lines:<ul>
+<li>X’s positions: {1,3,5,6,8} </li>
+<li>No winning triple among those positions (1,3,5) not a line, 3,5,6 not a line, etc.</li>
+<li>O’s positions: {2,4,7,9}</li>
+<li>Also no line. </li>
+</ul>
+</li>
+<li>It’s a <strong>draw</strong>.</li>
+</ol>
+<p><strong>Result</strong> from X’s perspective: <strong>0</strong> (draw).</p>
+<h6 id="step-4-backpropagation_1"># <strong>Step 4: Backpropagation</strong></h6>
+<p>We backpropagate the draw reward (0) up the tree.</p>
+<ul>
+<li><strong>Child node</strong>: “O at pos 9.”  </li>
+<li>Visits: <span class="arithmatex">\(N = 1\)</span>  </li>
+<li>Sum of returns: <span class="arithmatex">\(W = 0\)</span>  </li>
+<li>
+<p><span class="arithmatex">\(\bar{Q} = 0\)</span></p>
+</li>
+<li>
+<p><strong>Parent node</strong>: “X at pos 5.”  </p>
+</li>
+<li>Previously: <span class="arithmatex">\(\bar{Q} = +1\)</span>, <span class="arithmatex">\(N=1\)</span>, sum of returns <span class="arithmatex">\(W=+1\)</span>.  </li>
+<li>Now we add one more visit with reward 0: new <span class="arithmatex">\(N=2\)</span>, new sum <span class="arithmatex">\(W = +1 + 0 = +1\)</span>.  </li>
+<li>
+<p>Updated average <span class="arithmatex">\(\bar{Q} = \frac{+1}{2} = +0.5\)</span>.</p>
+</li>
+<li>
+<p><strong>Root node</strong>:  </p>
+</li>
+<li>Previously: <span class="arithmatex">\(\bar{Q} = +1\)</span>, <span class="arithmatex">\(N=1\)</span>, sum of returns = +1.  </li>
+<li>Now: <span class="arithmatex">\(N=2\)</span>, sum of returns = +1+0 = +1.  </li>
+<li><span class="arithmatex">\(\bar{Q} = 1/2 = +0.5\)</span>.</li>
+</ul>
+<hr />
+<h6 id="after-two-simulations"><strong>After Two Simulations</strong></h6>
+<p>Here is a simplified view of the <strong>search tree</strong> and stats:</p>
+<ul>
+<li><strong>Root node</strong> (empty board):  </li>
+<li>Visits: <span class="arithmatex">\(N=2\)</span>, Q-value: <span class="arithmatex">\(+0.5\)</span>.  </li>
+<li>
+<p>Has 9 possible children (8 unvisited, 1 visited).  </p>
+</li>
+<li>
+<p>Child (X at pos 5):</p>
+<ul>
+<li>Visits: 2, <span class="arithmatex">\(\bar{Q}=+0.5\)</span>.</li>
+<li>Children (O’s moves):</li>
+<li>“O at pos 1”: Visits=1, <span class="arithmatex">\(\bar{Q}=+1\)</span>.  </li>
+<li>“O at pos 9”: Visits=1, <span class="arithmatex">\(\bar{Q}=0\)</span>.  </li>
+<li>Others unvisited.</li>
+</ul>
+</li>
+</ul>
+<p>In real MCTS, we keep running more simulations. Because “X at pos 5” has a higher average return so far than unvisited moves, it will continue to be selected often. Within that node, O’s possible moves get expanded one by one. Over many simulations, the tree grows, and the average returns converge to reflect the probability of winning from each state.</p>
+<hr />
+<h4 id="5-model-predictive-control-mpc">5. <strong>Model Predictive Control (MPC)</strong></h4>
+<p>Model Predictive Control (MPC), also known as Receding Horizon Control, has a long history in industrial process control. It optimizes over a <strong>finite horizon</strong> at each time step, applies the first action, then <strong>re-plans</strong>.</p>
+<h5 id="51-general-framework">5.1 <strong>General Framework</strong></h5>
+<ol>
+<li><strong>Predictive Model</strong> <span class="arithmatex">\(\hat{P}\)</span>: We assume we have a model <span class="arithmatex">\(\hat{P}(s_{t+1}|s_t,a_t)\)</span>.  </li>
+<li>
+<p><strong>Finite-Horizon Optimization</strong>:</p>
+<div class="arithmatex">\[\min_{a_0, \dots, a_{H-1}} \sum_{t=0}^{H-1} c(s_t, a_t) \quad \text{subject to} \; s_{t+1} = \hat{P}(s_t,a_t),\]</div>
+<p>plus an optional terminal cost or constraint.<br />
+3. <strong>Execute the First Action</strong>: Apply <span class="arithmatex">\(a_0^*\)</span> to the real system.<br />
+4. <strong>Observe New State</strong>: Shift the horizon window and repeat.</p>
+</li>
+</ol>
+<h5 id="52-mpc-in-reinforcement-learning">5.2 <strong>MPC in Reinforcement Learning</strong></h5>
+<ul>
+<li>In RL contexts, MPC can be used if we have a learned model <span class="arithmatex">\(\hat{P}_\theta\)</span>.  </li>
+<li>At each step, we solve an <strong>optimal control problem</strong> using the learned model for a short horizon.  </li>
+<li>This is especially common in <strong>continuous control</strong> tasks (e.g., robot arms, drones), where well-tuned MPC can be more stable than naive policy-based approaches.</li>
+</ul>
+<h5 id="53-example-problem-double-integrator-system">5.3 <strong>Example Problem: Double Integrator System</strong></h5>
+<p><strong>System</strong><br />
+- Continuous state: <span class="arithmatex">\((x, \dot{x})\)</span>.<br />
+- Action: acceleration <span class="arithmatex">\(u\)</span>.<br />
+- Dynamics:  </p>
+<div class="arithmatex">\[\begin{cases}
+x_{t+1} = x_t + \dot{x}_t \Delta t \\
+\dot{x}_{t+1} = \dot{x}_t + u_t \Delta t
+\end{cases}\]</div>
+<p><strong>Goal</strong>: Regulate to <span class="arithmatex">\((x, \dot{x}) = (0,0)\)</span> with minimal cost:</p>
+<div class="arithmatex">\[c(x, \dot{x}, u) = x^2 + (\dot{x})^2 + \lambda u^2.\]</div>
+<p><strong>MPC Steps</strong><br />
+1. <strong>Horizon = <span class="arithmatex">\(H\)</span></strong> (e.g., 5 steps).<br />
+2. <strong>At each time</strong>:
+   - Solve <span class="arithmatex">\(\min \sum_{t=0}^{H-1} \left[ x_t^2 + (\dot{x}_t)^2 + \lambda u_t^2 \right]\)</span>.<br />
+   - Subject to the above discrete dynamics.<br />
+   - Use a standard solver or even the Cross-Entropy Method to find <span class="arithmatex">\(\{u_0,\dots,u_{H-1}\}\)</span>.<br />
+   - Apply only <span class="arithmatex">\(u_0\)</span>.<br />
+   - Observe new state <span class="arithmatex">\((x_1,\dot{x}_1)\)</span>.<br />
+   - Repeat.  </p>
+<p>Over time, this <em>receding horizon</em> approach will bring the double integrator to the origin while balancing control effort.</p>
+<hr />
+<h4 id="6-uncertainty-estimation">6. <strong>Uncertainty Estimation</strong></h4>
+<p>When learning a model of the environment, we often have <strong>uncertainty</strong> about model parameters or about inherent stochasticity. Accounting for this uncertainty can greatly improve planning and exploration.</p>
+<h5 id="61-sources-of-uncertainty">6.1 <strong>Sources of Uncertainty</strong></h5>
+<ol>
+<li><strong>Epistemic</strong> (model) uncertainty: Due to limited data or model expressiveness.  </li>
+<li><strong>Aleatoric</strong> (intrinsic) uncertainty: Irreducible randomness in the environment (e.g., sensor noise).</li>
+</ol>
+<h5 id="62-methods-of-estimation">6.2 <strong>Methods of Estimation</strong></h5>
+<ul>
+<li><strong>Bayesian Neural Networks</strong>: Place a prior over weights, approximate posterior with VI or MCMC.  </li>
+<li><strong>Ensembles</strong>: Train multiple networks on bootstrapped data; measure variance across predictions.  </li>
+<li><strong>Gaussian Processes (GPs)</strong>: Provide predictive means and variances with a kernel-based prior.</li>
+</ul>
+<h5 id="63-implications-for-model-based-rl">6.3 <strong>Implications for Model-Based RL</strong></h5>
+<ul>
+<li><strong>Exploration</strong>: Target states/actions where uncertainty is high to gather more data.  </li>
+<li><strong>Risk-Sensitivity</strong>: Adjust the policy if high variance could lead to catastrophic failures.  </li>
+<li><strong>Conservative Model-Based Planning</strong>: If uncertain, the model can yield higher cost or lower reward estimates to encourage caution.</li>
+</ul>
+<h5 id="64-example-problem-gaussian-process-for-next-state-prediction">6.4 <strong>Example Problem: Gaussian Process for Next-State Prediction</strong></h5>
+<p><strong>Scenario</strong><br />
+- 1D environment with unknown dynamics: <span class="arithmatex">\(s_{t+1} = g(s_t) + \epsilon\)</span>. We suspect <span class="arithmatex">\(g(\cdot)\)</span> is smooth.<br />
+- Collect data: <span class="arithmatex">\(\{(s^{(i)}, s'^{(i)})\}\)</span>.<br />
+- Use a Gaussian Process (GP) with a kernel <span class="arithmatex">\(k(s, s')\)</span> to predict <span class="arithmatex">\(s_{t+1}\)</span>.</p>
+<p><strong>GP Training</strong><br />
+1. <strong>Choose Kernel</strong>: e.g., RBF <span class="arithmatex">\(k(s,s')=\exp\left(-\frac{(s-s')^2}{2l^2}\right)\)</span>.<br />
+2. <strong>Compute Posterior</strong>: <span class="arithmatex">\(p(s'_*|s_*, X, y) = \mathcal{N}(\bar{\mu}, \bar{\sigma}^2)\)</span>, where <span class="arithmatex">\(\bar{\mu},\bar{\sigma}^2\)</span> come from GP regression formulas.</p>
+<p><strong>Outcome</strong><br />
+- We get not just a prediction <span class="arithmatex">\(\bar{\mu}\)</span> for next-state but also a standard deviation <span class="arithmatex">\(\bar{\sigma}\)</span>.<br />
+- In planning, we can account for <span class="arithmatex">\(\bar{\sigma}\)</span> by preferring actions with lower predicted variance or exploring high-variance regions.</p>
+<hr />
+<h4 id="7-dyna-style-algorithms">7. <strong>Dyna-Style Algorithms</strong></h4>
+<p>Dyna is a classic framework by Richard Sutton that <strong>integrates</strong>:
+- <strong>Direct Reinforcement Learning</strong> from real experience,
+- <strong>Model Learning</strong> of transitions/rewards,
+- <strong>Planning</strong> using the learned model.</p>
+<h5 id="71-suttons-dyna-architecture">7.1 <strong>Sutton’s Dyna Architecture</strong></h5>
+<ol>
+<li><strong>Experience</strong>: Interact with the environment, collecting transitions <span class="arithmatex">\((s,a,r,s')\)</span>.  </li>
+<li><strong>Model</strong>: Update the model $ \hat{P}(s'|s,a) $, $ \hat{R}(s,a) $.  </li>
+<li><strong>Replay / Planning</strong>: Sample “imaginary” transitions from <span class="arithmatex">\(\hat{P}\)</span> to update the policy or value function.  </li>
+</ol>
+<h5 id="72-integrating-planning-acting-and-learning">7.2 <strong>Integrating Planning, Acting, and Learning</strong></h5>
+<ul>
+<li>Each real-world step triggers <strong>k</strong> planning updates.  </li>
+<li>This can dramatically increase data efficiency because each real transition can spawn many synthetic updates.</li>
+</ul>
+<h5 id="73-example-problem-dyna-q-in-a-3-state-chain-environment">7.3 <strong>Example Problem: Dyna-Q in a 3-State Chain Environment</strong></h5>
+<p><strong>Environment Setup</strong>  </p>
+<ul>
+<li><strong>States</strong>: <span class="arithmatex">\(S_0, S_1, S_2\)</span>.  </li>
+<li><strong>Actions</strong>: left (L), right (R).  </li>
+<li><strong>Transitions</strong>:  <ul>
+<li>From <span class="arithmatex">\(S_0\)</span>: R leads to <span class="arithmatex">\(S_1\)</span>, L does nothing.  </li>
+<li>From <span class="arithmatex">\(S_1\)</span>: R leads to <span class="arithmatex">\(S_2\)</span>, L leads back to <span class="arithmatex">\(S_0\)</span>.  </li>
+<li>From <span class="arithmatex">\(S_2\)</span>: terminal (or loops with 0 reward if we want a continuing environment).  </li>
+</ul>
+</li>
+<li><strong>Rewards</strong>: +1 upon reaching <span class="arithmatex">\(S_2\)</span>. Otherwise 0.  </li>
+</ul>
+<p><strong>Dyna-Q Algorithm</strong>  </p>
+<pre><code class="language-python">Initialize Q(s,a) arbitrarily
+Initialize model M(s,a) # store transitions and rewards
+alpha = 0.1
+gamma = 0.99
+num_episodes = 100
+k = 5 # number of planning updates each step
+
+for episode in range(num_episodes):
+    s = S_0
+    while s != S_2:
+        # 1. Choose action
+        a = epsilon_greedy(Q[s, :])
+
+        # 2. Observe real transition
+        s_next, r = environment_step(s,a)
+
+        # 3. Update Q with real transition
+        Q[s,a] = Q[s,a] + alpha * (r + gamma * max(Q[s_next,:]) - Q[s,a])
+
+        # 4. Update the model
+        M.store(s,a, s_next, r)
+
+        # 5. Planning (k steps)
+        for i in range(k):
+            s_rand, a_rand = M.sample_previously_visited()
+            s_sim, r_sim = M.predict(s_rand, a_rand)
+            Q[s_rand,a_rand] = Q[s_rand,a_rand] + alpha * (
+                r_sim + gamma * max(Q[s_sim,:]) - Q[s_rand,a_rand]
+            )
+
+        # 6. Move on
+        s = s_next
+</code></pre>
+<p><strong>Intuition</strong>
+- Each real transition is used both to directly update Q and to <strong>improve the model</strong>.<br />
+- Then <strong>k planning steps</strong> use the model to “hallucinate” transitions, effectively multiplying the benefit of each real step.<br />
+- The agent learns the optimal policy (right-right from <span class="arithmatex">\(S_0\)</span> to reach <span class="arithmatex">\(S_2\)</span>) in fewer real interactions than a purely model-free approach.</p>
+<hr />
+<h4 id="8-references">8. <strong>References</strong></h4>
+<p>Below is a comprehensive list of references mentioned, plus additional readings for deeper insights.</p>
+<ol>
+<li>
+<p><strong>General Reinforcement Learning</strong></p>
+<ul>
+<li>Sutton, R.S. &amp; Barto, A.G. (2018). <a href="http://incompleteideas.net/book/the-book-2nd.html"><em>Reinforcement Learning: An Introduction</em> (2nd ed.)</a>. MIT Press.</li>
+<li>Bertsekas, D. (2012). <em>Dynamic Programming and Optimal Control</em>. Athena Scientific.</li>
+<li>Spall, J.C. (2003). <em>Introduction to Stochastic Search and Optimization</em>. Wiley.</li>
+</ul>
+</li>
+<li>
+<p><strong>Stochastic Optimization</strong></p>
+<ul>
+<li>Spall, J.C. (2003). <em>Introduction to Stochastic Search and Optimization</em>. Wiley.</li>
+<li>Bertsekas, D. &amp; Tsitsiklis, J. (1996). <em>Neuro-Dynamic Programming</em>. Athena Scientific.</li>
+</ul>
+</li>
+<li>
+<p><strong>Cross-Entropy Method</strong></p>
+<ul>
+<li>Rubinstein, R.Y. &amp; Kroese, D.P. (2004). <em>The Cross-Entropy Method: A Unified Approach to Combinatorial Optimization, Monte-Carlo Simulation, and Machine Learning</em>. Springer.</li>
+<li>De Boer, P.-T., Kroese, D.P., Mannor, S., &amp; Rubinstein, R.Y. (2005). “A tutorial on the cross-entropy method”. <em>Annals of Operations Research</em>, 134(1), 19–67.</li>
+</ul>
+</li>
+<li>
+<p><strong>Monte Carlo Tree Search (MCTS)</strong></p>
+<ul>
+<li>Kocsis, L. &amp; Szepesvári, C. (2006). “Bandit based Monte-Carlo Planning”. In <em>ECML</em>.</li>
+<li>Coulom, R. (2007). “Efficient Selectivity and Backup Operators in Monte-Carlo Tree Search”. In <em>Computers and Games</em>.</li>
+<li>Silver, D. et al. (2016). “Mastering the game of Go with deep neural networks and tree search”. <em>Nature</em>, 529(7587), 484–489.</li>
+<li>Silver, D. et al. (2017). “Mastering Chess and Shogi by Self-Play with a General Reinforcement Learning Algorithm”. <em>arXiv preprint arXiv:1712.01815</em>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Model Predictive Control (MPC)</strong></p>
+<ul>
+<li>Camacho, E.F. &amp; Bordons, C. (2004). <em>Model Predictive Control</em>. Springer.</li>
+<li>Williams, G. et al. (2017). “Information Theoretic MPC for Model-Based Reinforcement Learning”. In <em>ICRA</em>.</li>
+<li>Bertsekas, D. (2012). <em>Dynamic Programming and Optimal Control</em>. Athena Scientific.</li>
+</ul>
+</li>
+<li>
+<p><strong>Uncertainty Estimation</strong></p>
+<ul>
+<li>Deisenroth, M.P. &amp; Rasmussen, C.E. (2011). “PILCO: A Model-Based and Data-Efficient Approach to Policy Search”. In <em>ICML</em>.</li>
+<li>Blundell, C. et al. (2015). “Weight Uncertainty in Neural Networks”. In <em>ICML</em>.</li>
+<li>Lakshminarayanan, B. et al. (2017). “Simple and Scalable Predictive Uncertainty Estimation using Deep Ensembles”. In <em>NIPS</em>.</li>
+<li>Rasmussen, C.E. &amp; Williams, C.K.I. (2006). <em>Gaussian Processes for Machine Learning</em>. MIT Press.</li>
+</ul>
+</li>
+<li>
+<p><strong>Dyna-Style Algorithms</strong></p>
+<ul>
+<li>Sutton, R.S. (1991). “Dyna, an integrated architecture for learning, planning, and reacting”. <em>SIGART Bulletin</em>, 2(4), 160–163.</li>
+<li>Sutton, R.S. &amp; Barto, A.G. (2018). <em>Reinforcement Learning: An Introduction</em> (2nd ed.). MIT Press.</li>
+</ul>
+</li>
+</ol>
+<h4 id="authors">Author(s)</h4>
+<div class="grid cards">
+<ul>
+<li><img align="left" alt="Instructor Avatar" src="/assets/images/staff/Naser-Kazemi.jpg" width="150" />
+    <span class="description">
+        <p><strong>Naser Kazemi</strong></p>
+        <p>Teaching Assistant</p>
+        <p><a href="mailto:naserkazemi2002@gmail.com">naserkazemi2002@gmail.com</a></p>
+        <p>
+        <a href="https://github.com/naser-kazemi" target="_blank"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg></span></a>
+        </p>
+    </span></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+
+  <form class="md-feedback" name="feedback" hidden>
+    <fieldset>
+      <legend class="md-feedback__title">
+        Was this page helpful?
+      </legend>
+      <div class="md-feedback__inner">
+        <div class="md-feedback__list">
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="This page was helpful" data-md-value="1">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 12a8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8m2 0a10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2a10 10 0 0 1 10 10M10 9.5c0 .8-.7 1.5-1.5 1.5S7 10.3 7 9.5 7.7 8 8.5 8s1.5.7 1.5 1.5m7 0c0 .8-.7 1.5-1.5 1.5S14 10.3 14 9.5 14.7 8 15.5 8s1.5.7 1.5 1.5m-5 7.73c-1.75 0-3.29-.73-4.19-1.81L9.23 14c.45.72 1.52 1.23 2.77 1.23s2.32-.51 2.77-1.23l1.42 1.42c-.9 1.08-2.44 1.81-4.19 1.81"/></svg>
+            </button>
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="This page could be improved" data-md-value="0">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 12a8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8m2 0a10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2a10 10 0 0 1 10 10m-6.5-4c.8 0 1.5.7 1.5 1.5s-.7 1.5-1.5 1.5-1.5-.7-1.5-1.5.7-1.5 1.5-1.5M10 9.5c0 .8-.7 1.5-1.5 1.5S7 10.3 7 9.5 7.7 8 8.5 8s1.5.7 1.5 1.5m2 4.5c1.75 0 3.29.72 4.19 1.81l-1.42 1.42C14.32 16.5 13.25 16 12 16s-2.32.5-2.77 1.23l-1.42-1.42C8.71 14.72 10.25 14 12 14"/></svg>
+            </button>
+          
+        </div>
+        <div class="md-feedback__note">
+          
+            <div data-md-value="1" hidden>
+              
+              
+                
+              
+              
+              
+                
+                
+              
+              Thanks for your feedback!
+            </div>
+          
+            <div data-md-value="0" hidden>
+              
+              
+                
+              
+              
+              
+                
+                
+              
+              Thanks for your feedback! Help us improve this page by using our <a href="..." target="_blank" rel="noopener">feedback form</a>.
+            </div>
+          
+        </div>
+      </div>
+    </fieldset>
+  </form>
+
+
+<script src="https://giscus.app/client.js"
+        data-repo="DeepRLCourse/DeepRLCourse.github.io"
+        data-repo-id="R_kgDOMPOFbQ"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOMPOFbc4CmGY6"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="1"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Made with ❤️ in Robust and Interpretable Machine Learning Lab
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="mailto:deeprlcourse@gmail.com" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2zm-2 0-8 5-8-5zm0 12H4V8l8 5 8-5z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/DeepRLCourse" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.youtube.com/@DeepRLCourse" target="_blank" rel="noopener" title="www.youtube.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M549.7 124.1c-6.2-23.7-24.8-42.3-48.3-48.6C458.9 64 288.1 64 288.1 64S117.3 64 74.7 75.5c-23.5 6.3-42 24.9-48.3 48.6C15 167 15 256.4 15 256.4s0 89.4 11.4 132.3c6.3 23.6 24.8 41.5 48.3 47.8C117.3 448 288.1 448 288.1 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zM232.2 337.6V175.2l142.7 81.2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://x.com/DeepRLCourse" target="_blank" rel="noopener" title="x.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M357.2 48h70.6L273.6 224.2 455 464H313L201.7 318.6 74.5 464H3.8l164.9-188.5L-5.2 48h145.6l100.5 132.9zm-24.8 373.8h39.1L119.1 88h-42z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://t.me/DeepRLCourse" target="_blank" rel="noopener" title="t.me" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M256 8a248 248 0 1 0 0 496 248 248 0 1 0 0-496m115 168.7c-3.7 39.2-19.9 134.4-28.1 178.3-3.5 18.6-10.3 24.8-16.9 25.4-14.4 1.3-25.3-9.5-39.3-18.7-21.8-14.3-34.2-23.2-55.3-37.2-24.5-16.1-8.6-25 5.3-39.5 3.7-3.8 67.1-61.5 68.3-66.7.2-.7.3-3.1-1.2-4.4s-3.6-.8-5.1-.5c-2.2.5-37.1 23.5-104.6 69.1-9.9 6.8-18.9 10.1-26.9 9.9-8.9-.2-25.9-5-38.6-9.1-15.5-5-27.9-7.7-26.8-16.3.6-4.5 6.7-9 18.4-13.7 72.3-31.5 120.5-52.3 144.6-62.3 68.9-28.6 83.2-33.6 92.5-33.8 2.1 0 6.6.5 9.6 2.9 2 1.7 3.2 4.1 3.5 6.7.5 3.2.6 6.5.4 9.8z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "toc.integrate"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.50899def.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

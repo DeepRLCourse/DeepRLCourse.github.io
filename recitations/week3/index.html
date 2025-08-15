@@ -1,0 +1,4797 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="This page contains the recitation materials for Week 3 of the Deep Reinforcement Learning course. You can find links to the recitation recordings and slides.">
+      
+      
+      
+        <link rel="canonical" href="https://deeprlcourse.github.io/recitations/week3/">
+      
+      
+        <link rel="prev" href="../week2/">
+      
+      
+        <link rel="next" href="../week4/">
+      
+      
+      <link rel="icon" href="../../assets/favicon/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+    
+    
+      
+        <title>Week 3: Policy-Based Methods - Deep RL Course</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.7e37652d.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,700,700i%7CRed+Hat+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Ubuntu";--md-code-font:"Red Hat Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/vazirmatn.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-Q1YT8K39WE"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-Q1YT8K39WE",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-Q1YT8K39WE",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="Week 3: Policy-Based Methods - Deep RL Course" >
+      
+        <meta  property="og:description"  content="This page contains the recitation materials for Week 3 of the Deep Reinforcement Learning course. You can find links to the recitation recordings and slides." >
+      
+        <meta  property="og:image"  content="https://deeprlcourse.github.io/assets/images/social/recitations/week3.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="https://deeprlcourse.github.io/recitations/week3/" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="Week 3: Policy-Based Methods - Deep RL Course" >
+      
+        <meta  name="twitter:description"  content="This page contains the recitation materials for Week 3 of the Deep Reinforcement Learning course. You can find links to the recitation recordings and slides." >
+      
+        <meta  name="twitter:image"  content="https://deeprlcourse.github.io/assets/images/social/recitations/week3.png" >
+      
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#week-3-policy-based-methods" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Deep RL Course" class="md-header__button md-logo" aria-label="Deep RL Course" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Deep RL Course
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Week 3: Policy-Based Methods
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="red"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="red"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../home/calender/" class="md-tabs__link">
+          
+  
+  
+  Calendar
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../course_notes/intro-to-rl/" class="md-tabs__link">
+          
+  
+  
+  Course Notes
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../lectures/week1/" class="md-tabs__link">
+          
+  
+  
+  Lectures
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../guests/richard_sutton/" class="md-tabs__link">
+          
+  
+  
+  Guests
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../week1/" class="md-tabs__link">
+          
+  
+  
+  Recitations
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../workshops/week1/" class="md-tabs__link">
+          
+  
+  
+  Workshops
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../homeworks/week1/" class="md-tabs__link">
+          
+  
+  
+  Homeworks
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../prerequisites/deep_learning/" class="md-tabs__link">
+          
+  
+  
+  Prerequisites
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../exams/midterm/" class="md-tabs__link">
+          
+  
+  
+  Exams
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../journal_club/" class="md-tabs__link">
+          
+  
+  
+  Journal Club
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../poster_session/" class="md-tabs__link">
+          
+  
+  
+  Poster Session
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../resources/" class="md-tabs__link">
+          
+  
+  
+  Resources
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../blog/" class="md-tabs__link">
+          
+  
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+    
+      
+
+    
+
+    
+
+        
+
+            
+
+        
+
+            
+
+        
+    
+
+    
+
+
+    <!-- Navigation -->
+    
+        
+        <div
+            class="md-sidebar md-sidebar--primary"
+            data-md-component="sidebar"
+            data-md-type="navigation"
+            
+        >
+            <div class="md-sidebar__scrollwrap">
+            <div class="md-sidebar__inner">
+                <!--
+  Copyright (c) 2016-2025 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+
+
+<!-- Determine classes -->
+
+
+  
+
+
+  
+    
+  
+
+
+<!-- Navigation -->
+<nav
+  class="md-nav md-nav--primary md-nav--lifted md-nav--integrated"
+  aria-label="Navigation"
+  data-md-level="0"
+>
+
+  <!-- Site title -->
+  <label class="md-nav__title" for="__drawer">
+    <a
+      href="../.."
+      title="Deep RL Course"
+      class="md-nav__button md-logo"
+      aria-label="Deep RL Course"
+      data-md-component="logo"
+    >
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Deep RL Course
+  </label>
+
+  <!-- Repository information -->
+  
+
+  <!-- Navigation list -->
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Welcome
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Calendar
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Calendar
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home/calender/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Calender
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Course Notes
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Course Notes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Conceptual Overview of RL
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            Conceptual Overview of RL
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/intro-to-rl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 1: Introduction to RL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/value-based/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 2: Value-based Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/policy-based/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 3: Policy-Based Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/advanced/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 4: Advanced Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/model-based/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 5: Model-Based Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/bandits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 6: Multi-Armed Bandits
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    RL Methods in Depth
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            RL Methods in Depth
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/intro-to-phase2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction to RL in Depth
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/value-based2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 7: Value-based Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/policy-based2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 8: Policy-Based Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/exploration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Exploration Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/imitation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Imitation Learning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/inverse/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Inverse RL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/offline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Offline RL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/multi-agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Multi-Agent RL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/hierarchical/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Hierarchical RL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/meta/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Meta-RL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Lectures
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Lectures
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 1: Introduction to RL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 2: Value-Based Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 3: Policy-Based Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 4: Advanced Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 5: Model-Based Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 6: Multi-Armed Bandits
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 7: Value-Based Theory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 8: Policy-Based Theory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 9: Advanced Theory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 10: Exploration Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 11: Imitation &amp; Inverse RL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 12: Offline Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 13: Multi-Agent Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 14: Hierarchical &amp; Meta RL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 15: Guest Lectures
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Guests
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Guests
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/richard_sutton/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Richard Sutton
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/chris_watkins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Chris Watkins
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/michael_littman/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Michael Littman
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/peter_stone/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Peter Stone
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/jakob_foerster/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Jakob Foerster
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/nan_jiang/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Nan Jiang
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/benjamin_eysenbach/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Benjamin Eysenbach
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/ian_osband/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ian Osband
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/jeff_clune/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Jeff Clune
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/peter_dayan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Peter Dayan
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/ida_momennejad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ida Momennejad
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/abhishek_gupta/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Abhishek Gupta
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/benjamin_van_roy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Benjamin Van Roy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/wolfram_schultz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Wolfram Schultz
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/mark_ho/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Mark Ho
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/pascal_poupart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pascal Poupart
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/peter_norvig/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Peter Norvig
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/karl_friston/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Karl Friston
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/amy_zhang/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Amy Zhang
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/adam_white/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Adam White
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/anne_collins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Anne Collins
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/luis_serrano/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Luis Serrano
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/martha_white/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Martha White
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/christopher_amato/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Christopher Amato
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/marlos_machado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Marlos C. Machado
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Recitations
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Recitations
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 1: Introduction to RL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 2: Value-Based Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Week 3: Policy-Based Methods
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 3: Policy-Based Methods
+    
+  </span>
+  
+
+      </a>
+      
+        <!--
+  Copyright (c) 2016-2025 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Determine title -->
+
+
+
+
+<!-- Table of contents -->
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+
+  <!--
+    Check whether the content starts with a level 1 headline. If it does, the
+    top-level anchor must be skipped, since it would be redundant to the link
+    to the current page that is located just above the anchor. Therefore we
+    directly continue with the children of the anchor.
+  -->
+  
+  
+    
+  
+
+  <!-- Table of contents title and list -->
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#screen-record" class="md-nav__link">
+    <span class="md-ellipsis">
+      Screen Record
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recitation-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recitation Notes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recitation Notes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#types-of-reinforcement-learning-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Types of Reinforcement Learning Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Types of Reinforcement Learning Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#model-based-reinforcement-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model-Based Reinforcement Learning
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-free-reinforcement-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model-Free Reinforcement Learning
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Model-Free Reinforcement Learning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#value-based-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Value-Based Methods
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#policy-based-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Policy-Based Methods
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actor-critic-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Actor-Critic Methods
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#policy-based-methods_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Policy-Based Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Policy-Based Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#evolutionary-methods-eg-genetic-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Evolutionary Methods (e.g., Genetic Algorithm)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#policy-gradient-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Policy Gradient Methods
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-differences" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Differences
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sudo-code-example-for-ga-based-policy-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sudo Code Example for GA-Based Policy Search
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#biased-vs-unbiased-estimation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Biased vs. Unbiased Estimation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#variance-of-estimation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Variance of Estimation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monte-carlo-estimators-in-reinforcement-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monte Carlo Estimators in Reinforcement Learning
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#policy-gradient-in-reinforcement-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Policy Gradient in Reinforcement Learning
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unbiased-estimation-and-high-variance-in-policy-gradient" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unbiased Estimation and High Variance in Policy Gradient
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reinforce-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      REINFORCE Algorithm
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-reinforce-in-continuous-action-spaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using REINFORCE in Continuous Action Spaces
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Using REINFORCE in Continuous Action Spaces">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#policy-representation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Policy Representation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gradient-estimation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gradient Estimation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#algorithm-overview-in-continuous-action-space" class="md-nav__link">
+    <span class="md-ellipsis">
+      Algorithm Overview in Continuous Action Space
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#challenges-in-continuous-action-spaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      Challenges in Continuous Action Spaces
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Author(s)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 4: Advanced Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 5: Model-Based Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 6: Multi-Armed Bandits
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 7: Value-Based Theory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 8: Policy-Based Theory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../week9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 9: Advanced Theory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Workshops
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Workshops
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/week1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 1: Introduction to RL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/week2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 2: Value-Based Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/week3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 3: Policy-Based Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/week4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 4: Advanced Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/week5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 5: Model-Based Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/week6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Week 6: Multi-Armed Bandits
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Homeworks
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Homeworks
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    HW1: Introduction to RL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    HW2: Value-Based Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    HW3: Policy-Based Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    HW4: Advanced Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    HW5: Model-Based Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    HW6: Multi-Armed Bandits
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    HW7: Value-Based Theory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    HW8: Policy-Based Theory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    HW9: Advanced Theory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    HW10: Exploration Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    HW11: Imitation &amp; Inverse RL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    HW12: Offline Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    HW13: Multi-Agent Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    HW14: Hierarchical &amp; Meta RL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Previous Semesters
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Prerequisites
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Prerequisites
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prerequisites/deep_learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deep Learning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prerequisites/game_theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Game Theory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prerequisites/linear_algebra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Linear Algebra
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prerequisites/numerical_optimization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Numerical Optimization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prerequisites/information_theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Information Theory
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../prerequisites/stochastic_processes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Stochastic Process
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Exams
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            Exams
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exams/midterm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Spring 2025 Midterm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exams/final/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Spring 2025 Final
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exams/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Previous Semesters
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Journal Club
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Journal Club
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../journal_club/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Journal Club
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Poster Session
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            Poster Session
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../poster_session/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Poster Session
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../poster_session/sp24/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Spring 2024
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Resources
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            Resources
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Resources
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tags
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_14_3" id="__nav_14_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Archive
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_14_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14_3">
+            <span class="md-nav__icon md-icon"></span>
+            Archive
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/archive/2025/02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    February 2025
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_14_4" id="__nav_14_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Categories
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_14_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14_4">
+            <span class="md-nav__icon md-icon"></span>
+            Categories
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/category/course-updates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Course Updates
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+            </div>
+            </div>
+        </div>
+    
+
+    <!-- Table of contents -->
+    
+
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="week-3-policy-based-methods">Week 3: Policy-Based Methods</h1>
+<h3 id="screen-record">Screen Record</h3>
+<iframe width="996" height="560" src="https://www.youtube.com/embed/wYO8A2Bx87M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<hr />
+<h3 id="recitation-notes">Recitation Notes</h3>
+<h4 id="types-of-reinforcement-learning-methods">Types of Reinforcement Learning Methods</h4>
+<p>Reinforcement Learning (RL) can be broadly classified into two main categories: <em>Model-Based</em> and <em>Model-Free</em> methods. These methods differ in how they approach the problem of decision-making and learning in environments with uncertainty.</p>
+<h5 id="model-based-reinforcement-learning">Model-Based Reinforcement Learning</h5>
+<p>In <em>Model-Based RL</em>, the agent attempts to learn or is provided with a model of the environment. This model represents the environment's dynamics, including the transition function (how the environment reacts to actions) and the reward function (the reward the agent receives for an action in a state). The agent can plan ahead by simulating possible future trajectories using this model.</p>
+<p><strong>Examples of Model-Based RL Methods:</strong></p>
+<ul>
+<li>Dyna-Style Methods</li>
+<li>Model Predictive Control (MPC)</li>
+</ul>
+<p><strong>Advantages of Model-Based RL:</strong></p>
+<ul>
+<li>Uses planning to reduce interaction with the environment.</li>
+<li>Converges faster when a reliable model is available.</li>
+</ul>
+<p><strong>Disadvantages of Model-Based RL:</strong></p>
+<ul>
+<li>Requires an accurate model, which may be hard to obtain.</li>
+<li>Planning can be computationally expensive.</li>
+</ul>
+<h5 id="model-free-reinforcement-learning">Model-Free Reinforcement Learning</h5>
+<p>In <em>Model-Free RL</em>, the agent does not learn a model of the environment. Instead, it directly learns the value function or policy through interaction with the environment. This is done by observing the outcomes of actions taken in various states and using these experiences to improve the agent's decisions.</p>
+<h6 id="value-based-methods">Value-Based Methods</h6>
+<p>Value-Based methods focus on learning the value function, which estimates the expected return (or cumulative reward) from a given state or state-action pair. The agent typically learns this value function and selects actions based on it to maximize expected return.</p>
+<p><strong>Examples of Value-Based RL Methods:</strong></p>
+<ul>
+<li>Q-Learning</li>
+<li>SARSA</li>
+<li>DQN</li>
+</ul>
+<p><strong>Advantages of Value-Based Methods:</strong></p>
+<ul>
+<li>Simple to implement and effective when the action space is discrete.</li>
+<li>Can work with both discrete and continuous state spaces.</li>
+</ul>
+<p><strong>Disadvantages of Value-Based Methods:</strong></p>
+<ul>
+<li>Only applicable to discrete action spaces.</li>
+<li>May struggle in environments with complex dynamics or high-dimensional states.</li>
+</ul>
+<h6 id="policy-based-methods">Policy-Based Methods</h6>
+<p>In <em>Policy-Based</em> methods, the agent learns a policy directly, which is a mapping from states to actions. The goal is to optimize the policy in a way that maximizes expected return, rather than estimating values for state-action pairs.</p>
+<p><strong>Examples of Policy-Based RL Methods:</strong></p>
+<ul>
+<li>REINFORCE</li>
+<li>Proximal Policy Optimization (PPO)</li>
+<li>Trust Region Policy Optimization (TRPO)</li>
+</ul>
+<p><strong>Advantages of Policy-Based Methods:</strong></p>
+<ul>
+<li>Can handle continuous action spaces.</li>
+<li>Suitable for learning complex policies, especially in high-dimensional environments.</li>
+</ul>
+<p><strong>Disadvantages of Policy-Based Methods:</strong></p>
+<ul>
+<li>Requires a large amount of data for effective training.</li>
+<li>Computationally expensive due to gradient estimation and optimization.</li>
+</ul>
+<h6 id="actor-critic-methods">Actor-Critic Methods</h6>
+<p><em>Actor-Critic</em> methods combine both value-based and policy-based approaches. These methods maintain two components:</p>
+<ul>
+<li><strong>Actor</strong>: The policy function, which is responsible for deciding which action to take given the current state.</li>
+<li><strong>Critic</strong>: The value function, which evaluates the actions taken by the actor based on their expected return (e.g., using a value function or action-value function).</li>
+</ul>
+<p><strong>Examples of Actor-Critic Methods:</strong></p>
+<ul>
+<li>A2C (Advantage Actor-Critic)</li>
+<li>A3C (Asynchronous Advantage Actor-Critic)</li>
+<li>DDPG (Deep Deterministic Policy Gradient)</li>
+</ul>
+<p><strong>Advantages of Actor-Critic Methods:</strong></p>
+<ul>
+<li>Combines value-based and policy-based approaches.</li>
+<li>Works well in continuous action spaces.</li>
+<li>Uses value-based feedback to improve policy stability.</li>
+</ul>
+<p><strong>Disadvantages of Actor-Critic Methods:</strong></p>
+<ul>
+<li>More complex to implement and tune.</li>
+<li>Requires careful balancing between actor and critic to ensure stability.</li>
+</ul>
+<p><strong>Summary of RL Methods:</strong></p>
+<ul>
+<li><strong>Model-Based RL</strong>: Learns or uses a model of the environment to plan and optimize actions.</li>
+<li><strong>Model-Free RL</strong>:<ul>
+<li><strong>Value-Based Methods</strong>: Learn a value function to guide action selection (e.g., Q-Learning, SARSA, DQN).</li>
+<li><strong>Policy-Based Methods</strong>: Learn a direct policy that maps states to actions (e.g., REINFORCE, PPO, TRPO).</li>
+<li><strong>Actor-Critic Methods</strong>: Combine both value-based and policy-based approaches (e.g., A2C, A3C, DDPG).</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h4 id="policy-based-methods_1">Policy-Based Methods</h4>
+<p>Policy-based methods are a class of reinforcement learning (RL) algorithms where the goal is to directly learn a policy that maximizes cumulative rewards, as opposed to learning a value function. These methods are advantageous in environments with large or continuous action spaces, where value-based methods (such as Q-learning) struggle.</p>
+<p>Policy search methods aim to find an optimal policy by directly optimizing its parameters. There are two main approaches: evolutionary methods, such as Genetic Algorithms (GA), and gradient-based methods, such as Policy Gradient.</p>
+<h5 id="evolutionary-methods-eg-genetic-algorithm">Evolutionary Methods (e.g., Genetic Algorithm)</h5>
+<p>Evolutionary methods optimize policy parameters by searching through a population of candidate policies. These methods do not rely on gradient information but instead evolve policies through selection, mutation, and crossover.</p>
+<ul>
+<li>A population of policies is initialized randomly.</li>
+<li>Each policy is evaluated based on its performance (fitness).</li>
+<li>The best-performing policies are selected and modified through mutation and crossover to create a new generation.</li>
+<li>This process continues for multiple generations, gradually improving the policy.</li>
+</ul>
+<p>Since evolutionary methods do not use gradients, they are useful for optimizing policies in environments where the objective function is not differentiable or well-defined.</p>
+<h5 id="policy-gradient-methods">Policy Gradient Methods</h5>
+<p>Policy Gradient methods take a different approach by defining an objective function, which is the expected return, and optimizing it using gradient ascent. Instead of searching randomly, these methods directly adjust the policy parameters in the direction that increases the expected reward.</p>
+<ul>
+<li>The policy is parameterized (e.g., as a neural network).</li>
+<li>The expected return is used as an objective function.</li>
+<li>The gradient of this objective is computed with respect to the policy parameters.</li>
+<li>The parameters are updated using gradient ascent to maximize expected return.</li>
+</ul>
+<p>Policy Gradient methods are efficient when the objective function is differentiable and provide a more structured way of reaching optimal policies compared to evolutionary methods.</p>
+<h5 id="key-differences">Key Differences</h5>
+<ul>
+<li><strong>Optimization Approach</strong>: Evolutionary methods search for optimal policies using a population-based approach, while Policy Gradient methods optimize a defined objective function using gradients.</li>
+<li><strong>Use of Gradients</strong>: Evolutionary methods do not require gradients, making them useful in non-differentiable RL environments, whereas Policy Gradient methods rely on computing gradients to optimize the policy.</li>
+<li><strong>Convergence Behavior</strong>: Policy Gradient methods typically converge more smoothly as they directly optimize an objective, whereas evolutionary methods rely on population-based exploration, which can lead to slower convergence.</li>
+<li><strong>Exploration vs. Exploitation</strong>: Evolutionary methods naturally encourage more exploration by maintaining a diverse population of policies, while Policy Gradient methods refine a single policy through experience.</li>
+</ul>
+<p>Both methods have advantages and are chosen based on the problem requirements. Evolutionary methods are useful for complex RL problems where gradient information is unavailable or unreliable, while Policy Gradient methods are more structured and efficient when gradients can be computed.</p>
+<h5 id="sudo-code-example-for-ga-based-policy-search">Sudo Code Example for GA-Based Policy Search</h5>
+<p>Below is an example pseudocode for a genetic algorithm applied to policy search:</p>
+<pre><code class="language-plaintext">Algorithm: Genetic Algorithm for Policy Optimization
+1. Initialize a population of random policies:
+   population = initialize_population(population_size)
+2. For generation = 1 to num_generations:
+   a. Evaluate fitness of each policy:
+      For policy in population:
+         fitness = evaluate_policy(policy)
+         store fitness score
+   b. Select top-performing policies:
+      selected_policies = select_top_policies(population, fitness_scores)
+   c. Generate next generation:
+      next_generation = []
+      While len(next_generation) &lt; population_size:
+         parent1, parent2 = select_parents(selected_policies)
+         child1, child2 = crossover(parent1, parent2)
+         child1 = mutate(child1)
+         child2 = mutate(child2)
+         next_generation.append(child1, child2)
+      population = next_generation
+3. Return best-performing policy:
+   best_policy = select_best_policy(population, fitness_scores)
+</code></pre>
+<hr />
+<h4 id="biased-vs-unbiased-estimation">Biased vs. Unbiased Estimation</h4>
+<p>The biased formula for the sample variance <span class="arithmatex">\(S^2\)</span> is given by:</p>
+<div class="arithmatex">\[
+S^2_{\text{biased}} = \frac{1}{n} \sum_{i=1}^{n} (X_i - \overline{X})^2
+\]</div>
+<p>This is an underestimation of the true population variance <span class="arithmatex">\(\sigma^2\)</span> because it does not account for the degrees of freedom in estimation. Instead, the unbiased estimator is:</p>
+<div class="arithmatex">\[
+S^2_{\text{unbiased}} = \frac{1}{n-1} \sum_{i=1}^{n} (X_i - \overline{X})^2.
+\]</div>
+<p>To see why the biased version underestimates the true variance, recall the expectation:</p>
+<div class="arithmatex">\[
+\mathbb{E}[S^2_{\text{biased}}] = \left( 1 - \frac{1}{n} \right) \sigma^2 &lt; \sigma^2.
+\]</div>
+<hr />
+<h4 id="variance-of-estimation">Variance of Estimation</h4>
+<p>Variance in estimation quantifies how much an estimator's output fluctuates across different samples from the same population. For an estimator <span class="arithmatex">\(\hat{\theta}\)</span> of a parameter <span class="arithmatex">\(\theta\)</span>, the variance is defined as:</p>
+<div class="arithmatex">\[
+\text{Var}(\hat{\theta}) = E\left[(\hat{\theta} - E[\hat{\theta}])^2\right]
+\]</div>
+<p>Where:
+- <span class="arithmatex">\(\hat{\theta}\)</span> is the estimator of the parameter <span class="arithmatex">\(\theta\)</span>,
+- <span class="arithmatex">\(E[\hat{\theta}]\)</span> is the expected value of the estimator.</p>
+<hr />
+<h4 id="monte-carlo-estimators-in-reinforcement-learning">Monte Carlo Estimators in Reinforcement Learning</h4>
+<p>A Monte Carlo estimator is a method used to approximate the expected value of a function <span class="arithmatex">\(f(X)\)</span> over a random variable <span class="arithmatex">\(X\)</span> with a given probability distribution <span class="arithmatex">\(p(X)\)</span>. The true expectation is:</p>
+<div class="arithmatex">\[
+E[f(X)] = \int f(x) p(x) \, dx
+\]</div>
+<p>Instead, we use Monte Carlo estimation by drawing <span class="arithmatex">\(N\)</span> independent samples <span class="arithmatex">\(X_1, X_2, \dots, X_N\)</span> from <span class="arithmatex">\(p(X)\)</span> and computing:</p>
+<div class="arithmatex">\[
+\hat{\mu}_{MC} = \frac{1}{N} \sum_{i=1}^N f(X_i)
+\]</div>
+<hr />
+<h4 id="policy-gradient-in-reinforcement-learning">Policy Gradient in Reinforcement Learning</h4>
+<p>Policy gradient methods directly optimize the policy <span class="arithmatex">\(\pi_{\theta}(a | s)\)</span> by adjusting the parameters <span class="arithmatex">\(\theta\)</span> using gradient ascent on expected cumulative rewards:</p>
+<div class="arithmatex">\[
+J(\theta) = \mathbb{E}_{\tau \sim \pi_{\theta}} \left[ R(\tau) \right]
+\]</div>
+<p>where <span class="arithmatex">\(\tau = (s_0, a_0, s_1, a_1, \dots)\)</span> represents a trajectory following policy <span class="arithmatex">\(\pi_{\theta}\)</span>, and <span class="arithmatex">\(R(\tau)\)</span> is the cumulative reward. Using the log likelihood ratio trick, the policy gradient theorem gives:</p>
+<div class="arithmatex">\[
+\nabla_{\theta} J(\theta) = \mathbb{E}_{\tau \sim \pi_{\theta}} \left[ \sum_{t=0}^{T} \nabla_{\theta} \log \pi_{\theta}(a_t | s_t) R_t \right]
+\]</div>
+<hr />
+<h4 id="unbiased-estimation-and-high-variance-in-policy-gradient">Unbiased Estimation and High Variance in Policy Gradient</h4>
+<p>Monte Carlo estimators of policy gradients are <strong>unbiased</strong>, meaning:</p>
+<div class="arithmatex">\[\mathbb{E} \left[ \nabla_{\theta} J(\theta) \right] = \nabla_{\theta} J(\theta)\]</div>
+<p>However, they often suffer from <strong>high variance</strong>, which makes learning unstable. The variance of the Monte Carlo estimate can be large due to randomness in the trajectory sampling process. To reduce variance, we commonly use:</p>
+<ul>
+<li><strong>Baseline</strong>: Subtracting a baseline function <span class="arithmatex">\(b(s)\)</span>, which does not affect the expectation but reduces variance:</li>
+</ul>
+<div class="arithmatex">\[\nabla_{\theta} J(\theta) = \mathbb{E} \left[ \sum_{t=0}^{T} \nabla_{\theta} \log \pi_{\theta}(a_t | s_t) (R_t - b(s_t)) \right]\]</div>
+<ul>
+<li>
+<p><strong>Actor-Critic Methods</strong>: Using a learned value function <span class="arithmatex">\(V(s)\)</span> as a baseline.</p>
+</li>
+<li>
+<p><strong>Variance Reduction Techniques</strong>: Techniques like reward normalization, advantage estimation, and bootstrapping help stabilize learning.</p>
+</li>
+</ul>
+<p>Despite these techniques, policy gradient methods remain sensitive to high variance, necessitating careful tuning and large batch sizes.</p>
+<hr />
+<h4 id="reinforce-algorithm">REINFORCE Algorithm</h4>
+<p>Algorithm: REINFORCE: Monte-Carlo Policy-Gradient Control (Episodic)</p>
+<ol>
+<li><strong>Input:</strong> Differentiable policy parameterization <span class="arithmatex">\(\pi(a | s, \theta)\)</span></li>
+<li><strong>Algorithm parameter:</strong> Step size <span class="arithmatex">\(\alpha &gt; 0\)</span></li>
+<li><strong>Initialize:</strong> Policy parameters <span class="arithmatex">\(\theta \in \mathbb{R}^d\)</span> (e.g., to 0)</li>
+<li><strong>Loop forever (for each episode):</strong><ul>
+<li>Generate an episode <span class="arithmatex">\(S_0, A_0, R_1, \dots, S_T, A_{T-1}, R_T\)</span> following <span class="arithmatex">\(\pi(\cdot | \cdot, \theta)\)</span></li>
+<li>For each step <span class="arithmatex">\(t = 0, 1, \dots, T-1\)</span>:<ul>
+<li>Compute return:
+ <span class="arithmatex">\(G \gets \sum_{k=t+1}^{T} \gamma^{k-t-1} R_k\)</span></li>
+<li>Update policy parameters:
+ <span class="arithmatex">\(\theta \gets \theta + \alpha \gamma^t G \nabla \ln \pi(A_t | S_t, \theta)\)</span></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h4 id="using-reinforce-in-continuous-action-spaces">Using REINFORCE in Continuous Action Spaces</h4>
+<p>The REINFORCE algorithm is a policy gradient method that can be applied to continuous action spaces by parameterizing the policy as a continuous distribution over actions, rather than using discrete action choices. In continuous action spaces, the policy is typically represented as a probability distribution, such as a Gaussian distribution, where the mean and variance of the distribution are learned through the parameters <span class="arithmatex">\(\theta\)</span>.</p>
+<h5 id="policy-representation">Policy Representation</h5>
+<p>Let the policy <span class="arithmatex">\(\pi_{\theta}(a_t | s_t)\)</span> be represented by a parametric family of probability distributions. In the case of a continuous action space, one common choice is a Gaussian distribution:</p>
+<div class="arithmatex">\[\pi_{\theta}(a_t | s_t) = \frac{1}{\sqrt{2\pi \sigma^2}} \exp\left( -\frac{(a_t - \mu(s_t))^2}{2\sigma^2} \right)\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\mu(s_t)\)</span> is the mean of the action distribution, which is a function of the state <span class="arithmatex">\(s_t\)</span> parameterized by <span class="arithmatex">\(\theta\)</span>.</li>
+<li><span class="arithmatex">\(\sigma^2\)</span> is the variance of the action distribution, which may also be a function of the state or treated as a fixed constant.</li>
+</ul>
+<p>The policy outputs a distribution over actions, and the agent samples actions <span class="arithmatex">\(a_t\)</span> from this distribution during each step.</p>
+<h5 id="gradient-estimation">Gradient Estimation</h5>
+<p>For continuous action spaces, the gradient of the objective function (expected return) with respect to the policy parameters <span class="arithmatex">\(\theta\)</span> is given by:</p>
+<div class="arithmatex">\[\nabla_{\theta} J(\theta) = \mathbb{E}_{\tau \sim \pi_{\theta}} \left[ \sum_{t=0}^{T} G_t \nabla_{\theta} \log \pi_{\theta}(a_t | s_t) \right]\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\tau = (s_0, a_0, s_1, a_1, \dots)\)</span> is a trajectory sampled from the policy <span class="arithmatex">\(\pi_{\theta}\)</span>.</li>
+<li><span class="arithmatex">\(G_t = \sum_{k=t}^{T} \gamma^{k-t} r_k\)</span> is the return (cumulative discounted reward) from time step <span class="arithmatex">\(t\)</span> onward.</li>
+<li><span class="arithmatex">\(\log \pi_{\theta}(a_t | s_t)\)</span> is the log probability of selecting action <span class="arithmatex">\(a_t\)</span> given state <span class="arithmatex">\(s_t\)</span> under policy <span class="arithmatex">\(\pi_{\theta}\)</span>.</li>
+</ul>
+<p>The policy parameters <span class="arithmatex">\(\theta\)</span> are updated using gradient ascent:</p>
+<div class="arithmatex">\[\theta \gets \theta + \alpha \sum_{t=0}^{T} G_t \nabla_{\theta} \log \pi_{\theta}(a_t | s_t)\]</div>
+<p>For a Gaussian policy, where the action distribution is parameterized as:</p>
+<div class="arithmatex">\[\pi_{\theta}(a_t | s_t) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left( -\frac{(a_t - \mu_{\theta}(s_t))^2}{2\sigma^2} \right),\]</div>
+<p>the log-probability is:</p>
+<div class="arithmatex">\[\log \pi_{\theta}(a_t | s_t) = -\frac{1}{2} \log(2\pi\sigma^2) - \frac{(a_t - \mu_{\theta}(s_t))^2}{2\sigma^2}.\]</div>
+<p>Taking the gradient of the log-probability with respect to <span class="arithmatex">\(\theta\)</span> results in:</p>
+<div class="arithmatex">\[\nabla_{\theta} \log \pi_{\theta}(a_t | s_t) = \frac{a_t - \mu_{\theta}(s_t)}{\sigma^2} \nabla_{\theta} \mu_{\theta}(s_t).\]</div>
+<p>If <span class="arithmatex">\(\sigma\)</span> is also learned, the gradient with respect to <span class="arithmatex">\(\sigma\)</span> is:</p>
+<div class="arithmatex">\[\nabla_{\theta} \log \pi_{\theta}(a_t | s_t) = \frac{(a_t - \mu_{\theta}(s_t))^2 - \sigma^2}{\sigma^3} \nabla_{\theta} \sigma.\]</div>
+<h5 id="algorithm-overview-in-continuous-action-space">Algorithm Overview in Continuous Action Space</h5>
+<p>The steps of the REINFORCE algorithm applied to a continuous action space are as follows:</p>
+<ol>
+<li>Initialize the policy parameters <span class="arithmatex">\(\theta\)</span> (e.g., for a Gaussian policy, initialize the weights that determine the mean <span class="arithmatex">\(\mu(s_t)\)</span> and variance <span class="arithmatex">\(\sigma^2\)</span>).</li>
+<li>
+<p>For each episode:</p>
+<ul>
+<li>Initialize the state <span class="arithmatex">\(s_0\)</span>.</li>
+<li>For each time step:<ul>
+<li>Sample an action <span class="arithmatex">\(a_t\)</span> from the policy <span class="arithmatex">\(\pi_{\theta}(a_t | s_t)\)</span>.</li>
+<li>Execute action <span class="arithmatex">\(a_t\)</span>, observe reward <span class="arithmatex">\(r_t\)</span> and next state <span class="arithmatex">\(s_{t+1}\)</span>.</li>
+<li>Compute the return <span class="arithmatex">\(G_t\)</span> (e.g., the cumulative discounted reward).</li>
+<li>
+<p>Update the policy parameters using the gradient of the log-probability:</p>
+<p><span class="arithmatex">\(\theta \leftarrow \theta + \alpha G_t \nabla_{\theta} \log \pi_{\theta}(a_t | s_t)\)</span></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Repeat for multiple episodes to improve the policy.</p>
+</li>
+</ol>
+<h5 id="challenges-in-continuous-action-spaces">Challenges in Continuous Action Spaces</h5>
+<ul>
+<li>
+<p><strong>Exploration</strong>: In continuous action spaces, exploration can be more challenging because the agent must explore an infinite number of possible actions. One strategy to encourage exploration is to maintain some randomness in the policy (e.g., keeping the variance <span class="arithmatex">\(\sigma^2\)</span> large).</p>
+</li>
+<li>
+<p><strong>Variance of Gradient Estimates</strong>: Policy gradient methods, including REINFORCE, can have high variance in the gradient estimates, especially in continuous action spaces. Techniques like baseline functions or actor-critic methods can help reduce this variance.</p>
+</li>
+</ul>
+<h4 id="authors">Author(s)</h4>
+<div class="grid cards">
+<ul>
+<li><img align="left" alt="Instructor Avatar" src="/assets/images/staff/Ali-MirGhasemi.jpg" width="150" />
+    <span class="description">
+        <p><strong>SeyyedAli MirGhasemi</strong></p>
+        <p>Teaching Assistant</p>
+        <p><a href="mailto:sam717269@gmail.com">sam717269@gmail.com</a></p>
+        <p>
+        <a href="https://www.linkedin.com/in/sayyed-ali-mirghasemi-6033661b9" target="_blank"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8c0-14.3 5.7-27.9 15.8-38S39.6 0 53.8 0s27.9 5.7 38 15.8 15.8 23.8 15.8 38c0 29.7-24.1 54.3-53.8 54.3M447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z"/></svg></span></a>
+        </p>
+    </span></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+
+  <form class="md-feedback" name="feedback" hidden>
+    <fieldset>
+      <legend class="md-feedback__title">
+        Was this page helpful?
+      </legend>
+      <div class="md-feedback__inner">
+        <div class="md-feedback__list">
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="This page was helpful" data-md-value="1">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 12a8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8m2 0a10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2a10 10 0 0 1 10 10M10 9.5c0 .8-.7 1.5-1.5 1.5S7 10.3 7 9.5 7.7 8 8.5 8s1.5.7 1.5 1.5m7 0c0 .8-.7 1.5-1.5 1.5S14 10.3 14 9.5 14.7 8 15.5 8s1.5.7 1.5 1.5m-5 7.73c-1.75 0-3.29-.73-4.19-1.81L9.23 14c.45.72 1.52 1.23 2.77 1.23s2.32-.51 2.77-1.23l1.42 1.42c-.9 1.08-2.44 1.81-4.19 1.81"/></svg>
+            </button>
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="This page could be improved" data-md-value="0">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 12a8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8m2 0a10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2a10 10 0 0 1 10 10m-6.5-4c.8 0 1.5.7 1.5 1.5s-.7 1.5-1.5 1.5-1.5-.7-1.5-1.5.7-1.5 1.5-1.5M10 9.5c0 .8-.7 1.5-1.5 1.5S7 10.3 7 9.5 7.7 8 8.5 8s1.5.7 1.5 1.5m2 4.5c1.75 0 3.29.72 4.19 1.81l-1.42 1.42C14.32 16.5 13.25 16 12 16s-2.32.5-2.77 1.23l-1.42-1.42C8.71 14.72 10.25 14 12 14"/></svg>
+            </button>
+          
+        </div>
+        <div class="md-feedback__note">
+          
+            <div data-md-value="1" hidden>
+              
+              
+                
+              
+              
+              
+                
+                
+              
+              Thanks for your feedback!
+            </div>
+          
+            <div data-md-value="0" hidden>
+              
+              
+                
+              
+              
+              
+                
+                
+              
+              Thanks for your feedback! Help us improve this page by using our <a href="..." target="_blank" rel="noopener">feedback form</a>.
+            </div>
+          
+        </div>
+      </div>
+    </fieldset>
+  </form>
+
+
+<script src="https://giscus.app/client.js"
+        data-repo="DeepRLCourse/DeepRLCourse.github.io"
+        data-repo-id="R_kgDOMPOFbQ"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOMPOFbc4CmGY6"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="1"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Made with ❤️ in Robust and Interpretable Machine Learning Lab
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="mailto:deeprlcourse@gmail.com" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2zm-2 0-8 5-8-5zm0 12H4V8l8 5 8-5z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/DeepRLCourse" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.youtube.com/@DeepRLCourse" target="_blank" rel="noopener" title="www.youtube.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M549.7 124.1c-6.2-23.7-24.8-42.3-48.3-48.6C458.9 64 288.1 64 288.1 64S117.3 64 74.7 75.5c-23.5 6.3-42 24.9-48.3 48.6C15 167 15 256.4 15 256.4s0 89.4 11.4 132.3c6.3 23.6 24.8 41.5 48.3 47.8C117.3 448 288.1 448 288.1 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zM232.2 337.6V175.2l142.7 81.2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://x.com/DeepRLCourse" target="_blank" rel="noopener" title="x.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M357.2 48h70.6L273.6 224.2 455 464H313L201.7 318.6 74.5 464H3.8l164.9-188.5L-5.2 48h145.6l100.5 132.9zm-24.8 373.8h39.1L119.1 88h-42z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://t.me/DeepRLCourse" target="_blank" rel="noopener" title="t.me" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M256 8a248 248 0 1 0 0 496 248 248 0 1 0 0-496m115 168.7c-3.7 39.2-19.9 134.4-28.1 178.3-3.5 18.6-10.3 24.8-16.9 25.4-14.4 1.3-25.3-9.5-39.3-18.7-21.8-14.3-34.2-23.2-55.3-37.2-24.5-16.1-8.6-25 5.3-39.5 3.7-3.8 67.1-61.5 68.3-66.7.2-.7.3-3.1-1.2-4.4s-3.6-.8-5.1-.5c-2.2.5-37.1 23.5-104.6 69.1-9.9 6.8-18.9 10.1-26.9 9.9-8.9-.2-25.9-5-38.6-9.1-15.5-5-27.9-7.7-26.8-16.3.6-4.5 6.7-9 18.4-13.7 72.3-31.5 120.5-52.3 144.6-62.3 68.9-28.6 83.2-33.6 92.5-33.8 2.1 0 6.6.5 9.6 2.9 2 1.7 3.2 4.1 3.5 6.7.5 3.2.6 6.5.4 9.8z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "toc.integrate"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.50899def.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
