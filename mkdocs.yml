@@ -171,11 +171,11 @@ nav:
     - recitations/week7.md
     - recitations/week8.md
     - recitations/week9.md
-    - recitations/week10.md
-    - recitations/week11.md
-    - recitations/week12.md
-    - recitations/week13.md
-    - recitations/week14.md
+    # - recitations/week10.md
+    # - recitations/week11.md
+    # - recitations/week12.md
+    # - recitations/week13.md
+    # - recitations/week14.md
   - Workshops:
     - workshops/week1.md
     - workshops/week2.md
@@ -183,11 +183,11 @@ nav:
     - workshops/week4.md
     - workshops/week5.md
     - workshops/week6.md
-    - workshops/week10.md
-    - workshops/week11.md
-    - workshops/week12.md
-    - workshops/week13.md
-    - workshops/week14.md
+    # - workshops/week10.md
+    # - workshops/week11.md
+    # - workshops/week12.md
+    # - workshops/week13.md
+    # - workshops/week14.md
   - Homeworks:
     - homeworks/week1.md
     - homeworks/week2.md
