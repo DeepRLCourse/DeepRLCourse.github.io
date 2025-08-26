@@ -12,7 +12,7 @@ The purpose of the poster session is for you to dive into a reinforcement learni
 
 Before you begin designing your poster, please submit a concise proposal outlining your chosen reinforcement learning topic. This ensures that all submissions maintain high-quality standards and helps you focus your research effectively.
 
-- **Template:** Use the [Proposal Template](link) to structure your submission.  
+- **Template:** Use the [Proposal Template](https://github.com/DeepRLCourse/Poster-Proposal-Template) to structure your submission.  
 - **Submission:** Upload your completed proposal to Quera ([submit here](https://quera.org/course/add_to_course/course/20598/)) by **June 6**.
 
 
