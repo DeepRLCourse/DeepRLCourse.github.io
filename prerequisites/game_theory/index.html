@@ -1,0 +1,6415 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://deeprlcourse.github.io/prerequisites/game_theory/">
+      
+      
+        <link rel="prev" href="../deep_learning/">
+      
+      
+        <link rel="next" href="../linear_algebra/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/favicon/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Game Theory - Deep RL Course</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,700,700i%7CRed+Hat+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Ubuntu";--md-code-font:"Red Hat Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/vazirmatn.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-Q1YT8K39WE"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-Q1YT8K39WE",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-Q1YT8K39WE",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+  
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Game Theory - Deep RL Course" />
+<meta property="og:image" content="https://deeprlcourse.github.io/assets/images/social/prerequisites/game_theory.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content="https://deeprlcourse.github.io/prerequisites/game_theory/" />
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:title" content="Game Theory - Deep RL Course" />
+<meta property="twitter:image" content="https://deeprlcourse.github.io/assets/images/social/prerequisites/game_theory.png" />
+</head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#game-theory" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Deep RL Course" class="md-header__button md-logo" aria-label="Deep RL Course" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Deep RL Course
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Game Theory
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="red"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="red"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../home/calender/" class="md-tabs__link">
+          
+  
+  
+  Calendar
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../course_notes/intro-to-rl/" class="md-tabs__link">
+          
+  
+  
+  Course Notes
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../lectures/week1/" class="md-tabs__link">
+          
+  
+  
+  Lectures
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../guests/richard_sutton/" class="md-tabs__link">
+          
+  
+  
+  Guests
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../recitations/week1/" class="md-tabs__link">
+          
+  
+  
+  Recitations
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../workshops/week1/" class="md-tabs__link">
+          
+  
+  
+  Workshops
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../homeworks/week1/" class="md-tabs__link">
+          
+  
+  
+  Homeworks
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../deep_learning/" class="md-tabs__link">
+          
+  
+  
+  Prerequisites
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../exams/midterm/" class="md-tabs__link">
+          
+  
+  
+  Exams
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../poster_session/sp25/" class="md-tabs__link">
+          
+  
+  
+  Poster Session
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../resources/" class="md-tabs__link">
+          
+  
+  
+  Resources
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../blog/" class="md-tabs__link">
+          
+  
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+    
+      
+
+    
+
+    
+
+        
+
+            
+
+        
+
+            
+                  
+            
+
+        
+    
+
+    
+
+
+    <!-- Navigation -->
+    
+        
+        <div
+            class="md-sidebar md-sidebar--primary"
+            data-md-component="sidebar"
+            data-md-type="navigation"
+            
+        >
+            <div class="md-sidebar__scrollwrap">
+            <div class="md-sidebar__inner">
+                <!--
+  Copyright (c) 2016-2025 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+
+
+<!-- Determine classes -->
+
+
+  
+
+
+  
+
+
+<!-- Navigation -->
+<nav
+  class="md-nav md-nav--primary md-nav--lifted"
+  aria-label="Navigation"
+  data-md-level="0"
+>
+
+  <!-- Site title -->
+  <label class="md-nav__title" for="__drawer">
+    <a
+      href="../.."
+      title="Deep RL Course"
+      class="md-nav__button md-logo"
+      aria-label="Deep RL Course"
+      data-md-component="logo"
+    >
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Deep RL Course
+  </label>
+
+  <!-- Repository information -->
+  
+
+  <!-- Navigation list -->
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Calendar
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Calendar
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home/calender/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Calender
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course Notes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Course Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conceptual Overview of RL
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Conceptual Overview of RL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/intro-to-rl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 1: Introduction to RL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/value-based/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 2: Value-based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/policy-based/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 3: Policy-Based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/advanced/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 4: Advanced Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/model-based/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 5: Model-Based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/bandits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 6: Multi-Armed Bandits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lectures
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lectures
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 1: Introduction to RL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 2: Value-Based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 3: Policy-Based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 4: Advanced Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 5: Model-Based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 6: Multi-Armed Bandits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 7: Value-Based Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 8: Policy-Based Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 9: Advanced Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 10: Exploration Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 11: Imitation &amp; Inverse RL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 12: Offline Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 13: Multi-Agent Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 14: Hierarchical &amp; Meta RL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guests
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guests
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/richard_sutton/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Richard Sutton
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/chris_watkins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chris Watkins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/michael_littman/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Michael Littman
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/peter_stone/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Peter Stone
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/jakob_foerster/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Jakob Foerster
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/nan_jiang/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nan Jiang
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/benjamin_eysenbach/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Benjamin Eysenbach
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/ian_osband/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ian Osband
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/jeff_clune/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Jeff Clune
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/peter_dayan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Peter Dayan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/ida_momennejad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ida Momennejad
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/abhishek_gupta/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Abhishek Gupta
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/benjamin_van_roy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Benjamin Van Roy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/wolfram_schultz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wolfram Schultz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/mark_ho/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mark Ho
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/pascal_poupart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pascal Poupart
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/peter_norvig/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Peter Norvig
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/karl_friston/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Karl Friston
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/amy_zhang/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Amy Zhang
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/adam_white/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adam White
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/anne_collins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Anne Collins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/luis_serrano/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Luis Serrano
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/martha_white/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Martha White
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/christopher_amato/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Christopher Amato
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/marlos_machado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Marlos C. Machado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recitations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Recitations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recitations/week1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 1: Introduction to RL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recitations/week2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 2: Value-Based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recitations/week3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 3: Policy-Based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recitations/week4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 4: Advanced Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recitations/week5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 5: Model-Based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recitations/week6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 6: Multi-Armed Bandits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recitations/week7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 7: Value-Based Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recitations/week8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 8: Policy-Based Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recitations/week9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 9: Advanced Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workshops
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Workshops
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/week1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 1: Introduction to RL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/week2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 2: Value-Based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/week3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 3: Policy-Based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/week4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 4: Advanced Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/week5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 5: Model-Based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/week6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 6: Multi-Armed Bandits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Homeworks
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Homeworks
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW1: Introduction to RL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW2: Value-Based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW3: Policy-Based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW4: Advanced Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW5: Model-Based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW6: Multi-Armed Bandits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW7: Value-Based Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW8: Policy-Based Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW9: Advanced Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW10: Exploration Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW11: Imitation &amp; Inverse RL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW12: Offline Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW13: Multi-Agent Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW14: Hierarchical &amp; Meta RL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Previous Semesters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prerequisites
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Prerequisites
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deep_learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deep Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Game Theory
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Game Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        <!--
+  Copyright (c) 2016-2025 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Determine title -->
+
+
+
+
+<!-- Table of contents -->
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+
+  <!--
+    Check whether the content starts with a level 1 headline. If it does, the
+    top-level anchor must be skipped, since it would be redundant to the link
+    to the current page that is located just above the anchor. Therefore we
+    directly continue with the children of the anchor.
+  -->
+  
+  
+    
+  
+
+  <!-- Table of contents title and list -->
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-game-theory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is Game Theory
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#game" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Game
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#information-in-game" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Information in Game
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#types-of-games-based-on-timing-and-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Types of Games Based on Timing and Information
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-game-theory-matters-in-multi-agent-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Game Theory Matters in Multi-Agent Systems
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#types-of-game" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Types of Game
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Types of Game">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cooperative-vs-non-cooperative-games" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cooperative vs. Non-Cooperative Games
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#games-of-complete-and-incomplete-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Games of Complete and Incomplete Information
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zero-sum-vs-non-zero-sum-games" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Zero-Sum vs. Non-Zero-Sum Games
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simultaneous-move-vs-sequential-move-games" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simultaneous-Move vs. Sequential-Move Games
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#game-representations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Game Representations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Game Representations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#normal-strategic-form" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Normal (Strategic) Form
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extensive-form" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extensive Form
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solving-a-game-theory-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Solving A Game Theory Problem
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Solving A Game Theory Problem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nash-equilibrium" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nash Equilibrium
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-nash-equilibria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiple Nash Equilibria
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Multiple Nash Equilibria">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#battle-of-the-sexes-game" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Battle of the Sexes Game
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pure-and-mixed-strategies-in-game-theory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pure and Mixed Strategies in Game Theory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pure and Mixed Strategies in Game Theory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#matching-pennies-game" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matching Pennies Game
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sequential-games" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sequential Games
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sequential Games">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#normal-form-representation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Normal Form Representation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sub-game-perfect-nash-equilibrium-spne" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sub-game Perfect Nash Equilibrium (SPNE)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backward-induction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backward Induction
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pareto-optimality-and-social-welfare-in-game-theory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pareto Optimality and Social Welfare in Game Theory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pareto Optimality and Social Welfare in Game Theory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pareto-optimality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pareto Optimality
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#social-welfare" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Social Welfare
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Social Welfare">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pareto-optimality-and-social-welfare-in-ai-multi-agent-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pareto Optimality and Social Welfare in AI &amp; Multi-Agent Systems
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cooperative-vs-non-cooperative-games_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cooperative vs Non-Cooperative Games
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cooperative vs Non-Cooperative Games">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cooperative-games" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cooperative Games
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cooperative Games">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shapley-value-calculation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shapley Value Calculation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#non-cooperative-games" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Cooperative Games
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Author(s)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linear_algebra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linear Algebra
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../numerical_optimization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Numerical Optimization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../information_theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Information Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stochastic_processes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stochastic Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exams
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Exams
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exams/midterm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spring 2025 Midterm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exams/final/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spring 2025 Final
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exams/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Previous Semesters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Poster Session
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Poster Session
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_11_1" id="__nav_11_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spring 2025
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_11_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Spring 2025
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../poster_session/sp25/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Showcase
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../poster_session/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guideline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_11_2" id="__nav_11_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spring 2024
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_11_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Spring 2024
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../poster_session/sp24/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Showcase
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resources
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Resources
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Blog
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tags
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_13_3" id="__nav_13_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Archive
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_13_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Archive
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/archive/2025/02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    February 2025
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_13_4" id="__nav_13_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Categories
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_13_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Categories
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/category/course-updates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course Updates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+            </div>
+            </div>
+        </div>
+    
+
+    <!-- Table of contents -->
+    
+        
+        <div
+            class="md-sidebar md-sidebar--secondary"
+            data-md-component="sidebar"
+            data-md-type="toc"
+            
+        >
+            <div class="md-sidebar__scrollwrap">
+            <div class="md-sidebar__inner">
+                <!--
+  Copyright (c) 2016-2025 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Determine title -->
+
+
+
+
+<!-- Table of contents -->
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+
+  <!--
+    Check whether the content starts with a level 1 headline. If it does, the
+    top-level anchor must be skipped, since it would be redundant to the link
+    to the current page that is located just above the anchor. Therefore we
+    directly continue with the children of the anchor.
+  -->
+  
+  
+    
+  
+
+  <!-- Table of contents title and list -->
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-game-theory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is Game Theory
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#game" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Game
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#information-in-game" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Information in Game
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#types-of-games-based-on-timing-and-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Types of Games Based on Timing and Information
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-game-theory-matters-in-multi-agent-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Game Theory Matters in Multi-Agent Systems
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#types-of-game" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Types of Game
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Types of Game">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cooperative-vs-non-cooperative-games" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cooperative vs. Non-Cooperative Games
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#games-of-complete-and-incomplete-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Games of Complete and Incomplete Information
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zero-sum-vs-non-zero-sum-games" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Zero-Sum vs. Non-Zero-Sum Games
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simultaneous-move-vs-sequential-move-games" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simultaneous-Move vs. Sequential-Move Games
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#game-representations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Game Representations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Game Representations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#normal-strategic-form" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Normal (Strategic) Form
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extensive-form" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extensive Form
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solving-a-game-theory-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Solving A Game Theory Problem
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Solving A Game Theory Problem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nash-equilibrium" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nash Equilibrium
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multiple-nash-equilibria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiple Nash Equilibria
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Multiple Nash Equilibria">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#battle-of-the-sexes-game" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Battle of the Sexes Game
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pure-and-mixed-strategies-in-game-theory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pure and Mixed Strategies in Game Theory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pure and Mixed Strategies in Game Theory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#matching-pennies-game" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matching Pennies Game
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sequential-games" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sequential Games
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sequential Games">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#normal-form-representation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Normal Form Representation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sub-game-perfect-nash-equilibrium-spne" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sub-game Perfect Nash Equilibrium (SPNE)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backward-induction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backward Induction
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pareto-optimality-and-social-welfare-in-game-theory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pareto Optimality and Social Welfare in Game Theory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pareto Optimality and Social Welfare in Game Theory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pareto-optimality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pareto Optimality
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#social-welfare" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Social Welfare
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Social Welfare">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pareto-optimality-and-social-welfare-in-ai-multi-agent-systems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pareto Optimality and Social Welfare in AI &amp; Multi-Agent Systems
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cooperative-vs-non-cooperative-games_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cooperative vs Non-Cooperative Games
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cooperative vs Non-Cooperative Games">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cooperative-games" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cooperative Games
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cooperative Games">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shapley-value-calculation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Shapley Value Calculation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#non-cooperative-games" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Cooperative Games
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Author(s)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+            </div>
+            </div>
+        </div>
+    
+
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="game-theory">Game Theory</h1>
+<h2 id="what-is-game-theory">What is Game Theory</h2>
+<p>Game theory originated to analyze strategic interactions between rational decision-makers. Its early foundations can be traced back to Augustin Cournot’s work on imperfect competition in 1838, but it was formally developed in 1944 by John von Neumann and Oskar Morgenstern in <em>Theory of Games and Economic Behavior</em>. A breakthrough came later with John Nash’s introduction of Nash Equilibrium, which became a cornerstone of modern game theory.</p>
+<p>At its core, game theory provides a structured way to study decision-making in competitive and cooperative environments. It helps explain how rational agents, whether individuals, companies, or even AI systems, make choices when their outcomes depend on the actions of others. A rational agent is assumed to act logically, weighing available information, potential risks, and expected rewards to achieve the best possible outcome.</p>
+<p>Game theory applies to a wide range of real-world scenarios, from economics and business strategy to politics and artificial intelligence. It is particularly useful in multi-agent systems, where multiple entities interact strategically, making it a fundamental tool for Multi-Agent Reinforcement Learning (MARL).</p>
+<h2 id="game">Game</h2>
+<p>A game is a mathematical model of strategic interactions where multiple decision-making entities (players) choose from a set of possible actions (strategies) and receive payoffs based on their choices. The simplest form of a game consists of three key elements:</p>
+<ol>
+<li>Players: The decision-making agents in the game. Players can be autonomous robots, AI agents in a multi-agent system, competing machine learning models, or even human participants. In an N-player game, players are typically labeled as Player 1, Player 2, ..., Player n, and any arbitrary player is referred to as Player i.</li>
+<li>
+<p>Strategies: The available choices or actions each player can take. A strategy can be a single action (e.g., moving left or right in a robotic navigation task) or a set of possible actions (e.g., an AI choosing between different learning rates in an optimization problem). If a player i has a strategy set 𝑆<sub>𝑖</sub>, then any individual strategy within that set is denoted as s<sub>𝑖</sub>.</p>
+<ul>
+<li>Example: In a multi-agent reinforcement learning (MARL) setting for self-driving cars, each vehicle must decide whether to change lanes, maintain speed, or slow down based on other cars’ positions.</li>
+</ul>
+</li>
+<li>
+<p>Payoffs: The rewards or outcomes each player receives based on the chosen strategies. In multi-agent reinforcement learning (MARL), payoffs often represent a reward function, which could be the distance traveled, fuel efficiency, or a safety score. The payoff function for player iii is denoted as:
+$$
+U_i(s_1, s_2, \dots, s_n)
+$$</p>
+</li>
+</ol>
+<p>where <strong><span class="arithmatex">\(s_1, s_2, \dots, s_n\)</span></strong> are the strategies chosen by all players.</p>
+<h2 id="information-in-game">Information in Game</h2>
+<p>Apart from players, strategies, and payoffs, a game also specifies the information available to each player at the time of decision-making. The concept of common knowledge is often assumed, meaning:</p>
+<ul>
+<li>All players know the rules of the game.</li>
+<li>Each player knows what others know about the game.</li>
+</ul>
+<p>However, different games vary in how much information is available at decision time, which significantly impacts strategy selection.</p>
+<h2 id="types-of-games-based-on-timing-and-information">Types of Games Based on Timing and Information</h2>
+<p><strong>Simultaneous-Move (Static) Games:</strong></p>
+<p>Players choose their actions at the same time (or without knowing what the others have chosen).</p>
+<ul>
+<li>Example: Packet Routing in Networks – When multiple routers decide simultaneously which path to forward packets without knowledge of others’ decisions, leading to congestion or efficient data transfer.</li>
+</ul>
+<p><strong>Sequential-Move (Dynamic) Games:</strong></p>
+<p>Players take turns making decisions, and later players observe previous moves before making their choices.</p>
+<ul>
+<li>Example: Robot Navigation in a Warehouse – Imagine multiple robots moving through a warehouse to collect and transport items. The first robot moves and chooses a path toward its target shelf. The second robot, before making its decision, can see the first robot’s movement and adjust its path to avoid congestion or optimize efficiency. The third robot then observes both previous movements before planning its route. The sequence of moves continues until all robots reach their destinations efficiently. This is a sequential game because each robot’s decision depends on the prior actions of others, making planning and adaptation critical.</li>
+</ul>
+<h2 id="why-game-theory-matters-in-multi-agent-systems">Why Game Theory Matters in Multi-Agent Systems</h2>
+<p>Game theory provides a mathematical foundation for analyzing and designing multi-agent AI systems, such as:</p>
+<ul>
+<li>Autonomous vehicle coordination: How self-driving cars decide when to merge or yield in traffic.</li>
+<li>AI competition in adversarial environments: How AI agents play against each other in games like StarCraft II or Dota 2.</li>
+<li>Resource allocation in distributed systems: How cloud computing services decide to allocate CPU and memory resources among multiple users.</li>
+</ul>
+<h2 id="types-of-game">Types of Game</h2>
+<h3 id="cooperative-vs-non-cooperative-games">Cooperative vs. Non-Cooperative Games</h3>
+<p>Game theory is broadly divided into cooperative and non-cooperative games. The key difference between the two lies in whether players can form binding agreements.</p>
+<p><strong>Cooperative Game Theory:</strong></p>
+<ul>
+<li>
+<p>Players form groups or coalitions and make binding agreements to coordinate their actions for mutual benefit.</p>
+</li>
+<li>
+<p>The goal is to maximize the collective reward, and the payoff is shared among members.</p>
+<ul>
+<li>Example in Computer Science: In distributed computing, multiple processors working together to execute a large-scale computation form a cooperative system, where resources and workloads are allocated fairly among them.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Non-Cooperative Game Theory:</strong></p>
+<ul>
+<li>
+<p>Players act individually, focusing on their own self-interest.</p>
+</li>
+<li>
+<p>No binding contracts exist, meaning players independently decide their strategies, often leading to competition.</p>
+</li>
+<li>
+<p>The outcome is determined by the strategies chosen by all players, and each player's welfare depends on others' actions.</p>
+<ul>
+<li>Example in Computer Science: In network routing, Internet Service Providers (ISPs) manage their own traffic flow and bandwidth allocation independently, often competing for optimal routing paths while still interacting in the shared network.</li>
+</ul>
+</li>
+</ul>
+<h3 id="games-of-complete-and-incomplete-information">Games of Complete and Incomplete Information</h3>
+<p>In game theory, games are classified based on how much information players have about the game and their opponents.</p>
+<p><strong>Complete Information Games:</strong></p>
+<p>In a game of complete information, all players have full knowledge of:</p>
+<ol>
+<li>The strategies are available to all players.</li>
+<li>The payoff functions for every possible outcome.</li>
+<li>The types of players involved (i.e., whether they are rational, cooperative, or competitive).</li>
+</ol>
+<p>Since players know all relevant information, they can plan their moves strategically to maximize their expected reward. The solution concepts used in complete information games include:</p>
+<ul>
+<li>Nash Equilibrium (for static/simultaneous-move games).</li>
+<li>
+<p>Subgame Perfect Nash Equilibrium (for dynamic/sequential-move games).</p>
+<ul>
+<li>Example: Chess as a Complete Information Game: In chess, both players see the entire board, know the rules, and can predict possible future moves. There is no hidden information, everything is visible, making chess a classic example of a complete information game in AI.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Incomplete Information Games:</strong></p>
+<p>In a game of incomplete information, some players have private information that others do not know. This means that players must estimate or infer their opponents' strategies, payoffs, or even goals.</p>
+<p>For instance, in an auction, each bidder knows their own valuation of an item but does not know how much the other bidders are willing to pay. Players must guess and strategize based on limited knowledge.</p>
+<p>The solution concepts used for incomplete information games include:</p>
+<ul>
+<li>Bayesian Nash Equilibrium (for static/simultaneous-move games).</li>
+<li>
+<p>Perfect Bayesian Equilibrium (for dynamic/sequential-move games).</p>
+<ul>
+<li>Example: When autonomous vehicles interact on the road, they do not know the exact goals of other drivers (e.g., whether a car will merge into another lane or speed up). They must estimate these intentions based on observed behavior.</li>
+</ul>
+</li>
+</ul>
+<h3 id="zero-sum-vs-non-zero-sum-games">Zero-Sum vs. Non-Zero-Sum Games</h3>
+<p><strong>Zero-Sum Game:</strong></p>
+<p>A zero-sum game is a type of game where one player’s gain is exactly equal to the loss of another player. The total sum of payoffs in the game always equals zero—meaning one player’s success comes entirely at the expense of the other.</p>
+<ul>
+<li>Example: In chess, poker, or strategic board games, when one AI agent wins, the opponent necessarily loses by an equal amount.</li>
+<li>Example: In Generative Adversarial Networks (GANs), a generator tries to create realistic images, while a discriminator tries to distinguish real from fake images. The better the generator gets, the harder the discriminator's job becomes, and vice versa—making it a zero-sum interaction.</li>
+</ul>
+<p><strong>Non-zero-sum game:</strong></p>
+<p>A non-zero-sum game, in contrast, is where players’ gains do not necessarily come at the expense of others. Players can either benefit (cooperative outcomes) or both suffer (mutual losses).</p>
+<ul>
+<li>Example: In autonomous vehicle coordination, two self-driving cars merging onto a highway benefit from cooperation—if they signal and adjust speeds optimally, they both avoid collisions and reduce traffic delays.</li>
+<li>Example: In distributed computing, multiple AI models can share processing power efficiently, benefiting all users instead of competing destructively for resources.</li>
+</ul>
+<h3 id="simultaneous-move-vs-sequential-move-games">Simultaneous-Move vs. Sequential-Move Games</h3>
+<p>The order of moves plays a crucial role in game theory, as it directly affects the strategies and outcomes of the game. Players can either make decisions simultaneously or act sequentially, with each scenario leading to different strategic considerations.</p>
+<p><strong>Simultaneous-Move Games:</strong></p>
+<p>In simultaneous-move games, all agents take actions at the same time, without knowledge of the others' choices. This requires strategies based on expectations rather than direct observation of the opponent’s move.</p>
+<ul>
+<li>
+<p>Example: In multi-agent reinforcement learning (MARL) for competitive games like Atari Pong or RoboCup Soccer, both AI agents choose their actions at the same time (e.g., moving left, right, attacking, or defending). Since neither agent knows what the other will do at that moment, they must learn policies that anticipate opponent behavior.</p>
+</li>
+<li>
+<p>Example: Autonomous traffic lights must simultaneously decide their signal timings without knowing how other intersections will change theirs. If all intersections turn green for a major road at the same time, it improves flow, but if they conflict, it may lead to congestion. RL agents learn traffic policies that balance efficiency under simultaneous uncertainty.</p>
+</li>
+</ul>
+<p><strong>Sequential-Move Games:</strong></p>
+<p>In sequential-move games, actions happen in a turn-based manner, meaning later agents can observe and adapt to earlier actions.</p>
+<ul>
+<li>
+<p>Example: In robotic task planning, a high-level agent first selects a sub-goal (e.g., "pick up the object"), then a low-level agent observes this decision and executes finer actions (e.g., "move gripper, adjust force, lift object"). The low-level agent’s decision depends on what the high-level agent has already done, making this a sequential-move game.</p>
+</li>
+<li>
+<p>Example: In Autonomous Drone Navigation in Obstacle Avoidance, A leading drone in a formation moves first, and following drones adjust their trajectories based on the leader's action. The first drone’s movement is not influenced by others, but the second and third drones must adapt to what has already happened, making this a sequential decision-making RL problem.</p>
+</li>
+</ul>
+<p><strong>Simultaneous-Move Games → Require opponent modeling and strategy anticipation.</strong></p>
+<p><strong>Sequential-Move Games → Allow adaptation and learning from prior moves.</strong></p>
+<h2 id="game-representations">Game Representations</h2>
+<p>In game theory, there are two primary ways to represent a game:</p>
+<ol>
+<li>Normal (Strategic) Form</li>
+<li>Extensive Form</li>
+</ol>
+<h3 id="normal-strategic-form">Normal (Strategic) Form</h3>
+<p>The normal form represents a game using a payoff matrix, where rows and columns denote different strategies chosen by players.</p>
+<p>By convention, in a two-player game:</p>
+<ul>
+<li>
+<p>Rows correspond to Player 1’s strategies.</p>
+</li>
+<li>
+<p>Columns correspond to Player 2’s strategies.</p>
+</li>
+<li>
+<p>Each cell in the matrix shows the payoff each player receives for a given strategy combination.</p>
+</li>
+</ul>
+<h3 id="extensive-form">Extensive Form</h3>
+<p>The extensive form is a pictorial representation of a game using a game tree, which illustrates:</p>
+<ul>
+<li>The order in which players make decisions.</li>
+<li>The choices available at each decision point.</li>
+<li>The payoffs for different sequences of choices.</li>
+</ul>
+<p>In an extensive form representation:</p>
+<ul>
+<li>The game starts at an initial node, usually controlled by Player 1.</li>
+<li>Each branch represents a possible action.</li>
+<li>When a player makes a decision, the game moves along a branch to another node, where Player 2 (or another player) makes their decision.</li>
+<li>This continues until reaching a terminal node, where each player receives a payoff.</li>
+</ul>
+<p>In the following we will illustrate both of these presentation forms using the very famous example of Prisoner’s Dilemma game.</p>
+<p><strong>Prisoner’s Dilemma:</strong>
+A well-known example of a non-cooperative and a game of complete information is the Prisoners’ Dilemma game. Consider the following set-up of the game: A crime is committed for which there is no eyewitness. Suspects 1 and 2 are caught and imprisoned in two separate cells. Thus, each prisoner is in a solitary confinement with no means of communicating with each other. The magistrate speaks to each prisoner separately and asks them to act as an informer. If one of them confesses the crime, he will be freed but the other one will spend 4 years in prison. If both confess, each will spend 3 years in prison. If both stay quiet and do not confess, the crime cannot be probed, so they will get nominal punishment by spending only one year in prison. Thus, each player then has two possible strategies: Not confess (N) or Confess <span class="arithmatex">\(C\)</span> and they decide simultaneously.</p>
+<p><strong>Prisoner’s Dilemma in Normal Form:</strong></p>
+<ul>
+<li>The first number in each cell represents Player 1’s payoff, and the second represents Player 2’s payoff.</li>
+<li>The game is played simultaneously, meaning neither player knows what the other will do.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>Player 1 ↓ / Player 2 →</strong></th>
+<th><strong>Not Confess</strong></th>
+<th><strong>Confess</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Not Confess</strong></td>
+<td>(-1, -1)</td>
+<td>(-4, 0)</td>
+</tr>
+<tr>
+<td><strong>Confess</strong></td>
+<td>(0, -4)</td>
+<td>(-3, -3)</td>
+</tr>
+</tbody>
+</table>
+<p>Payoffs are given in the format (Player 1, Player 2)</p>
+<p><strong>Prisoner’s Dilemma in Extensive Form:</strong></p>
+<p><img alt="Prisoner'sDilemma_ExtensiveForm" src="../../assets/images/prerequisites/Game_Theory_Notes/Prisoner%27sDilemma_ExtensiveForm.png" /></p>
+<p>To reflect the fact that the Prisoners’ Dilemma is a simultaneous move game, a dotted oval is drawn around Player 2’s decision nodes to reflect the fact that Player 2 does not know which of the two decision nodes he is at since he does not observe which action Player 1 has chosen, that is, he does not know whether the first decision by Player 1 was to confess or not confess. This dotted oval around the two nodes of Player 2 indicates his lack of specific information. An information set of a Player is a collection of nodes such that the same player (here Player 2) moves at each of these nodes; and the same moves (here Not Confess, Confess) are available at each of these nodes.</p>
+<p>If we were to use the game tree to illustrate the above game as a sequential one in which Player 1 moves first which then is observed and reacted upon by Player 2, then the game would be more correctly drawn without the ellipse as:</p>
+<p><img alt="Prisoner'sDilemma_ExtensiveForm2" src="../../assets/images/prerequisites/Game_Theory_Notes/Prisoner%27sDilemma_ExtensiveForm2.png" /></p>
+<p>The two nodes (say A and B) which signify the move of Player 2 represent the information set of Player 2. Clearly the information base of Player 2 at A and at B are not same in this case of sequential-move game.</p>
+<p><strong>Choosing Between Normal and Extensive Form</strong></p>
+<ul>
+<li>
+<p>Normal Form is best suited for simultaneous-move games, where players act without knowing the other’s choice.</p>
+</li>
+<li>
+<p>Extensive Form is typically used for sequential-move games, but it can also represent simultaneous-move games using information sets (denoting that a player does not know which node they are in).</p>
+</li>
+</ul>
+<p><strong>Key Points:</strong></p>
+<p>The Normal Form and Extensive Form representations in game theory share fundamental similarities with multi-agent reinforcement learning (MARL) and decision-making in AI.</p>
+<p><strong>Normal Form and RL</strong></p>
+<ul>
+<li>
+<p>In simultaneous-move games, players choose their actions at the same time, like how RL agents in multi-agent settings must act without knowing the exact decisions of others.</p>
+</li>
+<li>
+<p>In self-play reinforcement learning, where two agents compete and improve through repeated interactions (e.g., AlphaZero), their learned Q-values can be structured as a payoff matrix, just like in normal-form games.</p>
+</li>
+</ul>
+<p><strong>Extensive Form and RL</strong></p>
+<ul>
+<li>
+<p>In sequential-move games, players make decisions one after another, similar to step-by-step decision-making in RL.</p>
+</li>
+<li>
+<p>This is directly related to Markov Decision Processes (MDPs), where each action transitions the agent to a new state, leading to a final reward at the end of an episode.</p>
+</li>
+<li>
+<p>Just as payoffs are assigned at the terminal nodes of a game tree, in episodic RL, rewards are only received after completing the full sequence of actions.</p>
+<ul>
+<li>Example: In an RL-based robotic arm learning to pick up an object, the robot makes a series of moves (grasp, adjust, lift), and only at the end does it receive the final reward (successful or failed pickup).</li>
+</ul>
+</li>
+</ul>
+<p>Thus, extensive-form games in game theory and decision-making models in RL share a deep structural similarity, making game theory a crucial tool for designing multi-agent learning algorithms.</p>
+<h2 id="solving-a-game-theory-problem">Solving A Game Theory Problem</h2>
+<p>After covering different representation forms of a game theory problem in the previous section, let us now discuss how to find solution of game theoretic problem.</p>
+<h3 id="nash-equilibrium">Nash Equilibrium</h3>
+<p>A Nash Equilibrium (NE) is a strategy profile where each player chooses the best possible response given the strategies of others. At Nash equilibrium, no player has an incentive to deviate unilaterally because changing their strategy would not improve their payoff, assuming all other players maintain their strategies.</p>
+<p><strong>Formal Definition</strong>
+A strategy profile <span class="arithmatex">\((s_1^*, s_2^*, s_3^*, \dots, s_n^*)\)</span> is a Nash equilibrium if, for each player <span class="arithmatex">\(i\)</span>, their chosen strategy (<span class="arithmatex">\(s_i^*\)</span>) is the best response to the strategies of the other <span class="arithmatex">\(n - 1\)</span> players. Mathematically, this is expressed as:</p>
+<div class="arithmatex">\[
+U_i(s_i^*, s_{-i}^*) \geq U_i(s_i, s_{-i}^*) \quad \forall s_i
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(U_i\)</span> is the payoff function of player <span class="arithmatex">\(i\)</span>.</li>
+<li><span class="arithmatex">\(s_i^*\)</span> is player <span class="arithmatex">\(i\)</span>’s optimal strategy.</li>
+<li><span class="arithmatex">\(s_{-i}^*\)</span> represents the Nash equilibrium strategies of all other players.</li>
+</ul>
+<p>This condition ensures that if any player unilaterally deviates from their equilibrium strategy, their payoff will not improve.</p>
+<p>Now, let us attempt to find the Nash equilibrium in case of the Prisoners’ Dilemma game.</p>
+<p>To determine the Nash equilibrium, we analyze each player’s best response to the other’s strategy:</p>
+<p><em>If Player 2 plays "Stay Silent", Player 1 gets:</em></p>
+<ul>
+<li>-1 year of prison by also staying silent.</li>
+<li>0 years of prison by confessing (better option).</li>
+<li>Best Response: Confess.</li>
+</ul>
+<p><em>If Player 2 plays "Confess", Player 1 gets:</em></p>
+<ul>
+<li>-3 years of prison by confessing.</li>
+<li>-4 years of prison by staying silent (worse option).</li>
+<li>Best Response: Confess.</li>
+</ul>
+<p>Since both players reach the same conclusion, the Nash equilibrium occurs at (Confess, Confess) with a payoff of (-3, -3).</p>
+<p><strong>Why Nash Equilibrium Is Not Always the Best Outcome?</strong></p>
+<p>Notice that if both players stayed silent, their payoffs would be (-1, -1), which is a better outcome than (-3, -3). However, this (Stay Silent, Stay Silent) outcome is not a Nash equilibrium because each player has an incentive to deviate (confessing gives a better payoff).</p>
+<p>This leads to the concept of Pareto Optimality, where a different strategy profile could be better for all players, but is not an equilibrium unless cooperation is enforced.<br />
+(We will discuss this in the following section)</p>
+<h3 id="multiple-nash-equilibria">Multiple Nash Equilibria</h3>
+<p>Nash equilibrium is a powerful concept because it guarantees a stable solution for strategic interactions. However, a challenge arises when a game has multiple Nash equilibria, making it difficult to predict a unique outcome.</p>
+<p>To illustrate this, consider the classic Battle of the Sexes game.</p>
+<p><strong>Battle of the Sexes</strong></p>
+<p>This game involves two players, a husband and a wife, who are planning an evening out.</p>
+<ul>
+<li>They both prefer to be together rather than going out alone.</li>
+<li>
+<p>However, they have different preferences:</p>
+</li>
+<li>
+<p>The wife wants to attend an Opera.</p>
+</li>
+<li>
+<p>The husband prefers to watch a Boxing match.</p>
+</li>
+</ul>
+<p>The payoff matrix for their choices is as follows:</p>
+<h4 id="battle-of-the-sexes-game">Battle of the Sexes Game</h4>
+<table>
+<thead>
+<tr>
+<th><strong>Player 1 (wife)</strong> ↓ / <strong>Player 2 (husband)</strong> →</th>
+<th><strong>Opera</strong></th>
+<th><strong>Boxing</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Opera</strong></td>
+<td>(3, 1)</td>
+<td>(0, 0)</td>
+</tr>
+<tr>
+<td><strong>Boxing</strong></td>
+<td>(0, 0)</td>
+<td>(1, 3)</td>
+</tr>
+</tbody>
+</table>
+<p>Payoffs are in the format (Wife, Husband)</p>
+<p><strong>Finding the Nash Equilibria:</strong></p>
+<p>The best response for each player is to follow the other’s decision:</p>
+<ul>
+<li>
+<p>If the wife chooses Opera, the husband’s best response is Opera.</p>
+</li>
+<li>
+<p>If the husband chooses Boxing, the wife’s best response is Boxing.</p>
+</li>
+</ul>
+<p>This results in two pure-strategy Nash equilibria:</p>
+<ul>
+<li>
+<p>(Opera, Opera) with payoffs (3,1)</p>
+</li>
+<li>
+<p>(Boxing, Boxing) with payoffs (1,3)</p>
+</li>
+</ul>
+<p>Since both equilibria offer different advantages to different players, the game presents a coordination problem: which equilibrium should they choose?</p>
+<p><strong>Challenges with the Multiple Equilibria</strong></p>
+<ul>
+<li>
+<p>Unlike games with a single Nash equilibrium, multiple equilibria create uncertainty because the game theory model alone cannot predict which outcome will occur.</p>
+</li>
+<li>
+<p>There is no clear Pareto superior solution because the equilibria are symmetrical—each favor one player over the other.</p>
+</li>
+</ul>
+<h3 id="pure-and-mixed-strategies-in-game-theory">Pure and Mixed Strategies in Game Theory</h3>
+<p><strong>Pure Strategies</strong></p>
+<p>A pure strategy is when a player selects one specific action with certainty in a game. In other words, the player always chooses the same move when faced with the same situation.</p>
+<p>Pure Strategy in the Prisoner’s Dilemma</p>
+<ul>
+<li>If a prisoner always chooses to confess, regardless of what the other prisoner does, this is a pure strategy.</li>
+<li>Similarly, if a player in Rock-Paper-Scissors always plays Rock, this is also a pure strategy.</li>
+</ul>
+<p>Pure strategies are deterministic, meaning there is no randomness in the player’s decision-making.</p>
+<p>However, not all games have stable Nash equilibria in pure strategies. This is where mixed strategies become important.</p>
+<p>Mixed Strategies</p>
+<p>A mixed strategy is when a player randomly chooses between multiple strategies based on a probability distribution. This means that instead of always picking the same action, the player assigns probabilities to different choices and selects them accordingly.</p>
+<p>Mixed strategies are particularly useful in games where no pure strategy Nash equilibrium exists, meaning that predictable behavior leads to exploitation by the opponent.</p>
+<p>One of the best examples of mixed strategies in game theory is the Matching Pennies game.</p>
+<p><strong>Matching Pennies</strong></p>
+<p>There are two players, each with a coin (penny).</p>
+<p>Both players simultaneously choose to display their coins as Heads (H) or Tails (T).</p>
+<p>If the coins match (both heads or both tails), Player 2 gives a penny to Player 1.</p>
+<p>If the coins do not match (one is heads and the other is tails), Player 1 gives a penny to Player 2. The payoff matrix is:</p>
+<h4 id="matching-pennies-game">Matching Pennies Game</h4>
+<table>
+<thead>
+<tr>
+<th><strong>Player 1 ↓ / Player 2 →</strong></th>
+<th><strong>Head</strong></th>
+<th><strong>Tail</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Head</strong></td>
+<td>(1, -1)</td>
+<td>(-1, 1)</td>
+</tr>
+<tr>
+<td><strong>Tail</strong></td>
+<td>(-1, 1)</td>
+<td>(1, -1)</td>
+</tr>
+</tbody>
+</table>
+<p>This is a zero-sum game, meaning the gain of one player is exactly equal to the loss of the other.</p>
+<p><strong>Checking for Pure Strategy Nash Equilibrium:</strong></p>
+<p>Suppose Player 2 always plays Head (H):</p>
+<ul>
+<li>
+<p>Player 1’s best response is also Head (H) (to win the penny).</p>
+</li>
+<li>
+<p>If Player 1 always plays Head, then Player 2 would switch to Tail (T) to win instead.</p>
+</li>
+</ul>
+<p>This process keeps repeating, meaning no pure strategy Nash equilibrium exists.</p>
+<p>Since there is no stable outcome in pure strategies, we must use mixed strategies where both players randomize their choices.</p>
+<p>In a mixed strategy equilibrium, each of the players must be indifferent between the actions which they choose to play. If a player was not indifferent between the available actions, this would imply that one particular action yields a higher payoff than the others, and the player would play that action with probability 1 rather than mixing strategies with certain probability distribution.</p>
+<p>To solve the Mixed Strategy Nash equilibrium, Let’s define:</p>
+<ul>
+<li>Player 1 plays Head with probability q and Tail with probability 1−q.</li>
+<li>Player 2 plays Head with probability p and Tail with probability 1−p.</li>
+</ul>
+<p>The expected payoff of Player 1 for playing a pure strategy of Head when Player 2 plays a mixed strategy with a probability distribution p and (1-p):<br />
+If Player 1 chooses Head (H), their expected payoff is:</p>
+<div class="arithmatex">\[
+E_1(H) = p(1) + (1 - p)(-1) = 2p - 1
+\]</div>
+<p>If Player 1 chooses Tail (T), their expected payoff is:</p>
+<div class="arithmatex">\[
+E_1(T) = p(-1) + (1 - p)(1) = -2p + 1
+\]</div>
+<p>For Player 1 to be indifferent (i.e., have no incentive to favor Head or Tail), these payoffs must be equal:</p>
+<div class="arithmatex">\[
+E_1(H) = E_1(T) \Rightarrow 2p - 1 = -2p + 1 \Rightarrow p = \frac{1}{2}
+\]</div>
+<p>Thus, Player 2 must choose Head and Tail with equal probability (50%-50%) to keep Player 1 from exploiting a predictable strategy.</p>
+<hr />
+<p>Similarly, the expected payoff of Player 2 for playing a pure strategy of Head when Player 1 plays a mixed strategy with a probability distribution <span class="arithmatex">\(q\)</span> and <span class="arithmatex">\((1 - q)\)</span>:</p>
+<div class="arithmatex">\[
+E_2(H) = q(-1) + (1 - q)(1) = -2q + 1
+\]</div>
+<div class="arithmatex">\[
+E_2(T) = q(1) + (1 - q)(-1) = 2q - 1
+\]</div>
+<div class="arithmatex">\[
+E_2(H) = E_2(T) \Rightarrow 2q - 1 = -2q + 1 \Rightarrow q = \frac{1}{2}
+\]</div>
+<p>Thus, Player 1 must also choose Head and Tail with equal probability (50%-50%).</p>
+<p>The only Nash equilibrium in this game is where both players play Heads and Tails with equal probability <span class="arithmatex">\(\left(\frac{1}{2}, \frac{1}{2}\right)\)</span>. Thus, the equilibrium strategy can be written as:</p>
+<div class="arithmatex">\[
+p^* = \frac{1}{2}, \quad q^* = \frac{1}{2}
+\]</div>
+<p>This means that each player randomizes their choice to ensure that the opponent cannot predict and exploit their strategy.</p>
+<h3 id="sequential-games">Sequential Games</h3>
+<p>So far, we have considered simultaneous-move games, where all players make their decisions at the same time, without prior knowledge of the actions chosen by their opponents. In such games, time does not play a role, so they are often called static games.</p>
+<p>However, many games involve sequential moves, where one player moves before another. These are known as sequential-move games, where:</p>
+<ul>
+<li>Players take actions at well-defined turns (over time).</li>
+<li>The second player observes the first player’s action before making their own decision.</li>
+<li>Players have perfect information about previous moves.</li>
+</ul>
+<p>Let’s consider the Battle of the Sexes, but now assume it is played sequentially instead of simultaneously:</p>
+<ul>
+<li>The wife moves first, choosing either Opera or Boxing.</li>
+<li>The husband moves second, making his choice after seeing his wife’s decision.</li>
+</ul>
+<p><strong>How Extensive Form Changes</strong></p>
+<p>In the extensive form representation of this game:</p>
+<ul>
+<li>The oval around Player 2’s decision nodes (which existed in the simultaneous-move version) is removed.</li>
+<li>This is because the husband (Player 2) knows the wife’s choice before making his own move.</li>
+<li>The wife’s possible strategies remain the same: Opera, Boxing.</li>
+<li>
+<p>However, the husband’s set of possible strategies expands because he must specify an action for each of the wife’s choices:</p>
+<ul>
+<li>
+<p>He must choose an action at node A (if the wife chooses Opera).</p>
+</li>
+<li>
+<p>He must also choose an action at node B (if the wife chooses Boxing).</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>This means the husband is not in the same information set anymore, he makes a fully informed decision based on the wife’s action. Illustration of the game is presented in the following extensive form:</p>
+<p><img alt="BattleOfSexex_ExtensiveForm" src="../../assets/images/prerequisites/Game_Theory_Notes/BattleOfSexex_ExtensiveForm.png" /></p>
+<p><strong>Normal Form Representation of the Sequential Game</strong></p>
+<p>To fully define Player 2’s strategies, we must specify his action at each information set, even if a particular decision node is never reached in actual gameplay.</p>
+<p>Thus, Player 2’s (husband’s) strategy set now consists of four possible strategies:</p>
+<ol>
+<li>Always Opera → (Opera | Opera), (Opera | Boxing)</li>
+<li>Follows Wife → (Opera | Opera), (Boxing | Boxing)</li>
+<li>Opposite to Wife → (Boxing | Opera), (Opera | Boxing)</li>
+<li>Always Boxing → (Boxing | Opera), (Boxing | Boxing)</li>
+</ol>
+<p>Now, the normal-form representation of the game becomes:</p>
+<h4 id="normal-form-representation">Normal Form Representation</h4>
+<table>
+<thead>
+<tr>
+<th><strong>Wife / Husband</strong></th>
+<th><strong>Always Opera</strong></th>
+<th><strong>Follows Wife</strong></th>
+<th><strong>Opposite to Wife</strong></th>
+<th><strong>Always Boxing</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Opera</strong></td>
+<td>(3, 1)</td>
+<td>(3, 1)</td>
+<td>(0, 0)</td>
+<td>(0, 0)</td>
+</tr>
+<tr>
+<td><strong>Boxing</strong></td>
+<td>(0, 0)</td>
+<td>(1, 3)</td>
+<td>(0, 0)</td>
+<td>(1, 3)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Finding Nash Equilibria in the Sequential Game</strong></p>
+<p>From the table, we observe that multiple Nash equilibria exist:</p>
+<ol>
+<li>Wife chooses Opera, Husband chooses (Opera | Opera), (Opera | Boxing)</li>
+<li>Wife chooses Opera, Husband chooses (Opera | Opera), (Boxing | Boxing)</li>
+<li>Wife chooses Boxing, Husband chooses (Boxing | Opera), (Boxing | Boxing)</li>
+</ol>
+<p>Now, let’s analyze the credibility of these equilibria.</p>
+<p><strong>Analyzing Credibility of the Nash Equilibria</strong></p>
+<p>1st Equilibrium: (Opera, (Opera | Opera), (Opera | Boxing))</p>
+<ul>
+<li>The husband’s strategy includes a threat that he will choose Opera even if the wife picks Boxing.</li>
+<li>However, this is an empty (non-credible) threat because if the wife actually chooses Boxing, the husband would get 1 instead of 3 by choosing Opera.</li>
+<li>Since the husband’s rational choice at node B would actually be Boxing, this equilibrium is not credible.</li>
+</ul>
+<p>3rd Equilibrium: (Boxing, (Boxing | Opera), (Boxing | Boxing))</p>
+<ul>
+<li>Similarly, this equilibrium involves the husband threatening to play Boxing even if the wife chooses Opera.</li>
+<li>This is also non-credible because if the wife chooses Opera, the husband gets 1 by choosing Boxing instead of 3 by choosing Opera.</li>
+</ul>
+<p><strong>Why Credibility Matters?</strong></p>
+<ul>
+<li>Nash equilibrium alone does not consider whether threats are realistic.</li>
+<li>Subgame Perfect Nash Equilibrium (SPNE) eliminates equilibria based on non-credible threats.</li>
+<li>To find the true solution, we need to apply Backward Induction—which we will explore next.</li>
+</ul>
+<h3 id="sub-game-perfect-nash-equilibrium-spne">Sub-game Perfect Nash Equilibrium (SPNE)</h3>
+<p>Nash equilibrium in sequential games can sometimes lead to implausible strategy profiles, especially when they involve non-credible threats. To refine our equilibrium concept, we use Subgame Perfect Nash Equilibrium (SPNE), which ensures that a strategy is rational at every stage of the game, not just overall.</p>
+<p><strong>Defining SPNE</strong></p>
+<p>A Subgame Perfect Nash Equilibrium (SPNE) is a strategy profile that:</p>
+<ol>
+<li>Forms a Nash equilibrium in the entire game.</li>
+<li>Is also a Nash equilibrium in every proper subgame.</li>
+</ol>
+<p>A subgame is a part of the extensive form representation that begins from any decision node and includes all subsequent actions branching from that node. A proper subgame must begin at a single decision node and not include any nodes that belong to an information set shared with another node.</p>
+<p>In the sequential Battle of the Sexes, we identify three subgames:</p>
+<ol>
+<li>The entire game itself (root node).</li>
+<li>The subgame beginning at the first decision node of the husband (when the wife chooses Opera).</li>
+<li>The subgame beginning at the second decision node of the husband (when the wife chooses Boxing).</li>
+</ol>
+<p>These subgames are shown in the dashed rectangles in the provided figure.</p>
+<p><img alt="BattleOfSexex_ExtensiveForm2" src="../../assets/images/prerequisites/Game_Theory_Notes/BattleOfSexex_ExtensiveForm2.png" /></p>
+<p><strong>Solving the Proper Subgames</strong></p>
+<ol>
+<li>Subgame (ii) (Wife chooses Opera → Husband chooses Opera or Boxing)</li>
+</ol>
+<p>The husband must choose between:</p>
+<ul>
+<li>
+<p>Opera, which gives him a payoff of 1.</p>
+</li>
+<li>
+<p>Boxing, which gives him a payoff of 0.</p>
+</li>
+</ul>
+<p>His best response is to choose Opera.</p>
+<ol>
+<li>Subgame (iii) (Wife chooses Boxing → Husband chooses Opera or Boxing)</li>
+</ol>
+<p>The husband must choose between:</p>
+<ul>
+<li>
+<p>Opera, which gives him a payoff of 0.</p>
+</li>
+<li>
+<p>Boxing, which gives him a payoff of 3.</p>
+</li>
+</ul>
+<p>His best response is to choose Boxing.</p>
+<p>Thus, the husband's optimal strategy is (Opera | Opera) (Boxing | Boxing)—meaning he will:</p>
+<ul>
+<li>Choose Opera if the wife chooses Opera.</li>
+<li>Choose Boxing if the wife chooses Boxing.</li>
+</ul>
+<p>The other two strategy profiles like (Opera | Opera) (Opera | Boxing) and (Boxing | Opera) (Boxing | Boxing) results in him playing something that is not a Nash equilibrium on some proper subgame. Thus, among the three Nash equilibria we came across for the game, only the second one is subgame perfect Nash equilibrium while the first and the third are not.</p>
+<h3 id="backward-induction">Backward Induction</h3>
+<p>In the previous section, we solved the equilibrium in the sequential Battle of the Sexes game by finding the Nash equilibria using the normal form and then look for a subgame perfect Nash equilibrium among them. Another method providing a somewhat direct way of solving for the subgame perfect Nash equilibrium in such a setting is the method of Backward Induction. In this method we start with the subgames at the bottom of the extensive form, and determine the Nash equilibrium of these subgames. These subgames are then replaced by their respective Nash equilibrium. This process of replacing a subgame with the associated Nash equilibrium is then continued up to the next level of subgames till we reach a subgame perfect Nash equilibrium. The process is illustrated below:</p>
+<p><img alt="BattleOfSexex_ExtensiveForm3" src="../../assets/images/prerequisites/Game_Theory_Notes/BattleOfSexex_ExtensiveForm3.png" /></p>
+<p>In this figure the method of Backward Induction involves first solving the two subgames (ii and iii) for Nash equilibrium. In subgame (ii), given that wife opts for Opera, husband’s best response would be to choose Opera for a payoff of 1 rather than going for Boxing match resulting in payoff of 0. Similarly, in subgame (iii), given that wife opts for Boxing, husband’s best response will be to go for a Boxing match. Now, we replace the two subgames with their respective Nash equilibrium strategies to get a simple game where wife is to decide. Wife gets a payoff of 3 if she goes for Opera, while Boxing results in a payoff of 1. Nash equilibrium strategy yielding the higher payoff will be for her to go for Opera. So, the wife’s best response is to go for Opera. Thus, we get the subgame perfect Nash equilibrium outcome as (Opera | Opera).</p>
+<p>In Earlier sections we have talked about cooperative vs non-cooperative games. Now we want to take a deeper look at these two concepts.</p>
+<h2 id="pareto-optimality-and-social-welfare-in-game-theory">Pareto Optimality and Social Welfare in Game Theory</h2>
+<p>In multi-agent systems and game theory, decision-making often involves balancing efficiency and fairness. Two important concepts that help evaluate outcomes in such settings are Pareto Optimality and Social Welfare.</p>
+<h3 id="pareto-optimality">Pareto Optimality</h3>
+<p>Pareto Optimality (or Pareto Efficiency) is a fundamental concept in game theory and economics that defines an optimal allocation of resources where no player can be made better off without making another player worse off.</p>
+<p><strong>Definition of Pareto Optimality</strong></p>
+<p>An outcome is Pareto Optimal if there is no alternative outcome where:</p>
+<ul>
+<li>At least one player is better off,</li>
+<li>Without making another player worse off.</li>
+</ul>
+<p>If such an alternative outcome exists, then the current outcome is Pareto inefficient because a better allocation is possible.</p>
+<ul>
+<li>
+<p>Example: Pareto Optimality in a Multi-Agent System</p>
+<p>Consider two autonomous delivery robots sharing a battery charging station.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Robot 1’s Battery Level (%)</strong></th>
+<th><strong>Robot 2’s Battery Level (%)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>50%</td>
+<td>50%</td>
+</tr>
+<tr>
+<td>70%</td>
+<td>30%</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>If Robot 1 gets more charge (70%) while Robot 2 gets less (30%), this is not necessarily Pareto inefficient, as long as Robot 2 cannot be made better off without decreasing Robot 1’s charge.</li>
+<li>However, if there exists a way to increase Robot 2’s charge without lowering Robot 1’s charge, then the initial allocation was Pareto inefficient.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Pareto Improvement</strong></p>
+<p>A Pareto Improvement is a change where at least one player benefits without hurting others.</p>
+<ul>
+<li>
+<p>If multiple Pareto improvements exist, we will keep improving until we reach a Pareto Optimal outcome where no further improvements are possible.</p>
+</li>
+<li>
+<p>Example: Pareto Improvement in Reinforcement Learning (RL)</p>
+<ul>
+<li>
+<p>Suppose two reinforcement learning agents are cooperating to navigate a grid.</p>
+</li>
+<li>
+<p>They find a policy where both reach their destinations, but one agent takes a longer path.</p>
+</li>
+<li>
+<p>If an alternative policy allows both agents to reach their destinations faster, then it is a Pareto Improvement.</p>
+</li>
+<li>
+<p>The policy that achieves the fastest time for both agents without worsening either one’s outcome is Pareto Optimal.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="social-welfare">Social Welfare</h3>
+<p>While Pareto Optimality focuses on efficiency, Social Welfare is about fairness and collective benefit.</p>
+<p><strong>Definition of Social Welfare</strong></p>
+<p>Social Welfare refers to the overall well-being of all players in the system. A high Social Welfare means that the total benefit across all players is maximized.</p>
+<p><strong>Measuring Social Welfare</strong></p>
+<p>There are different ways to measure Social Welfare in game theory and multi-agent systems:</p>
+<p><strong>Utilitarian Social Welfare:</strong></p>
+<ul>
+<li>
+<p>The total sum of all players' payoffs is maximized.</p>
+</li>
+<li>
+<p>Formula:</p>
+</li>
+</ul>
+<div class="arithmatex">\[
+W = U_1 + U_2 + \cdots + U_n
+\]</div>
+<ul>
+<li>Example:</li>
+<li>If two AI agents receive rewards 5 and 8, the total social welfare is <span class="arithmatex">\(5 + 8 = 13\)</span>.</li>
+<li>A policy that increases their rewards to 6 and 10 would be preferred because total welfare increases to 16.</li>
+</ul>
+<p><strong>Egalitarian Social Welfare:</strong></p>
+<ul>
+<li>
+<p>Ensures fairness by maximizing the minimum utility among all players.</p>
+</li>
+<li>
+<p>Formula:</p>
+</li>
+</ul>
+<div class="arithmatex">\[
+W = \min(U_1, U_2, \dots, U_n)
+\]</div>
+<ul>
+<li>Example:</li>
+<li>If three reinforcement learning agents have rewards 3, 6, and 10, the egalitarian welfare is <span class="arithmatex">\(\min(3, 6, 10) = 3\)</span>.</li>
+<li>A policy improving the worst-off agent’s reward to 5 (even if the total sum decreases) may be preferred under egalitarian principles.</li>
+</ul>
+<p><strong>Nash Social Welfare:</strong></p>
+<ul>
+<li>Balances efficiency and fairness by maximizing the geometric mean of payoffs:</li>
+</ul>
+<div class="arithmatex">\[
+W = (U_1 \times U_2 \times \cdots \times U_n)^{1/n}
+\]</div>
+<ul>
+<li>Used in multi-agent learning where proportional fairness matters.</li>
+</ul>
+<h4 id="pareto-optimality-and-social-welfare-in-ai-multi-agent-systems">Pareto Optimality and Social Welfare in AI &amp; Multi-Agent Systems</h4>
+<table>
+<thead>
+<tr>
+<th><strong>Application</strong></th>
+<th><strong>Role of Pareto Optimality</strong></th>
+<th><strong>Role of Social Welfare</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Multi-Agent Reinforcement Learning (MARL)</td>
+<td>Ensures agents do not waste rewards.</td>
+<td>Ensures fair reward distribution among agents.</td>
+</tr>
+<tr>
+<td>Resource Allocation (Cloud AI, IoT)</td>
+<td>Avoids inefficient use of resources.</td>
+<td>Ensures fair and proportional access to resources.</td>
+</tr>
+<tr>
+<td>AI Fairness in Decision-Making</td>
+<td>Prevents wasteful policies.</td>
+<td>Ensures AI does not discriminate against disadvantaged groups.</td>
+</tr>
+<tr>
+<td>Autonomous Vehicle Coordination</td>
+<td>Ensures vehicles optimize traffic flow.</td>
+<td>Prevents unfair delays for certain cars.</td>
+</tr>
+</tbody>
+</table>
+<p>&lt;![endif]--&gt;</p>
+<h2 id="cooperative-vs-non-cooperative-games_1">Cooperative vs Non-Cooperative Games</h2>
+<h3 id="cooperative-games">Cooperative Games</h3>
+<p>In game theory, strategic interactions between players can be categorized into two broad classes: cooperative and non-cooperative games. Cooperative game theory focuses on situations where players can form binding agreements and collaborate to achieve better outcomes collectively. Unlike non-cooperative games, where players act independently and make decisions to maximize their individual payoffs, cooperative games emphasize coalition formation and how the collective payoff should be distributed among participants.</p>
+<p><strong>What is a Cooperative Game?</strong></p>
+<p>A cooperative game is defined by:</p>
+<ol>
+<li>A set of players who can form coalitions (groups).</li>
+<li>A value function (v) that assigns a collective payoff to each coalition.</li>
+<li>A method for distributing payoffs among coalition members in a fair and stable manner.</li>
+</ol>
+<p>Players in cooperative games can negotiate, form alliances, and share resources to improve their outcomes compared to acting alone. These games are often modeled using the characteristic function form, which describes how much value any subset of players (coalition) can generate collectively.</p>
+<ul>
+<li>
+<p>Example: Cooperative vs. Non-Cooperative Games</p>
+<ul>
+<li>
+<p>Non-Cooperative Game: Two companies competing in a market decide their prices independently.</p>
+</li>
+<li>
+<p>Cooperative Game: Multiple companies form a cartel to maximize joint profits and then distribute the gains among members.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>Cooperative games arise in many real-world scenarios, such as team-based decision-making, profit-sharing among firms, coalition politics, and multi-agent systems in artificial intelligence.</p>
+<p><strong>Why Cooperative Game Theory Matters in AI and Multi-Agent Systems?</strong></p>
+<p>Cooperative game theory is highly relevant in multi-agent reinforcement learning (MARL), where:</p>
+<ul>
+<li>Agents must collaborate to achieve a common goal (e.g., robots working together in a warehouse).</li>
+<li>The system needs to fairly distribute rewards among agents based on their contributions.</li>
+<li>Stability and fairness must be ensured in coalition-based AI systems (e.g., cloud computing resource allocation).</li>
+</ul>
+<p>To address these challenges, game theorists developed solution concepts that determine how to fairly distribute rewards in cooperative settings. One of the most important concepts is the Shapley Value, which provides a fair way to allocate payoffs based on each player's contribution.</p>
+<p>Since cooperative games involve forming coalitions, an important question arises:</p>
+<p>"How should we fairly distribute the total gains among the players in a way that reflects their individual contributions?"</p>
+<p>The Shapley Value answers this question by providing a mathematically fair distribution of rewards among coalition members. It ensures that:</p>
+<ul>
+<li>Players who contribute more receive a higher share.</li>
+<li>The distribution is consistent and stable.</li>
+<li>The solution satisfies fairness principles, such as symmetry, efficiency, and additivity.</li>
+</ul>
+<p>Now, let’s explore the Shapley Value in detail, including how it is computed and why it is important.</p>
+<p><strong>Shapley Value:</strong></p>
+<p>In cooperative games, players form coalitions to achieve a collective goal, but an important question arises:</p>
+<p>"How should the total reward be fairly distributed among the players based on their contributions?"</p>
+<p>The Shapley Value, introduced by Lloyd Shapley in 1953, provides a mathematically fair way to allocate payoffs among players in a coalition based on their marginal contributions.</p>
+<p><strong>Why Do We Need Shapley Value?</strong></p>
+<p>In many real-world cooperative settings, multiple agents contribute to a shared outcome, but their contributions may not be equal. Consider the following scenarios:</p>
+<ul>
+<li>A multi-agent reinforcement learning (MARL) team is completing a task together, where some agents contribute more than others.</li>
+<li>Companies forming an alliance, where some firms provide more resources or technology.</li>
+<li>A group of researchers working on a project, where some contribute more ideas or effort.</li>
+</ul>
+<p>A fair reward distribution must ensure that:</p>
+<ol>
+<li>Players who contribute more get a larger share.</li>
+<li>The total value is distributed among all players.</li>
+<li>The reward distribution remains stable and consistent.</li>
+</ol>
+<p>The Shapley Value satisfies these conditions and is widely used in game theory, AI, and economics.</p>
+<p><strong>Defining the Shapley Value</strong></p>
+<p>For a cooperative game with:</p>
+<ul>
+<li>A set of <span class="arithmatex">\(N\)</span> players, denoted as <span class="arithmatex">\(N = \{1, 2, \dots, n\}\)</span>.</li>
+<li>A characteristic function <span class="arithmatex">\(v(S)\)</span> that assigns a value to each coalition <span class="arithmatex">\(S\)</span> (where <span class="arithmatex">\(v(\varnothing) = 0\)</span>).</li>
+</ul>
+<p>The Shapley Value of a player <span class="arithmatex">\(i\)</span> is given by:</p>
+<div class="arithmatex">\[
+\phi_i(v) = \sum_{S \subseteq N \setminus \{i\}} \frac{|S|!(n - |S| - 1)!}{n!} \left[ v(S \cup \{i\}) - v(S) \right]
+\]</div>
+<p>Where:</p>
+<ul>
+<li><span class="arithmatex">\(S\)</span> is a subset of players excluding <span class="arithmatex">\(i\)</span>.</li>
+<li><span class="arithmatex">\(v(S \cup \{i\}) - v(S)\)</span> represents player <span class="arithmatex">\(i\)</span>’s marginal contribution to coalition <span class="arithmatex">\(S\)</span>.</li>
+<li>The term <span class="arithmatex">\(\frac{|S|!(n - |S| - 1)!}{n!}\)</span> is a weight factor, ensuring fairness by considering all possible ways in which players could join the coalition.</li>
+</ul>
+<h4 id="shapley-value-calculation">Shapley Value Calculation</h4>
+<p>Scenario: A Team Project</p>
+<p>Three students (Alice, Bob, and Charlie) are working on a project together:</p>
+<ul>
+<li>Alice alone can complete 30% of the project.</li>
+<li>Bob alone can complete 20%.</li>
+<li>Charlie alone can complete 50%.</li>
+<li>Together, they complete 100%.</li>
+</ul>
+<p>The characteristic function <span class="arithmatex">\(v(S)\)</span> is defined as:
+- <span class="arithmatex">\(v(\{A\}) = 30\)</span>, <span class="arithmatex">\(v(\{B\}) = 20\)</span>, <span class="arithmatex">\(v(\{C\}) = 50\)</span>
+- <span class="arithmatex">\(v(\{A, B\}) = 50\)</span>, <span class="arithmatex">\(v(\{A, C\}) = 80\)</span>, <span class="arithmatex">\(v(\{B, C\}) = 70\)</span>
+- <span class="arithmatex">\(v(\{A, B, C\}) = 100\)</span></p>
+<p><strong>Step 1: Compute Marginal Contributions</strong></p>
+<p>For Alice (A):</p>
+<ul>
+<li>
+<p>Joining empty coalition:<br />
+<span class="arithmatex">\(v(\{A\}) - v(\varnothing) = 30 - 0 = 30\)</span></p>
+</li>
+<li>
+<p>Joining <span class="arithmatex">\(\{B\}\)</span>:<br />
+<span class="arithmatex">\(v(\{A, B\}) - v(\{B\}) = 50 - 20 = 30\)</span></p>
+</li>
+<li>
+<p>Joining <span class="arithmatex">\(\{C\}\)</span>:<br />
+<span class="arithmatex">\(v(\{A, C\}) - v(\{C\}) = 80 - 50 = 30\)</span></p>
+</li>
+<li>
+<p>Joining <span class="arithmatex">\(\{B, C\}\)</span>:<br />
+<span class="arithmatex">\(v(\{A, B, C\}) - v(\{B, C\}) = 100 - 70 = 30\)</span></p>
+</li>
+</ul>
+<p>Similarly, we compute for Bob (B) and Charlie <span class="arithmatex">\(C\)</span>.</p>
+<p><strong>Step 2: Apply Shapley Value Formula</strong></p>
+<p>Using the formula and computing weighted averages, we find:</p>
+<ul>
+<li>
+<p>Alice’s Shapley Value = 32%</p>
+</li>
+<li>
+<p>Bob’s Shapley Value = 18%</p>
+</li>
+<li>
+<p>Charlie’s Shapley Value = 50%</p>
+</li>
+</ul>
+<p>Thus, the final reward distribution is:</p>
+<ul>
+<li>
+<p>Alice gets 32% of the total reward</p>
+</li>
+<li>
+<p>Bob gets 18%.</p>
+</li>
+<li>
+<p>Charlie gets 50%.</p>
+</li>
+</ul>
+<p>This fairly distributes the payoff based on marginal contributions.</p>
+<p><strong>Properties of the Shapley Value</strong></p>
+<p>The Shapley Value satisfies the following fairness conditions:</p>
+<ol>
+<li>Efficiency: The total value is fully distributed among all players.</li>
+<li>Symmetry: If two players contribute equally, they receive the same payoff.</li>
+<li>Additivity: If two games are combined, the Shapley Value for each player remains consistent.</li>
+<li>Null Player Property: A player who contributes nothing receives zero.</li>
+</ol>
+<p>These properties make it an ideal solution for fair reward allocation.</p>
+<h3 id="non-cooperative-games">Non-Cooperative Games</h3>
+<p>While cooperative game theory focuses on coalitions and binding agreements, non-cooperative game theory analyzes situations where players act independently, often in competition with one another.</p>
+<p>In non-cooperative games, players make decisions strategically, anticipating the actions of others, but they cannot form enforceable agreements. Instead, each player maximizes their own payoff, which may or may not align with the interests of others.</p>
+<p><strong>Characteristics of Non-Cooperative Games</strong></p>
+<p>A non-cooperative game consists of:</p>
+<ol>
+<li>A set of players: The decision-makers in the game.</li>
+<li>A set of strategies: The possible actions each player can take.</li>
+<li>A payoff function: Defines the reward each player receives based on the combination of strategies chosen.</li>
+</ol>
+<p>Unlike cooperative games, where players can negotiate and share payoffs, non-cooperative games assume self-interested behavior, often leading to competitive interactions.</p>
+<ul>
+<li>
+<p>Examples of Non-Cooperative Games</p>
+<ul>
+<li>
+<p>Prisoner's Dilemma: Two criminals must decide whether to confess or remain silent. The best outcome collectively is for both to stay silent, but since they act selfishly, they both confess and receive a worse outcome.</p>
+</li>
+<li>
+<p>In reinforcement learning, agents trained independently often develop competitive strategies, such as in self-play training for AI models (e.g., AlphaZero, OpenAI Five).</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Important Solution Concepts in Non-Cooperative Games</strong></p>
+<p>Several solution concepts help analyze optimal decision-making in non-cooperative settings:</p>
+<p><em>Nash Equilibrium:</em></p>
+<ul>
+<li>A stable state where no player has an incentive to unilaterally change their strategy.</li>
+<li>Found in self-play AI (AlphaZero) and game-theoretic RL models.</li>
+</ul>
+<p><em>Mixed Strategy Nash Equilibrium:</em></p>
+<ul>
+<li>Used when no pure strategy equilibrium exists.</li>
+<li>Involves randomizing actions to prevent exploitation, such as in security and adversarial AI.</li>
+</ul>
+<p><em>Subgame Perfect Nash Equilibrium (SPNE):</em></p>
+<ul>
+<li>Ensures optimal decision-making at every stage of a sequential game.</li>
+<li>Found using Backward Induction, commonly applied in hierarchical AI and planning algorithms.</li>
+</ul>
+<h2 id="authors">Author(s)</h2>
+<div class="grid cards">
+<ul>
+<li><img align="left" alt="Instructor Avatar" src="/assets/images/staff/Faezeh-Sadeghi.jpg" width="150" />
+    <span class="description">
+        <p><strong>Faezeh Sadeghi</strong></p>
+        <p>Teaching Assistant</p>
+        <p><a href="mailto:fz.saadeghi@gmail.com">fz.saadeghi@gmail.com</a></p>
+        <p>
+        <a href="https://github.com/Faezehsgh" target="_blank"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg></span></a>
+        </p>
+    </span></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  <form class="md-feedback" name="feedback" hidden>
+    <fieldset>
+      <legend class="md-feedback__title">
+        Was this page helpful?
+      </legend>
+      <div class="md-feedback__inner">
+        <div class="md-feedback__list">
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="This page was helpful" data-md-value="1">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 12a8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8m2 0a10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2a10 10 0 0 1 10 10M10 9.5c0 .8-.7 1.5-1.5 1.5S7 10.3 7 9.5 7.7 8 8.5 8s1.5.7 1.5 1.5m7 0c0 .8-.7 1.5-1.5 1.5S14 10.3 14 9.5 14.7 8 15.5 8s1.5.7 1.5 1.5m-5 7.73c-1.75 0-3.29-.73-4.19-1.81L9.23 14c.45.72 1.52 1.23 2.77 1.23s2.32-.51 2.77-1.23l1.42 1.42c-.9 1.08-2.44 1.81-4.19 1.81"/></svg>
+            </button>
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="This page could be improved" data-md-value="0">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 12a8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8m2 0a10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2a10 10 0 0 1 10 10m-6.5-4c.8 0 1.5.7 1.5 1.5s-.7 1.5-1.5 1.5-1.5-.7-1.5-1.5.7-1.5 1.5-1.5M10 9.5c0 .8-.7 1.5-1.5 1.5S7 10.3 7 9.5 7.7 8 8.5 8s1.5.7 1.5 1.5m2 4.5c1.75 0 3.29.72 4.19 1.81l-1.42 1.42C14.32 16.5 13.25 16 12 16s-2.32.5-2.77 1.23l-1.42-1.42C8.71 14.72 10.25 14 12 14"/></svg>
+            </button>
+          
+        </div>
+        <div class="md-feedback__note">
+          
+            <div data-md-value="1" hidden>
+              
+              
+                
+              
+              
+              
+                
+                
+              
+              Thanks for your feedback!
+            </div>
+          
+            <div data-md-value="0" hidden>
+              
+              
+                
+              
+              
+              
+                
+                
+              
+              Thanks for your feedback! Help us improve this page by using our <a href="..." target="_blank" rel="noopener">feedback form</a>.
+            </div>
+          
+        </div>
+      </div>
+    </fieldset>
+  </form>
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Made with ❤️ in Robust and Interpretable Machine Learning Lab
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="mailto:deeprlcourse@gmail.com" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2zm-2 0-8 5-8-5zm0 12H4V8l8 5 8-5z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/DeepRLCourse" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.youtube.com/@DeepRLCourse" target="_blank" rel="noopener" title="www.youtube.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M549.7 124.1c-6.2-23.7-24.8-42.3-48.3-48.6C458.9 64 288.1 64 288.1 64S117.3 64 74.7 75.5c-23.5 6.3-42 24.9-48.3 48.6C15 167 15 256.4 15 256.4s0 89.4 11.4 132.3c6.3 23.6 24.8 41.5 48.3 47.8C117.3 448 288.1 448 288.1 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zM232.2 337.6V175.2l142.7 81.2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://x.com/DeepRLCourse" target="_blank" rel="noopener" title="x.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M357.2 48h70.6L273.6 224.2 455 464H313L201.7 318.6 74.5 464H3.8l164.9-188.5L-5.2 48h145.6l100.5 132.9zm-24.8 373.8h39.1L119.1 88h-42z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://t.me/DeepRLCourse" target="_blank" rel="noopener" title="t.me" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M256 8a248 248 0 1 0 0 496 248 248 0 1 0 0-496m115 168.7c-3.7 39.2-19.9 134.4-28.1 178.3-3.5 18.6-10.3 24.8-16.9 25.4-14.4 1.3-25.3-9.5-39.3-18.7-21.8-14.3-34.2-23.2-55.3-37.2-24.5-16.1-8.6-25 5.3-39.5 3.7-3.8 67.1-61.5 68.3-66.7.2-.7.3-3.1-1.2-4.4s-3.6-.8-5.1-.5c-2.2.5-37.1 23.5-104.6 69.1-9.9 6.8-18.9 10.1-26.9 9.9-8.9-.2-25.9-5-38.6-9.1-15.5-5-27.9-7.7-26.8-16.3.6-4.5 6.7-9 18.4-13.7 72.3-31.5 120.5-52.3 144.6-62.3 68.9-28.6 83.2-33.6 92.5-33.8 2.1 0 6.6.5 9.6 2.9 2 1.7 3.2 4.1 3.5 6.7.5 3.2.6 6.5.4 9.8z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,6314 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://deeprlcourse.github.io/prerequisites/stochastic_processes/">
+      
+      
+        <link rel="prev" href="../information_theory/">
+      
+      
+        <link rel="next" href="../../exams/midterm/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/favicon/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Stochastic Process - Deep RL Course</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,700,700i%7CRed+Hat+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Ubuntu";--md-code-font:"Red Hat Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/vazirmatn.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-Q1YT8K39WE"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-Q1YT8K39WE",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-Q1YT8K39WE",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+  
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Stochastic Process - Deep RL Course" />
+<meta property="og:image" content="https://deeprlcourse.github.io/assets/images/social/prerequisites/stochastic_processes.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content="https://deeprlcourse.github.io/prerequisites/stochastic_processes/" />
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:title" content="Stochastic Process - Deep RL Course" />
+<meta property="twitter:image" content="https://deeprlcourse.github.io/assets/images/social/prerequisites/stochastic_processes.png" />
+</head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#stochastic-process" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Deep RL Course" class="md-header__button md-logo" aria-label="Deep RL Course" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Deep RL Course
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Stochastic Process
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="red"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="red"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../home/calender/" class="md-tabs__link">
+          
+  
+  
+  Calendar
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../course_notes/intro-to-rl/" class="md-tabs__link">
+          
+  
+  
+  Course Notes
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../lectures/week1/" class="md-tabs__link">
+          
+  
+  
+  Lectures
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../guests/richard_sutton/" class="md-tabs__link">
+          
+  
+  
+  Guests
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../recitations/week1/" class="md-tabs__link">
+          
+  
+  
+  Recitations
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../workshops/week1/" class="md-tabs__link">
+          
+  
+  
+  Workshops
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../homeworks/week1/" class="md-tabs__link">
+          
+  
+  
+  Homeworks
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../deep_learning/" class="md-tabs__link">
+          
+  
+  
+  Prerequisites
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../exams/midterm/" class="md-tabs__link">
+          
+  
+  
+  Exams
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../poster_session/sp25/" class="md-tabs__link">
+          
+  
+  
+  Poster Session
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../resources/" class="md-tabs__link">
+          
+  
+  
+  Resources
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../blog/" class="md-tabs__link">
+          
+  
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+    
+      
+
+    
+
+    
+
+        
+
+            
+
+        
+
+            
+                  
+            
+
+        
+    
+
+    
+
+
+    <!-- Navigation -->
+    
+        
+        <div
+            class="md-sidebar md-sidebar--primary"
+            data-md-component="sidebar"
+            data-md-type="navigation"
+            
+        >
+            <div class="md-sidebar__scrollwrap">
+            <div class="md-sidebar__inner">
+                <!--
+  Copyright (c) 2016-2025 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+
+
+<!-- Determine classes -->
+
+
+  
+
+
+  
+
+
+<!-- Navigation -->
+<nav
+  class="md-nav md-nav--primary md-nav--lifted"
+  aria-label="Navigation"
+  data-md-level="0"
+>
+
+  <!-- Site title -->
+  <label class="md-nav__title" for="__drawer">
+    <a
+      href="../.."
+      title="Deep RL Course"
+      class="md-nav__button md-logo"
+      aria-label="Deep RL Course"
+      data-md-component="logo"
+    >
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Deep RL Course
+  </label>
+
+  <!-- Repository information -->
+  
+
+  <!-- Navigation list -->
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Calendar
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Calendar
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home/calender/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Calender
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course Notes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Course Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conceptual Overview of RL
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Conceptual Overview of RL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/intro-to-rl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 1: Introduction to RL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/value-based/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 2: Value-based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/policy-based/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 3: Policy-Based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/advanced/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 4: Advanced Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/model-based/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 5: Model-Based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/bandits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 6: Multi-Armed Bandits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lectures
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lectures
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 1: Introduction to RL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 2: Value-Based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 3: Policy-Based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 4: Advanced Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 5: Model-Based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 6: Multi-Armed Bandits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 7: Value-Based Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 8: Policy-Based Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 9: Advanced Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 10: Exploration Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 11: Imitation &amp; Inverse RL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 12: Offline Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 13: Multi-Agent Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 14: Hierarchical &amp; Meta RL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guests
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guests
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/richard_sutton/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Richard Sutton
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/chris_watkins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chris Watkins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/michael_littman/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Michael Littman
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/peter_stone/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Peter Stone
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/jakob_foerster/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Jakob Foerster
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/nan_jiang/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nan Jiang
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/benjamin_eysenbach/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Benjamin Eysenbach
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/ian_osband/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ian Osband
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/jeff_clune/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Jeff Clune
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/peter_dayan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Peter Dayan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/ida_momennejad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ida Momennejad
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/abhishek_gupta/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Abhishek Gupta
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/benjamin_van_roy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Benjamin Van Roy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/wolfram_schultz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wolfram Schultz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/mark_ho/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mark Ho
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/pascal_poupart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pascal Poupart
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/peter_norvig/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Peter Norvig
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/karl_friston/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Karl Friston
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/amy_zhang/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Amy Zhang
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/adam_white/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adam White
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/anne_collins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Anne Collins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/luis_serrano/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Luis Serrano
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/martha_white/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Martha White
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/christopher_amato/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Christopher Amato
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/marlos_machado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Marlos C. Machado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recitations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Recitations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recitations/week1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 1: Introduction to RL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recitations/week2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 2: Value-Based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recitations/week3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 3: Policy-Based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recitations/week4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 4: Advanced Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recitations/week5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 5: Model-Based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recitations/week6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 6: Multi-Armed Bandits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recitations/week7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 7: Value-Based Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recitations/week8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 8: Policy-Based Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recitations/week9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 9: Advanced Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workshops
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Workshops
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/week1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 1: Introduction to RL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/week2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 2: Value-Based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/week3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 3: Policy-Based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/week4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 4: Advanced Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/week5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 5: Model-Based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/week6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 6: Multi-Armed Bandits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Homeworks
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Homeworks
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW1: Introduction to RL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW2: Value-Based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW3: Policy-Based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW4: Advanced Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW5: Model-Based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW6: Multi-Armed Bandits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW7: Value-Based Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW8: Policy-Based Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW9: Advanced Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW10: Exploration Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW11: Imitation &amp; Inverse RL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW12: Offline Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW13: Multi-Agent Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW14: Hierarchical &amp; Meta RL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Previous Semesters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prerequisites
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Prerequisites
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deep_learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deep Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../game_theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Game Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linear_algebra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linear Algebra
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../numerical_optimization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Numerical Optimization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../information_theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Information Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stochastic Process
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stochastic Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        <!--
+  Copyright (c) 2016-2025 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Determine title -->
+
+
+
+
+<!-- Table of contents -->
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+
+  <!--
+    Check whether the content starts with a level 1 headline. If it does, the
+    top-level anchor must be skipped, since it would be redundant to the link
+    to the current page that is located just above the anchor. Therefore we
+    directly continue with the children of the anchor.
+  -->
+  
+  
+    
+  
+
+  <!-- Table of contents title and list -->
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#preliminary-definitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preliminary Definitions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#law-of-large-numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Law of Large Numbers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Law of Large Numbers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-weak-law-of-large-numbers-wlln" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Weak Law of Large Numbers (WLLN)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-central-limit-theorem-clt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Central Limit Theorem (CLT)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#borel-cantelli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Borel-Cantelli
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conditional-expectation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conditional Expectation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Conditional Expectation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proposition-law-of-iterated-expectation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proposition: Law of Iterated Expectation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#markov-chains" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Markov Chains
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Markov Chains">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-1-gamblers-ruin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 1: Gambler's Ruin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2-ehrenfest-chain-and-transition-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 2: Ehrenfest Chain and Transition Matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-3-wright-fisher-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 3: Wright-Fisher Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multistep-transition-probabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multistep Transition Probabilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#theorem-chapman-kolmogorov-equation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theorem: (Chapman-Kolmogorov Equation)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Theorem: (Chapman-Kolmogorov Equation)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#proof" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proof
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-gamblers-ruin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: Gambler's Ruin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#classification-of-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Classification of States
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Classification of States">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#theorem-strong-markov-property" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theorem (Strong Markov Property):
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lemma-on-transitivity-of-communication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lemma on Transitivity of Communication
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#theorem-on-transience" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theorem on Transience
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lemma-on-recurrence-and-communication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lemma on Recurrence and Communication
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lemma on Recurrence and Communication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#remark" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remark
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#theorem-recurrence-in-finite-irreducible-sets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theorem (Recurrence in Finite Irreducible Sets)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#theorem-decomposition-of-finite-state-space" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theorem (Decomposition of Finite State Space)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recurrence-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recurrence Properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stationary-distributions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stationary Distributions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stationary Distributions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lemma" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lemma
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-general-two-state-transition-probability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: (General two state transition probability)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#irreducible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Irreducible
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aperiodic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aperiodic
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Aperiodic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#theorem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theorem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lemma_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lemma
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#perron-frobenius-theorem-for-finite-state-markov-chains" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Perron-Frobenius Theorem (for Finite-State Markov Chains)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#theorem_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theorem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#theorem-convergence-theorem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theorem (Convergence Theorem)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#theorem_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theorem:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#countable-markov-chain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Countable Markov Chain
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Countable Markov Chain">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recurrence-and-transience" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recurrence and Transience
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-recurrence-of-the-simple-random-walk-on-mathbbzd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: Recurrence of the Simple Random Walk on \( \mathbb{Z}^d \)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-d-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case \( d = 1 \)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-d-1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case \( d &gt; 1 \)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#continuous-time-markov-chains" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Continuous Time Markov Chains
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Continuous Time Markov Chains">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#theorem-holding-time-exponentially-distributed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theorem (Holding Time Exponentially Distributed):
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#theorem-memoryless-property-of-exponential-distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theorem (Memoryless Property of Exponential Distribution)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exams
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Exams
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exams/midterm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spring 2025 Midterm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exams/final/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spring 2025 Final
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exams/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Previous Semesters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Poster Session
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Poster Session
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_11_1" id="__nav_11_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spring 2025
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_11_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Spring 2025
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../poster_session/sp25/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Showcase
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../poster_session/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guideline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_11_2" id="__nav_11_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spring 2024
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_11_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Spring 2024
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../poster_session/sp24/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Showcase
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resources
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Resources
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Blog
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tags
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_13_3" id="__nav_13_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Archive
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_13_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Archive
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/archive/2025/02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    February 2025
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_13_4" id="__nav_13_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Categories
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_13_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Categories
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/category/course-updates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course Updates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+            </div>
+            </div>
+        </div>
+    
+
+    <!-- Table of contents -->
+    
+        
+        <div
+            class="md-sidebar md-sidebar--secondary"
+            data-md-component="sidebar"
+            data-md-type="toc"
+            
+        >
+            <div class="md-sidebar__scrollwrap">
+            <div class="md-sidebar__inner">
+                <!--
+  Copyright (c) 2016-2025 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Determine title -->
+
+
+
+
+<!-- Table of contents -->
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+
+  <!--
+    Check whether the content starts with a level 1 headline. If it does, the
+    top-level anchor must be skipped, since it would be redundant to the link
+    to the current page that is located just above the anchor. Therefore we
+    directly continue with the children of the anchor.
+  -->
+  
+  
+    
+  
+
+  <!-- Table of contents title and list -->
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#preliminary-definitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preliminary Definitions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#law-of-large-numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Law of Large Numbers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Law of Large Numbers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-weak-law-of-large-numbers-wlln" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Weak Law of Large Numbers (WLLN)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-central-limit-theorem-clt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Central Limit Theorem (CLT)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#borel-cantelli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Borel-Cantelli
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conditional-expectation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conditional Expectation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Conditional Expectation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proposition-law-of-iterated-expectation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proposition: Law of Iterated Expectation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#markov-chains" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Markov Chains
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Markov Chains">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-1-gamblers-ruin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 1: Gambler's Ruin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2-ehrenfest-chain-and-transition-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 2: Ehrenfest Chain and Transition Matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-3-wright-fisher-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 3: Wright-Fisher Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multistep-transition-probabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multistep Transition Probabilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#theorem-chapman-kolmogorov-equation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theorem: (Chapman-Kolmogorov Equation)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Theorem: (Chapman-Kolmogorov Equation)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#proof" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proof
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-gamblers-ruin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: Gambler's Ruin
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#classification-of-states" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Classification of States
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Classification of States">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#theorem-strong-markov-property" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theorem (Strong Markov Property):
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lemma-on-transitivity-of-communication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lemma on Transitivity of Communication
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#theorem-on-transience" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theorem on Transience
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lemma-on-recurrence-and-communication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lemma on Recurrence and Communication
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lemma on Recurrence and Communication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#remark" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Remark
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#theorem-recurrence-in-finite-irreducible-sets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theorem (Recurrence in Finite Irreducible Sets)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#theorem-decomposition-of-finite-state-space" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theorem (Decomposition of Finite State Space)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recurrence-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recurrence Properties
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stationary-distributions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stationary Distributions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stationary Distributions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lemma" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lemma
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-general-two-state-transition-probability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: (General two state transition probability)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#irreducible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Irreducible
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aperiodic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aperiodic
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Aperiodic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#theorem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theorem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lemma_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lemma
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#perron-frobenius-theorem-for-finite-state-markov-chains" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Perron-Frobenius Theorem (for Finite-State Markov Chains)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#theorem_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theorem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#theorem-convergence-theorem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theorem (Convergence Theorem)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#theorem_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theorem:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#countable-markov-chain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Countable Markov Chain
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Countable Markov Chain">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recurrence-and-transience" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recurrence and Transience
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-recurrence-of-the-simple-random-walk-on-mathbbzd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: Recurrence of the Simple Random Walk on \( \mathbb{Z}^d \)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-d-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case \( d = 1 \)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-d-1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case \( d &gt; 1 \)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#continuous-time-markov-chains" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Continuous Time Markov Chains
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Continuous Time Markov Chains">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#theorem-holding-time-exponentially-distributed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theorem (Holding Time Exponentially Distributed):
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#theorem-memoryless-property-of-exponential-distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theorem (Memoryless Property of Exponential Distribution)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+            </div>
+            </div>
+        </div>
+    
+
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="stochastic-process">Stochastic Process</h1>
+<h2 id="preliminary-definitions">Preliminary Definitions</h2>
+<p><strong>Definition:</strong> A <em>sample space</em>, <span class="arithmatex">\( \Omega \)</span>, is a set of possible outcomes of a random experiment.</p>
+<hr />
+<p><strong>Definition:</strong> A <em>stochastic process</em> is a family of random variables,</p>
+<div class="arithmatex">\[
+\{ X(t) : t \in T \},
+\]</div>
+<p>where <span class="arithmatex">\( t \)</span> usually denotes <em>time</em>. That is, at every time <span class="arithmatex">\( t \)</span> in the set <span class="arithmatex">\( T \)</span>, a random number <span class="arithmatex">\( X(t) \)</span> is observed.</p>
+<hr />
+<p><strong>Definition:</strong> <span class="arithmatex">\( \{ X(t) : t \in T \} \)</span> is a <em>discrete-time process</em> <em>if</em> the set <span class="arithmatex">\( T \)</span> is finite or countable.</p>
+<p><em>In practice, this generally means <span class="arithmatex">\( T = \{0, 1, 2, 3, \ldots\} \)</span>.</em></p>
+<p>Thus a discrete-time process is <span class="arithmatex">\( \{ X(0), X(1), X(2), X(3), \ldots \} \)</span>: a random number associated with every time <span class="arithmatex">\( 0, 1, 2, 3, \ldots \)</span>.</p>
+<hr />
+<p><strong>Definition:</strong> <span class="arithmatex">\( \{ X(t) : t \in T \} \)</span> is a <em>continuous-time process</em> <em>if</em> <span class="arithmatex">\( T \)</span> is <em>not</em> finite or countable.</p>
+<p><em>In practice, this generally means <span class="arithmatex">\( T = [0, \infty) \)</span>, or <span class="arithmatex">\( T = [0, K] \)</span> for some <span class="arithmatex">\( K \)</span>.</em></p>
+<p>Thus a continuous-time process <span class="arithmatex">\( \{ X(t) : t \in T \} \)</span> has a random number <span class="arithmatex">\( X(t) \)</span> associated with every instant in time.</p>
+<p><em>(Note that <span class="arithmatex">\( X(t) \)</span> need not change at every instant in time, but it is allowed to change at </em>any<em> time; i.e., not just at <span class="arithmatex">\( t = 0, 1, 2, \ldots \)</span>, like a discrete-time process.)</em></p>
+<hr />
+<p><strong>Definition:</strong> The <em>state space</em>, <span class="arithmatex">\( S \)</span>, is the set of real values that <span class="arithmatex">\( X(t) \)</span> can take.</p>
+<p>Every <span class="arithmatex">\( X(t) \)</span> takes a value in <span class="arithmatex">\( \mathbb{R} \)</span>, but <span class="arithmatex">\( S \)</span> will often be a smaller set: <span class="arithmatex">\( S \subseteq \mathbb{R} \)</span>. For example, if <span class="arithmatex">\( X(t) \)</span> is the outcome of a coin tossed at the time <span class="arithmatex">\( t \)</span>, then the state space is <span class="arithmatex">\( S = \{0, 1\} \)</span>.</p>
+<hr />
+<p><strong>Definition:</strong> The state space <span class="arithmatex">\( S \)</span> is <em>discrete</em> <em>if</em> it is finite or countable. Otherwise it is <em>continuous</em>.</p>
+<hr />
+<h2 id="law-of-large-numbers">Law of Large Numbers</h2>
+<h4 id="the-weak-law-of-large-numbers-wlln">The Weak Law of Large Numbers (WLLN)</h4>
+<p>Let <span class="arithmatex">\( X_1, X_2, \ldots \)</span> be a sequence of independent and identically distributed random variables having mean <span class="arithmatex">\( \mu \)</span>. Then, for any <span class="arithmatex">\( \epsilon &gt; 0 \)</span>,</p>
+<div class="arithmatex">\[
+P\left( \left| \frac{X_1 + \cdots + X_n}{n} - \mu \right| &gt; \epsilon \right) \to 0 \quad \text{as} \quad n \to \infty
+\]</div>
+<h4 id="the-central-limit-theorem-clt">The Central Limit Theorem (CLT)</h4>
+<p>Let <span class="arithmatex">\( X_1, X_2, \ldots \)</span> be a sequence of independent and identically distributed random variables having finite mean <span class="arithmatex">\( \mu \)</span> and finite variance <span class="arithmatex">\( \sigma^2 \)</span>. Then</p>
+<div class="arithmatex">\[
+\lim_{n \to \infty} P\left( \frac{X_1 + \cdots + X_n - n\mu}{\sigma \sqrt{n}} &lt; x \right) = \Phi(x)
+\]</div>
+<div class="arithmatex">\[
+\Phi(x) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{x} e^{-t^2/2} \, dt, \quad -\infty &lt; x &lt; \infty
+\]</div>
+<h3 id="borel-cantelli">Borel-Cantelli</h3>
+<p><strong>The Borel-Cantelli Lemma</strong><br />
+Let <span class="arithmatex">\( E_1, E_2, \dots \)</span> denote a sequence of events. If<br />
+[
+\sum_{i=1}^{\infty} P(E_i) &lt; \infty,
+]
+then
+[
+P(\text{an infinite number of the } E_i \text{ occur}) = 0.
+]</p>
+<p><strong>Converse to the Borel-Cantelli Lemma</strong><br />
+If <span class="arithmatex">\( E_1, E_2, \dots \)</span> are independent events such that
+[
+\sum_{n=1}^{\infty} P(E_n) = \infty,
+]
+then
+[
+P(\text{an infinite number of the } E_n \text{ occur}) = 1.
+]</p>
+<h2 id="conditional-expectation">Conditional Expectation</h2>
+<h4 id="definition">Definition</h4>
+<p>For jointly discrete random variables <span class="arithmatex">\( X \)</span> and <span class="arithmatex">\( Y \)</span>, the conditional expectation <span class="arithmatex">\( E[X | Y = y] \)</span> is:</p>
+<div class="arithmatex">\[
+E[X | Y = y] = \sum_x x P(X = x | Y = y) = \sum_x x \frac{P(X = x, Y = y)}{P(Y = y)}.
+\]</div>
+<p>For jointly continuous <span class="arithmatex">\( X \)</span> and <span class="arithmatex">\( Y \)</span> with joint density <span class="arithmatex">\( f(x, y) \)</span>:</p>
+<div class="arithmatex">\[
+E[X | Y = y] = \frac{\int_{-\infty}^{\infty} x f(x, y) \, dx}{\int_{-\infty}^{\infty} f(x, y) \, dx}.
+\]</div>
+<p>Note that <span class="arithmatex">\( E[X | Y] \)</span> is a random variable, representing <span class="arithmatex">\( E[X | Y = y] \)</span> as a function of <span class="arithmatex">\( Y \)</span>.</p>
+<h4 id="proposition-law-of-iterated-expectation">Proposition: Law of Iterated Expectation</h4>
+<div class="arithmatex">\[
+E[E[X | Y]] = E[X].
+\]</div>
+<p>For discrete <span class="arithmatex">\( Y \)</span>:</p>
+<div class="arithmatex">\[
+E[X] = \sum_y E[X | Y = y] P(Y = y).
+\]</div>
+<h2 id="markov-chains">Markov Chains</h2>
+<p><strong>Markov Chain Definition</strong></p>
+<p>A sequence of random variables <span class="arithmatex">\( (X_0, X_1, X_2, \ldots) \)</span> is a <em>Markov chain</em> with state space <span class="arithmatex">\( \Omega \)</span> and transition matrix <span class="arithmatex">\( P \)</span> if, for all <span class="arithmatex">\( n \geq 0 \)</span>, and all sequences <span class="arithmatex">\( (X_0, X_1, \ldots, X_n, X_{n+1}) \)</span>, we have:</p>
+<div class="arithmatex">\[
+\mathbb{P}[X_{n+1} = x_{n+1} \mid X_0 = x_0, \ldots, X_n = x_n] = \mathbb{P}[X_{n+1} = x_{n+1} \mid X_n = x_n] = P(x_n, x_{n+1}).
+\]</div>
+<h3 id="example-1-gamblers-ruin">Example 1: Gambler's Ruin</h3>
+<p>Consider a gambling game where on any turn you win $1 with probability <span class="arithmatex">\( p = 0.4 \)</span> or lose $1 with probability <span class="arithmatex">\( 1 - p = 0.6 \)</span>. You adopt the rule to quit playing if your fortune reaches $N. If your fortune reaches $0, the casino stops you.</p>
+<p>Let <span class="arithmatex">\( X_n \)</span> be your fortune after <span class="arithmatex">\( n \)</span> plays. This process has the <em>Markov property</em>: given the current state, past states are irrelevant for predicting the next state <span class="arithmatex">\( X_{n+1} \)</span>. If you are still playing at time <span class="arithmatex">\( n \)</span> (i.e., your fortune <span class="arithmatex">\( X_n = i \)</span> with <span class="arithmatex">\( 0 &lt; i &lt; N \)</span>), then for any history of your wealth <span class="arithmatex">\( i_{n-1}, i_{n-2}, \ldots, i_0 \)</span>,</p>
+<div class="arithmatex">\[
+P(X_{n+1} = i + 1 \mid X_n = i, X_{n-1} = i_{n-1}, \ldots, X_0 = i_0) = 0.4
+\]</div>
+<h3 id="example-2-ehrenfest-chain-and-transition-matrix">Example 2: Ehrenfest Chain and Transition Matrix</h3>
+<p>In the Ehrenfest chain, two urns have <span class="arithmatex">\( N \)</span> balls. At each step, a ball is picked at random and moved to the other urn. Let <span class="arithmatex">\( X_n \)</span> be the number of balls in the "left" urn after <span class="arithmatex">\( n \)</span> draws. This has the Markov property:</p>
+<div class="arithmatex">\[
+P(X_{n+1} = i + 1 \mid X_n = i) = \frac{N - i}{N}, \quad P(X_{n+1} = i - 1 \mid X_n = i) = \frac{i}{N},
+\]</div>
+<p>with <span class="arithmatex">\( P(i, j) = 0 \)</span> otherwise. For <span class="arithmatex">\( N = 4 \)</span>, the transition matrix is:</p>
+<div class="arithmatex">\[
+\begin{array}{c|ccccc}
+ &amp; 0 &amp; 1 &amp; 2 &amp; 3 &amp; 4 \\
+\hline
+0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+1 &amp; 1/4 &amp; 0 &amp; 3/4 &amp; 0 &amp; 0 \\
+2 &amp; 0 &amp; 2/4 &amp; 0 &amp; 2/4 &amp; 0 \\
+3 &amp; 0 &amp; 0 &amp; 3/4 &amp; 0 &amp; 1/4 \\
+4 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\
+\end{array}
+\]</div>
+<p>A transition matrix <span class="arithmatex">\( P(i, j) \)</span> defines a Markov chain if:<br />
+(i) <span class="arithmatex">\( P(i, j) \geq 0 \)</span> (probabilities).<br />
+(ii) <span class="arithmatex">\( \sum_j P(i, j) = 1 \)</span> (next state is certain).</p>
+<h3 id="example-3-wright-fisher-model">Example 3: Wright-Fisher Model</h3>
+<p>Consider a population of <span class="arithmatex">\( N/2 \)</span> diploid individuals (or <span class="arithmatex">\( N \)</span> haploid individuals) with genes of type <span class="arithmatex">\( A \)</span> or <span class="arithmatex">\( a \)</span>. The population at time <span class="arithmatex">\( n+1 \)</span> is obtained by drawing with replacement from the population at time <span class="arithmatex">\( n \)</span>. Let <span class="arithmatex">\( X_n \)</span> be the number of <span class="arithmatex">\( A \)</span> alleles at time <span class="arithmatex">\( n \)</span>. Then <span class="arithmatex">\( X_n \)</span> is a Markov chain with transition probability:</p>
+<div class="arithmatex">\[
+p(i, j) = \binom{N}{j} \left( \frac{i}{N} \right)^j \left( 1 - \frac{i}{N} \right)^{N-j},
+\]</div>
+<p>where the right-hand side is the binomial distribution for <span class="arithmatex">\( N \)</span> independent trials with success probability <span class="arithmatex">\( i/N \)</span>.</p>
+<h3 id="multistep-transition-probabilities">Multistep Transition Probabilities</h3>
+<p>The transition probability <span class="arithmatex">\( p(i, j) = P(X_{n+1} = j \mid X_n = i) \)</span> gives the probability of going from state <span class="arithmatex">\( i \)</span> to state <span class="arithmatex">\( j \)</span> in one step. Our goal is to compute the probability of going from <span class="arithmatex">\( i \)</span> to <span class="arithmatex">\( j \)</span> in <span class="arithmatex">\( m &gt; 1 \)</span> steps:</p>
+<div class="arithmatex">\[
+p^m(i, j) = P(X_{n+m} = j \mid X_n = i).
+\]</div>
+<p>This <span class="arithmatex">\( p^m(i, j) \)</span> is the <span class="arithmatex">\( m \)</span>-th power of the transition matrix <span class="arithmatex">\( p \)</span>.</p>
+<h3 id="theorem-chapman-kolmogorov-equation">Theorem: (Chapman-Kolmogorov Equation)</h3>
+<p>The <span class="arithmatex">\( m \)</span>-step transition probability satisfies:</p>
+<div class="arithmatex">\[
+p^{m+n}(i, j) = \sum_k p^m(i, k) p^n(k, j).
+\]</div>
+<p>For <span class="arithmatex">\( n = 1 \)</span>, this becomes <span class="arithmatex">\( p^{m+1}(i, j) = \sum_k p^m(i, k) p(k, j) \)</span>, meaning the <span class="arithmatex">\( m+1 \)</span>-step probability is the <span class="arithmatex">\( m \)</span>-step probability times <span class="arithmatex">\( p \)</span>.</p>
+<p><img alt="alt text" src="../image-24.png" /></p>
+<h4 id="proof">Proof</h4>
+<p>Consider the probability of transitioning from state <span class="arithmatex">\( i \)</span> to state <span class="arithmatex">\( j \)</span> in <span class="arithmatex">\( m+n \)</span> steps, and split it at time <span class="arithmatex">\( m \)</span>:</p>
+<div class="arithmatex">\[
+P(X_{m+n} = j \mid X_0 = i) = \sum_k P(X_{m+n} = j, X_m = k \mid X_0 = i).
+\]</div>
+<p>Apply conditional probability to the joint event:</p>
+<div class="arithmatex">\[
+P(X_{m+n} = j, X_m = k \mid X_0 = i) = P(X_m = k \mid X_0 = i) \cdot P(X_{m+n} = j \mid X_m = k, X_0 = i).
+\]</div>
+<p>Using the Markov property, the future depends only on the current state at time <span class="arithmatex">\( m \)</span>:</p>
+<div class="arithmatex">\[
+P(X_{m+n} = j \mid X_m = k, X_0 = i) = P(X_{m+n} = j \mid X_m = k) = p^n(k, j).
+\]</div>
+<p>Also, <span class="arithmatex">\( P(X_m = k \mid X_0 = i) = p^m(i, k) \)</span>. Thus:</p>
+<div class="arithmatex">\[
+P(X_{m+n} = j \mid X_0 = i) = \sum_k p^m(i, k) p^n(k, j),
+\]</div>
+<p>which is <span class="arithmatex">\( p^{m+n}(i, j) \)</span>, completing the proof.</p>
+<h3 id="example-gamblers-ruin">Example: Gambler's Ruin</h3>
+<p>The transition probability for the gambler's ruin with <span class="arithmatex">\( N = 4 \)</span> (from Example 1) is:</p>
+<div class="arithmatex">\[
+\begin{array}{c|ccccc}
+ &amp; 0 &amp; 1 &amp; 2 &amp; 3 &amp; 4 \\
+\hline
+0 &amp; 1.0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+1 &amp; 0.6 &amp; 0 &amp; 0.4 &amp; 0 &amp; 0 \\
+2 &amp; 0 &amp; 0.6 &amp; 0 &amp; 0.4 &amp; 0 \\
+3 &amp; 0 &amp; 0 &amp; 0.6 &amp; 0 &amp; 0.4 \\
+4 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1.0 \\
+\end{array}
+\]</div>
+<p>Compute <span class="arithmatex">\( p^2 \)</span>:<br />
+- <span class="arithmatex">\( p^2(0, 0) = 1 \)</span>, <span class="arithmatex">\( p^2(4, 4) = 1 \)</span> (absorbing states).<br />
+- <span class="arithmatex">\( p^2(1, 3) = (0.4)^2 = 0.16 \)</span>, going up twice.<br />
+- <span class="arithmatex">\( p^2(1, 1) = (0.4)(0.6) = 0.24 \)</span>, from 1 to 2 to 1.<br />
+- <span class="arithmatex">\( p^2(1, 0) = 0.6 \)</span>, first jump to 0.</p>
+<p>Thus:</p>
+<div class="arithmatex">\[
+p^2 = \begin{pmatrix}
+1.0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+0.6 &amp; 0.24 &amp; 0 &amp; 0.16 &amp; 0 \\
+0 &amp; 0.36 &amp; 0.48 &amp; 0 &amp; 0.16 \\
+0 &amp; 0 &amp; 0.36 &amp; 0.24 &amp; 0.4 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\
+\end{pmatrix}
+\]</div>
+<p>The limiting matrix is:</p>
+<div class="arithmatex">\[
+\lim_{n \to \infty} p^n = \begin{pmatrix}
+1.0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+57/65 &amp; 0 &amp; 0 &amp; 0 &amp; 8/65 \\
+45/65 &amp; 0 &amp; 0 &amp; 0 &amp; 20/65 \\
+27/65 &amp; 0 &amp; 0 &amp; 0 &amp; 38/65 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\
+\end{pmatrix}
+\]</div>
+<h3 id="classification-of-states">Classification of States</h3>
+<p><strong>Definition: Probability Under Initial Condition</strong></p>
+<p>For a stochastic process with state <span class="arithmatex">\( X_0 \)</span>, the notation <span class="arithmatex">\( P_x(A) \)</span> represents the probability of event <span class="arithmatex">\( A \)</span> given that the process starts in state <span class="arithmatex">\( x \)</span>:</p>
+<div class="arithmatex">\[
+P_x(A) = P(A \mid X_0 = x).
+\]</div>
+<p><strong>Definition: Stopping Time</strong>
+A random variable <span class="arithmatex">\( T \)</span> is a <em>stopping time</em> if the event <span class="arithmatex">\( \{ T = n \} \)</span> (the occurrence of "we stop at time <span class="arithmatex">\( n \)</span>") can be determined by the values of the process up to time <span class="arithmatex">\( n \)</span>: <span class="arithmatex">\( X_0, \ldots, X_n \)</span>. For <span class="arithmatex">\( T_y = \min\{ n: X_n = y \} \)</span>,</p>
+<div class="arithmatex">\[
+\{ T_y = n \} = \{ X_1 \neq y, \ldots, X_{n-1} \neq y, X_n = y \}.
+\]</div>
+<h4 id="theorem-strong-markov-property">Theorem (Strong Markov Property):</h4>
+<p>Suppose <span class="arithmatex">\( T \)</span> is a stopping time. Given <span class="arithmatex">\( T = n \)</span> and <span class="arithmatex">\( X_T = y \)</span>, the future states <span class="arithmatex">\( X_{T+k} \)</span> (for <span class="arithmatex">\( k \geq 0 \)</span>) behave like a Markov chain with initial state <span class="arithmatex">\( y \)</span>, independent of <span class="arithmatex">\( X_0, \ldots, X_T \)</span>.</p>
+<hr />
+<p><strong>Definition (Communication Between States):</strong></p>
+<p>We say that state <span class="arithmatex">\( x \)</span> <em>communicates</em> with state <span class="arithmatex">\( y \)</span>, and write <span class="arithmatex">\( x \to y \)</span>, if there is a positive probability of reaching <span class="arithmatex">\( y \)</span> starting from <span class="arithmatex">\( x \)</span>:</p>
+<div class="arithmatex">\[
+\rho_{xy} = P_x(T_y &lt; \infty) &gt; 0,
+\]</div>
+<p>where <span class="arithmatex">\( T_y \)</span> is the first time the chain reaches state <span class="arithmatex">\( y \)</span>.</p>
+<h3 id="lemma-on-transitivity-of-communication">Lemma on Transitivity of Communication</h3>
+<p>If <span class="arithmatex">\( x \to y \)</span> and <span class="arithmatex">\( y \to z \)</span>, then <span class="arithmatex">\( x \to z \)</span>.</p>
+<p><strong>Proof:</strong></p>
+<p>Since <span class="arithmatex">\( x \to y \)</span>, there exists an <span class="arithmatex">\( m \)</span> such that <span class="arithmatex">\( p^m(x, y) &gt; 0 \)</span>. Similarly, there exists an <span class="arithmatex">\( n \)</span> such that <span class="arithmatex">\( p^n(y, z) &gt; 0 \)</span>. By the Chapman-Kolmogorov equation, <span class="arithmatex">\( p^{m+n}(x, z) \geq p^m(x, y) p^n(y, z) &gt; 0 \)</span>, so <span class="arithmatex">\( x \to z \)</span>.</p>
+<h3 id="theorem-on-transience">Theorem on Transience</h3>
+<p>If <span class="arithmatex">\( \rho_{xy} &gt; 0 \)</span> but <span class="arithmatex">\( \rho_{yx} &lt; 1 \)</span>, then <span class="arithmatex">\( x \)</span> is transient.</p>
+<p><strong>Proof</strong>
+Let <span class="arithmatex">\( K = \min\{ k : p^k(x, y) &gt; 0 \} \)</span>, the smallest number of steps to get from <span class="arithmatex">\( x \)</span> to <span class="arithmatex">\( y \)</span>. Since <span class="arithmatex">\( p^K(x, y) &gt; 0 \)</span>, there exists a sequence <span class="arithmatex">\( y_1, \ldots, y_{K-1} \)</span> such that:</p>
+<div class="arithmatex">\[
+p(x, y_1) p(y_1, y_2) \cdots p(y_{K-1}, y) &gt; 0.
+\]</div>
+<p>Since <span class="arithmatex">\( K \)</span> is minimal, all <span class="arithmatex">\( y_i \neq y \)</span>, and we have:</p>
+<div class="arithmatex">\[
+P_x(T_x = \infty) \geq p(x, y_1) p(y_1, y_2) \cdots p(y_{K-1}, y) (1 - \rho_{yx}) &gt; 0,
+\]</div>
+<p>so <span class="arithmatex">\( x \)</span> is transient.</p>
+<h3 id="lemma-on-recurrence-and-communication">Lemma on Recurrence and Communication</h3>
+<p>If <span class="arithmatex">\( x \)</span> is recurrent and <span class="arithmatex">\( \rho_{xy} &gt; 0 \)</span>, then <span class="arithmatex">\( \rho_{yx} = 1 \)</span>.</p>
+<p><strong>Proof:</strong></p>
+<p>If <span class="arithmatex">\( \rho_{yx} &lt; 1 \)</span>, then by the Theorem on Transience, <span class="arithmatex">\( x \)</span> would be transient, a contradiction.</p>
+<h4 id="remark">Remark</h4>
+<p>The Theorem on Transience allows us to identify all transient states when the state space is finite. </p>
+<p><strong>Definition of a Closed Set:</strong>
+A set <span class="arithmatex">\( A \)</span> is closed if it is impossible to get out, i.e., if <span class="arithmatex">\( i \in A \)</span> and <span class="arithmatex">\( j \notin A \)</span> then <span class="arithmatex">\( p(i, j) = 0 \)</span>.</p>
+<p>In this Example with Specific States <span class="arithmatex">\( \{1, 5\} \)</span> and <span class="arithmatex">\( \{4, 6, 7\} \)</span> are closed sets. Their union, <span class="arithmatex">\( \{1, 4, 5, 6, 7\} \)</span> is also closed. One can add 3 to get another closed set <span class="arithmatex">\( \{1, 3, 4, 5, 6, 7\} \)</span>. Finally, the whole state space <span class="arithmatex">\( \{1, 2, 3, 4, 5, 6, 7\} \)</span> is always a closed set.</p>
+<p><img alt="alt text" src="../image-25.png" /></p>
+<p><strong>Definition of an Irreducible Set:</strong>
+A set <span class="arithmatex">\( B \)</span> is called irreducible if whenever <span class="arithmatex">\( i, j \in B \)</span>, <span class="arithmatex">\( i \)</span> communicates with <span class="arithmatex">\( j \)</span>.</p>
+<p>The irreducible closed sets in the Example on Gambler's Ruin with Specific States are <span class="arithmatex">\( \{1, 5\} \)</span> and <span class="arithmatex">\( \{4, 6, 7\} \)</span>. The next result explains our interest in irreducible closed sets.</p>
+<h3 id="theorem-recurrence-in-finite-irreducible-sets">Theorem (Recurrence in Finite Irreducible Sets)</h3>
+<p>If <span class="arithmatex">\( C \)</span> is a finite closed and irreducible set, then all states in <span class="arithmatex">\( C \)</span> are recurrent.</p>
+<h3 id="theorem-decomposition-of-finite-state-space">Theorem (Decomposition of Finite State Space)</h3>
+<p>If the state space <span class="arithmatex">\( S \)</span> is finite, then <span class="arithmatex">\( S \)</span> can be written as a disjoint union <span class="arithmatex">\( T \cup R_1 \cup \cdots \cup R_k \)</span>, where <span class="arithmatex">\( T \)</span> is a set of transient states and the <span class="arithmatex">\( R_i \)</span>, <span class="arithmatex">\( 1 \leq i \leq k \)</span>, are closed irreducible sets of recurrent states.</p>
+<h3 id="recurrence-properties">Recurrence Properties</h3>
+<ul>
+<li>
+<p>If <span class="arithmatex">\( x \)</span> is recurrent and <span class="arithmatex">\( x \to y \)</span>, then <span class="arithmatex">\( y \)</span> is recurrent.</p>
+</li>
+<li>
+<p>In a finite closed set there has to be at least one recurrent state.</p>
+</li>
+<li>
+<p><span class="arithmatex">\( y \)</span> is recurrent if and only if</p>
+</li>
+</ul>
+<div class="arithmatex">\[
+\sum_{n=1}^{\infty} p^n(y, y) = E_y N(y) = \infty
+\]</div>
+<p>where <span class="arithmatex">\( E_y N(y) \)</span> is the expected number of visits to <span class="arithmatex">\( y \)</span> starting from <span class="arithmatex">\( y \)</span>.</p>
+<hr />
+<h2 id="stationary-distributions">Stationary Distributions</h2>
+<p>Suppose <span class="arithmatex">\( \vec{\pi} \)</span> is a limiting probability vector, i.e., for some initial probability vector <span class="arithmatex">\( \vec{v} \)</span>,</p>
+<div class="arithmatex">\[
+\vec{\pi} = \lim_{n \to \infty} \vec{v} \mathbf{P}^n.
+\]</div>
+<p>Then</p>
+<div class="arithmatex">\[
+\vec{\pi} = \lim_{n \to \infty} \vec{v} \mathbf{P}^{n+1} = \left( \lim_{n \to \infty} \vec{v} \mathbf{P}^n \right) \mathbf{P} = \vec{\pi} \mathbf{P}.
+\]</div>
+<p>We call a probability vector <span class="arithmatex">\( \vec{\pi} \)</span> an <strong>invariant probability distribution</strong> for <span class="arithmatex">\( \mathbf{P} \)</span> if</p>
+<div class="arithmatex">\[
+\vec{\pi} = \vec{\pi} \mathbf{P}.
+\]</div>
+<p>Such a <span class="arithmatex">\( \vec{\pi} \)</span> is also called a <strong>stationary</strong>, <strong>equilibrium</strong>, or <strong>steady-state probability distribution</strong>. Note that an invariant probability vector is a left eigenvector of <span class="arithmatex">\( \mathbf{P} \)</span> with eigenvalue 1.</p>
+<h3 id="lemma">Lemma</h3>
+<p>If a stationary distribution exists, then
+[
+\lim_{n \to \infty} \mathbf{P}^n = \begin{bmatrix} \vec{\pi} \ \vec{\pi} \ \vdots \ \vec{\pi} \end{bmatrix},
+]</p>
+<h3 id="example-general-two-state-transition-probability">Example: (General two state transition probability)</h3>
+<p>Let us start by considering the two-state Markov chain with</p>
+<div class="arithmatex">\[
+\mathbf{P} = \begin{bmatrix} 1-p &amp; p \\ q &amp; 1-q \end{bmatrix},
+\]</div>
+<p>where <span class="arithmatex">\( 0 &lt; p, q &lt; 1 \)</span>. This matrix has eigenvalues 1 and <span class="arithmatex">\( 1-p-q \)</span>. We can diagonalize <span class="arithmatex">\( \mathbf{P} \)</span>,</p>
+<div class="arithmatex">\[
+\mathbf{D} = \mathbf{Q}^{-1} \mathbf{P} \mathbf{Q},
+\]</div>
+<p>where</p>
+<div class="arithmatex">\[
+\mathbf{Q} = \begin{bmatrix} 1 &amp; -p \\ 1 &amp; q \end{bmatrix}, \quad \mathbf{Q}^{-1} = \begin{bmatrix} q/(p+q) &amp; p/(p+q) \\ -1/(p+q) &amp; 1/(p+q) \end{bmatrix},
+\]</div>
+<div class="arithmatex">\[
+\mathbf{D} = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1-p-q \end{bmatrix}.
+\]</div>
+<p>The columns of <span class="arithmatex">\( \mathbf{Q} \)</span> are right eigenvectors of <span class="arithmatex">\( \mathbf{P} \)</span>, and the rows of <span class="arithmatex">\( \mathbf{Q}^{-1} \)</span> are left eigenvectors. The eigenvectors are unique up to a multiplicative constant.</p>
+<p>We choose the left eigenvector for eigenvalue 1 to be a probability vector. <span class="arithmatex">\( \vec{\pi} = (q/(p+q), p/(p+q)) \)</span> is the unique invariant probability distribution for <span class="arithmatex">\( \mathbf{P} \)</span>. Once <span class="arithmatex">\( \mathbf{P} \)</span> is diagonalized, we can compute powers:</p>
+<div class="arithmatex">\[
+\mathbf{P}^n = (\mathbf{Q} \mathbf{D} \mathbf{Q}^{-1})^n = \mathbf{Q} \mathbf{D}^n \mathbf{Q}^{-1} = \mathbf{Q} \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; (1-p-q)^n \end{bmatrix} \mathbf{Q}^{-1}.
+\]</div>
+<p>This simplifies to:</p>
+<div class="arithmatex">\[
+\mathbf{P}^n = \begin{bmatrix} q + p(1-p-q)^n &amp; p - p(1-p-q)^n \\ q - q(1-p-q)^n &amp; p + q(1-p-q)^n \end{bmatrix} / (p+q).
+\]</div>
+<p>Since <span class="arithmatex">\( |1-p-q| &lt; 1 \)</span>, we have:</p>
+<div class="arithmatex">\[
+\lim_{n \to \infty} \mathbf{P}^n = \begin{bmatrix} q/(p+q) &amp; p/(p+q) \\ q/(p+q) &amp; p/(p+q) \end{bmatrix} = \begin{bmatrix} \vec{\pi} \\ \vec{\pi} \end{bmatrix}.
+\]</div>
+<p>The key is that the second eigenvalue <span class="arithmatex">\( 1-p-q \)</span> has absolute value less than 1, so the dominant contribution to <span class="arithmatex">\( \mathbf{P}^n \)</span> comes from the eigenvalue 1, i.e., the invariant probability distribution.</p>
+<hr />
+<h2 id="irreducible">Irreducible</h2>
+<p>A transition matrix <span class="arithmatex">\( \mathbf{P} \)</span> is called <strong>irreducible</strong>, if for any <span class="arithmatex">\( x, y \in \Omega \)</span>, there exists a number <span class="arithmatex">\( n \)</span> (possibly depending on <span class="arithmatex">\( x, y \)</span>) such that</p>
+<div class="arithmatex">\[
+P^n(x, y) &gt; 0.
+\]</div>
+<p><strong>Definition</strong></p>
+<p>For any <span class="arithmatex">\( x \in \Omega \)</span>, define <span class="arithmatex">\( T(x) = \{ n \geq 1 : P^n(x, x) &gt; 0 \} \)</span>. The <strong>period</strong> of state <span class="arithmatex">\( x \)</span> is the greatest common divisor of <span class="arithmatex">\( T(x) \)</span>, denoted by <span class="arithmatex">\( \gcd(T(x)) \)</span>.</p>
+<p><strong>Lemma</strong></p>
+<p>If <span class="arithmatex">\( \mathbf{P} \)</span> is irreducible, then <span class="arithmatex">\( \gcd(T(x)) = \gcd(T(y)) \)</span> for all <span class="arithmatex">\( x, y \in \Omega \)</span>.</p>
+<h2 id="aperiodic">Aperiodic</h2>
+<p><strong>Definition</strong></p>
+<p>For an irreducible chain, the <strong>period of the chain</strong> is defined to be the period which is common to all states. The chain is <strong>aperiodic</strong> if all states have period 1.</p>
+<p><strong>Example</strong></p>
+<p>Consider a simple random walk on an <span class="arithmatex">\( N \)</span>-cycle where <span class="arithmatex">\( N \)</span> is odd. Then the walk is irreducible and aperiodic.</p>
+<h3 id="theorem">Theorem</h3>
+<p>If <span class="arithmatex">\( \mathbf{P} \)</span> is irreducible and aperiodic, then there exists an integer <span class="arithmatex">\( r \)</span> such that</p>
+<div class="arithmatex">\[
+P^n(x, y) &gt; 0, \quad \forall x, y \in \Omega, \forall n \geq r.
+\]</div>
+<p><strong>Definition</strong></p>
+<p>For <span class="arithmatex">\( x \in \Omega \)</span>, define</p>
+<div class="arithmatex">\[
+\tau_x = \inf \{ n \geq 0 : X_n = x \}, \quad \tau_x^+ = \inf \{ n \geq 1 : X_n = x \}.
+\]</div>
+<p>1- <span class="arithmatex">\( \tau_x \)</span>: the hitting time for <span class="arithmatex">\( x \)</span>.</p>
+<p>2- <span class="arithmatex">\( \tau_x^+ \)</span>: the first return time when <span class="arithmatex">\( X_0 = x \)</span>.</p>
+<h3 id="lemma_1">Lemma</h3>
+<p>Suppose that <span class="arithmatex">\( P \)</span> is irreducible. Then, for any <span class="arithmatex">\( x, y \in \Omega \)</span>, we have</p>
+<div class="arithmatex">\[
+\mathbb{E}_x[\tau_y^+] &lt; \infty
+\]</div>
+<h3 id="perron-frobenius-theorem-for-finite-state-markov-chains">Perron-Frobenius Theorem (for Finite-State Markov Chains)</h3>
+<p>Suppose that <span class="arithmatex">\( P \)</span> is irreducible, then there exists a probability measure <span class="arithmatex">\( \pi \)</span> such that <span class="arithmatex">\( \pi = \pi P \)</span> and <span class="arithmatex">\( \pi(x) &gt; 0 \)</span> for all <span class="arithmatex">\( x \in \Omega \)</span>.</p>
+<h3 id="theorem_1">Theorem</h3>
+<p>Suppose that <span class="arithmatex">\( P \)</span> is irreducible. Then there exists a unique stationary distribution. Moreover,</p>
+<div class="arithmatex">\[
+\pi(x) = \frac{1}{\mathbb{E}_x[\tau_x^+]}, \quad \forall x \in \Omega.
+\]</div>
+<h3 id="theorem-convergence-theorem">Theorem (Convergence Theorem)</h3>
+<p>Suppose that <span class="arithmatex">\( p \)</span> is irreducible, aperiodic, and has a stationary distribution <span class="arithmatex">\( \pi \)</span>. Then as <span class="arithmatex">\( n \to \infty \)</span>: 
+[
+p^n(x, y) \to \pi(y).
+]</p>
+<p><strong>Definition:</strong></p>
+<p>Given a graph <span class="arithmatex">\( G = (V, E) \)</span>, we define <em>simple random walk on <span class="arithmatex">\( G \)</span></em> to be the Markov chain with state space <span class="arithmatex">\( V \)</span> and transition matrix:</p>
+<div class="arithmatex">\[
+P(x, y) = \begin{cases} 
+\frac{1}{\deg(x)} &amp; \text{if } y \sim x \\
+0 &amp; \text{else}
+\end{cases}.
+\]</div>
+<h3 id="theorem_2">Theorem:</h3>
+<p>Let</p>
+<div class="arithmatex">\[
+\pi(x) = \frac{\deg(x)}{2|E|}, \quad \forall x \in V.
+\]</div>
+<p>Then <span class="arithmatex">\( \pi \)</span> is a stationary distribution for the simple random walk on the graph.</p>
+<hr />
+<h2 id="countable-markov-chain">Countable Markov Chain</h2>
+<p><strong>Definition:</strong><br />
+Let <span class="arithmatex">\( \Omega \)</span> be a <em>countable</em> state space and <span class="arithmatex">\( P \)</span> the <em>transition matrix</em>. A stochastic process <span class="arithmatex">\( (X_n)_{n \geq 0} \)</span> is a <strong>Markov chain</strong> if for all states <span class="arithmatex">\( x, y \in \Omega \)</span>,</p>
+<div class="arithmatex">\[
+\mathbb{P}[X_{n+1} = y \mid X_1 = x_1, \dots, X_n = x] = \mathbb{P}[X_{n+1} = y \mid X_n = x] = P(x, y),
+\]</div>
+<p>i.e., the future state depends only on the present state.</p>
+<p><strong>Chapman-Kolmogorov Equation (Countable Markov Chain):</strong><br />
+Let <span class="arithmatex">\( S \)</span> be a countable state space. The <em>n-step transition probabilities</em> are defined by:</p>
+<div class="arithmatex">\[
+p_n(x, y) = \mathbb{P}\{X_n = y \mid X_0 = x\}.
+\]</div>
+<p>For <span class="arithmatex">\( 0 &lt; m, n &lt; \infty \)</span>, the Chapman-Kolmogorov equation states:</p>
+<div class="arithmatex">\[
+p_{m+n}(x, y) = \sum_{z \in S} p_m(x, z) \, p_n(z, y).
+\]</div>
+<p>This expresses that the probability of transitioning from state <span class="arithmatex">\( x \)</span> to <span class="arithmatex">\( y \)</span> in <span class="arithmatex">\( m+n \)</span> steps equals the sum over all intermediate states <span class="arithmatex">\( z \in S \)</span>, of the probability of transitioning from <span class="arithmatex">\( x \)</span> to <span class="arithmatex">\( z \)</span> in <span class="arithmatex">\( m \)</span> steps and then from <span class="arithmatex">\( z \)</span> to <span class="arithmatex">\( y \)</span> in <span class="arithmatex">\( n \)</span> steps.</p>
+<p><strong>Example 1 (Random Walk with Partially Reflecting Boundary at 0):</strong><br />
+Let <span class="arithmatex">\( 0 &lt; p &lt; 1 \)</span>, and let <span class="arithmatex">\( S = \{0, 1, 2, \dots\} \)</span>. The transition probabilities are:</p>
+<div class="arithmatex">\[
+p(x, y) =
+\begin{cases}
+1 - p &amp; \text{if } y = x - 1,\ x &gt; 0 \text{ or } x = y = 0, \\
+p     &amp; \text{if } y = x + 1, \\
+0     &amp; \text{otherwise}.
+\end{cases}
+\]</div>
+<p>This describes a random walk on <span class="arithmatex">\( S \)</span> with a partially reflecting boundary at 0.</p>
+<p><img alt="alt text" src="../image-27.png" /></p>
+<p><strong>Example 2 (Simple Random Walk on the Integer Lattice):</strong><br />
+Let <span class="arithmatex">\( \mathbb{Z}^d \)</span> be the <em>d</em>-dimensional integer lattice:</p>
+<div class="arithmatex">\[
+\mathbb{Z}^d = \{ (z_1, \dots, z_d) : z_i \in \mathbb{Z} \}.
+\]</div>
+<p>Each <span class="arithmatex">\( x \in \mathbb{Z}^d \)</span> has <span class="arithmatex">\( 2d \)</span> nearest neighbors at distance 1. A simple random walk on <span class="arithmatex">\( \mathbb{Z}^d \)</span> is a Markov chain <span class="arithmatex">\( (X_n) \)</span> with state space <span class="arithmatex">\( S = \mathbb{Z}^d \)</span>, where the process moves uniformly to one of the <span class="arithmatex">\( 2d \)</span> nearest neighbors. The transition probabilities are:</p>
+<div class="arithmatex">\[
+p(x, y) =
+\begin{cases}
+\frac{1}{2d} &amp; \text{if } \lVert x - y \rVert = 1, \\
+0           &amp; \text{otherwise}.
+\end{cases}
+\]</div>
+<p><img alt="alt text" src="../image-28.png" /></p>
+<h3 id="recurrence-and-transience">Recurrence and Transience</h3>
+<p>Let <span class="arithmatex">\( X_n \)</span> be an <strong>irreducible Markov chain</strong> with countably infinite state space <span class="arithmatex">\( S \)</span> and transition probabilities <span class="arithmatex">\( p(x, y) \)</span>.</p>
+<p><strong>Definition (Recurrence):</strong>
+The chain <span class="arithmatex">\( X_n \)</span> is said to be <strong>recurrent</strong> if, for each state <span class="arithmatex">\( x \in S \)</span>,</p>
+<div class="arithmatex">\[
+\mathbb{P}^x\{X_n = x \text{ for infinitely many } n\} = 1.
+\]</div>
+<p>That is, the chain returns to the state <span class="arithmatex">\( x \)</span> infinitely often with probability 1.</p>
+<p><strong>Definition (Transience):</strong>
+If a state <span class="arithmatex">\( x \in S \)</span> is not recurrent, it is called <strong>transient</strong>. In this case, the chain visits <span class="arithmatex">\( x \)</span> only a finite number of times almost surely.</p>
+<hr />
+<p>Now, fix a state <span class="arithmatex">\( x \)</span> and assume <span class="arithmatex">\( X_0 = x \)</span>. Define the random variable <span class="arithmatex">\( R \)</span> to be the total number of visits to state <span class="arithmatex">\( x \)</span>, including the initial visit:</p>
+<div class="arithmatex">\[
+R = \sum_{n = 0}^{\infty} I\{X_n = x\},
+\]</div>
+<p>where <span class="arithmatex">\( I\{\cdot\} \)</span> denotes the indicator function. Then the expected number of visits to state <span class="arithmatex">\( x \)</span>, assuming <span class="arithmatex">\( X_0 = x \)</span>, is given by:</p>
+<div class="arithmatex">\[
+\mathbb{E}(R) = \sum_{n = 0}^{\infty} \mathbb{P}(X_n = x) = \sum_{n = 0}^{\infty} p_n(x, x).
+\]</div>
+<hr />
+<p>Let <span class="arithmatex">\( T = \min\{n &gt; 0 : X_n = x\} \)</span> denote the <strong>time of first return</strong> to state <span class="arithmatex">\( x \)</span>. Then:</p>
+<p>1- If <span class="arithmatex">\( \mathbb{P}^x\{T &lt; \infty\} = 1 \)</span>, the chain <strong>always returns</strong> to <span class="arithmatex">\( x \)</span> and is <strong>recurrent</strong>.</p>
+<p>2- If <span class="arithmatex">\( \mathbb{P}^x\{T &lt; \infty\} = q &lt; 1 \)</span>, the chain <strong>returns with probability less than 1</strong> and is <strong>transient</strong>.</p>
+<p>In the transient case, the number of returns <span class="arithmatex">\( R \)</span> is a geometric random variable with success probability <span class="arithmatex">\( 1 - q \)</span>, and its expectation is:</p>
+<div class="arithmatex">\[
+\mathbb{E}(R) = \sum_{m = 1}^{\infty} m \cdot q^{m - 1}(1 - q) = \frac{1}{1 - q} &lt; \infty.
+\]</div>
+<hr />
+<p><strong>Fact:</strong>
+An <strong>irreducible Markov chain</strong> is <strong>transient</strong> if and only if the <strong>expected number of returns</strong> to a state is finite. That is,</p>
+<div class="arithmatex">\[
+\sum_{n = 0}^{\infty} p_n(x, x) &lt; \infty.
+\]</div>
+<h3 id="example-recurrence-of-the-simple-random-walk-on-mathbbzd"><strong>Example: Recurrence of the Simple Random Walk on <span class="arithmatex">\( \mathbb{Z}^d \)</span></strong></h3>
+<h3 id="case-d-1">Case <span class="arithmatex">\( d = 1 \)</span></h3>
+<p>We begin with the one-dimensional case. The state space is <span class="arithmatex">\( \mathbb{Z} \)</span>, and the transition probabilities are given by:</p>
+<div class="arithmatex">\[
+p(x, x + 1) = p(x, x - 1) = \frac{1}{2}.
+\]</div>
+<p>Assuming the walk starts at the origin (<span class="arithmatex">\( X_0 = 0 \)</span>), and noting that the chain has <strong>period 2</strong>, we have:</p>
+<div class="arithmatex">\[
+p_n(0, 0) = 0 \quad \text{for all odd } n.
+\]</div>
+<p>To compute <span class="arithmatex">\( p_{2n}(0, 0) \)</span>, observe that the walker must take exactly <span class="arithmatex">\( n \)</span> steps to the right and <span class="arithmatex">\( n \)</span> steps to the left. The number of such paths is <span class="arithmatex">\( \binom{2n}{n} \)</span>, each with probability <span class="arithmatex">\( (1/2)^{2n} \)</span>. Therefore:</p>
+<div class="arithmatex">\[
+p_{2n}(0, 0) = \binom{2n}{n} \left( \frac{1}{2} \right)^{2n} = \frac{(2n)!}{n! \cdot n!} \left( \frac{1}{2} \right)^{2n}.
+\]</div>
+<p>Applying <strong>Stirling’s approximation</strong>,</p>
+<div class="arithmatex">\[
+n! \sim \sqrt{2\pi n} \cdot n^n e^{-n},
+\]</div>
+<p>we obtain the asymptotic estimate:</p>
+<div class="arithmatex">\[
+p_{2n}(0, 0) \sim \frac{1}{\sqrt{\pi n}}.
+\]</div>
+<p>Hence, the total return probability is:</p>
+<div class="arithmatex">\[
+\sum_{n=0}^{\infty} p_{2n}(0, 0) \sim \sum_{n=1}^{\infty} \frac{1}{\sqrt{n}} = \infty.
+\]</div>
+<p><strong>Conclusion</strong>: The simple random walk on <span class="arithmatex">\( \mathbb{Z} \)</span> is <strong>recurrent</strong>.</p>
+<hr />
+<h3 id="case-d-1_1">Case <span class="arithmatex">\( d &gt; 1 \)</span></h3>
+<p>Now consider the simple random walk on <span class="arithmatex">\( \mathbb{Z}^d \)</span> for <span class="arithmatex">\( d &gt; 1 \)</span>, with transition probabilities:</p>
+<div class="arithmatex">\[
+p(x, y) = \frac{1}{2d}, \quad \text{if } |x - y| = 1.
+\]</div>
+<p>Assume the walk starts at the origin. After <span class="arithmatex">\( 2n \)</span> steps, by the <strong>law of large numbers</strong>, approximately <span class="arithmatex">\( 2n/d \)</span> of the steps are expected in each coordinate direction.</p>
+<p>From the one-dimensional result, the probability that a single coordinate returns to zero is approximately:</p>
+<div class="arithmatex">\[
+\left( \pi(n/d) \right)^{-1/2}.
+\]</div>
+<p>Assuming independence across dimensions, the total return probability becomes:</p>
+<div class="arithmatex">\[
+p_{2n}(0, 0) \sim \left( \frac{1}{2} \right)^{d - 1} \left( \frac{d}{\pi n} \right)^{d/2}.
+\]</div>
+<p>To determine recurrence, we analyze:</p>
+<div class="arithmatex">\[
+\sum_{n=0}^{\infty} p_{2n}(0, 0) \sim \sum_{n=1}^{\infty} n^{-d/2}.
+\]</div>
+<p>This series:</p>
+<div class="arithmatex">\[
+\begin{cases}
+\text{diverges} &amp; \text{if } d = 1, 2, \\
+\text{converges} &amp; \text{if } d \geq 3.
+\end{cases}
+\]</div>
+<p>We conclude:</p>
+<div class="arithmatex">\[
+\sum_{n=0}^{\infty} p_{2n}(0, 0)
+\begin{cases}
+= \infty, &amp; \text{if } d = 1, 2 \quad \Rightarrow \text{Recurrent}, \\
+&lt; \infty, &amp; \text{if } d \geq 3 \quad \Rightarrow \text{Transient}.
+\end{cases}
+\]</div>
+<p>Therefore, the simple random walk on <span class="arithmatex">\( \mathbb{Z}^d \)</span> is:</p>
+<ul>
+<li><strong>Recurrent</strong> for <span class="arithmatex">\( d = 1, 2 \)</span>  </li>
+<li><strong>Transient</strong> for <span class="arithmatex">\( d \geq 3 \)</span></li>
+</ul>
+<h2 id="continuous-time-markov-chains">Continuous Time Markov Chains</h2>
+<p>There is another type of Markov process, and that is the continuous Markov process.</p>
+<p><strong>Definition: Continuous-Time Markov Chain</strong></p>
+<p>Let <span class="arithmatex">\( (X_t)_{t \geq 0} \)</span> be a continuous-time Markov chain. We say that <span class="arithmatex">\( (X_t)_{t \geq 0} \)</span> is a continuous-time Markov chain if for all times <span class="arithmatex">\( 0 \leq t_1 \leq t_2 \leq \cdots \leq t_{n+1} \)</span> and all <span class="arithmatex">\( x_1, x_2, \dots, x_{n+1} \in \Omega \)</span>, we have:</p>
+<div class="arithmatex">\[
+\mathbb{P}[X_{t_{n+1}} = x_{n+1} \mid X_{t_1} = x_1, \dots, X_{t_n} = x_n] = \mathbb{P}[X_{t_{n+1}} = x_{n+1} \mid X_{t_n} = x_n].
+\]</div>
+<p>Moreover, the right-hand side depends only on <span class="arithmatex">\( (t_{n+1} - t_n) \)</span>.</p>
+<hr />
+<p><strong>Definition: Semigroup of the Chain</strong></p>
+<p>Suppose that <span class="arithmatex">\( (X_t)_{t \geq 0} \)</span> is a continuous-time Markov chain. Define the transition probabilities as:</p>
+<div class="arithmatex">\[
+P_t(x, y) = \mathbb{P}[X_t = y \mid X_0 = x].
+\]</div>
+<p>The <strong>semigroup</strong> <span class="arithmatex">\( (P_t)_{t \geq 0} \)</span> of the chain is defined as follows:</p>
+<ul>
+<li><span class="arithmatex">\( P_0 = I \)</span> (identity matrix),</li>
+<li><span class="arithmatex">\( P_t \)</span> is a stochastic matrix,</li>
+<li><span class="arithmatex">\( P_{t+s} = P_t P_s \)</span>.</li>
+</ul>
+<hr />
+<p><strong>Example 1: Poisson Process is Markovian</strong></p>
+<p>The Poisson process is a continuous-time Markov chain with transition probabilities:</p>
+<div class="arithmatex">\[
+P_s(x, y) = e^{-\lambda s} \frac{(\lambda s)^{y - x}}{(y - x)!}.
+\]</div>
+<hr />
+<p><strong>Example 2: Discrete-Time Markov Chain as Continuous-Time Process</strong></p>
+<p>Let <span class="arithmatex">\( (\hat{X}_n)_{n \geq 0} \)</span> be a discrete-time Markov chain with transition matrix <span class="arithmatex">\( Q \)</span>, and let <span class="arithmatex">\( (N_t)_{t \geq 0} \)</span> be an independent Poisson process with intensity <span class="arithmatex">\( \lambda &gt; 0 \)</span>. Define <span class="arithmatex">\( X_t = \hat{X}_{N_t}, t \geq 0 \)</span>. Then <span class="arithmatex">\( (X_t)_{t \geq 0} \)</span> is a continuous-time Markov chain with transition probabilities:</p>
+<div class="arithmatex">\[
+P_s(x, y) = e^{-\lambda s} \sum_{k=0}^{\infty} \frac{(\lambda s)^k}{k!} Q^k(x, y).
+\]</div>
+<hr />
+<h3 id="theorem-holding-time-exponentially-distributed">Theorem (Holding Time Exponentially Distributed):</h3>
+<p>Let <span class="arithmatex">\( X_0 = x \)</span>, and define the <strong>holding time</strong> at <span class="arithmatex">\( x \)</span> as:</p>
+<div class="arithmatex">\[
+S_x = \inf\{ t \geq 0 : X_t \neq x \}.
+\]</div>
+<p>Then <span class="arithmatex">\( S_x \)</span> has an exponential distribution.</p>
+<hr />
+<h3 id="theorem-memoryless-property-of-exponential-distribution">Theorem (Memoryless Property of Exponential Distribution)</h3>
+<p>Let <span class="arithmatex">\( T \)</span> be a positive random variable. <span class="arithmatex">\( T \)</span> has the memoryless property if:</p>
+<div class="arithmatex">\[
+\mathbb{P}[T &gt; t + s \mid T &gt; s] = \mathbb{P}[T &gt; t],
+\]</div>
+<p>if and only if <span class="arithmatex">\( T \)</span> has an exponential distribution.</p>
+<h1 id="references">References</h1>
+<ol>
+<li>
+<p><strong>Lawler, Gregory F. (2006).</strong>  <em>Introduction to Stochastic Processes.</em>  CRC Press.</p>
+</li>
+<li>
+<p><strong>Durrett, Rick (2010).</strong>  <em>Essentials of Stochastic Processes.</em>  2nd Edition, Version Beta.  Cambridge University Press.</p>
+</li>
+<li>
+<p><strong>MIT OpenCourseWare (2015).</strong>  <em>Introduction to Stochastic Processes - Spring 2015.</em>  <a href="https://ocw.mit.edu/courses/18-445-introduction-to-stochastic-processes-spring-2015/pages/lecture-notes/">Lecture Notes - MIT OCW</a>.</p>
+</li>
+<li>
+<p><strong>Ross, Sheldon M. (2014).</strong>  <em>Stochastic Processes.</em>  Second Edition, University of California, Berkeley.  </p>
+</li>
+<li>
+<p><strong>University of Auckland (2020).</strong>  <em>COURSE NOTES: STATS 325 - Stochastic Processes.</em>  Department of Statistics, University of Auckland.  </p>
+</li>
+</ol>
+<h2 id="authors">Author(s)</h2>
+<div class="grid cards">
+<ul>
+<li><img align="left" alt="Instructor Avatar" src="/assets/images/staff/Abdollah-Zohrabi.jpg" width="150" />
+    <span class="description">
+        <p><strong>Abdollah Zohrabi</strong></p>
+        <p>Teaching Assistant</p>
+        <p><a href="mailto:abdollahzz1381@gmail.com">abdollahzz1381@gmail.com</a></p>
+        <p>
+        <a href="https://github.com/Abz81" target="_blank"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg></span></a>
+        <a href="https://www.linkedin.com/in/abdollah-zohrabi-i2003" target="_blank"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8c0-14.3 5.7-27.9 15.8-38S39.6 0 53.8 0s27.9 5.7 38 15.8 15.8 23.8 15.8 38c0 29.7-24.1 54.3-53.8 54.3M447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z"/></svg></span></a>
+        </p>
+    </span></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  <form class="md-feedback" name="feedback" hidden>
+    <fieldset>
+      <legend class="md-feedback__title">
+        Was this page helpful?
+      </legend>
+      <div class="md-feedback__inner">
+        <div class="md-feedback__list">
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="This page was helpful" data-md-value="1">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 12a8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8m2 0a10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2a10 10 0 0 1 10 10M10 9.5c0 .8-.7 1.5-1.5 1.5S7 10.3 7 9.5 7.7 8 8.5 8s1.5.7 1.5 1.5m7 0c0 .8-.7 1.5-1.5 1.5S14 10.3 14 9.5 14.7 8 15.5 8s1.5.7 1.5 1.5m-5 7.73c-1.75 0-3.29-.73-4.19-1.81L9.23 14c.45.72 1.52 1.23 2.77 1.23s2.32-.51 2.77-1.23l1.42 1.42c-.9 1.08-2.44 1.81-4.19 1.81"/></svg>
+            </button>
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="This page could be improved" data-md-value="0">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 12a8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8m2 0a10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2a10 10 0 0 1 10 10m-6.5-4c.8 0 1.5.7 1.5 1.5s-.7 1.5-1.5 1.5-1.5-.7-1.5-1.5.7-1.5 1.5-1.5M10 9.5c0 .8-.7 1.5-1.5 1.5S7 10.3 7 9.5 7.7 8 8.5 8s1.5.7 1.5 1.5m2 4.5c1.75 0 3.29.72 4.19 1.81l-1.42 1.42C14.32 16.5 13.25 16 12 16s-2.32.5-2.77 1.23l-1.42-1.42C8.71 14.72 10.25 14 12 14"/></svg>
+            </button>
+          
+        </div>
+        <div class="md-feedback__note">
+          
+            <div data-md-value="1" hidden>
+              
+              
+                
+              
+              
+              
+                
+                
+              
+              Thanks for your feedback!
+            </div>
+          
+            <div data-md-value="0" hidden>
+              
+              
+                
+              
+              
+              
+                
+                
+              
+              Thanks for your feedback! Help us improve this page by using our <a href="..." target="_blank" rel="noopener">feedback form</a>.
+            </div>
+          
+        </div>
+      </div>
+    </fieldset>
+  </form>
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Made with ❤️ in Robust and Interpretable Machine Learning Lab
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="mailto:deeprlcourse@gmail.com" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2zm-2 0-8 5-8-5zm0 12H4V8l8 5 8-5z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/DeepRLCourse" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.youtube.com/@DeepRLCourse" target="_blank" rel="noopener" title="www.youtube.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M549.7 124.1c-6.2-23.7-24.8-42.3-48.3-48.6C458.9 64 288.1 64 288.1 64S117.3 64 74.7 75.5c-23.5 6.3-42 24.9-48.3 48.6C15 167 15 256.4 15 256.4s0 89.4 11.4 132.3c6.3 23.6 24.8 41.5 48.3 47.8C117.3 448 288.1 448 288.1 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zM232.2 337.6V175.2l142.7 81.2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://x.com/DeepRLCourse" target="_blank" rel="noopener" title="x.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M357.2 48h70.6L273.6 224.2 455 464H313L201.7 318.6 74.5 464H3.8l164.9-188.5L-5.2 48h145.6l100.5 132.9zm-24.8 373.8h39.1L119.1 88h-42z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://t.me/DeepRLCourse" target="_blank" rel="noopener" title="t.me" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M256 8a248 248 0 1 0 0 496 248 248 0 1 0 0-496m115 168.7c-3.7 39.2-19.9 134.4-28.1 178.3-3.5 18.6-10.3 24.8-16.9 25.4-14.4 1.3-25.3-9.5-39.3-18.7-21.8-14.3-34.2-23.2-55.3-37.2-24.5-16.1-8.6-25 5.3-39.5 3.7-3.8 67.1-61.5 68.3-66.7.2-.7.3-3.1-1.2-4.4s-3.6-.8-5.1-.5c-2.2.5-37.1 23.5-104.6 69.1-9.9 6.8-18.9 10.1-26.9 9.9-8.9-.2-25.9-5-38.6-9.1-15.5-5-27.9-7.7-26.8-16.3.6-4.5 6.7-9 18.4-13.7 72.3-31.5 120.5-52.3 144.6-62.3 68.9-28.6 83.2-33.6 92.5-33.8 2.1 0 6.6.5 9.6 2.9 2 1.7 3.2 4.1 3.5 6.7.5 3.2.6 6.5.4 9.8z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

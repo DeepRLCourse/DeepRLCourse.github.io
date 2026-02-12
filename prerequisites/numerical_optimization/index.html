@@ -1,0 +1,6014 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://deeprlcourse.github.io/prerequisites/numerical_optimization/">
+      
+      
+        <link rel="prev" href="../linear_algebra/">
+      
+      
+        <link rel="next" href="../information_theory/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/favicon/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Numerical Optimization - Deep RL Course</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,700,700i%7CRed+Hat+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Ubuntu";--md-code-font:"Red Hat Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/vazirmatn.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-Q1YT8K39WE"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-Q1YT8K39WE",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-Q1YT8K39WE",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+  
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Numerical Optimization - Deep RL Course" />
+<meta property="og:image" content="https://deeprlcourse.github.io/assets/images/social/prerequisites/numerical_optimization.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content="https://deeprlcourse.github.io/prerequisites/numerical_optimization/" />
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:title" content="Numerical Optimization - Deep RL Course" />
+<meta property="twitter:image" content="https://deeprlcourse.github.io/assets/images/social/prerequisites/numerical_optimization.png" />
+</head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#numerical-optimization" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Deep RL Course" class="md-header__button md-logo" aria-label="Deep RL Course" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Deep RL Course
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Numerical Optimization
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="red"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="red"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../home/calender/" class="md-tabs__link">
+          
+  
+  
+  Calendar
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../course_notes/intro-to-rl/" class="md-tabs__link">
+          
+  
+  
+  Course Notes
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../lectures/week1/" class="md-tabs__link">
+          
+  
+  
+  Lectures
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../guests/richard_sutton/" class="md-tabs__link">
+          
+  
+  
+  Guests
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../recitations/week1/" class="md-tabs__link">
+          
+  
+  
+  Recitations
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../workshops/week1/" class="md-tabs__link">
+          
+  
+  
+  Workshops
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../homeworks/week1/" class="md-tabs__link">
+          
+  
+  
+  Homeworks
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../deep_learning/" class="md-tabs__link">
+          
+  
+  
+  Prerequisites
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../exams/midterm/" class="md-tabs__link">
+          
+  
+  
+  Exams
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../poster_session/sp25/" class="md-tabs__link">
+          
+  
+  
+  Poster Session
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../resources/" class="md-tabs__link">
+          
+  
+  
+  Resources
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../blog/" class="md-tabs__link">
+          
+  
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+    
+      
+
+    
+
+    
+
+        
+
+            
+
+        
+
+            
+                  
+            
+
+        
+    
+
+    
+
+
+    <!-- Navigation -->
+    
+        
+        <div
+            class="md-sidebar md-sidebar--primary"
+            data-md-component="sidebar"
+            data-md-type="navigation"
+            
+        >
+            <div class="md-sidebar__scrollwrap">
+            <div class="md-sidebar__inner">
+                <!--
+  Copyright (c) 2016-2025 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+
+
+<!-- Determine classes -->
+
+
+  
+
+
+  
+
+
+<!-- Navigation -->
+<nav
+  class="md-nav md-nav--primary md-nav--lifted"
+  aria-label="Navigation"
+  data-md-level="0"
+>
+
+  <!-- Site title -->
+  <label class="md-nav__title" for="__drawer">
+    <a
+      href="../.."
+      title="Deep RL Course"
+      class="md-nav__button md-logo"
+      aria-label="Deep RL Course"
+      data-md-component="logo"
+    >
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Deep RL Course
+  </label>
+
+  <!-- Repository information -->
+  
+
+  <!-- Navigation list -->
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Calendar
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Calendar
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../home/calender/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Calender
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course Notes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Course Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conceptual Overview of RL
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Conceptual Overview of RL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/intro-to-rl/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 1: Introduction to RL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/value-based/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 2: Value-based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/policy-based/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 3: Policy-Based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/advanced/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 4: Advanced Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/model-based/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 5: Model-Based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course_notes/bandits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 6: Multi-Armed Bandits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lectures
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lectures
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 1: Introduction to RL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 2: Value-Based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 3: Policy-Based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 4: Advanced Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 5: Model-Based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 6: Multi-Armed Bandits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 7: Value-Based Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 8: Policy-Based Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 9: Advanced Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 10: Exploration Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 11: Imitation &amp; Inverse RL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 12: Offline Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 13: Multi-Agent Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lectures/week14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 14: Hierarchical &amp; Meta RL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guests
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guests
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/richard_sutton/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Richard Sutton
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/chris_watkins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chris Watkins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/michael_littman/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Michael Littman
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/peter_stone/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Peter Stone
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/jakob_foerster/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Jakob Foerster
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/nan_jiang/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nan Jiang
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/benjamin_eysenbach/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Benjamin Eysenbach
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/ian_osband/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ian Osband
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/jeff_clune/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Jeff Clune
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/peter_dayan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Peter Dayan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/ida_momennejad/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ida Momennejad
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/abhishek_gupta/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Abhishek Gupta
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/benjamin_van_roy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Benjamin Van Roy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/wolfram_schultz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wolfram Schultz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/mark_ho/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mark Ho
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/pascal_poupart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pascal Poupart
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/peter_norvig/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Peter Norvig
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/karl_friston/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Karl Friston
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/amy_zhang/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Amy Zhang
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/adam_white/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Adam White
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/anne_collins/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Anne Collins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/luis_serrano/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Luis Serrano
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/martha_white/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Martha White
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/christopher_amato/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Christopher Amato
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../guests/marlos_machado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Marlos C. Machado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recitations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Recitations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recitations/week1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 1: Introduction to RL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recitations/week2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 2: Value-Based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recitations/week3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 3: Policy-Based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recitations/week4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 4: Advanced Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recitations/week5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 5: Model-Based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recitations/week6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 6: Multi-Armed Bandits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recitations/week7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 7: Value-Based Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recitations/week8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 8: Policy-Based Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recitations/week9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 9: Advanced Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workshops
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Workshops
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/week1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 1: Introduction to RL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/week2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 2: Value-Based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/week3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 3: Policy-Based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/week4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 4: Advanced Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/week5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 5: Model-Based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workshops/week6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Week 6: Multi-Armed Bandits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Homeworks
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Homeworks
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW1: Introduction to RL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW2: Value-Based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW3: Policy-Based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW4: Advanced Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW5: Model-Based Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW6: Multi-Armed Bandits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW7: Value-Based Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW8: Policy-Based Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW9: Advanced Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW10: Exploration Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW11: Imitation &amp; Inverse RL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW12: Offline Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW13: Multi-Agent Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/week14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HW14: Hierarchical &amp; Meta RL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../homeworks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Previous Semesters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prerequisites
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Prerequisites
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deep_learning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deep Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../game_theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Game Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linear_algebra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linear Algebra
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Numerical Optimization
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Numerical Optimization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        <!--
+  Copyright (c) 2016-2025 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Determine title -->
+
+
+
+
+<!-- Table of contents -->
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+
+  <!--
+    Check whether the content starts with a level 1 headline. If it does, the
+    top-level anchor must be skipped, since it would be redundant to the link
+    to the current page that is located just above the anchor. Therefore we
+    directly continue with the children of the anchor.
+  -->
+  
+  
+    
+  
+
+  <!-- Table of contents title and list -->
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#fundamentals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fundamentals
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fundamentals">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#taylors-theorem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Taylor’s Theorem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#first-order-necessary-conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        First-Order Necessary Conditions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#second-order-sufficient-conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Second-Order Sufficient Conditions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#theorem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theorem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#theorem_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theorem
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rate-of-convergence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rate of Convergence
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#line-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Line Search
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Line Search">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conditions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#theorem_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theorem:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trust-region" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trust Region
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Trust Region">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newton-direction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Newton direction:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quasi-newton-direction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quasi-Newton direction:
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quasi-Newton direction:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recursive-method-for-quasi-newton" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recursive method for quasi-Newton
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#theory-of-constrained-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theory of Constrained Optimization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Theory of Constrained Optimization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definitions:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 1:
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Example 1:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Solution:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 2:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#theorem-first-order-necessary-conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theorem (First-Order Necessary Conditions):
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#theorem-second-order-necessary-conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theorem (Second-Order Necessary Conditions).
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#theorem-second-order-sufficient-conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theorem (Second-Order Sufficient Conditions).
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#duality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Duality
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Duality">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#standard-form-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standard Form Problem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lagrangian" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lagrangian
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dual-function-and-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dual Function and Problem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#theorem_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theorem
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Theorem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#proof" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proof:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#theorem-weak-duality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theorem (Weak Duality)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Theorem (Weak Duality)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#proof_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proof
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-equality-constrained-norm-minimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: Equality Constrained Norm Minimization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-quadratic-program" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: Quadratic Program
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Example: Quadratic Program">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#primal-problem-assume-p-in-sn_" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Primal Problem (assume \( P \in S^{n}_{++} \))
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#theorem_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theorem
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../information_theory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Information Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stochastic_processes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stochastic Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exams
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Exams
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exams/midterm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spring 2025 Midterm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exams/final/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spring 2025 Final
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exams/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Previous Semesters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Poster Session
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Poster Session
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_11_1" id="__nav_11_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spring 2025
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_11_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Spring 2025
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../poster_session/sp25/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Showcase
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../poster_session/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guideline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_11_2" id="__nav_11_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spring 2024
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_11_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Spring 2024
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../poster_session/sp24/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Showcase
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resources
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Resources
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Blog
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/tags/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tags
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_13_3" id="__nav_13_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Archive
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_13_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Archive
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/archive/2025/02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    February 2025
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_13_4" id="__nav_13_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Categories
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_13_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Categories
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/category/course-updates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course Updates
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+            </div>
+            </div>
+        </div>
+    
+
+    <!-- Table of contents -->
+    
+        
+        <div
+            class="md-sidebar md-sidebar--secondary"
+            data-md-component="sidebar"
+            data-md-type="toc"
+            
+        >
+            <div class="md-sidebar__scrollwrap">
+            <div class="md-sidebar__inner">
+                <!--
+  Copyright (c) 2016-2025 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Determine title -->
+
+
+
+
+<!-- Table of contents -->
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+
+  <!--
+    Check whether the content starts with a level 1 headline. If it does, the
+    top-level anchor must be skipped, since it would be redundant to the link
+    to the current page that is located just above the anchor. Therefore we
+    directly continue with the children of the anchor.
+  -->
+  
+  
+    
+  
+
+  <!-- Table of contents title and list -->
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#fundamentals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fundamentals
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fundamentals">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#taylors-theorem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Taylor’s Theorem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#first-order-necessary-conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        First-Order Necessary Conditions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#second-order-sufficient-conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Second-Order Sufficient Conditions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#theorem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theorem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#theorem_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theorem
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rate-of-convergence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rate of Convergence
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#line-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Line Search
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Line Search">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conditions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#theorem_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theorem:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trust-region" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trust Region
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Trust Region">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#newton-direction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Newton direction:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quasi-newton-direction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quasi-Newton direction:
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quasi-Newton direction:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recursive-method-for-quasi-newton" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recursive method for quasi-Newton
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#theory-of-constrained-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theory of Constrained Optimization
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Theory of Constrained Optimization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definitions:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 1:
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Example 1:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Solution:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 2:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#theorem-first-order-necessary-conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theorem (First-Order Necessary Conditions):
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#theorem-second-order-necessary-conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theorem (Second-Order Necessary Conditions).
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#theorem-second-order-sufficient-conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theorem (Second-Order Sufficient Conditions).
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#duality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Duality
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Duality">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#standard-form-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standard Form Problem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lagrangian" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lagrangian
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dual-function-and-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dual Function and Problem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#theorem_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theorem
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Theorem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#proof" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proof:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#theorem-weak-duality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theorem (Weak Duality)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Theorem (Weak Duality)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#proof_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proof
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-equality-constrained-norm-minimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: Equality Constrained Norm Minimization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-quadratic-program" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: Quadratic Program
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Example: Quadratic Program">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#primal-problem-assume-p-in-sn_" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Primal Problem (assume \( P \in S^{n}_{++} \))
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#theorem_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Theorem
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+            </div>
+            </div>
+        </div>
+    
+
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="numerical-optimization">Numerical Optimization</h1>
+<h2 id="fundamentals">Fundamentals</h2>
+<h3 id="taylors-theorem">Taylor’s Theorem</h3>
+<p>Suppose that <span class="arithmatex">\( f : \mathbb{R}^n \to \mathbb{R} \)</span> is continuously differentiable and that <span class="arithmatex">\( p \in \mathbb{R}^n \)</span>. Then we have that</p>
+<div class="arithmatex">\[
+f(x + p) \approx f(x) + \nabla f(x + tp)^T p
+\]</div>
+<p>for some <span class="arithmatex">\( t \in (0, 1) \)</span>. Moreover, if <span class="arithmatex">\( f \)</span> is twice continuously differentiable, we have that</p>
+<div class="arithmatex">\[
+f(x + p) \approx f(x) + \int_0^1 \nabla^2 f(x + tp) p \, dt
+\]</div>
+<p>and that</p>
+<div class="arithmatex">\[
+f(x + p) \approx f(x) + \nabla f(x)^T p + \frac{1}{2} p^T \nabla^2 f(x + tp) p
+\]</div>
+<p>for some <span class="arithmatex">\( t \in (0, 1) \)</span>.</p>
+<p>Necessary conditions for optimality are derived by assuming that <span class="arithmatex">\( x^* \)</span> is a local minimizer and then proving facts about <span class="arithmatex">\( \nabla f(x^*) \)</span> and <span class="arithmatex">\( \nabla^2 f(x^*) \)</span>.</p>
+<h3 id="first-order-necessary-conditions">First-Order Necessary Conditions</h3>
+<p>If <span class="arithmatex">\( x^* \)</span> is a local minimizer and <span class="arithmatex">\( f \)</span> is continuously differentiable in an open neighborhood of <span class="arithmatex">\( x^* \)</span>, then</p>
+<div class="arithmatex">\[
+\nabla f(x^*) = 0.
+\]</div>
+<h3 id="second-order-sufficient-conditions">Second-Order Sufficient Conditions</h3>
+<p>Suppose that <span class="arithmatex">\( \nabla^2 f \)</span> is continuous in an open neighborhood of <span class="arithmatex">\( x^* \)</span>, that <span class="arithmatex">\( \nabla f(x^*) = 0 \)</span>, and <span class="arithmatex">\( \nabla^2 f(x^*) \)</span> is positive definite. Then, <span class="arithmatex">\( x^* \)</span> is a strict local minimizer of <span class="arithmatex">\( f \)</span>.</p>
+<h3 id="theorem">Theorem</h3>
+<p>When <span class="arithmatex">\( f \)</span> is convex, any local minimizer <span class="arithmatex">\( x^* \)</span> is a global minimizer of <span class="arithmatex">\( f \)</span>. If, in addition, <span class="arithmatex">\( f \)</span> is differentiable, then any stationary point <span class="arithmatex">\( x^* \)</span> is a global minimizer of <span class="arithmatex">\( f \)</span>.</p>
+<h3 id="definition">Definition</h3>
+<p>A <strong>convex function</strong> is a function where, for any two points <span class="arithmatex">\( x_1 \)</span> and <span class="arithmatex">\( x_2 \)</span> in its domain, and any <span class="arithmatex">\( \lambda \in [0, 1] \)</span>, the function value at the point <span class="arithmatex">\( \lambda x_1 + (1-\lambda) x_2 \)</span> is less than or equal to the weighted average of the function values at <span class="arithmatex">\( x_1 \)</span> and <span class="arithmatex">\( x_2 \)</span>:</p>
+<div class="arithmatex">\[
+f(\lambda x_1 + (1-\lambda) x_2) \leq \lambda f(x_1) + (1-\lambda) f(x_2)
+\]</div>
+<h3 id="theorem_1">Theorem</h3>
+<p>Let <span class="arithmatex">\( C \subseteq \mathbb{R}^n \)</span> be a convex set and let <span class="arithmatex">\( f: \mathbb{R}^n \to \mathbb{R} \)</span> be differentiable over <span class="arithmatex">\( \mathbb{R}^n \)</span>.<br />
+(a) The function <span class="arithmatex">\( f \)</span> is convex over <span class="arithmatex">\( C \)</span> iff <span class="arithmatex">\( f(z) \geq f(x) + (z - x) \cdot \nabla f(x) \)</span>, for all <span class="arithmatex">\( x, z \in C \)</span>.<br />
+(b) If the inequality is strict whenever <span class="arithmatex">\( x \neq z \)</span>, then <span class="arithmatex">\( f \)</span> is strictly convex over <span class="arithmatex">\( C \)</span>.</p>
+<p><img alt="alt text" src="../image-15.png" /></p>
+<h2 id="rate-of-convergence">Rate of Convergence</h2>
+<p>Let <span class="arithmatex">\( \{ x_k \mid x_k \in \mathbb{R}^n \} \)</span> be a sequence such that <span class="arithmatex">\( x^* = \lim_{k \to \infty} x_k \)</span>.</p>
+<p>The convergence is:
+- Q-linear if for a constant <span class="arithmatex">\( r \in (0,1) \)</span>:</p>
+<div class="arithmatex">\[\| x_{k+1} - x^* \| \leq r \| x_k - x^* \|\]</div>
+<ul>
+<li>Q-superlinear if:</li>
+</ul>
+<div class="arithmatex">\[\lim_{k \to \infty} \frac{\| x_{k+1} - x^* \|}{\| x_k - x^* \|} = 0\]</div>
+<ul>
+<li><span class="arithmatex">\( p \)</span> Q-order if for a constant <span class="arithmatex">\( M \)</span>:</li>
+</ul>
+<div class="arithmatex">\[\| x_{k+1} - x^* \| \leq M \| x_k - x^* \|^p\]</div>
+<hr />
+<h2 id="line-search">Line Search</h2>
+<p>Often, in the methods we use for optimizing nonlinear functions, finding descent directions at the current point and moving in those directions to find a point with a lower value is done iteratively. However, the issue that arises is the step size, which itself becomes an optimization problem called Line Search.</p>
+<p>Which its problem is as follows:</p>
+<div class="arithmatex">\[\min_{\alpha &gt; 0} f(x_k + \alpha p_k)\]</div>
+<p>we would derive the maximum benefit from the direction <span class="arithmatex">\( p_k \)</span>.</p>
+<h3 id="conditions">Conditions</h3>
+<p>The ideal choice would be the global minimizer of the univariate function <span class="arithmatex">\( \varphi(\cdot) \)</span> defined by</p>
+<div class="arithmatex">\[\varphi(\alpha) = f(x_k + \alpha p_k), \quad \alpha &gt; 0,\]</div>
+<p><img alt="alt text" src="../image-16.png" /></p>
+<p>The <strong>sufficient decrease</strong> and <strong>curvature conditions</strong> are known collectively as the <strong>Wolfe conditions</strong></p>
+<ul>
+<li><span class="arithmatex">\( f(x_k + \alpha p_k) \leq f(x_k) + c_1 \alpha \nabla f_k^T p_k \)</span> (<strong>sufficient decrease</strong>)</li>
+<li><span class="arithmatex">\( \nabla f(x_k + \alpha_k p_k)^T p_k \geq c_2 \nabla f_k^T p_k \)</span> (<strong>curvature condition</strong>)</li>
+</ul>
+<p>with <span class="arithmatex">\( 0 &lt; c_1 &lt; c_2 &lt; 1 \)</span>.</p>
+<p><img alt="alt text" src="../image-17.png" /></p>
+<p><strong>Figure: Sufficient decrease condition</strong></p>
+<hr />
+<p><img alt="alt text" src="../image-18.png" /></p>
+<p><strong>Figure: The curvature condition</strong></p>
+<hr />
+<h3 id="theorem_2">Theorem:</h3>
+<p>Consider any iteration of the form <span class="arithmatex">\( x_{k+1} = x_k + \alpha_k p_k \)</span>, where <span class="arithmatex">\( p_k \)</span> is a descent direction and <span class="arithmatex">\( \alpha_k \)</span> satisfies the Wolfe conditions. Suppose that <span class="arithmatex">\( f \)</span> is bounded below in <span class="arithmatex">\( \mathbb{R}^n \)</span> and that <span class="arithmatex">\( f \)</span> is continuously differentiable in an open set <span class="arithmatex">\( \mathcal{N} \)</span> containing the level set <span class="arithmatex">\( \mathcal{L} \equiv \{ x : f(x) \leq f(x_0) \} \)</span>, where <span class="arithmatex">\( x_0 \)</span> is the starting point of the iteration. Assume also that the gradient <span class="arithmatex">\( \nabla f \)</span> is Lipschitz continuous on <span class="arithmatex">\( \mathcal{N} \)</span>, that is, there exists a constant <span class="arithmatex">\( L &gt; 0 \)</span> such that</p>
+<div class="arithmatex">\[\| \nabla f(x) - \nabla f(\tilde{x}) \| \leq L \| x - \tilde{x} \|, \quad \text{for all } x, \tilde{x} \in \mathcal{N}.\]</div>
+<p>Then</p>
+<div class="arithmatex">\[\sum_{k \geq 0} \cos^2 \theta_k \| \nabla f_k \|^2 &lt; \infty.\]</div>
+<p>Since <span class="arithmatex">\( |\cos \theta_k| \geq c &gt; 0 \)</span>, we can see that the gradients <span class="arithmatex">\( \| \nabla f_k \| \)</span> must shrink to zero as the iterations progress. Otherwise, the sum would not be finite, which leads to the conclusion that <span class="arithmatex">\( \nabla f_k \)</span> converges to zero.</p>
+<h2 id="trust-region">Trust Region</h2>
+<p><img alt="alt text" src="../image-19.png" /></p>
+<p>The <strong>Trust Region</strong> method uses the information gathered about <span class="arithmatex">\( f \)</span> to construct a model function <span class="arithmatex">\( m_k \)</span> whose behavior near the current point <span class="arithmatex">\( x_k \)</span> is similar to that of the actual objective function <span class="arithmatex">\( f \)</span>. Because the model <span class="arithmatex">\( m_k \)</span> may not be a good approximation of <span class="arithmatex">\( f \)</span> when <span class="arithmatex">\( x \)</span> is far from <span class="arithmatex">\( x_k \)</span>, we restrict the search for a minimizer of <span class="arithmatex">\( m_k \)</span> to some region around <span class="arithmatex">\( x_k \)</span>.</p>
+<div class="arithmatex">\[\min_{p} \, m_k(x_k + p), \, \text{where} \, x_k + p \, \text{lies inside the trust region.}\]</div>
+<p>Usually, the trust region is a ball defined by <span class="arithmatex">\( \|p\|_2 \leq \delta \)</span>, where the scalar <span class="arithmatex">\( \delta &gt; 0 \)</span> is called the trust-region radius.
+For example, one of the functions that can be suitable for <span class="arithmatex">\( m_k \)</span> is a quadratic function, which is obtained using the Taylor expansion of the function <span class="arithmatex">\( f \)</span> around the point <span class="arithmatex">\( x_k \)</span>:</p>
+<div class="arithmatex">\[m_k(x_k + p) = f_k + p^T \nabla f_k + \frac{1}{2} p^T B_k p\]</div>
+<p>Where the matrix <span class="arithmatex">\( B_k \)</span> is either the Hessian <span class="arithmatex">\( H_k = \nabla^2 f_k \)</span> or some approximation to it.</p>
+<p>Now, using the mentioned <span class="arithmatex">\( m_k \)</span>, and optimizing it (taking the gradient with respect to <span class="arithmatex">\( p \)</span>), we reach two descent directions: one is the Newton method and the other is the quasi-Newton method, which is used when directly computing the Hessian matrix is costly.</p>
+<h3 id="newton-direction">Newton direction:</h3>
+<div class="arithmatex">\[\nabla_p \, m_k(x_k+p) = 0 \xrightarrow[\exists \, \text{inverse}]{} p_N = - (\nabla^2 f_k)^{-1} \nabla f_k\]</div>
+<h3 id="quasi-newton-direction">Quasi-Newton direction:</h3>
+<div class="arithmatex">\[\nabla_p \, m_k(x_k+p) = 0 \xrightarrow[\exists \, \text{inverse}]{} p_{qN} = - (B_k)^{-1} \nabla f_k\]</div>
+<h4 id="recursive-method-for-quasi-newton">Recursive method for quasi-Newton</h4>
+<div class="arithmatex">\[B_{k+1} = B_k + \frac{(y_k - B_k s_k)(y_k - B_k s_k)^T}{(y_k - B_k s_k)^T s_k}\]</div>
+<p>We can rewrite it in the following form (or <strong>BFGS formula</strong>)</p>
+<div class="arithmatex">\[B_{k+1} = B_k - \frac{B_k s_k s_k^T}{s_k^T B_k s_k} + \frac{y_k y_k^T}{y_k^T s_k}\]</div>
+<p>where</p>
+<div class="arithmatex">\[s_k = x_{k+1} - x_k, \quad y_k = \nabla f_{k+1} - \nabla f_k\]</div>
+<hr />
+<h2 id="theory-of-constrained-optimization">Theory of Constrained Optimization</h2>
+<p>In some optimization problems we have, the domain we search for the optimal value is not the entire Euclidean space, but rather, under certain conditions, we are looking for the optimal function. For this reason, we use the theory of Constrained Optimization.</p>
+<p>A general formulation:</p>
+<div class="arithmatex">\[\min_{x \in \mathbb{R}^n} f(x) \quad \text{subject to} \quad 
+\begin{cases}
+c_i(x) = 0, &amp; \text{for } i \in \mathcal{E}, \\
+c_i(x) \geq 0, &amp; \text{for } i \in \mathcal{I},
+\end{cases}\]</div>
+<p>where <span class="arithmatex">\( f \)</span> and the functions <span class="arithmatex">\( c_i \)</span> are all smooth, real-valued functions on a subset of <span class="arithmatex">\( \mathbb{R}^n \)</span>, and <span class="arithmatex">\( \mathcal{I} \)</span> and <span class="arithmatex">\( \mathcal{E} \)</span> are two finite sets of indices. As before, we call <span class="arithmatex">\( f \)</span> the objective function, while <span class="arithmatex">\( c_i \)</span>,</p>
+<p><span class="arithmatex">\( i \in \mathcal{E} \)</span> are the equality constraints and <span class="arithmatex">\( c_i \)</span>, <span class="arithmatex">\( i \in \mathcal{I} \)</span> are the inequality constraints.</p>
+<p>Also we can define the feasible set <span class="arithmatex">\( \Omega \)</span> to be the set of points <span class="arithmatex">\( x \)</span> that satisfy the constraints; that is,</p>
+<div class="arithmatex">\[\Omega = \{ x \mid c_i(x) = 0, \; i \in \mathcal{E}; \; c_i(x) \geq 0, \; i \in \mathcal{I} \}.\]</div>
+<p>so that we can rewrite:</p>
+<div class="arithmatex">\[\min_{x \in \Omega} f(x).\]</div>
+<h4 id="definitions">Definitions:</h4>
+<ul>
+<li><strong>Standard form problem (not necessarily convex)</strong></li>
+</ul>
+<p>Minimize
+<span class="arithmatex">\(
+f(x)
+\)</span></p>
+<p>subject to</p>
+<div class="arithmatex">\[
+0 \leq g_i(x), \quad i = 1, \dots, m
+\]</div>
+<div class="arithmatex">\[
+h_i(x) = 0, \quad i = 1, \dots, p
+\]</div>
+<p>Variable <span class="arithmatex">\( x \in \mathbb{R}^n \)</span>, domain <span class="arithmatex">\( D \)</span>, optimal value <span class="arithmatex">\( p^\star \)</span></p>
+<ul>
+<li><strong>Lagrangian:</strong></li>
+</ul>
+<p><span class="arithmatex">\( L : \mathbb{R}^n \times \mathbb{R}^m \times \mathbb{R}^p \rightarrow \mathbb{R}, \quad \text{with } \text{dom } L = D \times \mathbb{R}^m \times \mathbb{R}^p \)</span></p>
+<div class="arithmatex">\[
+L(x, \lambda, \nu) = f(x) - \sum_{i=1}^{m} \lambda_i g_i(x) + \sum_{i=1}^{p} \nu_i h_i(x)
+\]</div>
+<ul>
+<li><strong>Active/Inactive Constraint</strong>:</li>
+</ul>
+<p>An inequality constraint <span class="arithmatex">\( h_i(x) \geq 0 \)</span> is called <strong>active</strong> at <span class="arithmatex">\( x^* \in \Omega \)</span> if <span class="arithmatex">\( h_i(x^*) = 0 \)</span> and otherwise <strong>inactive</strong>.</p>
+<ul>
+<li><strong>Active Set</strong>:</li>
+</ul>
+<p>The index set <span class="arithmatex">\( A(x^*) \subset \{1, \dots, q\} \)</span> of active constraints is called the <strong>active set</strong>.</p>
+<p><strong>Remark</strong>: Inactive constraints do not influence <span class="arithmatex">\( T_\Omega(x^*) \)</span>.</p>
+<ul>
+<li><strong>LICQ (linear independence constraint qualification)</strong>:</li>
+</ul>
+<p>The <strong>linear independence constraint qualification</strong> (LICQ) holds at <span class="arithmatex">\( x^* \in \Omega \)</span> iff all vectors <span class="arithmatex">\( \nabla g_i(x^*) \)</span> for <span class="arithmatex">\( i \in \{1, \dots, m\} \)</span> and <span class="arithmatex">\( \nabla h_i(x^*) \)</span> for <span class="arithmatex">\( i \in A(x^*) \)</span> are linearly independent.</p>
+<p><strong>Remark</strong>: This is a technical condition, and is usually satisfied.</p>
+<ul>
+<li><strong>Linearized Feasible Cone</strong>:</li>
+</ul>
+<p><span class="arithmatex">\(F(x^*) = \{ p \mid \nabla g_i(x^*)^T p = 0, \; i = 1, \dots, m \; \text{and} \; \nabla h_i(x^*)^T p \geq 0, \; i(x^*\}\)</span></p>
+<p>is called the <strong>linearized feasible cone</strong> at <span class="arithmatex">\( x^* \in \Omega \)</span>.</p>
+<h4 id="example-1">Example 1:</h4>
+<div class="arithmatex">\[\min_{x} \, f(x) = x_1 + x_2\]</div>
+<div class="arithmatex">\[\text{s.t.}\]</div>
+<div class="arithmatex">\[c_1(x) = x_1^2 + x_2^2 - 2 = 0.\]</div>
+<p><img alt="alt text" src="../image-20.png" /></p>
+<h5 id="solution">Solution:</h5>
+<p>The optimal solution is <span class="arithmatex">\( x^* = (-1, -1)^T \)</span>. From any other point on the circle, one can move in directions that maintain feasibility (stay on the circle) while decreasing <span class="arithmatex">\( f(x) \)</span>. For instance, from the point <span class="arithmatex">\( x = (2, 0)^T \)</span>, any clockwise movement on the circle decreases <span class="arithmatex">\( f(x) \)</span>.</p>
+<p>At the solution <span class="arithmatex">\( x^* \)</span>, the gradient of the objective function <span class="arithmatex">\( \nabla f(x) \)</span> is parallel to the gradient of the constraint <span class="arithmatex">\( \nabla c_1(x) \)</span>, satisfying the Lagrange multiplier condition:</p>
+<div class="arithmatex">\[\nabla f(x^*) = \lambda^* \nabla c_1(x^*),\]</div>
+<p>where <span class="arithmatex">\( \lambda^* = -\frac{1}{2} \)</span>.</p>
+<p>To ensure feasibility, small steps <span class="arithmatex">\( s \)</span> must satisfy the condition:</p>
+<div class="arithmatex">\[\nabla c_1(x)^T s = 0.\]</div>
+<p>To decrease the objective function, the step must satisfy:</p>
+<div class="arithmatex">\[\nabla f(x)^T s &lt; 0.\]</div>
+<p>We can express this in terms of first-order Taylor series approximations. To retain feasibility with respect to the constraint, the first-order approximation gives:</p>
+<div class="arithmatex">\[c_1(x + s) \approx c_1(x) + \nabla c_1(x)^T s = 0,\]</div>
+<p>which simplifies to:</p>
+<div class="arithmatex">\[\nabla c_1(x)^T s = 0.\]</div>
+<p>Similarly, to decrease the objective function <span class="arithmatex">\( f(x) \)</span>, the first-order approximation is:</p>
+<div class="arithmatex">\[f(x + s) \approx f(x) + \nabla f(x)^T s,\]</div>
+<p>and for <span class="arithmatex">\( f(x) \)</span> to decrease, we require:</p>
+<div class="arithmatex">\[\nabla f(x)^T s &lt; 0.\]</div>
+<p>The optimal step <span class="arithmatex">\( d \)</span> can be calculated as:</p>
+<div class="arithmatex">\[d = - \frac{\nabla c_1(x) \nabla f(x)^T}{\|\nabla c_1(x)\|^2} \nabla f(x),\]</div>
+<p>which ensures feasibility and decreases the objective function.</p>
+<p>By introducing the Lagrangian function</p>
+<div class="arithmatex">\[\mathcal{L}(x, \lambda_1) = f(x) - \lambda_1 c_1(x),\]</div>
+<p>and noting that</p>
+<div class="arithmatex">\[\nabla_x \mathcal{L}(x, \lambda_1) = \nabla f(x) - \lambda_1 \nabla c_1(x),\]</div>
+<p>we can state the condition equivalently as follows: At the solution <span class="arithmatex">\( x^* \)</span>, there is a scalar <span class="arithmatex">\( \lambda_1^* \)</span> such that</p>
+<div class="arithmatex">\[\nabla_x \mathcal{L}(x^*, \lambda_1^*) = 0.\]</div>
+<h4 id="example-2">Example 2:</h4>
+<p><span class="arithmatex">\(
+\min \: \: \: \: \: x_1^2 + x_2^2
+\)</span></p>
+<div class="arithmatex">\[
+\text{s.t.}
+\]</div>
+<div class="arithmatex">\[
+x_2 - 1 - x_1^2 \geq 0,
+\]</div>
+<div class="arithmatex">\[
+x_1 - 1 \geq 0.
+\]</div>
+<p>where <span class="arithmatex">\( x \in \mathbb{R}^2 \)</span>.</p>
+<p><img alt="alt text" src="../image-21.png" /></p>
+<h3 id="theorem-first-order-necessary-conditions">Theorem (First-Order Necessary Conditions):</h3>
+<p>Suppose that <span class="arithmatex">\( x^* \)</span> is a local solution of the optimization problem:</p>
+<p><span class="arithmatex">\(
+\min_{x \in \mathbb{R}^n} f(x)
+\)</span></p>
+<p>subject to:</p>
+<div class="arithmatex">\[
+c_i(x) = 0, \quad i \in \mathcal{E}, \quad c_i(x) \geq 0, \quad i \in \mathcal{I},
+\]</div>
+<p>where <span class="arithmatex">\( x^* \)</span> is the solution, and <span class="arithmatex">\( \lambda^* \)</span> is the corresponding Lagrange multiplier vector. Then, the following conditions hold at <span class="arithmatex">\( x^* \)</span>:</p>
+<ul>
+<li>(a) <span class="arithmatex">\( \nabla_x \mathcal{L}(x^*, \lambda^*) = 0 \)</span></li>
+<li>(b) <span class="arithmatex">\( c_i(x^*) = 0 \quad \text{for all} \quad i \in \mathcal{E} \)</span></li>
+<li>(c) <span class="arithmatex">\( c_i(x^*) \geq 0 \quad \text{for all} \quad i \in \mathcal{I} \)</span></li>
+<li>(d) <span class="arithmatex">\( \lambda_i^* \geq 0 \quad \text{for all} \quad i \in \mathcal{I} \)</span></li>
+<li>(e) <span class="arithmatex">\( \lambda_i^* c_i(x^*) = 0 \quad \text{for all} \quad i \in \mathcal{E} \cup \mathcal{I} \)</span></li>
+</ul>
+<p>These conditions are known as the Karush-Kuhn-Tucker (KKT) conditions. The last condition is a complementarity condition, meaning that for any constraint <span class="arithmatex">\( i \)</span>, either <span class="arithmatex">\( c_i(x^*) = 0 \)</span> (active) or <span class="arithmatex">\( \lambda_i^* = 0 \)</span> (inactive).</p>
+<p>Finally, the necessary condition can be rewritten as:</p>
+<div class="arithmatex">\[
+0 = \nabla_x \mathcal{L}(x^*, \lambda^*) = \nabla f(x^*) - \sum_{i \in A(x^*)} \lambda_i^* \nabla c_i(x^*).
+\]</div>
+<p><strong>Definition 12.5 (Strict Complementarity):</strong></p>
+<p>Given a local solution <span class="arithmatex">\( x^* \)</span> of the optimization problem and a vector <span class="arithmatex">\( \lambda^* \)</span> satisfying the first-order necessary conditions, we say that the strict complementarity condition holds if exactly one of <span class="arithmatex">\( \lambda_i^* \)</span> and <span class="arithmatex">\( c_i(x^*) \)</span> is zero for each index <span class="arithmatex">\( i \in \mathcal{I} \)</span>. In other words, we have that <span class="arithmatex">\( \lambda_i^* &gt; 0 \)</span> for each <span class="arithmatex">\( i \in \mathcal{I} \cap A(x^*) \)</span>.</p>
+<p><strong>Example:</strong></p>
+<p>Consider the feasible region illustrated in <strong>Figure below</strong> and described by the four constraints. By restating the constraints in the standard form of the optimization problem and including an objective function, the problem becomes:</p>
+<div class="arithmatex">\[
+\min_x \left( \left( x_1 - \frac{3}{2} \right)^2 + \left( x_2 - \frac{1}{2} \right)^4 \right)
+\]</div>
+<p>subject to
+<span class="arithmatex">\(
+\begin{bmatrix}
+1 - x_1 - x_2 \\
+1 - x_1 + x_2 \\
+1 + x_1 - x_2 \\
+1 + x_1 + x_2
+\end{bmatrix} \geq 0.
+\)</span></p>
+<p>It is fairly clear from <strong>Figure below</strong> that the solution is <span class="arithmatex">\( x^* = (1, 0)^T \)</span>. The first and second constraints are active at this point. Denoting them by <span class="arithmatex">\( c_1 \)</span> and <span class="arithmatex">\( c_2 \)</span> (and the inactive constraints by <span class="arithmatex">\( c_3 \)</span> and <span class="arithmatex">\( c_4 \)</span>), we have</p>
+<p><span class="arithmatex">\(
+\nabla f(x^*) = \begin{bmatrix} -1 \\ -1 \end{bmatrix}, \quad
+\nabla c_1(x^*) = \begin{bmatrix} -1 \\ -1 \end{bmatrix}, \quad
+\nabla c_2(x^*) = \begin{bmatrix} -1 \\ 1 \end{bmatrix}.
+\)</span></p>
+<p>Therefore, the KKT conditions are satisfied when we set</p>
+<div class="arithmatex">\[
+\lambda^* = \begin{bmatrix} \frac{3}{4} \\ \frac{1}{4} \\ 0 \\ 0 \end{bmatrix}.
+\]</div>
+<p><img alt="alt text" src="../image-22.png" /></p>
+<p><strong>Lemma</strong></p>
+<p>Let <span class="arithmatex">\( x^* \)</span> be a feasible point. The following two statements are true:</p>
+<ul>
+<li>
+<p>(i) <span class="arithmatex">\( T_\Omega(x^*) \subset F(x^*) \)</span>.</p>
+</li>
+<li>
+<p>(ii) If the LICQ condition is satisfied at <span class="arithmatex">\( x^* \)</span>, then <span class="arithmatex">\( F(x^*) = T_\Omega(x^*) \)</span>.</p>
+</li>
+</ul>
+<p><strong>Theorem</strong></p>
+<p>If <span class="arithmatex">\( x^* \)</span> is a local solution of the optimization problem, then we have</p>
+<div class="arithmatex">\[
+\nabla f(x^*)^T d \geq 0, \quad \text{for all} \quad d \in T_\Omega(x^*).
+\]</div>
+<p>The most important step in proving the previous theorem is a classical result known as <strong>Farkas' Lemma</strong>.</p>
+<p><strong>Farkas' Lemma</strong></p>
+<p><img alt="alt text" src="../image-23.png" /></p>
+<p>This lemma defines a cone <span class="arithmatex">\( K \)</span> as:</p>
+<div class="arithmatex">\[
+K = \{ By + Cw \mid y \geq 0 \}.
+\]</div>
+<p>For a vector <span class="arithmatex">\( g \in \mathbb{R}^n \)</span>, Farkas' Lemma states that one of the following alternatives is true:</p>
+<ol>
+<li><span class="arithmatex">\( g \in K \)</span> (as shown on the left side of the figure),</li>
+<li>There exists a vector <span class="arithmatex">\( d \in \mathbb{R}^n \)</span> such that:
+   <span class="arithmatex">\( g^T d &lt; 0 , \quad B^Td \geq 0, \quad C^Td = 0.\)</span></li>
+</ol>
+<p>These two cases are illustrated in <strong>the above figure</strong>, where <span class="arithmatex">\( B \)</span> has three columns, <span class="arithmatex">\( C \)</span> is null, and <span class="arithmatex">\( n = 2 \)</span>.</p>
+<p>Let the cone <span class="arithmatex">\( K \)</span> be defined as in the equation above. Given any vector <span class="arithmatex">\( g \in \mathbb{R}^n \)</span>, either <span class="arithmatex">\( g \in K \)</span> or there exists a vector <span class="arithmatex">\( d \in \mathbb{R}^n \)</span> satisfying the condition above, but not both.</p>
+<h3 id="theorem-second-order-necessary-conditions">Theorem (Second-Order Necessary Conditions).</h3>
+<p>Suppose that <span class="arithmatex">\( x^* \)</span> is a local solution and that the LICQ condition is satisfied. Let <span class="arithmatex">\( \lambda^* \)</span> be the Lagrange multiplier vector for which the KKT conditions are satisfied. Then</p>
+<div class="arithmatex">\[
+w^T \nabla^2_{xx} \mathcal{L}(x^*, \lambda^*) w \geq 0, \quad \text{for all} \ w \in C(x^*, \lambda^*).
+\]</div>
+<h3 id="theorem-second-order-sufficient-conditions">Theorem (Second-Order Sufficient Conditions).</h3>
+<p>Suppose that for some feasible point <span class="arithmatex">\( x^* \in \mathbb{R}^n \)</span> there is a Lagrange multiplier vector <span class="arithmatex">\( \lambda^* \)</span> such that the KKT conditions (12.34) are satisfied. Suppose also that</p>
+<div class="arithmatex">\[
+w^T \nabla^2_{xx} \mathcal{L}(x^*, \lambda^*) w &gt; 0, \quad \text{for all } w \in C(x^*, \lambda^*), w \neq 0.
+\]</div>
+<h2 id="duality">Duality</h2>
+<p>Duality in optimization provides a method to derive an alternative problem, the dual, related to the original primal problem. Solving the dual can sometimes be easier and provides bounds on the primal solution.</p>
+<h4 id="standard-form-problem">Standard Form Problem</h4>
+<p>Consider the optimization problem:</p>
+<div class="arithmatex">\[
+\min f(x)
+\]</div>
+<p>subject to:</p>
+<div class="arithmatex">\[
+c_i(x) \geq 0, \quad i = 1, \dots, m
+\]</div>
+<div class="arithmatex">\[
+h_i(x) = 0, \quad i = 1, \dots, p
+\]</div>
+<p>where <span class="arithmatex">\( x \in \mathbb{R}^n \)</span> is the variable to optimize.</p>
+<h4 id="lagrangian">Lagrangian</h4>
+<p>The Lagrangian is:</p>
+<div class="arithmatex">\[
+L(x, \lambda, \nu) = f_0(x) - \sum_{i=1}^{m} \lambda_i c_i(x) + \sum_{i=1}^{p} \nu_i h_i(x)
+\]</div>
+<p>where <span class="arithmatex">\( \lambda_i \)</span> and <span class="arithmatex">\( \nu_i \)</span> are the Lagrange multipliers associated with the inequality and equality constraints, respectively.</p>
+<h4 id="dual-function-and-problem">Dual Function and Problem</h4>
+<p>The dual function is:</p>
+<div class="arithmatex">\[
+g(\lambda, \nu) = \inf_{x \in D} L(x, \lambda, \nu)
+\]</div>
+<p>The dual problem is:</p>
+<div class="arithmatex">\[
+\max_{\lambda \geq 0, \nu} g(\lambda, \nu)
+\]</div>
+<p>This dual formulation provides a lower bound on the optimal value of the primal problem and can often be easier to solve.</p>
+<h3 id="theorem_3">Theorem</h3>
+<p>The function <span class="arithmatex">\( g(\lambda, \nu) \)</span> defined by the dual function is concave, and its domain <span class="arithmatex">\( D \)</span> is convex.</p>
+<h4 id="proof">Proof:</h4>
+<p>For any <span class="arithmatex">\( \lambda^0 \)</span> and <span class="arithmatex">\( \lambda^1 \)</span> in <span class="arithmatex">\( \mathbb{R}^m \)</span>, and any <span class="arithmatex">\( \nu^0 \)</span> and <span class="arithmatex">\( \nu^1 \)</span> in <span class="arithmatex">\( \mathbb{R}^p \)</span>, and any <span class="arithmatex">\( \alpha \in [0, 1] \)</span>, we have:</p>
+<div class="arithmatex">\[
+L(x, (1 - \alpha) \lambda^0 + \alpha \lambda^1, (1 - \alpha) \nu^0 + \alpha \nu^1) = (1 - \alpha) L(x, \lambda^0, \nu^0) + \alpha L(x, \lambda^1, \nu^1)
+\]</div>
+<p>By taking the infimum of both sides in this expression, using the definition of <span class="arithmatex">\( g(\lambda, \nu) \)</span>, and applying the result that the infimum of a sum is greater than or equal to the sum of infima, we obtain:</p>
+<div class="arithmatex">\[
+g((1 - \alpha) \lambda^0 + \alpha \lambda^1, (1 - \alpha) \nu^0 + \alpha \nu^1) \geq (1 - \alpha) g(\lambda^0, \nu^0) + \alpha g(\lambda^1, \nu^1)
+\]</div>
+<p>This confirms the concavity of <span class="arithmatex">\( g(\lambda, \nu) \)</span>.</p>
+<p>If both <span class="arithmatex">\( \lambda^0 \)</span> and <span class="arithmatex">\( \lambda^1 \)</span> belong to <span class="arithmatex">\( D \)</span>, and both <span class="arithmatex">\( \nu^0 \)</span> and <span class="arithmatex">\( \nu^1 \)</span> belong to <span class="arithmatex">\( D \)</span>, this inequality implies that:</p>
+<div class="arithmatex">\[
+g((1 - \alpha) \lambda^0 + \alpha \lambda^1, (1 - \alpha) \nu^0 + \alpha \nu^1) \geq -\infty
+\]</div>
+<p>and therefore, <span class="arithmatex">\( (1 - \alpha) \lambda^0 + \alpha \lambda^1 \in D \)</span> and <span class="arithmatex">\( (1 - \alpha) \nu^0 + \alpha \nu^1 \in D \)</span>, verifying the convexity of the domain <span class="arithmatex">\( D \)</span>.</p>
+<h3 id="example">Example:</h3>
+<p>Consider the problem:</p>
+<div class="arithmatex">\[
+\min_{(x_1, x_2)} \, 0.5(x_1^2 + x_2^2) \quad \text{subject to} \quad x_1 - 1 \geq 0
+\]</div>
+<p>The Lagrangian for this problem is:</p>
+<div class="arithmatex">\[
+L(x_1, x_2, \lambda_1) = 0.5(x_1^2 + x_2^2) - \lambda_1(x_1 - 1)
+\]</div>
+<p>Holding <span class="arithmatex">\( \lambda_1 \)</span> fixed, we minimize the Lagrangian with respect to <span class="arithmatex">\( x_1 \)</span> and <span class="arithmatex">\( x_2 \)</span>. The partial derivatives with respect to <span class="arithmatex">\( x_1 \)</span> and <span class="arithmatex">\( x_2 \)</span> give:</p>
+<div class="arithmatex">\[
+x_1 = \lambda_1, \quad x_2 = 0
+\]</div>
+<p>Substituting these values into the Lagrangian, the dual function becomes:</p>
+<div class="arithmatex">\[
+q(\lambda_1) = 0.5(\lambda_1^2 + 0) - \lambda_1(\lambda_1 - 1) = -0.5\lambda_1^2 + \lambda_1
+\]</div>
+<p>The dual problem is:</p>
+<div class="arithmatex">\[
+\max_{\lambda_1 \geq 0} \left( -0.5\lambda_1^2 + \lambda_1 \right)
+\]</div>
+<p>Solving this, we find that <span class="arithmatex">\( \lambda_1 = 1 \)</span>.</p>
+<h3 id="theorem-weak-duality">Theorem (Weak Duality)</h3>
+<p>For any <span class="arithmatex">\( \bar{x} \)</span> feasible for the primal problem and any <span class="arithmatex">\( \lambda \geq 0 \)</span>, we have:</p>
+<div class="arithmatex">\[
+g(\lambda, \nu) \leq f(\bar{x})
+\]</div>
+<h4 id="proof_1">Proof</h4>
+<p>The dual function <span class="arithmatex">\( g(\lambda, \nu) \)</span> is defined as:</p>
+<div class="arithmatex">\[
+g(\lambda, \nu) = \inf_x \left[ f(x) - \lambda^T c(x) - \nu^T h(x) \right]
+\]</div>
+<p>Thus,</p>
+<div class="arithmatex">\[
+g(\lambda, \nu) = \inf_x \left[ f(x) - \lambda^T c(x) - \nu^T h(\bar{x}) \right] \leq f(\bar{x}) - \lambda^T c(\bar{x}) - \nu^T h(\bar{x}) \leq f(\bar{x})
+\]</div>
+<p>where the final inequality follows from <span class="arithmatex">\( \lambda \geq 0 \)</span>, <span class="arithmatex">\( h(\bar{x}) = 0 \)</span>, and <span class="arithmatex">\( c(\bar{x}) \geq 0 \)</span>.</p>
+<p><strong>Definition: (Dual Norm):</strong></p>
+<p>The <strong>dual norm</strong> of a vector <span class="arithmatex">\( \nu \)</span> in the dual space <span class="arithmatex">\( V^* \)</span> is defined as:</p>
+<div class="arithmatex">\[
+\| \nu \|_* = \sup_{\| x \| \leq 1} \, \nu^T x
+\]</div>
+<p>It measures the maximum value of <span class="arithmatex">\( \nu^T x \)</span> over all vectors <span class="arithmatex">\( x \)</span> with <span class="arithmatex">\( \| x \| \leq 1 \)</span>.</p>
+<h3 id="example-equality-constrained-norm-minimization">Example: Equality Constrained Norm Minimization</h3>
+<p>Consider the problem:</p>
+<div class="arithmatex">\[
+\min \| x \| \quad \text{subject to} \quad A x = b
+\]</div>
+<p>The dual function is:</p>
+<div class="arithmatex">\[
+g(\nu) = 
+\begin{cases} 
+b^T \nu &amp; \text{if} \quad \| A^T \nu \|_* \leq 1 \\
+-\infty &amp; \text{otherwise}
+\end{cases}
+\]</div>
+<p>where <span class="arithmatex">\( \| \nu \|_* \)</span> is the dual norm of <span class="arithmatex">\( \nu \)</span>.</p>
+<p>If <span class="arithmatex">\( \| y \|_* \leq 1 \)</span>, then <span class="arithmatex">\( \| x \| - y^T x \geq 0 \)</span> for all <span class="arithmatex">\( x \)</span>, with equality when <span class="arithmatex">\( x = 0 \)</span>. If <span class="arithmatex">\( \| y \|_* &gt; 1 \)</span>, the function tends to <span class="arithmatex">\( -\infty \)</span> as <span class="arithmatex">\( t \)</span> approaches infinity.</p>
+<p>The lower bound property is:</p>
+<div class="arithmatex">\[
+p^* \geq b^T \nu \quad \text{if} \quad \| A^T \nu \|_* \leq 1
+\]</div>
+<h3 id="example-quadratic-program">Example: Quadratic Program</h3>
+<p>Consider the following quadratic program:</p>
+<h4 id="primal-problem-assume-p-in-sn_">Primal Problem (assume <span class="arithmatex">\( P \in S^{n}_{++} \)</span>)</h4>
+<div class="arithmatex">\[
+\min x^T P x
+\]</div>
+<div class="arithmatex">\[
+\text{s.t.}
+\]</div>
+<div class="arithmatex">\[
+A x \leq b
+\]</div>
+<p>The dual function is given by:</p>
+<div class="arithmatex">\[
+g(\lambda) = \inf_x \left( x^T P x + \lambda^T (A x - b) \right) = -\frac{1}{4} \lambda^T A P^{-1} A^T \lambda - b^T \lambda
+\]</div>
+<p>The dual problem is:</p>
+<div class="arithmatex">\[
+\max \left( -\frac{1}{4} \lambda^T A P^{-1} A^T \lambda - b^T \lambda \right)
+\]</div>
+<div class="arithmatex">\[
+\text{s.t.}
+\]</div>
+<div class="arithmatex">\[
+\lambda \geq 0
+\]</div>
+<h3 id="theorem_4">Theorem</h3>
+<p>Suppose that <span class="arithmatex">\( \bar{x} \)</span> is a solution of the primal problem and that <span class="arithmatex">\( f \)</span> and <span class="arithmatex">\( -c_i \)</span>, for <span class="arithmatex">\( i = 1, 2, \dots, m \)</span>, are convex functions on <span class="arithmatex">\( \mathbb{R}^n \)</span> that are differentiable at <span class="arithmatex">\( \bar{x} \)</span>. Then any <span class="arithmatex">\( \lambda \)</span> for which <span class="arithmatex">\( (\bar{x}, \lambda) \)</span> satisfies the KKT conditions is a solution of the primal optimization problem.</p>
+<h1 id="references">References</h1>
+<ol>
+<li>
+<p>Nocedal, J., &amp; Wright, S. J. (2006). <strong>Numerical Optimization</strong> (2nd ed.). Springer.</p>
+</li>
+<li>
+<p>Bertsekas, D. P. (2009). <strong>Convex Optimization Theory</strong>. Athena Scientific.</p>
+</li>
+<li>
+<p>Boyd, S., &amp; Vandenberghe, L. (2004). <strong>Convex Optimization</strong>. Cambridge University Press.</p>
+</li>
+<li>
+<p>Diehl, M. (2006). <strong>Lecture Notes on Numerical Optimization</strong> (Preliminary Draft). Retrieved from [link or source if applicable].</p>
+</li>
+</ol>
+<p><br>
+<br></p>
+<h2 id="authors">Author(s)</h2>
+<div class="grid cards">
+<ul>
+<li><img align="left" alt="Instructor Avatar" src="/assets/images/staff/Abdollah-Zohrabi.jpg" width="150" />
+    <span class="description">
+        <p><strong>Abdollah Zohrabi</strong></p>
+        <p>Teaching Assistant</p>
+        <p><a href="mailto:abdollahzz1381@gmail.com">abdollahzz1381@gmail.com</a></p>
+        <p>
+        <a href="https://github.com/Abz81" target="_blank"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg></span></a>
+        <a href="https://www.linkedin.com/in/abdollah-zohrabi-i2003" target="_blank"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8c0-14.3 5.7-27.9 15.8-38S39.6 0 53.8 0s27.9 5.7 38 15.8 15.8 23.8 15.8 38c0 29.7-24.1 54.3-53.8 54.3M447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z"/></svg></span></a>
+        </p>
+    </span></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  <form class="md-feedback" name="feedback" hidden>
+    <fieldset>
+      <legend class="md-feedback__title">
+        Was this page helpful?
+      </legend>
+      <div class="md-feedback__inner">
+        <div class="md-feedback__list">
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="This page was helpful" data-md-value="1">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 12a8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8m2 0a10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2a10 10 0 0 1 10 10M10 9.5c0 .8-.7 1.5-1.5 1.5S7 10.3 7 9.5 7.7 8 8.5 8s1.5.7 1.5 1.5m7 0c0 .8-.7 1.5-1.5 1.5S14 10.3 14 9.5 14.7 8 15.5 8s1.5.7 1.5 1.5m-5 7.73c-1.75 0-3.29-.73-4.19-1.81L9.23 14c.45.72 1.52 1.23 2.77 1.23s2.32-.51 2.77-1.23l1.42 1.42c-.9 1.08-2.44 1.81-4.19 1.81"/></svg>
+            </button>
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="This page could be improved" data-md-value="0">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 12a8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8m2 0a10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2a10 10 0 0 1 10 10m-6.5-4c.8 0 1.5.7 1.5 1.5s-.7 1.5-1.5 1.5-1.5-.7-1.5-1.5.7-1.5 1.5-1.5M10 9.5c0 .8-.7 1.5-1.5 1.5S7 10.3 7 9.5 7.7 8 8.5 8s1.5.7 1.5 1.5m2 4.5c1.75 0 3.29.72 4.19 1.81l-1.42 1.42C14.32 16.5 13.25 16 12 16s-2.32.5-2.77 1.23l-1.42-1.42C8.71 14.72 10.25 14 12 14"/></svg>
+            </button>
+          
+        </div>
+        <div class="md-feedback__note">
+          
+            <div data-md-value="1" hidden>
+              
+              
+                
+              
+              
+              
+                
+                
+              
+              Thanks for your feedback!
+            </div>
+          
+            <div data-md-value="0" hidden>
+              
+              
+                
+              
+              
+              
+                
+                
+              
+              Thanks for your feedback! Help us improve this page by using our <a href="..." target="_blank" rel="noopener">feedback form</a>.
+            </div>
+          
+        </div>
+      </div>
+    </fieldset>
+  </form>
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Made with ❤️ in Robust and Interpretable Machine Learning Lab
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="mailto:deeprlcourse@gmail.com" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2zm-2 0-8 5-8-5zm0 12H4V8l8 5 8-5z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/DeepRLCourse" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.youtube.com/@DeepRLCourse" target="_blank" rel="noopener" title="www.youtube.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M549.7 124.1c-6.2-23.7-24.8-42.3-48.3-48.6C458.9 64 288.1 64 288.1 64S117.3 64 74.7 75.5c-23.5 6.3-42 24.9-48.3 48.6C15 167 15 256.4 15 256.4s0 89.4 11.4 132.3c6.3 23.6 24.8 41.5 48.3 47.8C117.3 448 288.1 448 288.1 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zM232.2 337.6V175.2l142.7 81.2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://x.com/DeepRLCourse" target="_blank" rel="noopener" title="x.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M357.2 48h70.6L273.6 224.2 455 464H313L201.7 318.6 74.5 464H3.8l164.9-188.5L-5.2 48h145.6l100.5 132.9zm-24.8 373.8h39.1L119.1 88h-42z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://t.me/DeepRLCourse" target="_blank" rel="noopener" title="t.me" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M256 8a248 248 0 1 0 0 496 248 248 0 1 0 0-496m115 168.7c-3.7 39.2-19.9 134.4-28.1 178.3-3.5 18.6-10.3 24.8-16.9 25.4-14.4 1.3-25.3-9.5-39.3-18.7-21.8-14.3-34.2-23.2-55.3-37.2-24.5-16.1-8.6-25 5.3-39.5 3.7-3.8 67.1-61.5 68.3-66.7.2-.7.3-3.1-1.2-4.4s-3.6-.8-5.1-.5c-2.2.5-37.1 23.5-104.6 69.1-9.9 6.8-18.9 10.1-26.9 9.9-8.9-.2-25.9-5-38.6-9.1-15.5-5-27.9-7.7-26.8-16.3.6-4.5 6.7-9 18.4-13.7 72.3-31.5 120.5-52.3 144.6-62.3 68.9-28.6 83.2-33.6 92.5-33.8 2.1 0 6.6.5 9.6 2.9 2 1.7 3.2 4.1 3.5 6.7.5 3.2.6 6.5.4 9.8z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
