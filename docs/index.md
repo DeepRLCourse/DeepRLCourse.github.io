@@ -368,7 +368,7 @@ This course provides an in-depth introduction to the field of deep reinforcement
 ### Guest Lectures
 | <div style="width:100px;">Week #</div> | <div style="width:250px;">Topic of the Week</div> | <div style="width:110px;">Lecture 1</div> | <div style="width:110px;">Lecture 2</div> | <div style="width:100px;">Homework</div> |
 | :-: | :- | :-: | :-: | :-: |
-| Week 15 | [Guest Lectures](/lectures/week15) | <div style="direction: rtl;font-family: Vazirmatn;">۱۱ خرداد<br>(June 1)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۱۳ خرداد<br>(June 3)</div> | - |
+| Week 15 | Guest Lectures | <div style="direction: rtl;font-family: Vazirmatn;">۱۱ خرداد<br>(June 1)</div> | <div style="direction: rtl;font-family: Vazirmatn;">۱۳ خرداد<br>(June 3)</div> | - |
 
 ## Logistics & Policies 
 

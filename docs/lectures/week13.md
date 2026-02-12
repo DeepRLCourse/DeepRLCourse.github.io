@@ -37,6 +37,16 @@ description: This page contains the lecture materials for Week 13 of the Deep Re
 
 [Download Summary](/assets/lectures/summaries/Lecture_25_Summary.pdf){:target="_blank" .md-button .md-button--primary }
 
+### Lecture Quiz
+
+<object class="pdf" 
+        data="/assets/lectures/quizzes/Quiz_25___Solution.pdf"
+        width="996"
+        height="560">
+</object>
+
+[Download Quiz](/assets/lectures/quizzes/Quiz_25___Solution.pdf){:target="_blank" .md-button .md-button--primary }
+
 ## Lecture 26
 
 ### Screen + Camera
@@ -67,3 +77,13 @@ description: This page contains the lecture materials for Week 13 of the Deep Re
 </object>
 
 [Download Summary](/assets/lectures/summaries/Lecture_26_Summary.pdf){:target="_blank" .md-button .md-button--primary }
+
+### Lecture Quiz
+
+<object class="pdf" 
+        data="/assets/lectures/quizzes/Quiz_26___Solution.pdf"
+        width="996"
+        height="560">
+</object>
+
+[Download Quiz](/assets/lectures/quizzes/Quiz_26___Solution.pdf){:target="_blank" .md-button .md-button--primary }

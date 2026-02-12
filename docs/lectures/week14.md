@@ -38,6 +38,16 @@ description: This page contains the lecture materials for Week 14 of the Deep Re
 
 [Download Summary](/assets/lectures/summaries/Lecture_27_Summary.pdf){:target="_blank" .md-button .md-button--primary }
 
+### Lecture Quiz
+
+<object class="pdf" 
+        data="/assets/lectures/quizzes/Quiz_27___Solution.pdf"
+        width="996"
+        height="560">
+</object>
+
+[Download Quiz](/assets/lectures/quizzes/Quiz_27___Solution.pdf){:target="_blank" .md-button .md-button--primary }
+
 ## Lecture 28
 
 ### Screen + Camera
@@ -68,3 +78,13 @@ description: This page contains the lecture materials for Week 14 of the Deep Re
 </object>
 
 [Download Summary](/assets/lectures/summaries/Lecture_28_Summary.pdf){:target="_blank" .md-button .md-button--primary }
+
+### Lecture Quiz
+
+<object class="pdf" 
+        data="/assets/lectures/quizzes/Quiz_28___Solution.pdf"
+        width="996"
+        height="560">
+</object>
+
+[Download Quiz](/assets/lectures/quizzes/Quiz_28___Solution.pdf){:target="_blank" .md-button .md-button--primary }

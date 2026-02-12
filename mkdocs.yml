@@ -108,17 +108,17 @@ nav:
       - course_notes/advanced.md
       - course_notes/model-based.md
       - course_notes/bandits.md
-    - RL Methods in Depth:
-      - course_notes/intro-to-phase2.md
-      - course_notes/value-based2.md
-      - course_notes/policy-based2.md
-      - course_notes/exploration.md
-      - course_notes/imitation.md
-      - course_notes/inverse.md
-      - course_notes/offline.md
-      - course_notes/multi-agent.md
-      - course_notes/hierarchical.md
-      - course_notes/meta.md
+    # - RL Methods in Depth:
+    #   - course_notes/intro-to-phase2.md
+    #   - course_notes/value-based2.md
+    #   - course_notes/policy-based2.md
+    #   - course_notes/exploration.md
+    #   - course_notes/imitation.md
+    #   - course_notes/inverse.md
+    #   - course_notes/offline.md
+    #   - course_notes/multi-agent.md
+    #   - course_notes/hierarchical.md
+    #   - course_notes/meta.md
   - Lectures:
     - lectures/week1.md
     - lectures/week2.md
@@ -134,7 +134,7 @@ nav:
     - lectures/week12.md
     - lectures/week13.md
     - lectures/week14.md
-    - lectures/week15.md
+    # - lectures/week15.md
   - Guests:
     - guests/richard_sutton.md
     - guests/chris_watkins.md
@@ -215,8 +215,8 @@ nav:
     - exams/midterm.md
     - exams/final.md
     - exams/index.md
-  - Journal Club:
-    - journal_club/index.md
+  # - Journal Club:
+  #   - journal_club/index.md
   - Poster Session:
     - poster_session/index.md
     - poster_session/sp24.md
