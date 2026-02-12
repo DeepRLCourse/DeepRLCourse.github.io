@@ -218,8 +218,11 @@ nav:
   # - Journal Club:
   #   - journal_club/index.md
   - Poster Session:
-    - poster_session/index.md
-    - poster_session/sp24.md
+    - Spring 2025:
+      - poster_session/sp25.md
+      - poster_session/index.md
+    - Spring 2024:
+      - poster_session/sp24.md
   - Resources:
     - resources/index.md
   - Blog:

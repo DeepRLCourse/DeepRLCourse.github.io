@@ -1,5 +1,5 @@
 ---
-title: Poster Session
+title: Guideline
 description: This page provides all the details for the Poster Session, including guidelines for your research proposal, video presentation, poster design, and in-person session. It outlines submission deadlines, grading criteria, and bonus opportunities to help you showcase your reinforcement learning project.
 comments: True
 ---
